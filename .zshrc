@@ -81,7 +81,7 @@ errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICA
 # Laptop-only stuff:
 [[ -f ~/.zlap.zsh ]] && source ~/.zlap.zsh
 # Personal custom aliases, functions:
-source ~/.zalias.zsh
+[[ -f ~/.zalias.zsh ]] && source ~/.zalias.zsh
 
 # Key bindings
 #=============
@@ -121,4 +121,4 @@ bindkey "\e[3~" delete-char # Del
 source ~/.zprompt.zsh
 
 #zsh-syntax-highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
