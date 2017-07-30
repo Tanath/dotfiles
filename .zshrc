@@ -24,8 +24,8 @@ setopt SHARE_HISTORY # share history between sessions ???
 # Custom aliases
 #===============
 alias sudo='sudo '
-alias cp='acp -g'
-alias mv='amv -g'
+[[ -f /usr/sbin/acp ]] && alias cp='acp -g' # advcp
+[[ -f /usr/sbin/amv ]] && alias mv='amv -g' # advcp
 alias ed='vim'
 alias u='cd ..'
 alias ll='ls -l' 
@@ -50,7 +50,7 @@ alias todo='$EDITOR ~/Documents/todo/'
 alias wpi='strings -e l' # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
 alias pip='curl -s ifconfig.me' # Public ip
-#alias pip='dig +short myip.opendns.com @resolver1.opendns.com'
+#alias pip='dig +short myip.opendns.com @resolver1.opendns.com' # Public ip
 alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
