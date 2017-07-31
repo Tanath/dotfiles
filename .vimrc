@@ -167,8 +167,14 @@ set splitbelow 		" horizontal splits use bottom half of screen
 
 " Folding {{{
 set foldenable
-"set foldmethod=marker
 set foldmethod=syntax
+""Indent w/manual folds:
+"augroup vimrc
+"  au BufReadPre * setlocal foldmethod=indent
+"  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+"augroup END
+""
+"set foldcolumn=3
 let g:vimwiki_folding='syntax'
 set foldlevel=99
 set foldnestmax=10		" max 10 depth
@@ -279,15 +285,6 @@ set autochdir    " Set working dir to open file
 "call vundle#end()            " required
 "" }}}
 
-" VimWiki {{{
-let wiki_1 = {}
-let wiki_1.path = '~/vimwiki/'
-"let wiki_1.html_template = '~/vimwiki_html/template.tpl'
-"let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
-"let wiki_2.index = 'main'
-
-let wiki_3 = {}
-let wiki_3.path = '~/vimwiki/dungeonworld/'
-
-let g:vimwiki_list = [wiki_1, wiki_3]
-"}}}
+if isdirectory($HOME . "/vimwiki/")
+	source ~/.vw.vim
+endif
