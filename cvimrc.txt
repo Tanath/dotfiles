@@ -1,0 +1,59 @@
+set nochangelog
+set smoothscroll
+let searchlimit = 30
+let defaultengine = "g"
+"set showtabindices
+
+"" Use gR:
+"map <Leader>r reloadTabUncached
+"" Removes trailing space:
+"map a :tabnew g 
+
+map <Leader>t :tabnew& 
+map <Leader>e createEditHint
+map <Leader>z 2zi
+incognitoHint(link) -> {{
+    RUNTIME('openLinkWindow', {url: link.href, incognito: true});
+}}
+map <C-f> createScriptHint(incognitoHint)
+imap <C-o> editWithVim
+site '*://*.youtube.com/*' {
+   unmap >
+   unmap <
+   unmap ,
+   unmap .
+}
+site '*://mail.google.com/*' {
+   unmap j
+   unmap k
+   unmap x
+   unmap #
+   unmap u
+   set numerichints
+}
+site '*://*.reddit.com/*' {
+   unmap j
+   unmap k
+   unmap a
+   unmap z
+   unmap u
+   unmap f
+   unmap r
+   set numerichints
+}
+site '*://*.inoreader.com/*' {
+   unmap j
+   unmap k
+   unmap n
+   unmap p
+   unmap l
+   unmap w
+   unmap v
+   unmap b
+   unmap m
+   unmap A
+   unmap f
+   unmap q
+   set numerichints
+}
+let blacklists = ["https://www.codecademy.com/*","*://inbox.google.com/*","https://gabrielecirulli.github.io/*","http://www.bankofcanada.ca/*"]

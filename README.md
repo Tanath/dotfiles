@@ -1,3 +1,5 @@
 # Tanath's Dotfiles
 
-Starting with my `.zshrc` and `.vimrc`. I don't recommend my `.vimrc` yet, it's a mess. 
+My `.zshrc`, `.vimrc` & other config files.
+
+Make a shortcut for `setxkbmap -option "caps:swapescape"`. Suspend with 2 keyboards will undo.
