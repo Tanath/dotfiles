@@ -26,6 +26,7 @@ setopt SHARE_HISTORY # share history between sessions ???
 alias sudo='sudo '
 [[ -f /usr/sbin/acp ]] && alias cp='acp -g' # advcp
 [[ -f /usr/sbin/amv ]] && alias mv='amv -g' # advcp
+alias vim="stty stop '' -ixoff ; vim"
 alias ed='vim'
 alias u='cd ..'
 alias ll='ls -l' 
