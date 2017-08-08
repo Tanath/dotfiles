@@ -221,7 +221,7 @@ nmap <Leader>P "*p
 cmap w!! w !sudo tee % > /dev/null
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
-" Save if needed:
+" Save if needed. Requires for terminal: alias vim="stty stop '' -ixoff ; vim"
 nmap <c-s> :update<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <c-o><c-s>
