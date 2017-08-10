@@ -3,6 +3,7 @@
 export EDITOR=vim
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
+export QT_QPA_PLATFORMTHEME=gtk2
 
 #========================================
 # Lines configured by zsh-newuser-install
