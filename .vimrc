@@ -107,8 +107,7 @@ nnoremap <C-BSlash> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| 
 set hidden          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
 set confirm         " Prompt to save unsaved changes when exiting
 nnoremap <leader>N :enew<CR>
-nnoremap <leader>d :bd<CR>
-nnoremap <leader>D :bd!<CR>
+nnoremap <leader>D :bd<CR>
 " use tab key to cycle through the buffers:
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
