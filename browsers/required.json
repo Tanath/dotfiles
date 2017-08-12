@@ -1,0 +1,10 @@
+{
+  "RemoteAccessHostFirewallTraversal": "false",
+  "DefaultPluginsSetting": "3",
+  "DefaultWebBluetoothGuardSetting": "2",
+  "DeviceAllowBluetooth": "false",
+  "AdditionalLaunchParameters": "--disable-preconnect --multi-profiles --no-pings --purge-memory-button --enable-sandbox",
+  "ExtensionInstallForcelist": ["gcbommkclmclpchllfjekcdonpmejbdp"],
+  "BuiltInDnsClientEnabled": "false",
+  "DeviceAutoUpdateP2PEnabled": "false"
+}
