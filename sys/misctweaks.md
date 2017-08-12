@@ -25,4 +25,7 @@ Description = Cleaning pacman cache...
 When = PostTransaction
 Exec = /usr/bin/paccache -ruk2
 `
+# Manjaro driver installation
+
+`mhwd --pci -l -d | grep 'INFO\|CLASS'` to find classid, then you can `sudo mhwd -a pci nonfree <classid>`
 
