@@ -1,0 +1,53 @@
+# More here: https://www.wikileaks.org/wiki/Alternative_DNS
+# dig @server name
+# host -4 name server
+
+# Pirate Party DNS:
+#dns2.piratpartiet.no
+#dns.piratpartiet.no
+87.238.35.136
+185.56.187.149
+
+# OpenNIC
+75.127.14.107
+198.100.146.51
+107.170.95.180 (ns6.ny.us) -- 99.53% uptime
+198.46.156.50
+203.167.220.153 
+216.87.84.211 
+23.90.4.6
+69.28.67.83 (ns8.on.ca) -- 98.17% uptime
+198.50.145.155 (ns1.bhs.ca) -- 99.14% uptime
+104.237.144.172 (ns1.nj.us) -- 98.56% uptime
+
+# OpenDNS, supports DNSSEC
+208.67.222.222
+208.67.220.220 
+
+# Google, supports DNSSEC
+8.8.8.8
+8.8.4.4
+
+# Level 3
+4.2.2.2
+209.244.0.3
+209.244.0.4
+
+# Comodo
+8.26.56.26
+8.20.247.20
+
+# Public-Root
+199.5.157.131
+208.71.35.137
+
+# Swiss Privacy Foundation, supports DNSSEC
+77.109.138.45
+77.109.139.29
+87.118.85.241
+
+# CCC
+213.73.91.35
+
+# Cisco
+64.102.255.44
