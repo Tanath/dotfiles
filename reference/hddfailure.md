@@ -4,7 +4,7 @@ Blackblaze
 For the last few years we've used the following five SMART stats as a means of helping determine if a drive is going to fail.
 
 | Attribute	 |	Description                   |
-|----------------|------------------------------------| 
+|------------|--------------------------------| 
 | SMART 5	 |	Reallocated Sectors Count     |
 | SMART 187	 |	Reported Uncorrectable Errors |
 | SMART 188	 |	Command Timeout               |

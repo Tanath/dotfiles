@@ -23,6 +23,11 @@
 :%!xmllint --format -
 `
 
+# Filter html through tidy
+`
+:%!tidy -icq -
+`Find something better than tidy.
+
 # Find doubled words
 `
 %s/\(\w\+\), \1/\1, \1, \1/g

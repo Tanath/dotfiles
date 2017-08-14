@@ -100,6 +100,8 @@ ssh USER@HOST -p PORT -L 5900:localhost:5900 "x11vnc -display :0 -noxdamage"
 `Or:`
 ssh -L 5900:localhost:5900 USER@HOST
 x11vnc -safer -localhost -nopw -once -display :0
+`Or:`
+ssh -t -L 5900:localhost:5900 USER@HOST 'sudo x11vnc -display :0 -auth /home/USER/.Xauthority'
 `
 
 # Windows
