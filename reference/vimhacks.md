@@ -3,6 +3,11 @@
 :w !sudo tee %
 `
 
+# Edit remote files
+`
+vim scp://USER@IPADDR//path/to/file
+`
+
 # Write changes to patch file 
 `
 :w !diff -au "%" - > changes.patch

@@ -1,15 +1,13 @@
-Keyboard
-========
+# Keyboard
 
-# Swap CAPS & ESC
+## Swap CAPS & ESC
 Make a panel shortcut too. Suspend with 2 keyboards will undo.`
 setxkbmap -option "caps:swapescape"
 `
 
-Package management/building
-===========================
+# Package management/building
 
-# Automatically clean the package cache.
+## Automatically clean the package cache.
 `
 sudo mkdir /etc/pacman.d/hooks
 sudo vim /etc/pacman.d/hooks/clean_package_cache.hook
@@ -26,15 +24,13 @@ When = PostTransaction
 Exec = /usr/bin/paccache -ruk2
 `
 
-# Manjaro driver installation
+## Manjaro driver installation
 Find classid, then use it to install: `
 mhwd --pci -l -d | grep 'INFO\|CLASS'
 sudo mhwd -a pci nonfree <classid>
 `
 
-Blocking net in Wine
-====================
-
+# Blocking net in Wine
 1. `wine regedit`
 2. Go to: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings`
 3. You should see a ProxyEnable key that is set to 0. Set it to 1.
@@ -46,8 +42,7 @@ Blocking net in Wine
 	"ProxyServer" set to "http://prohibited:80"
 	"UserAgent" set to "Mozilla/4.0 (compatible; MSIE 8.0; Win32)"
 
-Bootable USB w/various ISOs
-===========================
+# Bootable USB w/various ISOs
 
 1. Install syslinux:
 	`sudo pacman -S syslinux`
