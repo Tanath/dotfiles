@@ -6,7 +6,7 @@ http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-set
 # Server
 Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org`  
 Install openssh, sshguard.  
-For keygen on server:
+For keygen on server:  
 `
 ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "$(whoami)@$(hostname)-$(date -I)" -a 512  
 ssh-keygen -t ed25519 -b 2048 -C "$(whoami)@$(hostname)-$(date -I)"  
@@ -14,22 +14,27 @@ ssh-keygen -t ed25519 -b 2048 -C "$(whoami)@$(hostname)-$(date -I)"
 
 The .pub is for server. Also append to `~/.ssh/authorized_keys`  
 If key pair genned by client, .pub key should be single-line version.   
-Add to `sshd_config`:`  
+Add to `sshd_config`:
+`
 KexAlgorithms curve25519-sha256@libssh.org
 `
-Add user:`  
+Add user:
+`
 sudo useradd -d /path/to/home username  
 `
-Add user to ssh group:`  
+Add user to ssh group:
+`
 sudo gpasswd -a username ssh  
 `
-Permissions should be:`  
+Permissions should be:
+`
 drwx------ 2 username users 4.0K Apr 17 00:23 .ssh  
 -rw------- 1 username users  738 Apr 17 00:23 user-key.pub  
--rw------- 1 username users  738 Apr 17 00:18 authorized_keys`  
+-rw------- 1 username users  738 Apr 17 00:18 authorized_keys`
 
 ## curveprotect
-Add to `/etc/ssh/ssh_config`:`  
+Add to `/etc/ssh/ssh_config`:
+`
 ProxyCommand /opt/curveprotect/bin/nettunnel -u -c %h %p  
 `
 
@@ -48,12 +53,13 @@ Add to `ssh_config`:
 `
 Host *  
 	KexAlgorithms curve25519-sha256@libssh.org  
-` 
+`
 
 ## Multiplexing
 `
 mkdir -p ~/.ssh/cm_socket  
 `
+
 Add to `~/.ssh/config`:
 `
 Host *  
@@ -63,9 +69,12 @@ ServerAliveInterval 60
 `
 
 ## Sshfs
-Install sshfs. Mount sshfs:`  
+Install sshfs. Mount sshfs:
+`
 sshfs USER@IPADDR:/ ~/remotefs/ -C -p PORT  
-`Unmount sshfs:`  
+`
+Unmount sshfs:
+`
 fusermount -u ~/remotefs/  
 `
 
@@ -99,7 +108,8 @@ SOCKS:
 `
 ssh -NC -p PORT -D 4443 USER@HOST  
 `
-Forwarding:`  
+Forwarding:
+`
 ssh -NC -p PORT USER@HOST -L LPORT:RHOST:RPORT
 `
 Set proxy to port 4443.
