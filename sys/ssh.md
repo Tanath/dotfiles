@@ -84,7 +84,7 @@ Unmount sshfs:
 fusermount -u ~/remotefs/  
 ```
 
-## Edit files with local vim remotely:
+## Edit remote files with local vim:
 ```
 vim scp://USER@IPADDR//path/to/file
 ```

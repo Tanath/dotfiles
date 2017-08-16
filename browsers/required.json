@@ -4,7 +4,7 @@
   "DefaultWebBluetoothGuardSetting": "2",
   "DeviceAllowBluetooth": "false",
   "AdditionalLaunchParameters": "--disable-preconnect --multi-profiles --no-pings --purge-memory-button --enable-sandbox",
-  "ExtensionInstallForcelist": ["gcbommkclmclpchllfjekcdonpmejbdp"],
+  "ExtensionInstallForcelist": ["gcbommkclmclpchllfjekcdonpmejbdp;https://clients2.google.com/service/update2/crx"],
   "BuiltInDnsClientEnabled": "false",
   "DeviceAutoUpdateP2PEnabled": "false"
 }
