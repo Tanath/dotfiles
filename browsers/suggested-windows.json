@@ -1,9 +1,9 @@
 {
-  "DefaultCookiesSetting": "2",
-  "DefaultJavaScriptSetting": "2",
-  "DefaultPopupsSetting": "2",
-  "DefaultNotificationsSetting": "3",
-  "DefaultGeolocationSetting": "3",
+  "DefaultCookiesSetting": 2,
+  "DefaultJavaScriptSetting": 2,
+  "DefaultPopupsSetting": 2,
+  "DefaultNotificationsSetting": 3,
+  "DefaultGeolocationSetting": 3,
   "CookiesAllowedForUrls": [
 	  "https://[*.].discordapp.com",
 	  "https://[*.].dropbox.com",
@@ -60,5 +60,5 @@
 	  "https://[*.].reddit.com"
   ],
   "AdditionalLaunchParameters": "--disable-3d-apis --disable-plugins --disable-preconnect --multi-profiles --no-pings --purge-memory-button --enable-sandbox",
-  "BlockThirdPartyCookies": "true"
+  "BlockThirdPartyCookies": true
 }
