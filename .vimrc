@@ -53,7 +53,7 @@ endif " has("autocmd")
 
 set nosol                       " No start of line jump when selecting.
 set ttyfast
-call pathogen#infect()
+"call pathogen#infect()
 set modelines=0                 " Prevent some security issues
 " retain selection when changing indent level
 vnoremap < <gv
