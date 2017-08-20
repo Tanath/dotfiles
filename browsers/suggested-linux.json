@@ -59,5 +59,13 @@
 	  "https://www.youtube.com",
 	  "https://[*.].reddit.com"
   ],
+  "ExtensionInstallForcelist": [
+          "gcbommkclmclpchllfjekcdonpmejbdp;https://clients2.google.com/service/update2/crx",
+          "ogfcmafjalglgifnmanfmnieipoejdcf;https://clients2.google.com/service/update2/crx",
+          "pkehgijcmpdhfbdbbnkijodmdjhbjlgp;https://clients2.google.com/service/update2/crx",
+          "iahecghojagkcoehfhfknajofkokndjm;https://clients2.google.com/service/update2/crx",
+          "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx",
+          "pgdnlhfefecpicbbihgmbmffkjpaplco;https://clients2.google.com/service/update2/crx"
+  ],
   "BlockThirdPartyCookies": true
 }
