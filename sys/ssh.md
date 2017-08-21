@@ -11,8 +11,8 @@ ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "$(whoami)@$(hostname)-$(date -I)" -a 5
 ssh-keygen -t ed25519 -b 2048 -C "$(whoami)@$(hostname)-$(date -I)"
 ```
 
-The .pub is for server. Also append to `~/.ssh/authorized_keys`  
-If key pair genned by client, .pub key should be single-line version.   
+The .pub is for server. Also append to `~/.ssh/authorized_keys` on server  
+If key pair genned by client, .pub key should be single-line version.  
 Add to `sshd_config`:
 ```
 KexAlgorithms curve25519-sha256@libssh.org
@@ -42,6 +42,14 @@ ProxyCommand /opt/curveprotect/bin/nettunnel -u -c %h %p
 ```
 
 # Client
+
+For keygen on client:  
+```
+ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "USER@$RHOST-$(date -I)" -a 512
+ssh-keygen -t ed25519 -b 2048 -C "USER@RHOST-$(date -I)"
+```
+User ed25519 for security, rsa for compatibility. Putty doesn't support ed25519.
+
 ```
 ssh-add .ssh/id_ed25519  
 ```
