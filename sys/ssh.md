@@ -48,7 +48,9 @@ For keygen on client:
 ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "USER@$RHOST-$(date -I)" -a 512
 ssh-keygen -t ed25519 -b 2048 -C "USER@RHOST-$(date -I)"
 ```
-User ed25519 for security, rsa for compatibility. Putty doesn't support ed25519.
+User ed25519 for security, rsa for compatibility. Putty doesn't support ed25519.  
+They copy to server:  
+`ssh-copy-id -i ~/.ssh/id_ed25519.pub USER@RHOST`
 
 ```
 ssh-add .ssh/id_ed25519  
