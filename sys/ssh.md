@@ -18,7 +18,7 @@ Add to `sshd_config`:
 KexAlgorithms curve25519-sha256@libssh.org
 ```
 
-Add user:
+Add user if they don't already exist:
 ```
 sudo useradd -d /path/to/home username  
 ```
@@ -34,6 +34,8 @@ drwx------ 2 username users 4.0K Apr 17 00:23 .ssh
 -rw------- 1 username users  738 Apr 17 00:23 user-key.pub
 -rw------- 1 username users  738 Apr 17 00:18 authorized_keys
 ```
+Set up Google Authenticator for 2fa:  
+https://wiki.archlinux.org/index.php/Google_Authenticator
 
 ## curveprotect
 Add to `/etc/ssh/ssh_config`:
