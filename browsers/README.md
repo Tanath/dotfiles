@@ -3,7 +3,7 @@ Web browser configs
 
 `chrome-policies.md` - How to set up policies for Chrome/Chromium.
 
-`cvimrc.txt` - Settings for cvim Chrome extension.
+[cvimrc](https://gist.github.com/Tanath/46d32ae096cc6a9566cef7ffbf945830) - Settings for cvim Chrome extension.
 
 `my-umatrix-rules-basic.txt` - Importable rules for uMatrix extension.
 
