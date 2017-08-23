@@ -91,3 +91,7 @@ LABEL labelname
 sudo mount -t vboxsf vbox ~/vbox
 ```
 
+# XFCE clock format
+Tooltip: %c  
+Format:  
+%a %T%n%h %e/%y
