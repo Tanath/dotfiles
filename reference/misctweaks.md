@@ -10,7 +10,7 @@ setxkbmap -option "caps:swapescape"
 ## Automatically clean the package cache.
 ```
 sudo mkdir /etc/pacman.d/hooks
-sudo vim /etc/pacman.d/hooks/clean_package_cache.hook
+sudoedit /etc/pacman.d/hooks/clean_package_cache.hook
 ```
 Contents:
 ```
