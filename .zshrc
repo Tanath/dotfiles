@@ -122,5 +122,6 @@ bindkey "\e[3~" delete-char # Del
 # https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
 source ~/.zprompt.zsh
 
-#zsh-syntax-highlighting
+# zsh-syntax-highlighting and autosuggestion
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
