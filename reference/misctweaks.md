@@ -85,3 +85,9 @@ LABEL labelname
 ==> For example:
   -> 'ln -s /usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/ ~/.moonchild\ productions/pale\ moon/<xyz123>.default/chrome'
 ```
+
+# Mount virtualbox shared folder in linux
+```
+sudo mount -t vboxsf vbox ~/vbox
+```
+
