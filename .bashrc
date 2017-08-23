@@ -19,7 +19,10 @@ shopt -s nocaseglob
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
-export QT_QPA_PLATFORMTHEME=gtk2
+[[ -f /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
+export QT_QPA_PLATFORMTHEME=gtk3 # Fix theme for QT apps
+GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
+
 
 alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
 alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
