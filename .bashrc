@@ -20,8 +20,7 @@ export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
 [[ -f /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-export QT_STYLE_OVERRIDE=gtk2
-export QT_QPA_PLATFORMTHEME=qt5ct # Fix theme for QT apps
+[[ -f /usr/sbin/qt5ct ]] && export QT_QPA_PLATFORMTHEME=qt5ct # Fix theme for QT apps
 GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 
 
