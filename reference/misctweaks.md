@@ -33,6 +33,10 @@ mhwd --pci -l -d | grep 'INFO\|CLASS'
 sudo mhwd -a pci nonfree <classid>
 ```
 
+# QT & GTK
+https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications  
+May need to install `breeze-gtk` for uniform look.
+
 # Blocking net in Wine
 1. `wine regedit`
 2. Go to: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings`
