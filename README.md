@@ -7,6 +7,10 @@ My dotfiles, and other config files & system tweaks. Some miscellaneous referenc
 `.zubuntu.zsh` for Debian-based Linux distros. Goes with `.zshrc`. It only has ubuntu in the name for easier tab-completion.
 
 This `.zshrc` gives [zsh autosuggestions](https://github.com/zsh-users/zsh-autosuggestions). If you don't have a distro package, clone the repo in `~`:  
-`git clone https://github.com/zsh-users/zsh-autosuggestions`
+`git clone https://github.com/zsh-users/zsh-autosuggestions`  
+If you want to add your own custom aliases & functions the following files are automatically sourced if they exist:  
+* `~/.zalias.zsh`
+* `~/.zdesk.zsh` for desktop-only stuff.
+* `~/.zlap.zsh` for laptop-only stuff.
 
 The `.vimrc` uses `~/.vim/` and will create it if it doesn't exist.
