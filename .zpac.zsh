@@ -24,3 +24,5 @@ bin () { pacmatic -Ql $* | grep --color=auto bin/ | awk '{print $2}' } # binarie
 #bin () { pkgfile -l $* | grep --color=auto bin/ }
 owns () { pacmatic -Qo $(which $*) } # Ownership of binary
 
+NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
+[[ -f $NOTFOUND ]] && source $NOTFOUND

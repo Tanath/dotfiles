@@ -1,6 +1,8 @@
 if [ -f /etc/bash_completion ]; then
 	    . /etc/bash_completion
 fi
+NOTFOUND="/usr/share/doc/pkgfile/command-not-found.bash"
+[[ -f $NOTFOUND ]] && source $NOTFOUND
 
 xhost +local:root > /dev/null 2>&1
 
