@@ -5,6 +5,7 @@ NOTFOUND="/usr/share/doc/pkgfile/command-not-found.bash"
 [[ -f $NOTFOUND ]] && source $NOTFOUND
 
 xhost +local:root > /dev/null 2>&1
+ttyctl -f # Avoid frozen terminals
 
 complete -cf sudo
 

@@ -8,6 +8,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"     # Colored completion
 zstyle ':completion:*' rehash true                          # automatically find new executables in path 
 setopt SHARE_HISTORY                                        # Share history between sessions
 setopt prompt_subst                                         # enable substitution for prompt
+ttyctl -f # Avoid frozen terminals
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
