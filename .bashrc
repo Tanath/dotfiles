@@ -19,8 +19,7 @@ shopt -s nocaseglob
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
-[[ -f /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -f /usr/sbin/qt5ct ]] && export QT_QPA_PLATFORMTHEME=qt5ct # Fix theme for QT apps
+[[ -d /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
 GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 
 

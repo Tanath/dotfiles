@@ -19,8 +19,7 @@ export EDITOR=vim
 export VISUAL=vim
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
-[[ -f /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -f /usr/sbin/qt5ct ]] && export QT_QPA_PLATFORMTHEME=qt5ct # Fix theme for QT apps
+[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
 GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 HISTFILE=~/.zhistory
 HISTSIZE=1000
