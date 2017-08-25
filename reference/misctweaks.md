@@ -40,6 +40,10 @@ https://wiki.manjaro.org/index.php?title=Set_all_Qt_app%27s_to_use_GTK%2B_font_%
 Install `qt5-styleplugins` and `qt5ct`. Restart, run `qt5ct` from terminal and select gtk2.
 For gtk2 apps install `gtk-theme-switch2` and select theme.
 
+# Default web browser for xdg-open
+
+`xdg-settings set default-web-browser google-chrome-beta.desktop`
+
 # Blocking net in Wine
 1. `wine regedit`
 2. Go to: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings`
