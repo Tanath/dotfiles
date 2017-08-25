@@ -110,7 +110,7 @@ todo () {
     elif [[ "$1" == "-l" ]]; then
         nl -b a "$HOME/.todo"
     elif [[ "$1" == "-c" ]]; then
-        > $HOME/.todo
+        >> $HOME/.todo
     elif [[ "$1" == "-r" ]]; then
         nl -b a "$HOME/.todo"
         eval printf %.0s- '{1..'"${COLUMNS:-$(tput cols)}"\}; echo
