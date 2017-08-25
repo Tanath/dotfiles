@@ -8,7 +8,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"     # Colored completion
 zstyle ':completion:*' rehash true                          # automatically find new executables in path 
 setopt SHARE_HISTORY                                        # Share history between sessions
 setopt prompt_subst                                         # enable substitution for prompt
-ttyctl -f                                                   # Avoid frozen terminals
+ttyctl -f                                                   # Avoid <c-s> frozen terminal. <c-q> should resume.
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
@@ -56,7 +56,7 @@ alias sudo='sudo '
 [[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
 alias free='free -h'                        # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"        # Fix <c-s> terminal hang
+alias vim="stty stop '' -ixoff; vim"        # Avoid <c-s> terminal hang. <c-q> should resume.
 alias ed='vim'
 alias u='cd ..'
 alias ll=ls\ -lh\ $LSPARAMS
@@ -90,10 +90,10 @@ alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.m
 alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 
 # Functions
-mcd() { mkdir "$1" && cd "$1"; } # make dir and cd
+mcd () { mkdir "$1" && cd "$1" } # make dir and cd
 fnd () { find . -iname \*$*\* | less } # find
-cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F; } # cd and list
-genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
+genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
@@ -105,63 +105,36 @@ errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICA
 # x - archive extractor
 # usage: x <file>
 x() {
-  if [[ -f "$1" ]]; then
-    case "$1" in
-      *.tar.lrz)
-        b=$(basename "$1" .tar.lrz)
-        lrztar -d "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.lrz)
-        b=$(basename "$1" .lrz)
-        lrunzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tar.bz2)
-        b=$(basename "$1" .tar.bz2)
-        bsdtar xjf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.bz2)
-        b=$(basename "$1" .bz2)
-        bunzip2 "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tar.gz)
-        b=$(basename "$1" .tar.gz)
-        bsdtar xzf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.gz)
-        b=$(basename "$1" .gz)
-        gunzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tar.xz)
-        b=$(basename "$1" .tar.xz)
-        bsdtar Jxf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.xz)
-        b=$(basename "$1" .gz)
-        xz -d "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.rar)
-        b=$(basename "$1" .rar)
-        unrar e "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tar)
-        b=$(basename "$1" .tar)
-        bsdtar xf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tbz2)
-        b=$(basename "$1" .tbz2)
-        bsdtar xjf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.tgz)
-        b=$(basename "$1" .tgz)
-        bsdtar xzf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.zip)
-        b=$(basename "$1" .zip)
-        unzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.Z)
-        b=$(basename "$1" .Z)
-        uncompress "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.7z)
-        b=$(basename "$1" .7z)
-        7z x "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
-      *.deb)
-        b=$(basename "$1" .deb)
-        ar x "$1" && return 0 ;;
-	*) echo "x() can't handle '$1'" && return 1 ;;
-    esac
-    return 0
-  else
-    echo "'$1' is not a valid file!"
-    return 1
-  fi
+    local c e i
+    (($#)) || return
+    for i; do
+        c=''
+        e=1
+        if [[ ! -r $i ]]; then
+            echo "$0: file is unreadable: \`$i'" >&2
+            continue
+        fi
+        case $i in
+            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+                   c=(bsdtar xvf);;
+		    *.(tar|iso))
+                   c=(bsdtar xvf);;
+            *.7z)  c=(7z x);;
+            *.Z)   c=(uncompress);;
+            *.bz2) c=(bunzip2);;
+            *.exe) c=(cabextract);;
+            *.gz)  c=(gunzip);;
+            *.rar) c=(unrar x);;
+            *.xz)  c=(unxz);;
+            *.zip) c=(unzip);;
+            *.deb) c=(ar x);;
+            *)     echo "$0: unrecognized file extension: \`$i'" >&2
+                   continue;;
+        esac
+        command "${c[@]}" "$i"
+        ((e = e || $?))
+    done
+    return "$e"
 }
 
 # Pacman-based distros:
