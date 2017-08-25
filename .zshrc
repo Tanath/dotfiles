@@ -16,8 +16,8 @@ zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Custom variables
-export EDITOR=vim
-export VISUAL=vim
+[[ -n ${commands[vim]} ]] && export EDITOR=vim
+[[ -n ${commands[vim]} ]] && export VISUAL=vim
 #export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
 # This may break some apps, like Dropbox device linking? Get url from ps.
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
