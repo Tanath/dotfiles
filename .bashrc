@@ -29,13 +29,59 @@ export VISUAL=vim
 GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 
-alias ls='ls --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias ll='ls -l --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias la='ls -la --group-directories-first --time-style=+"%d.%m.%Y %H:%M" --color=auto -F'
-alias grep='grep --color=tty -d skip'
-alias cp="cp -i"                          # confirm before overwriting something
-alias df='df -h'                          # human-readable sizes
+# Custom aliases
+LSPARAMS="--group-directories-first --time-style=long-iso --color=auto -F"
+alias sudo='sudo '
+[[ -f /usr/sbin/acp ]] && alias cp='acp -gi'  # advcp w/progress bar
+[[ -f /usr/sbin/amv ]] && alias mv='amv -gi'  # advcp w/progress bar
+[[ ! -f /usr/sbin/acp ]] && alias cp='cp -i' # Confirm before overwriting something
+alias df='df -h'                             # Human-readable sizes
+alias free='free -m'                         # Show sizes in MB
+alias vim="stty stop '' -ixoff ; vim"        # Fix <c-s> terminal hang
+alias ed='vim'
+alias u='cd ..'
+alias ll='ls -l $LSPARAMS'
+alias la='ls -a $LSPARAMS' 
+alias l.='ls $LSPARAMS -d .[^.]*' # List .dirs
+alias lsd='ls $LSPARAMS -F *(-/DN)' # List dirs & symlinks to dirs
+alias lsg='ls -hal $LSPARAMS | grep -i --color=auto' # ls grep
+alias new='ls -hlt $LSPARAMS | grep -v "^total" | head' 
+alias old='ls -ltr $LSPARAMS | grep -v "^total" | head' 
+alias psg='ps -efw | grep -v grep | grep --color=auto $*' # ps grep
+alias pst='ps -ef --sort=pcpu | tail' # Most cpu use
+alias psm='ps -ef --sort=vsize | tail' # Most mem use
 alias free='free -m'                      # show sizes in MB
+alias mc='mc -b' 
+alias mnt='mount | column -t'
+alias powertop='sudo powertop' 
+alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
+alias lp='lsof -Pnl +M -i4' # lsof ports
+alias np='netstat -ptunl|egrep -vi unix\|-' # netstat ports
+alias big='du -sh * | sort -hr' 
+alias bh='big | head' 
+alias df='df -h' # dfc is better though
+alias todo='$VISUAL ~/Documents/todo/'
+alias wpi='strings -e l' # Windows program info
+alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
+alias pip='curl -s ifconfig.me' # Public ip
+#alias pip='dig +short myip.opendns.com @resolver1.opendns.com' # Public ip
+alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
+alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
+#alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
+alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
+
+# Functions
+mcd() { mkdir "$1" && cd "$1"; } # make dir and cd
+fnd () { find . -iname \*$*\* | less } # find
+cdl () { cd "$*" && ls -halt; } # cd and list
+genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
+alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
+wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
+fwh () { file $(which $*) } # file which
+lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
+err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # search a logfile for issues
+errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
 # ex - archive extractor
 # usage: ex <file>
