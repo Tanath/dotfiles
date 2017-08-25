@@ -81,27 +81,65 @@ lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
 err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # search a logfile for issues
 errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
-# ex - archive extractor
-# usage: ex <file>
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1     ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+# x - archive extractor
+# usage: x <file>
+x() {
+  if [[ -f "$1" ]]; then
+    case "$1" in
+      *.tar.lrz)
+        b=$(basename "$1" .tar.lrz)
+        lrztar -d "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.lrz)
+        b=$(basename "$1" .lrz)
+        lrunzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tar.bz2)
+        b=$(basename "$1" .tar.bz2)
+        bsdtar xjf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.bz2)
+        b=$(basename "$1" .bz2)
+        bunzip2 "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tar.gz)
+        b=$(basename "$1" .tar.gz)
+        bsdtar xzf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.gz)
+        b=$(basename "$1" .gz)
+        gunzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tar.xz)
+        b=$(basename "$1" .tar.xz)
+        bsdtar Jxf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.xz)
+        b=$(basename "$1" .gz)
+        xz -d "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.rar)
+        b=$(basename "$1" .rar)
+        unrar e "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tar)
+        b=$(basename "$1" .tar)
+        bsdtar xf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tbz2)
+        b=$(basename "$1" .tbz2)
+        bsdtar xjf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.tgz)
+        b=$(basename "$1" .tgz)
+        bsdtar xzf "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.zip)
+        b=$(basename "$1" .zip)
+        unzip "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.Z)
+        b=$(basename "$1" .Z)
+        uncompress "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.7z)
+        b=$(basename "$1" .7z)
+        7z x "$1" && [[ -d "$b" ]] && cd "$b" || return 0 ;;
+      *.deb)
+        b=$(basename "$1" .deb)
+        ar x "$1" && return 0 ;;
+	*) echo "x() can't handle '$1'" && return 1 ;;
     esac
+    return 0
   else
-    echo "'$1' is not a valid file"
+    echo "'$1' is not a valid file!"
+    return 1
   fi
 }
 
