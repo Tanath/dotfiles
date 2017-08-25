@@ -79,7 +79,7 @@ let g:airline_powerline_fonts = 1
 set backup
 set undofile
 if !isdirectory($HOME . ".vim")     " Create vim dirs if missing
-	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1	
+	silent !mkdir -p ~/.vim/{backup,view,pack} > /dev/null 2>&1	
 endif
 set backupdir=$HOME/.vim/backup		" for backup files
 set directory=$HOME/.vim/backup		" for .swp files
