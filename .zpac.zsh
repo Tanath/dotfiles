@@ -12,6 +12,7 @@ alias pau='pacaur -Syu' # Pacaur upgrade
 alias pas='pacaur -Ss' # Pacaur search
 alias par='pacaur -R' # Pacaur remove
 alias parc='pacaur -Rns' # Pacaur remove w/config
+alias orphans='pacmatic -Qdt'
 alias mk='makepkg'
 alias mks='makepkg -s'
 alias mki='makepkg -is'
