@@ -31,34 +31,33 @@ if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 # Custom aliases
 LSPARAMS='--group-directories-first --time-style=long-iso --color=auto -F'
 alias sudo='sudo '
-[[ -f /usr/sbin/acp ]] && alias cp='acp -gi'  # advcp w/progress bar
-[[ -f /usr/sbin/amv ]] && alias mv='amv -gi'  # advcp w/progress bar
-[[ ! -f /usr/sbin/acp ]] && alias cp='cp -i' # Confirm before overwriting something
-alias df='df -h'                             # Human-readable sizes
-alias free='free -m'                         # Show sizes in MB
-alias vim="stty stop '' -ixoff ; vim"        # Fix <c-s> terminal hang
+[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
+alias free='free -h'                        # Show sizes in MB
+alias vim="stty stop '' -ixoff; vim"        # Fix <c-s> terminal hang
 alias ed='vim'
 alias u='cd ..'
 alias ll=ls\ -lh\ $LSPARAMS
 alias la=ls\ -ah\ $LSPARAMS
-alias l.='ls $LSPARAMS -hd .[^.]*' # List .dirs
+alias l.='ls $LSPARAMS -hd .[^.]*'          # List .dirs
 alias lsd="ls --group-directories-first --time-style=long-iso --color=auto -F *(-/DN)" # List dirs & symlinks to dirs
 alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto' # ls grep
 alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias psg='ps -efw | grep -v grep | grep --color=auto $*' # ps grep
-alias pst='ps -ef --sort=pcpu | tail' # Most cpu use
-alias psm='ps -ef --sort=vsize | tail' # Most mem use
-alias free='free -m'                      # show sizes in MB
+alias pst='ps -ef --sort=pcpu | tail'       # Most cpu use
+alias psm='ps -ef --sort=vsize | tail'      # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
+alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
+alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
 alias lp='lsof -Pnl +M -i4' # lsof ports
 alias np='netstat -ptunl|egrep -vi unix\|-' # netstat ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
-alias df='df -h' # dfc is better though
 alias todo='$VISUAL ~/Documents/todo/'
 alias wpi='strings -e l' # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
