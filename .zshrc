@@ -63,7 +63,7 @@ alias u='cd ..'
 alias ll=ls\ -lh\ $LSPARAMS
 alias la=ls\ -ah\ $LSPARAMS
 alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*' # List .dirs
-alias lsd=ls\ $LSPARAMS\ -F\ '*(-/DN)' # List dirs & symlinks to dirs
+alias lsd=ls\ $LSPARAMS\ '*(-/DN)' # List dirs & symlinks to dirs
 alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto' # ls grep
 alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
@@ -72,6 +72,7 @@ alias pst='ps -ef --sort=pcpu | tail' # Most cpu use
 alias psm='ps -ef --sort=vsize | tail' # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
+alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
 alias powertop='sudo powertop' 
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
 alias lp='lsof -Pnl +M -i4' # lsof ports
@@ -91,7 +92,7 @@ alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 # Functions
 mcd() { mkdir "$1" && cd "$1"; } # make dir and cd
 fnd () { find . -iname \*$*\* | less } # find
-cdl () { cd "$*" && ls -halt; } # cd and list
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F; } # cd and list
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
@@ -100,6 +101,30 @@ fwh () { file $(which $*) } # file which
 lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
 err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # search a logfile for issues
 errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
+
+# ex - archive extractor
+# usage: ex <file>
+ex ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1     ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 
 # Pacman-based distros:
 [[ -f ~/.zpac.zsh ]] && source ~/.zpac.zsh

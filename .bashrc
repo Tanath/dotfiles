@@ -5,7 +5,6 @@ NOTFOUND="/usr/share/doc/pkgfile/command-not-found.bash"
 [[ -f $NOTFOUND ]] && source $NOTFOUND
 
 xhost +local:root > /dev/null 2>&1
-ttyctl -f # Avoid frozen terminals
 
 complete -cf sudo
 
@@ -30,7 +29,7 @@ GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 
 # Custom aliases
-LSPARAMS="--group-directories-first --time-style=long-iso --color=auto -F"
+LSPARAMS='--group-directories-first --time-style=long-iso --color=auto -F'
 alias sudo='sudo '
 [[ -f /usr/sbin/acp ]] && alias cp='acp -gi'  # advcp w/progress bar
 [[ -f /usr/sbin/amv ]] && alias mv='amv -gi'  # advcp w/progress bar
@@ -40,13 +39,13 @@ alias free='free -m'                         # Show sizes in MB
 alias vim="stty stop '' -ixoff ; vim"        # Fix <c-s> terminal hang
 alias ed='vim'
 alias u='cd ..'
-alias ll='ls -l $LSPARAMS'
-alias la='ls -a $LSPARAMS' 
-alias l.='ls $LSPARAMS -d .[^.]*' # List .dirs
-alias lsd='ls $LSPARAMS -F *(-/DN)' # List dirs & symlinks to dirs
-alias lsg='ls -hal $LSPARAMS | grep -i --color=auto' # ls grep
-alias new='ls -hlt $LSPARAMS | grep -v "^total" | head' 
-alias old='ls -ltr $LSPARAMS | grep -v "^total" | head' 
+alias ll=ls\ -lh\ $LSPARAMS
+alias la=ls\ -ah\ $LSPARAMS
+alias l.='ls $LSPARAMS -hd .[^.]*' # List .dirs
+alias lsd="ls --group-directories-first --time-style=long-iso --color=auto -F *(-/DN)" # List dirs & symlinks to dirs
+alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto' # ls grep
+alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias psg='ps -efw | grep -v grep | grep --color=auto $*' # ps grep
 alias pst='ps -ef --sort=pcpu | tail' # Most cpu use
 alias psm='ps -ef --sort=vsize | tail' # Most mem use
@@ -73,7 +72,7 @@ alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 # Functions
 mcd() { mkdir "$1" && cd "$1"; } # make dir and cd
 fnd () { find . -iname \*$*\* | less } # find
-cdl () { cd "$*" && ls -halt; } # cd and list
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F; } # cd and list
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
