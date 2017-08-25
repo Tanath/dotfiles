@@ -13,4 +13,9 @@ If you want to add your own custom aliases & functions the following files are a
 * `~/.zdesk.zsh` for desktop-only stuff.
 * `~/.zlap.zsh` for laptop-only stuff.
 
-The `.vimrc` uses `~/.vim/` and will create it if it doesn't exist.
+The `.vimrc` uses `~/.vim/` and will create it if it doesn't exist.  
+Some people change <leader> to left ctrl. I leave it default. Left ctrl is the easiest one to hit - you can roll your hand and hit it with the edge. The right hand is sometimes on the mouse.  
+Vim's defaults are generally well thought out and there are usually reasons for things to be the way they are. Much of people's issues with vim comes from remapping things before they know what they're doing.  
+I swap caps & esc in X for better vimming (see reference/misctweaks.md), and since capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
+
+I don't recommend the `.bashrc` yet. I don't use bash, but have been working on improving it anyway as a fallback. It's currently buggy/broken.
