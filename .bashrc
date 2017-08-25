@@ -22,8 +22,9 @@ shopt -s nocaseglob
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
-export EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
-export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
+export EDITOR=vim
+export VISUAL=vim
+#export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
 [[ -d /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
 GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi

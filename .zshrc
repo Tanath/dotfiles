@@ -16,8 +16,9 @@ zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Custom variables
-export EDITOR="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
-export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
+export EDITOR=vim
+export VISUAL=vim
+#export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
