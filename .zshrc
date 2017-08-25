@@ -37,7 +37,7 @@ colors
 
 # Add zsh help. Alt+h after command.
 autoload -Uz run-help
-unalias run-help
+unalias run-help 2>/dev/null
 alias help=run-help
 autoload -Uz run-help-git
 autoload -Uz run-help-ip
