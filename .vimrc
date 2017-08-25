@@ -9,7 +9,6 @@ set shcf=-c
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 set encoding=utf-8
 set nocompatible	            " Use vim mode, not vi mode.
-filetype off                    " for pathogen & vundle
 set cm=blowfish2
 set spell spelllang=en_ca
 
@@ -53,7 +52,6 @@ endif " has("autocmd")
 
 set nosol                       " No start of line jump when selecting.
 set ttyfast
-"call pathogen#infect()
 set modelines=0                 " Prevent some security issues
 " retain selection when changing indent level
 vnoremap < <gv
