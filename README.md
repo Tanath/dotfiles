@@ -17,4 +17,4 @@ The `.vimrc` uses `~/.vim/` and `~/.vim/pack/plugins/` is used for native plugin
 Some people change `<leader>` to left ctrl. I leave it default. Left ctrl is the easiest one to hit - you can roll your hand and hit it with the edge. The right hand is sometimes on the mouse.  
 Vim's defaults are generally well thought out and there are usually reasons for things to be the way they are. Much of people's issues with vim comes from remapping things before they know what they're doing.  
 I swap caps & esc in X for better vimming (see reference/misctweaks.md), and since capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.  
-`<c-s>` saves current file (:update), and `<c-S>` saves the vim session (to ./session.vim). Load the session with `:source session.vim`. Note that whichever file/buffer is active determines the working directory and thus where session.vim will be saved.
+
