@@ -58,7 +58,6 @@ alias lp='lsof -Pnl +M -i4' # lsof ports
 alias np='netstat -ptunl|egrep -vi unix\|-' # netstat ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
-alias todo='$VISUAL ~/Documents/todo/'
 alias wpi='strings -e l' # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
 alias pip='curl -s ifconfig.me' # Public ip
@@ -69,21 +68,41 @@ alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.m
 alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 
 # Functions
-mcd() { mkdir "$1" && cd "$1" } # make dir and cd
-fnd() { find . -iname \*$*\* | less } # find
-cdl() { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
-genpw() { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
-alarm() { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-wk() { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
-wk9() { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
-fwh() { file $(which $*) } # file which
-lg() { sudo grep --color=auto -ir $* /var/log/* } # log grep
-err() { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # search a logfile for issues
-errt() { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
+mkcd () { mkdir "$1" && cd "$1"; } # make dir and cd
+fnd () { find . -iname \*$*\* | less; } # find
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F; } # cd and list
+genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
+alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
+wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill
+wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill -9
+fwh () { file $(which $*); } # file which
+lg () { sudo grep --color=auto -ir $* /var/log/*; } # log grep
+err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$'; } # search a logfile for issues
+errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$'; } # watch a logfile for issues
+
+todo () {
+    if [[ ! -f $HOME/.todo ]]; then
+        touch "$HOME/.todo"
+    fi
+    if ! (($#)); then
+        cat "$HOME/.todo"
+    elif [[ "$1" == "-l" ]]; then
+        nl -b a "$HOME/.todo"
+    elif [[ "$1" == "-c" ]]; then
+        >> $HOME/.todo
+    elif [[ "$1" == "-r" ]]; then
+        nl -b a "$HOME/.todo"
+        eval printf %.0s- '{1..'"${COLUMNS:-$(tput cols)}"\}; echo
+        read -p "Type a number to remove: " number
+        sed -i ${number}d $HOME/.todo "$HOME/.todo"
+    else
+        printf "%s\n" "$*" >> "$HOME/.todo"
+    fi;
+}
 
 # x - archive extractor
 # usage: x <file>
-x() {
+x () {
     local c e i
     (($#)) || return
     for i; do
@@ -96,7 +115,9 @@ x() {
         case $i in
             *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
                    c=(bsdtar xvf);;
-		    *.(tar|iso))
+		    *.tar)
+                   c=(bsdtar xvf);;
+		    *.iso)
                    c=(bsdtar xvf);;
             *.7z)  c=(7z x);;
             *.Z)   c=(uncompress);;
@@ -113,7 +134,7 @@ x() {
         command "${c[@]}" "$i"
         ((e = e || $?))
     done
-    return "$e"
+    return "$e";
 }
 
 # prompt
