@@ -55,6 +55,7 @@ alias sudo='sudo '
 [[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
+[[ -n ${commands[systemctl]} ]] && alias svc='systemctl' # Services
 alias free='free -h'                        # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"        # Avoid <c-s> terminal hang. <c-q> should resume.
 alias ed='vim'

@@ -20,7 +20,6 @@ alias cws='cower -s' # Cower search
 alias cwd='cower -d' # Cower download
 alias cwdd='cower -dd' # Cower download w/depends
 alias cwu='cower -du' # Cower download upgrades
-alias svc='systemctl' # Services
 bin () { pacmatic -Ql $* | grep --color=auto bin/ | awk '{print $2}' } # binaries from package
 #bin () { pkgfile -l $* | grep --color=auto bin/ }
 owns () { pacmatic -Qo $(which $*) } # Ownership of binary
