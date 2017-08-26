@@ -27,7 +27,7 @@ autocmd VimResized * wincmd =
 
 " Enable file type detection. {{{2
 if has("autocmd")
-	" Only do this part when compiled with support for autocommands.
+  " Only do this part when compiled with support for autocommands.
   " Use the default filetype settings, s, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
@@ -46,13 +46,13 @@ if has("autocmd")
     \ endif
   augroup END
 else
-  set autoindent		" always set autoindenting on
+  set autoindent                    " always set autoindenting on
 endif " has("autocmd")
 " }}}
 
-set nosol                       " No start of line jump when selecting.
+set nosol                           " No start of line jump when selecting.
 set ttyfast
-set modelines=0                 " Prevent some security issues
+set modelines=0                     " Prevent some security issues
 " retain selection when changing indent level
 vnoremap < <gv
 vnoremap > >gv
@@ -64,7 +64,7 @@ set notimeout ttimeout ttimeoutlen=200
 set showcmd                         " Show (partial) command in status line.
 set showmode
 set wildmenu
-set wildmode=longest,list,full		" complete longest common string, then list alternatives, then select the sortest first
+set wildmode=longest,list,full      " complete longest common string, then list alternatives, then select the sortest first
 set laststatus=2                    " Always show status line
 set cmdheight=2                     " Prevent "Press Enter" messages
 " Show detailed information in status line:
@@ -77,22 +77,22 @@ let g:airline_powerline_fonts = 1
 set backup
 set undofile
 if !isdirectory($HOME . ".vim")     " Create vim dirs if missing
-	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1	
-	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1	
+	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1
+	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
 endif
-set backupdir=$HOME/.vim/backup		" for backup files
-set directory=$HOME/.vim/backup		" for .swp files
+set backupdir=$HOME/.vim/backup     " for backup files
+set directory=$HOME/.vim/backup     " for .swp files
 set backupskip=/tmp/*
 set history=1000
-set undodir=$HOME/.vim/undo			" where to save undo histories
-set undolevels=1000					" how many undos
-set undoreload=10000				" number of lines to save for undo
+set undodir=$HOME/.vim/undo         " where to save undo histories
+set undolevels=1000                 " how many undos
+set undoreload=10000                " number of lines to save for undo
 " }}}
 
 " Wrapping {{{
 set textwidth=78
-"set colorcolumn=79           " Colour column to know when wrapping is needed.
-set wrap linebreak nolist    " Linebreaks at word boundaries.
+"set colorcolumn=79                 " Colour column to know when wrapping is needed.
+set wrap linebreak nolist           " Linebreaks at word boundaries.
 "}}}
 
 " Searching {{{
@@ -106,8 +106,8 @@ nnoremap <C-BSlash> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| 
 " }}}
 
 " Buffers {{{
-set hidden          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
-set confirm         " Prompt to save unsaved changes when exiting
+set hidden                          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
+set confirm                         " Prompt to save unsaved changes when exiting
 nnoremap <leader>N :enew<CR>
 nnoremap <leader>D :bd<CR>
 " use tab key to cycle through the buffers:
@@ -121,49 +121,49 @@ set suffixesadd+='.wiki'
 " }}}
 
 " Insert mode {{{
-set backspace=2     " Influences the working of <BS>, <Del>, CTRL-W
-                    " and CTRL-U in Insert mode. This is a list of items,
-                    " separated by commas. Each item allows a way to backspace
-                    " over something.
-"set backspace=indent,eol,start    " Better handling of <BS>
+set backspace=2                     " Influences the working of <BS>, <Del>, CTRL-W
+                                    " and CTRL-U in Insert mode. This is a list of items,
+                                    " separated by commas. Each item allows a way to backspace
+                                    " over something.
+"set backspace=indent,eol,start     " Better handling of <BS>
 set smartindent
-set autoindent      " Copy indent from current line when starting a new line
-                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                    " command).
-"set nostartofline   " Emulate typical editor navigation behaviour
+set autoindent                      " Copy indent from current line when starting a new line
+                                    " (typing <CR> in Insert mode or when using the "o" or "O"
+                                    " command).
+"set nostartofline                  " Emulate typical editor navigation behaviour
 " }}}
 
 " Tabbing {{{
-set tabstop=4       " Number of spaces that a <Tab> in the file counts for.
+set tabstop=4                       " Number of spaces that a <Tab> in the file counts for.
 set softtabstop=4	
-set shiftwidth=4    " Number of spaces to use for each step of (auto)indent.
-"set expandtab       " Use the appropriate number of spaces to insert a <Tab>.
-                    " Spaces are used in indents with the '>' and '<' commands
-                    " and when 'autoindent' is on. To insert a real tab when
-                    " 'expandtab' is on, use CTRL-V <Tab>.
-set smarttab        " When on, a <Tab> in front of a line inserts blanks
-                    " according to 'shiftwidth'. 'tabstop' is used in other
-                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                    " at the start of the line.
+set shiftwidth=4                    " Number of spaces to use for each step of (auto)indent.
+"set expandtab                      " Use the appropriate number of spaces to insert a <Tab>.
+                                    " Spaces are used in indents with the '>' and '<' commands
+                                    " and when 'autoindent' is on. To insert a real tab when
+                                    " 'expandtab' is on, use CTRL-V <Tab>.
+set smarttab                        " When on, a <Tab> in front of a line inserts blanks
+                                    " according to 'shiftwidth'. 'tabstop' is used in other
+                                    " places. A <BS> will delete a 'shiftwidth' worth of space
+                                    " at the start of the line.
 "}}}
 
 " Interface {{{
 " Set both for relative and absolute on cursor line:
-set scrolloff=3                 " Keep cursor # lines from top/bottom.
-set number                      " Show line numbers.
-set relativenumber              " Show relative line numbers.
+set scrolloff=3                     " Keep cursor # lines from top/bottom.
+set number                          " Show line numbers.
+set relativenumber                  " Show relative line numbers.
 " Toggle line numbering types:
 nnoremap <leader>n :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 if has('mouse')
 	set mouse=a                     " Enable the use of the mouse (all modes).
 endif
-set visualbell                  " Flash instead of beep
-"set t_vb=                      " And then disable even the flashing
-set cursorline                  " Underline line with cursor
-set ruler           " Show the line and column number of the cursor position,
-                    " separated by a comma.
-set splitright 		" vertical splits use right half of screen
-set splitbelow 		" horizontal splits use bottom half of screen
+set visualbell                      " Flash instead of beep
+"set t_vb=                          " And then disable even the flashing
+set cursorline                      " Underline line with cursor
+set ruler                           " Show the line and column number of the cursor position,
+                                    " separated by a comma.
+set splitright                      " vertical splits use right half of screen
+set splitbelow                      " horizontal splits use bottom half of screen
 "}}}
 
 " Folding {{{
@@ -249,13 +249,13 @@ set showmatch       " When a bracket is inserted, briefly jump to the matching
  
 " Formatting {{{
 set formatoptions=croqnlj
-"set formatoptions=croqanlj      " This is a sequence of letters which describes how
-								" automatic formatting works. See :h fo-table
+"set formatoptions=croqanlj     " This is a sequence of letters which describes how
+                                " automatic formatting works. See :h fo-table
 "set formatoptions=want         " Attempt markdown list behaviour
 " }}}
 
 " Completion/Omnifunc {{{
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~                       "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
 set wildignore+=log/**
@@ -266,8 +266,8 @@ set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=*.gem
 set wildignore+=node_modules/*,bower_components/*
-set infercase       " Same-case autocomplete
-set autochdir    " Set working dir to open file
+set infercase                                     " Same-case autocomplete
+set autochdir                                     " Set working dir to open file
 
 " Not needed:
 "au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
@@ -285,7 +285,7 @@ set autochdir    " Set working dir to open file
 "}}}
 
 "" Vundle {{{
-"call vundle#begin()             " Initialize vundle
+"call vundle#begin()          " Initialize vundle
 "
 ""Every Plugin should be before this line
 "call vundle#end()            " required
