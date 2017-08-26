@@ -228,9 +228,9 @@ nmap <c-s> :update<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <c-o><c-s>
 " Save session
-nmap <c-S> :mks! session.vim<CR>
-vmap <c-S> <Esc><c-S>gv
-imap <c-S> <c-o><c-S>
+"nmap <c-S> :mks! session.vim<CR>
+"vmap <c-S> <Esc><c-S>gv
+"imap <c-S> <c-o><c-S>
 "
 map Y y$
 " Don't use Ex mode, use Q for formatting
@@ -283,13 +283,6 @@ set autochdir                                     " Set working dir to open file
 "   \ endif
 "endif
 "}}}
-
-"" Vundle {{{
-"call vundle#begin()          " Initialize vundle
-"
-""Every Plugin should be before this line
-"call vundle#end()            " required
-"" }}}
 
 if isdirectory($HOME . "/vimwiki/")
 	source ~/.vw.vim
