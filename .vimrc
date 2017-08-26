@@ -77,7 +77,7 @@ let g:airline_powerline_fonts = 1
 set backup
 set undofile
 if !isdirectory($HOME . ".vim")     " Create vim dirs if missing
-	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1	
+	silent !mkdir -p ~/.vim/{backup,view,pack} > /dev/null 2>&1	
 	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1	
 endif
 set backupdir=$HOME/.vim/backup		" for backup files
@@ -223,9 +223,14 @@ cmap w!! w !sudo tee % > /dev/null
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
 " Save if needed. Requires for terminal: alias vim="stty stop '' -ixoff ; vim"
+" If terminal freezes, hit <c-q> to resume.
 nmap <c-s> :update<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <c-o><c-s>
+" Save session
+nmap <c-S> :mks! session.vim<CR>
+vmap <c-S> <Esc><c-S>gv
+imap <c-S> <c-o><c-S>
 "
 map Y y$
 " Don't use Ex mode, use Q for formatting
