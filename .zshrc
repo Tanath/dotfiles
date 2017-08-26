@@ -157,6 +157,13 @@ x () {
     return "$e"
 }
 
+ghc () {
+  [[ -z "$1" ]] && echo "need 'user/repo'" && return 1
+  git clone git://github.com/"$1".git
+  cd `echo "$1" | sed 's/^.*\///'`
+  echo cd `pwd`
+}
+
 # Pacman-based distros:
 [[ -f ~/.zpac.zsh ]] && source ~/.zpac.zsh
 # Deb-based distros:
