@@ -13,6 +13,15 @@ ssh-keygen -t ed25519 -b 2048 -C "$(whoami)@$(hostname)-$(date -I)"
 
 The .pub is for server. Also append to `~/.ssh/authorized_keys` on server  
 If key pair genned by client, .pub key should be single-line version.  
+If key pair is genned on server and you insist on using putty instead of something better like mobaxterm, you can convert the key to putty's format:  
+```
+	Open PuTTYgen, select Type of key to generate as: SSH-2 RSA
+	Click "Load" on the right side about 3/4 down
+	Set the file type to *.*
+	Browse to, and Open your .pem file
+	PuTTY will auto-detect everything it needs, and you just need to click "Save private key" and you can save your ppk key for use with PuTTY
+```
+
 Add to `sshd_config`:
 ```
 KexAlgorithms curve25519-sha256@libssh.org
