@@ -14,6 +14,7 @@ alias par='pacaur -R' # Pacaur remove
 alias parc='pacaur -Rns' # Pacaur remove w/config
 alias orphans='pacmatic -Qdt'
 alias paclog='egrep "pac(new|save)" /var/log/pacman.log'
+alias lpac='locate --existing --regex "\.pac(new|save)$"'
 alias mk='makepkg'
 alias mks='makepkg -s'
 alias mki='makepkg -is'
