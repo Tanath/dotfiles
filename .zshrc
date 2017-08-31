@@ -1,14 +1,14 @@
 # Options
-setopt correct                                              # Auto correct mistakes
-setopt numericglobsort                                      # Sort filenames numerically when it makes sense
-setopt appendhistory                                        # Immediately append history instead of overwriting
-setopt histignorealldups                                    # If a new command is a duplicate, remove the older one
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'   # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"     # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                          # automatically find new executables in path 
-setopt SHARE_HISTORY                                        # Share history between sessions
-setopt prompt_subst                                         # enable substitution for prompt
-ttyctl -f                                                   # Avoid <c-s> frozen terminal. <c-q> should resume.
+setopt correct                                             # Auto correct mistakes
+setopt numericglobsort                                     # Sort filenames numerically when it makes sense
+setopt appendhistory                                       # Immediately append history instead of overwriting
+setopt histignorealldups                                   # If a new command is a duplicate, remove the older one
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                         # automatically find new executables in path 
+setopt SHARE_HISTORY                                       # Share history between sessions
+setopt prompt_subst                                        # enable substitution for prompt
+ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
@@ -23,13 +23,13 @@ zstyle ':completion:*' accept-exact '*(N)'
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
-#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark # For gtk3
-GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
+#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark                               # For gtk3
+[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark                               # For gtk3
+GTK_OVERLAY_SCROLLING=0                                    # Disable overlay scrollbars in gtk3. >_<
 HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=1000
-WORDCHARS=${WORDCHARS//\/[&.;]}                             # Don't consider certain characters part of the word
+WORDCHARS=${WORDCHARS//\/[&.;]}                            # Don't consider certain characters part of the word
 
 bindkey -e
 zstyle :compinstall filename '~/.zshrc'
@@ -52,54 +52,57 @@ autoload -Uz run-help-svn
 # Custom aliases
 LSPARAMS='--group-directories-first --time-style=long-iso --color=auto -F'
 alias sudo='sudo '
-[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i'  # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i'  # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
-[[ -n ${commands[systemctl]} ]] && alias svc='systemctl' # Services
-alias free='free -h'                        # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"        # Avoid <c-s> terminal hang. <c-q> should resume.
+[[ -n ${commands[systemctl]} ]] && alias svc='systemctl'        # Services
+alias free='free -h'                                            # Show sizes in MB
+alias vim="stty stop '' -ixoff; vim"                            # Avoid <c-s> terminal hang. <c-q> should resume.
 alias ed='vim'
 alias u='cd ..'
 alias ll=ls\ -lh\ $LSPARAMS
 alias la=ls\ -ah\ $LSPARAMS
-alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'       # List .dirs
-alias lsd=ls\ $LSPARAMS\ '*(-/DN)'          # List dirs & symlinks to dirs
-alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto' # ls grep
+alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'                           # List .dirs
+alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
+alias lz='ll -rS'                                               # sort by size
+alias lt='ll -rT'                                               # sort by date
+alias lx='ll -BX'                                               # sort by ext
+alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto'         # ls grep
 alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias psg='ps -efw | grep -v grep | grep --color=auto $*' # ps grep
-alias pst='ps -ef --sort=pcpu | tail'       # Most cpu use
-alias psm='ps -ef --sort=vsize | tail'      # Most mem use
+alias psg='ps -efw | grep -v grep | grep --color=auto $*'       # ps grep
+alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
+alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
 alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
 alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
-alias lp='lsof -Pnl +M -i4' # lsof ports
-alias np='netstat -ptunl|egrep -vi unix\|-' # netstat ports
+alias lp='lsof -Pnl +M -i4'                                     # lsof ports
+alias np='netstat -ptunl|egrep -vi unix\|-'                     # netstat ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
-alias wpi='strings -e l' # Windows program info
+alias wpi='strings -e l'                                        # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
-alias pip='curl -s ifconfig.me' # Public ip
-#alias pip='dig +short myip.opendns.com @resolver1.opendns.com' # Public ip
+alias pip='curl -s ifconfig.me'                                 # Public ip
+#alias pip='dig +short myip.opendns.com @resolver1.opendns.com'  # Public ip
 alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
-alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
+alias jerr='journalctl -p3 -xb'                                 # Journalctl errors this boot
 
 # Functions
-mcd () { mkdir "$1" && cd "$1" } # make dir and cd
-fnd () { find . -iname \*$*\* | less } # find
-cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
+mcd () { mkdir "$1" && cd "$1" }                                # make dir and cd
+fnd () { find . -iname \*$*\* | less }                          # find
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F }                               # cd and list
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
-fwh () { file $(which $*) } # file which
-lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
-err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # search a logfile for issues
+fwh () { file $(which $*) }                                     # file which
+lg () { sudo grep --color=auto -ir $* /var/log/* }              # log grep
+err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' }      # search a logfile for issues
 errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
 todo () {
@@ -180,22 +183,22 @@ ghc () {
 
 # Key bindings
 #=============
-bindkey "\e[1~" beginning-of-line # Home
-bindkey "\e[4~" end-of-line # End
-bindkey "\e[5~" beginning-of-history # PageUp
-bindkey "\e[6~" end-of-history # PageDown
-bindkey "\e[2~" quoted-insert # Ins
-bindkey "\e[3~" delete-char # Del
+bindkey "\e[1~" beginning-of-line                # Home
+bindkey "\e[4~" end-of-line                      # End
+bindkey "\e[5~" beginning-of-history             # PageUp
+bindkey "\e[6~" end-of-history                   # PageDown
+bindkey "\e[2~" quoted-insert                    # Ins
+bindkey "\e[3~" delete-char                      # Del
 bindkey "\e[5C" forward-word
 bindkey "\eOc" emacs-forward-word
 bindkey "\e[5D" backward-word
 bindkey "\eOd" emacs-backward-word
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
-bindkey "\e[Z" reverse-menu-complete # Shift+Tab
+bindkey "\e[Z" reverse-menu-complete             # Shift+Tab
 # for rxvt
-bindkey "\e[7~" beginning-of-line # Home
-bindkey "\e[8~" end-of-line # End
+bindkey "\e[7~" beginning-of-line                # Home
+bindkey "\e[8~" end-of-line                      # End
 # for non RH/Debian xterm, can't hurt for RH/Debian xterm
 bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
@@ -207,7 +210,7 @@ bindkey "\eOF" end-of-line
 bindkey "\eOH" beginning-of-line
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
-bindkey "\e[3~" delete-char # Del
+bindkey "\e[3~" delete-char                      # Del
 
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
