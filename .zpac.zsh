@@ -11,6 +11,7 @@ alias pa='pacaur'
 alias pau='pacaur -Syu' # Pacaur upgrade
 alias pas='pacaur -Ss' # Pacaur search
 alias par='pacaur -R' # Pacaur remove
+alias pac='pacaur -Sc' # Pacaur clean cache
 alias parc='pacaur -Rns' # Pacaur remove w/config
 alias orphans='pacmatic -Qdt'
 alias paclog='egrep "pac(new|save)" /var/log/pacman.log'
