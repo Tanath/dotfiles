@@ -1,3 +1,4 @@
+# dnscrypt-proxy servers: https://github.com/jedisct1/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv
 # More here: https://www.wikileaks.org/wiki/Alternative_DNS
 # dig @server name
 # host -4 name server
