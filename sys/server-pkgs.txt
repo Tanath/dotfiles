@@ -24,5 +24,4 @@ tmux
 ufw
 wipe
 zsh
-zsh
 zsh-syntax-highlighting
