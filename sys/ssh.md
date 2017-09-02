@@ -36,6 +36,8 @@ sudo useradd -d /path/to/home username
 
 Add user to ssh group:
 ```
+sudo usermod -a -G ssh username
+  OR
 sudo gpasswd -a username ssh  
 ```
 

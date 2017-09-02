@@ -14,6 +14,7 @@ iftop
 inxi
 iotop
 mc
+mlocate
 mtr
 nethogs
 ranger
