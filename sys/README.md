@@ -4,6 +4,7 @@
 * `shellx64-works.efi` - I have a quirky mobo and this is the only thing that lets it boot in UEFI mode.
 * `ssh.md` - SSH setup & tips.
 * `xprofile` - Goes to `/etc/xprofile`. Swaps caps & esc in X before login.
+* Install `mlocate`, run `sudo updatedb`, and set to run hourly: `echo '0 * * * * updatedb' | sudo tee -a /etc/crontab`
 
 # Manjaro/Arch stuff
 * `background.png` - Grub background for Manjaro & Arch. Goes in `/usr/share/grub/background.png`.
