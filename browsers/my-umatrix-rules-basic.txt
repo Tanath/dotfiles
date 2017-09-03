@@ -15,6 +15,9 @@ matrix-off: opera-scheme true
 * * frame block
 * * plugin block
 * 1st-party image allow
+* adchoice.feedsportal.com * block
+* ads-twitter.com * block
+* ads.pro-market.net * block
 * api.recaptcha.net frame allow
 * cdn.artstation.com image allow
 * cdn.embedly.com frame allow
@@ -22,6 +25,7 @@ matrix-off: opera-scheme true
 * cdninstagram.com image allow
 * chart.googleapis.com image allow
 * creativecommons.org image allow
+* deployads.com * block
 * deviantart.net image allow
 * disqus.com * allow
 * disqus.com frame allow
@@ -192,6 +196,9 @@ goo.gl googleusercontent.com image allow
 goo.gl gstatic.com * allow
 goo.gl plus.google.com frame allow
 goo.gl www.google.com frame allow
+goodreads.com 1st-party * allow
+goodreads.com d2arxad8u2l0g7.cloudfront.net image allow
+goodreads.com gr-assets.com * allow
 google.ca * image allow
 google.ca 1st-party * allow
 google.ca 1st-party frame allow
@@ -421,6 +428,7 @@ steampowered.com steamcommunity.com xhr allow
 steampowered.com steamstatic.com * allow
 steampowered.com steamstatic.com plugin allow
 steampowered.com steamstore-a.akamaihd.net script allow
+steampowered.com store.steampowered.com frame allow
 stumblemail.net 1st-party * allow
 stumbleupon.com 1st-party * allow
 stumbleupon.com ajax.googleapis.com script allow
