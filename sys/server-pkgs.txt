@@ -18,6 +18,7 @@ mlocate
 mtr
 nethogs
 ranger
+ripgrep
 rkhunter
 sshguard
 syncthing
