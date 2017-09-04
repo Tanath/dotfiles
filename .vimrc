@@ -11,6 +11,10 @@ set encoding=utf-8
 set nocompatible	            " Use vim mode, not vi mode.
 set cm=blowfish2
 set spell spelllang=en_ca
+if filereadable("/usr/sbin/rg")
+	set grepprg=rg\ --vimgrep
+	set grepformat^=%f:%l:%c:%m
+endif
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
