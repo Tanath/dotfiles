@@ -1,3 +1,6 @@
+# Misc
+You can run `echo $?` to get exit code of last command.
+
 # Bash Shortcuts Quick Reference
 Ctrl-a	 Move to the start of the line.
 Ctrl-e	 Move to the end of the line.
