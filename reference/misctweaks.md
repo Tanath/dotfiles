@@ -1,3 +1,8 @@
+# Enable VTs
+
+Edit `/etc/systemd/logind.conf` to have `NAutoVTs=6`.
+Should take effect immediately.
+
 # Keyboard
 
 Enable Magic sysrq keys:
