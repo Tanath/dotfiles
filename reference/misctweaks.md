@@ -1,9 +1,11 @@
 # Keyboard
 
+Enable Magic sysrq keys:
+	* To use these, they must first be activated with either `sysctl kernel.sysrq=1` or `echo "1" > /proc/sys/kernel/sysrq`. If you wish to have it enabled during boot, edit `/etc/sysctl.d/99-sysctl.conf` and insert the text `kernel.sysrq = 1`. If you want to make sure it will be enabled even before the partitions are mounted and in the initrd, then add `sysrq_always_enabled=1` to your kernel parameters.
+
 ## Swap CAPS & ESC
-Make a panel shortcut too. Suspend with 2 keyboards will undo.`
-setxkbmap -option "caps:swapescape"
-`
+Make a panel shortcut too. Resume from suspend reverts for me.
+`setxkbmap -option "caps:swapescape"`
 
 # Package management/building
 
