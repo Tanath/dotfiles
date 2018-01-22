@@ -8,6 +8,11 @@ Should take effect immediately.
 Enable Magic sysrq keys:
 	* To use these, they must first be activated with either `sysctl kernel.sysrq=1` or `echo "1" > /proc/sys/kernel/sysrq`. If you wish to have it enabled during boot, edit `/etc/sysctl.d/99-sysctl.conf` and insert the text `kernel.sysrq = 1`. If you want to make sure it will be enabled even before the partitions are mounted and in the initrd, then add `sysrq_always_enabled=1` to your kernel parameters.
 
+Volume buttons:
+	* Set `XF86AudioRaiseVolume` to `amixer set Master playback 5%+ unmute`
+	* Set `XF86AudioLowerVolume` to `amixer set Master playback 5%-`
+	* Set `XF86AudioMute` to `amixer set Master toggle`
+
 ## Swap CAPS & ESC
 Make a panel shortcut too. Resume from suspend reverts for me.
 `setxkbmap -option "caps:swapescape"`
