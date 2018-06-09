@@ -272,6 +272,7 @@ set wildignore+=*.gem
 set wildignore+=node_modules/*,bower_components/*
 set infercase                                     " Same-case autocomplete
 set autochdir                                     " Set working dir to open file
+set complete+=kspell
 
 " Not needed:
 "au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags

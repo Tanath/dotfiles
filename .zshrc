@@ -85,8 +85,9 @@ alias big='du -sh * | sort -hr'
 alias bh='big | head' 
 alias wpi='strings -e l'                                        # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
-alias pip='curl -s ifconfig.me'                                 # Public ip
-#alias pip='dig +short myip.opendns.com @resolver1.opendns.com'  # Public ip
+alias ipa='curl -s ifconfig.me'                                 # Public ip
+#alias ipa='dig +short myip.opendns.com @resolver1.opendns.com'  # Public ip
+alias map='telnet mapscii.me'
 alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
@@ -95,7 +96,7 @@ alias jerr='journalctl -p3 -xb'                                 # Journalctl err
 # Functions
 mcd () { mkdir "$1" && cd "$1" }                                # make dir and cd
 fnd () { find . -iname \*$*\* | less }                          # find
-cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F }                               # cd and list
+cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
