@@ -78,7 +78,7 @@ alias mnt='mount | column -t'
 alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
 alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
-alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
+alias mpv='mpv --speed=1.1 --fs --af=scaletempo,rubberband --really-quiet --slang=en,eng --alang=en,eng --autosync=2 --sub-auto=fuzzy --sub-fix-timing=yes --no-sub-ass'
 alias lp='lsof -Pnl +M -i4'                                     # lsof ports
 alias np='netstat -ptunl|egrep -vi unix\|-'                     # netstat ports
 alias big='du -sh * | sort -hr' 
@@ -88,7 +88,7 @@ alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
 alias ipa='curl -s ifconfig.me'                                 # Public ip
 #alias ipa='dig +short myip.opendns.com @resolver1.opendns.com'  # Public ip
 alias map='telnet mapscii.me'
-alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
+alias tts='xsel | text2wave | mpv --af=scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
 alias jerr='journalctl -p3 -xb'                                 # Journalctl errors this boot
@@ -97,12 +97,12 @@ alias jerr='journalctl -p3 -xb'                                 # Journalctl err
 mcd () { mkdir "$1" && cd "$1" }                                # make dir and cd
 fnd () { find . -iname \*$*\* | less }                          # find
 cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
-genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
+[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
 fwh () { file $(which $*) }                                     # file which
-lg () { sudo grep --color=auto -ir $* /var/log/* }              # log grep
 err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' }      # search a logfile for issues
 errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
@@ -161,6 +161,7 @@ x () {
     return "$e"
 }
 
+# github clone by 'user/repo'
 ghc () {
   [[ -z "$1" ]] && echo "need 'user/repo'" && return 1
   git clone git://github.com/"$1".git
