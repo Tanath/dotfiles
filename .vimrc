@@ -221,6 +221,10 @@ nmap <Leader>p "+p
 nmap <Leader>P "*p
 "}}}
 
+"" Next/prev "error"
+nmap <Leader>] :cn<CR>
+nmap <Leader>[ :cp<CR>
+
 " :w!! 
 " write the file when you accidentally opened it without the right (root) privileges
 cmap w!! w !sudo tee % > /dev/null
