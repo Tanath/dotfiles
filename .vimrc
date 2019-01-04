@@ -15,7 +15,8 @@ set spell spelllang=en_ca
 " The Silver Searcher
 if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " ag is fast enough that CtrlP doesn't need to cache
