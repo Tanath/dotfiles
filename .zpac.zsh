@@ -22,10 +22,6 @@ alias lpac='locate --existing --regex "\.pac(new|save)$"'
 alias mk='makepkg'
 alias mks='makepkg -s'
 alias mki='makepkg -is'
-alias cws='cower -s' # Cower search
-alias cwd='cower -d' # Cower download
-alias cwdd='cower -dd' # Cower download w/depends
-alias cwu='cower -du' # Cower download upgrades
 bin () { pacmatic -Ql $* | grep --color=auto bin/ | awk '{print $2}' } # binaries from package
 #bin () { pkgfile -l $* | grep --color=auto bin/ }
 owns () { pacmatic -Qo $(which $*) } # Ownership of binary
