@@ -1,5 +1,6 @@
 [[ -n ${commands[vimdiff]} ]] && export DIFFPROG=vimdiff # pacdiff
 
+alias p='pacui'
 alias pm='sudo pacmatic'
 alias pmr='sudo pacmatic -R' # Pacman remove
 alias pmc='sudo pacmatic -Sc' # Clean cache
