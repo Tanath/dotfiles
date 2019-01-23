@@ -75,10 +75,9 @@ alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
-alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
+alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
-alias mpv='mpv --speed=1.1 --fs --af=scaletempo,rubberband --really-quiet --slang=en,eng --alang=en,eng --autosync=2 --sub-auto=fuzzy --sub-fix-timing=yes --no-sub-ass'
 alias lp='lsof -Pnl +M -i4'                                     # lsof ports
 alias np='netstat -ptunl|egrep -vi unix\|-'                     # netstat ports
 alias big='du -sh * | sort -hr' 
