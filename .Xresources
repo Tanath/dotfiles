@@ -1,0 +1,24 @@
+!Xft.dpi:       128
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.autohint:   false
+Xft.hintstyle:  hintslight
+Xft.lcdfilter:  lcddefault
+
+!Custom
+! Do not clear the screen after the program exits
+XTerm*VT100*titeInhibit:      true
+xterm*highlightSelection:     true
+XTerm.vt100.reverseVideo:     true
+!xterm*background:             black
+!xterm*foreground:             grey
+xterm*colorMode:              on
+XTerm*saveLines:              2400
+XTerm.vt100.scrollBar:        true
+XTerm.vt100.scrollbar.width:  8
+XTerm.vt100.faceName:         Noto Mono:size=10
+XTerm.vt100.font:             7x13
+XTerm.vt100.bellIsUrgent:     true
+XTerm.vt100.metaSendsEscape:  true
+*VT100*translations:          #override Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
