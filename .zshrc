@@ -10,6 +10,9 @@ setopt SHARE_HISTORY                                       # Share history betwe
 setopt prompt_subst                                        # enable substitution for prompt
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
 
+NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
+[[ -f $NOTFOUND ]] && source $NOTFOUND
+
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' use-cache on
@@ -99,6 +102,7 @@ cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --co
 [[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 vq () { vim -q <(ag "$*") }
+mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9

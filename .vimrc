@@ -49,7 +49,7 @@ nnoremap k gk
 " Automatically equalize splits when Vim is resized
 autocmd VimResized * wincmd =
 
-" Enable file type detection. {{{2
+" Enable file type detection.
 if has("autocmd")
   " Only do this part when compiled with support for autocommands.
   " Use the default filetype settings, s, so that mail gets 'tw' set to 72,
@@ -69,7 +69,6 @@ if has("autocmd")
 else
   set autoindent                    " always set autoindenting on
 endif " has("autocmd")
-" }}}
 
 set nosol                           " No start of line jump when selecting.
 set ttyfast
@@ -79,9 +78,8 @@ vnoremap < <gv
 vnoremap > >gv
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
-"}}}
 
-" Status/Command line {{{
+" Status/Command line
 set showcmd                         " Show (partial) command in status line.
 set showmode
 set wildmenu
@@ -92,9 +90,8 @@ set cmdheight=2                     " Prevent "Press Enter" messages
 set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 let g:airline_powerline_fonts = 1
 "let g:airline#extensions#bufferline#enabled " Buffer line. not working?
-"}}}
 
-" Backup and Swap files {{{
+" Backup and Swap files
 set backup
 set undofile
 if !isdirectory($HOME . ".vim")     " Create vim dirs if missing
@@ -108,15 +105,13 @@ set history=1000
 set undodir=$HOME/.vim/undo         " where to save undo histories
 set undolevels=1000                 " how many undos
 set undoreload=10000                " number of lines to save for undo
-" }}}
 
-" Wrapping {{{
+" Wrapping
 set textwidth=78
 "set colorcolumn=79                 " Colour column to know when wrapping is needed.
 set wrap linebreak nolist           " Linebreaks at word boundaries.
-"}}}
 
-" Searching {{{
+" Searching
 set ignorecase						" do case insensitive matching
 set smartcase						" overrides ignorecase if uppercase used in search string
 set incsearch						" incremental search
@@ -124,24 +119,21 @@ set wrapscan						" jumps to the beginning if reaching end, and viceversa
 " Toggle search highlight:
 let hlstate=0
 nnoremap <C-BSlash> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
-" }}}
 
-" Buffers {{{
+" Buffers
 set hidden                          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
 set confirm                         " Prompt to save unsaved changes when exiting
-nnoremap <leader>N :enew<CR>
-nnoremap <leader>D :bd<CR>
+nnoremap <leader>n :enew<CR>
+nnoremap <leader>d :bd<CR>
 " use tab key to cycle through the buffers:
 nnoremap <leader><Tab>   :bnext<CR>
 nnoremap <leader><S-Tab> :bprevious<CR>
-"}}}
 
-" Markdown {{{
+" Markdown
 set suffixesadd+='.md'
 set suffixesadd+='.wiki'
-" }}}
 
-" Insert mode {{{
+" Insert mode
 set backspace=2                     " Influences the working of <BS>, <Del>, CTRL-W
                                     " and CTRL-U in Insert mode. This is a list of items,
                                     " separated by commas. Each item allows a way to backspace
@@ -152,9 +144,8 @@ set autoindent                      " Copy indent from current line when startin
                                     " (typing <CR> in Insert mode or when using the "o" or "O"
                                     " command).
 "set nostartofline                  " Emulate typical editor navigation behaviour
-" }}}
 
-" Tabbing {{{
+" Tabbing
 set tabstop=4                       " Number of spaces that a <Tab> in the file counts for.
 set softtabstop=4	
 set shiftwidth=4                    " Number of spaces to use for each step of (auto)indent.
@@ -166,15 +157,14 @@ set smarttab                        " When on, a <Tab> in front of a line insert
                                     " according to 'shiftwidth'. 'tabstop' is used in other
                                     " places. A <BS> will delete a 'shiftwidth' worth of space
                                     " at the start of the line.
-"}}}
 
-" Interface {{{
+" Interface
 " Set both for relative and absolute on cursor line:
-set scrolloff=3                     " Keep cursor # lines from top/bottom.
+set scrolloff=2                     " Keep cursor # lines from top/bottom.
 set number                          " Show line numbers.
 set relativenumber                  " Show relative line numbers.
 " Toggle line numbering types:
-nnoremap <leader>n :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
+nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 if has('mouse')
 	set mouse=a                     " Enable the use of the mouse (all modes).
 endif
@@ -185,11 +175,26 @@ set ruler                           " Show the line and column number of the cur
                                     " separated by a comma.
 set splitright                      " vertical splits use right half of screen
 set splitbelow                      " horizontal splits use bottom half of screen
-"}}}
 
-" Folding {{{
+" GUI options
+set guioptions=
+set guioptions+=a         " Automatically make visual selection available in system clipboard
+set guioptions+=A         " Same for modeless selection
+set guioptions+=e         " GUI tabs
+set guioptions+=g         " Grayed-out menu items that aren't active
+set guioptions+=i         " Use a Vim icon
+set guioptions+=m         " Show the menu bar
+set guicursor+=a:blinkon0 " Don't blink the cursor
+set mousehide             " Hide the mouse while typing
+set winaltkeys=no         " Don't use ALT to access the menu
+
+" Theme/colours
+set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark 
+colors elflord
+
+" Folding
 set foldenable
-set foldmethod=syntax
+"set foldmethod=syntax
 ""Indent w/manual folds:
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent
@@ -202,33 +207,13 @@ set foldlevel=99
 set foldnestmax=10		" max 10 depth
 set foldlevelstart=1	" start with fold level of 1
 nnoremap <space> za
-" Save fold state and cursor {{{2
-set viewoptions=folds,cursor
-au BufRead * loadview
-au BufWrite * mkview
-"}}}
-"}}}
+" Save fold state and cursor
+"set viewoptions=folds,cursor
+"au BufRead * loadview
+"au BufWrite * mkview
 
-" GUI options {{{
-set guioptions=
-set guioptions+=a         " Automatically make visual selection available in system clipboard
-set guioptions+=A         " Same for modeless selection
-set guioptions+=e         " GUI tabs
-set guioptions+=g         " Grayed-out menu items that aren't active
-set guioptions+=i         " Use a Vim icon
-set guioptions+=m         " Show the menu bar
-set guicursor+=a:blinkon0 " Don't blink the cursor
-set mousehide             " Hide the mouse while typing
-set winaltkeys=no         " Don't use ALT to access the menu
-"}}}
-
-" Theme/colours {{{
-set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark 
-colors elflord
-"}}}
-
-" Mappings {{{
-"" Quick yank/paste {{{2
+" Mappings
+"" Quick yank/paste
 set pastetoggle=<F2>
 vmap <A-y> "+y
 vmap <Leader>y "+y
@@ -236,7 +221,6 @@ vmap <Leader>Y "*y
 nmap <A-p> "+p
 nmap <Leader>p "+p
 nmap <Leader>P "*p
-"}}}
 
 "" Next/prev "error"
 nmap <Leader>] :cn<CR>
@@ -265,21 +249,19 @@ nnoremap <leader><leader> <C-^>
 "
 map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
-"}}}
 
 set showmatch       " When a bracket is inserted, briefly jump to the matching
                     " one. The jump is only done if the match can be seen on the
                     " screen. The time to show the match can be set with
                     " 'matchtime'.
- 
-" Formatting {{{
+
+" Formatting
 set formatoptions=croqnlj
 "set formatoptions=croqanlj     " This is a sequence of letters which describes how
                                 " automatic formatting works. See :h fo-table
 "set formatoptions=want         " Attempt markdown list behaviour
-" }}}
 
-" Completion/Omnifunc {{{
+" Completion/Omnifunc
 set wildignore=*.o,*.obj,*~                       "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
@@ -308,7 +290,6 @@ set complete+=kspell
 "   \   setlocal omnifunc=syntaxcomplete#Complete |
 "   \ endif
 "endif
-"}}}
 
 if isdirectory($HOME . "/vimwiki/")
 	source ~/.vw.vim
