@@ -85,6 +85,7 @@ alias lp='lsof -Pnl +M -i4'                                     # lsof ports
 alias np='netstat -ptunl|egrep -vi unix\|-'                     # netstat ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
+alias pwcheck='(echo -n "Password: "; read -s pw; curl -s https://api.pwnedpasswords.com/range/$(echo -n $pw | shasum | cut -b 1-5) | grep $(echo -n $pw | shasum | cut -b 6-40 | tr a-f A-F))'
 alias wpi='strings -e l'                                        # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
 alias ipa='curl -s ifconfig.me'                                 # Public ip
