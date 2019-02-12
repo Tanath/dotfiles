@@ -54,7 +54,8 @@ autoload -Uz run-help-svn
 
 # Custom aliases
 LSPARAMS='--group-directories-first --time-style=long-iso --color=auto -F'
-alias sudo='sudo '
+[[ -n ${commands[sudo]} ]] && alias sudo='sudo '
+[[ -n ${commands[tsudo]} ]] && alias sudo='tsudo '
 [[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i'  # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i'  # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
