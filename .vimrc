@@ -42,6 +42,11 @@ if &t_Co > 2 || has("gui_running")
   syntax on
   set hlsearch
 endif
+
+if has('gui_running')
+	set guifont=Noto\ Mono\ 9
+endif
+
 " Up/down by row instead of line:
 nnoremap j gj
 nnoremap k gk
@@ -236,6 +241,11 @@ nnoremap <F1> :help <C-R><C-W><CR>
 nmap <c-s> :update<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <c-o><c-s>
+" For when <c-s> doesn't work
+nmap <leader>s :update<CR>
+vmap <leader>s <Esc>:update<cr>gv
+imap <leader>s <c-o>:update<cr>
+
 " Save session
 "nmap <c-S> :mks! session.vim<CR>
 "vmap <c-S> <Esc><c-S>gv
@@ -246,7 +256,10 @@ map Y y$
 map Q gq
 " switch to previous buffer
 nnoremap <leader><leader> <C-^>
-"
+
+" Table align
+vmap <leader>ta :!column -t<cr>
+
 map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 
