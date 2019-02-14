@@ -1,30 +1,32 @@
-[[ -n ${commands[vimdiff]} ]] && export DIFFPROG=vimdiff # pacdiff
+(echo | grep --color=auto '' >/dev/null 2>&1) && GPARAM='--color=auto' || GPARAM=''
+NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
+[[ -f $NOTFOUND ]] && source $NOTFOUND
 
-alias p='pacui'
-alias pm='sudo pacmatic'
-alias pmr='sudo pacmatic -R' # Pacman remove
-alias pmc='sudo pacmatic -Sc' # Clean cache
-alias pmrc='sudo pacmatic -Rns' # Pacman remove w/config
-alias pms='pacmatic -Ss' # Pacman search
-alias pmls='pacmatic -Qs' # Local search
-alias pmu='sudo pacmatic -Syu' # Pacman upgrade
-alias pml='pacmatic -Ql' # List (files)
-alias pmo='pacmatic -Qqtd' # Orphans
-alias pa='pacaur'
-alias pau='pacaur -Syu' # Pacaur upgrade
-alias pas='pacaur -Ss' # Pacaur search
-alias par='pacaur -R' # Pacaur remove
-alias pac='pacaur -Sc' # Pacaur clean cache
-alias parc='pacaur -Rns' # Pacaur remove w/config
-alias orphans='pacmatic -Qdt'
+[[ -n ${commands[pacui]} ]] && alias p='pacui'
+[[ -n ${commands[pacmatic]} ]] && alias pm='sudo pacmatic' || alias pm='sudo pacman'
+[[ -n ${commands[pacmatic]} ]] && alias pmr='sudo pacmatic -R' || alias pmr='sudo pacman -R'       # Pacman remove
+[[ -n ${commands[pacmatic]} ]] && alias pmc='sudo pacmatic -Sc' || alias pmc='sudo pacman -Sc'     # Clean cache
+[[ -n ${commands[pacmatic]} ]] && alias pmrc='sudo pacmatic -Rns' || alias pmrc='sudo pacman -Rns' # Remove w/config
+[[ -n ${commands[pacmatic]} ]] && alias pmu='sudo pacmatic -Syu' || alias pmu='sudo pacman -Syu'   # Pacman upgrade
+alias pms='pacman -Ss'             # Pacman search
+alias pmls='pacman -Qs'	           # Local search
+alias pml='pacman -Ql'	           # List (files)
+alias pmo='pacman -Qtd'	           # Orphans
+owns () { pacman -Qo $(which $*) } # Ownership of binary
+[[ -n ${commands[pacaur]} ]] && alias pa='pacaur'
+[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'  # Pacaur upgrade  
+[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'   # Pacaur search   
+[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'    # Pacaur remove   
+[[ -n ${commands[pacaur]} ]] && alias pac='pacaur -Sc'   # Pacaur clean cache
+[[ -n ${commands[pacaur]} ]] && alias parc='pacaur -Rns' # Pacaur remove w/config
+
+[[ -n ${commands[vimdiff]} ]] && export DIFFPROG=vimdiff # pacdiff
+[[ -n ${commands[jq]} ]] && aurj () { curl -sSL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]' }
+
 alias paclog='egrep "pac(new|save)" /var/log/pacman.log'
 alias lpac='locate --existing --regex "\.pac(new|save)$"'
 alias mk='makepkg'
 alias mks='makepkg -s'
 alias mki='makepkg -is'
-bin () { pacmatic -Ql $* | grep --color=auto bin/ | awk '{print $2}' } # binaries from package
-#bin () { pkgfile -l $* | grep --color=auto bin/ }
-owns () { pacmatic -Qo $(which $*) } # Ownership of binary
-
-NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
-[[ -f $NOTFOUND ]] && source $NOTFOUND
+bin () { pacman -Ql $* | grep $GPARAM bin/ | awk '{print $2}' } # Binaries from package
+#[[ -n ${commands[pkgfile]} ]] && bin () { pkgfile -l $* | grep $GPARAM bin/ }
