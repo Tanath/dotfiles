@@ -53,7 +53,8 @@ autoload -Uz run-help-svk
 autoload -Uz run-help-svn
 
 # Custom aliases
-LSPARAMS='--group-directories-first --time-style=long-iso --color=auto -F'
+LSPARAMS='--group-directories-first --time-style=long-iso -F --color=auto'
+(echo | grep --color=auto '' >/dev/null 2>&1) && GPARAM='--color=auto' || GPARAM=''
 [[ -n ${commands[sudo]} ]] && alias sudo='sudo '
 [[ -n ${commands[tsudo]} ]] && alias sudo='tsudo '
 [[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i'  # advcp w/progress bar, confirm overwrite
@@ -71,10 +72,10 @@ alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & sy
 alias lz='ll -rS'                                               # sort by size
 alias lt='ll -rT'                                               # sort by date
 alias lx='ll -BX'                                               # sort by ext
-alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto'         # ls grep
+alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i '$GPARAM              # ls grep
 alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias psg='ps -efw | grep -v grep | grep --color=auto $*'       # ps grep
+alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'          # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
 alias mc='mc -b' 
@@ -101,7 +102,7 @@ alias jerr='journalctl -p3 -xb'                                 # Journalctl err
 mcd () { mkdir "$1" && cd "$1" }                                # make dir and cd
 fnd () { find . -iname \*$*\* | less }                          # find
 cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
-[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep --color=auto -ir $* /var/log/* } # log grep
+[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 vq () { vim -q <(ag "$*") }
 mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
@@ -109,8 +110,8 @@ genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
 fwh () { file $(which $*) }                                     # file which
-err () { cat "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' }      # search a logfile for issues
-errt () { tail -f "$*"|grep -E --line-buffered --color=auto 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
+err () { cat "$*"|grep -E --line-buffered $GPARAM 'ERROR|error|CRITICAL|WARN|$' }      # search a logfile for issues
+errt () { tail -f "$*"|grep -E --line-buffered $GPARAM 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
 todo () {
     if [[ ! -f $HOME/.todo ]]; then
