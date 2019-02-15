@@ -52,6 +52,8 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
 compinit
 colors
+# Completion for kitty
+[[ -n ${commands[kitty]} ]] && kitty + complete setup zsh | source /dev/stdin
 
 # Add zsh help. Alt+h after command.
 autoload -Uz run-help
@@ -100,7 +102,8 @@ LSPARAMS='--group-directories-first --time-style=long-iso -F --color=auto'
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
 [[ -n ${commands[systemctl]} ]] && alias svc='systemctl'        # Services
 alias free='free -h'                                            # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"                            # Avoid <c-s> terminal hang. <c-q> should resume.
+alias vim="stty stop '' -ixoff; vim"                            # Avoid <c-s> terminal hang. <c-q> resumes.
+alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
 alias ll=ls\ -lh\ $LSPARAMS
