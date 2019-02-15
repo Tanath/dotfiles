@@ -106,6 +106,7 @@ alias vim="stty stop '' -ixoff; vim"                            # Avoid <c-s> te
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
+alias ls=ls\ $LSPARAMS
 alias ll=ls\ -lh\ $LSPARAMS
 alias la=ls\ -ah\ $LSPARAMS
 alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'                           # List .dirs
