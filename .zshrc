@@ -3,22 +3,35 @@ setopt correct                                             # Auto correct mistak
 setopt numericglobsort                                     # Sort filenames numerically when it makes sense
 setopt appendhistory                                       # Immediately append history instead of overwriting
 setopt histignorealldups                                   # If a new command is a duplicate, remove the older one
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                         # automatically find new executables in path 
-setopt SHARE_HISTORY                                       # Share history between sessions
+setopt sharehistory                                        # Share history between sessions
+setopt menucomplete
 setopt prompt_subst                                        # enable substitution for prompt
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
 
-NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
-[[ -f $NOTFOUND ]] && source $NOTFOUND
+# Completions
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' rehash true                         # automatically find new executables in path 
+zstyle ':completion:*' auto-description 'specify: %d'      # Describe options not described by completion functions (with one argument)
+zstyle ':completion:*' format 'Completing %d'
+#zstyle ':completion:*' completer _expand _complete         # Can be used to control completer
+zstyle ':completion:*' group-name ''                       # Name of tag for matches used as name of group. All different types of matches displayed separately
+zstyle ':completion:*' menu select                         # Completion menu
+#zstyle ':completion:*' menu select=5                       # Only show if more than num
+zstyle ":completion:*:descriptions" format "%B%d%b"
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' select-prompt %SScrolling: current selection at %p%s
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' use-cache on
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# Custom variables
+# Custom environment variables
 [[ -n ${commands[vim]} ]] && export EDITOR=vim
 [[ -n ${commands[vim]} ]] && export VISUAL=vim
 #export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
@@ -30,8 +43,8 @@ export SDL_AUDIODRIVER=pulse
 [[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark                               # For gtk3
 GTK_OVERLAY_SCROLLING=0                                    # Disable overlay scrollbars in gtk3. >_<
 HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=2000
+SAVEHIST=2000
 WORDCHARS=${WORDCHARS//\/[&.;]}                            # Don't consider certain characters part of the word
 
 bindkey -e
@@ -51,6 +64,31 @@ autoload -Uz run-help-p4
 autoload -Uz run-help-sudo
 autoload -Uz run-help-svk
 autoload -Uz run-help-svn
+
+# Personal custom aliases, functions
+[[ -f ~/.zalias.zsh ]] && source ~/.zalias.zsh
+# Pacman-based distros
+[[ -f ~/.zpac.zsh ]] && source ~/.zpac.zsh
+# Deb-based distros
+[[ -f ~/.zubuntu.zsh ]] && source ~/.zubuntu.zsh 
+# Desktop-only stuff
+[[ -f ~/.zdesk.zsh ]] && source ~/.zdesk.zsh
+# Laptop-only stuff
+[[ -f ~/.zlap.zsh ]] && source ~/.zlap.zsh
+# Mobile-only stuff
+[[ -f ~/.zmobile.zsh ]] && source ~/.zmobile.zsh
+
+# Phil's custom prompt
+# http://aperiodic.net/phil/prompt/prompt.txt
+# Bender apm fix
+# https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
+source ~/.zprompt.zsh
+
+# zsh-syntax-highlighting and autosuggestion
+[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ~/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Custom aliases
 LSPARAMS='--group-directories-first --time-style=long-iso -F --color=auto'
@@ -176,20 +214,6 @@ ghc () {
   echo cd `pwd`
 }
 
-# Pacman-based distros:
-[[ -f ~/.zpac.zsh ]] && source ~/.zpac.zsh
-# Deb-based distros:
-[[ -f ~/.zubuntu.zsh ]] && source ~/.zubuntu.zsh
-
-# Personal:
-#==========
-# Desktop-only stuff:
-[[ -f ~/.zdesk.zsh ]] && source ~/.zdesk.zsh
-# Laptop-only stuff:
-[[ -f ~/.zlap.zsh ]] && source ~/.zlap.zsh
-# Personal custom aliases, functions:
-[[ -f ~/.zalias.zsh ]] && source ~/.zalias.zsh
-
 # Key bindings
 #=============
 bindkey "\e[1~" beginning-of-line                # Home
@@ -231,13 +255,3 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
-# Phil's custom prompt
-# http://aperiodic.net/phil/prompt/prompt.txt
-# Bender apm fix
-# https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
-source ~/.zprompt.zsh
-
-# zsh-syntax-highlighting and autosuggestion
-[[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -f ~/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/zsh-autosuggestions/zsh-autosuggestions.zsh
