@@ -35,6 +35,11 @@ zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # Custom environment variables
+if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
 [[ -n ${commands[vim]} ]] && export EDITOR=vim
 [[ -n ${commands[vim]} ]] && export VISUAL=vim
 #export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"

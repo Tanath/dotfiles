@@ -18,6 +18,11 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
 
+if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
+        export TERM='xterm-256color'
+else
+        export TERM='xterm-color'
+fi
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
 export HISTCONTROL=ignoreboth
