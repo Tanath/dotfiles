@@ -42,8 +42,8 @@ if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 # Mobile-only stuff
 [[ -f ~/.bmobile.bsh ]] && source ~/.bmobile.bsh
 
-# prompt
-if [[ -f ~/zer0prompt ]]; then
+# Check for zer0prompt. Needs folder moved to ~ after cloning.
+if [[ -f ~/zer0prompt/zer0prompt.sh ]]; then
 	source ~/zer0prompt/zer0prompt.sh
 	zer0prompt
 	unset zer0prompt
