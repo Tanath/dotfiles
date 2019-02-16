@@ -43,10 +43,16 @@ if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 [[ -f ~/.bmobile.bsh ]] && source ~/.bmobile.bsh
 
 # prompt
-PS1='[\u@\h \W]\$ '
+if [[ -f ~/zer0prompt ]]; then
+	source ~/zer0prompt/zer0prompt.sh
+	zer0prompt
+	unset zer0prompt
+else
+	PS1='[\u@\h \W]\$ '
+fi
 
 # Custom aliases
-if [[ -x "`whence -p dircolors`" ]]; then
+if [[ -x "`type dircolors`" ]]; then
     eval `dircolors`
 	LSPARAMS='-F --group-directories-first --time-style=long-iso --color=auto'
 else
@@ -103,7 +109,7 @@ alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 mkcd () { mkdir "$1" && cd "$1"; } # make dir and cd
 fnd () { find . -iname \*$*\* | less; } # find
 cdl () { cd "$*" && ls -hal $LSPARAMS; } # cd and list
-[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
+[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/; } || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
 vq () { vim -q <(ag "$*"); }
@@ -142,7 +148,7 @@ x () {
         c=''
         e=1
         if [[ ! -r $i ]]; then
-            echo "$0: file is unreadable: \`$i'" >&2
+            echo "$0: file is unreadable: '$i'" >&2
             continue
         fi
         case $i in
@@ -161,7 +167,7 @@ x () {
             *.xz)  c=(unxz);;
             *.zip) c=(unzip);;
             *.deb) c=(ar x);;
-            *)     echo "$0: unrecognized file extension: \`$i'" >&2
+            *)     echo "$0: unrecognized file extension: '$i'" >&2
                    continue;;
         esac
         command "${c[@]}" "$i"
