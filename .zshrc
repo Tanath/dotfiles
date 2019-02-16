@@ -39,7 +39,7 @@ zstyle ':completion:*' accept-exact '*(N)'
 [[ -n ${commands[vim]} ]] && export VISUAL=vim
 #export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
 # This may break some apps, like Dropbox device linking? Get url from ps.
-if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
+if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=w3m; fi
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
 #[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
