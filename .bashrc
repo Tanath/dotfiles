@@ -95,8 +95,8 @@ alias ipa='curl -s ifconfig.me' # Public ip
 #alias ipa='dig +short myip.opendns.com @resolver1.opendns.com' # Public ip
 alias map='telnet mapscii.me'
 alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
-alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
-#alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
+alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`date\ +%H-%M-%S\`'.mpg'
+#alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'\`date\ +%H-%M-%S\`'.mp4'
 alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 
 # Functions
