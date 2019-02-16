@@ -21,7 +21,7 @@ shopt -s nocaseglob
 if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
         export TERM='xterm-256color'
 else
-        export TERM='xterm-color'
+        export TERM='xterm-16color'
 fi
 export HISTSIZE=10000
 export HISTFILESIZE=${HISTSIZE}
