@@ -14,6 +14,8 @@ Xft.lcdfilter:  lcddefault
 ! Do not clear the screen after the program exits
 XTerm*VT100*titeInhibit:      true
 XTerm*highlightSelection:     true
+! Don't copy trailing spaces
+XTerm*TrimSelection:          true
 XTerm.vt100.reverseVideo:     true
 !XTerm*background:             mybg
 !XTerm*foreground:             myfg

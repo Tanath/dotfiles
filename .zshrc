@@ -6,6 +6,8 @@ setopt histignorealldups                                   # If a new command is
 setopt sharehistory                                        # Share history between sessions
 setopt menucomplete
 setopt prompt_subst                                        # enable substitution for prompt
+setopt auto_resume # Commands w/o arguments will first try to resume suspended programs of the same name.
+setopt no_flow_control                                     # Turns off C-S/C-Q flow control
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
 
 # Completions
@@ -25,6 +27,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' select-prompt %SScrolling: current selection at %p%s
+setopt magic_equal_subst                                   # Do file completion on <value> in foo=<value>
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
@@ -39,12 +42,12 @@ zstyle ':completion:*' accept-exact '*(N)'
 if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
-#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark                               # For gtk3
-[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark                               # For gtk3
+#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
+[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark         # For gtk3
 GTK_OVERLAY_SCROLLING=0                                    # Disable overlay scrollbars in gtk3. >_<
 HISTFILE=~/.zhistory
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=4000
+SAVEHIST=4000
 WORDCHARS=${WORDCHARS//\/[&.;]}                            # Don't consider certain characters part of the word
 
 bindkey -e
@@ -93,33 +96,38 @@ source ~/.zprompt.zsh
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # Custom aliases
-LSPARAMS='--group-directories-first --time-style=long-iso -F --color=auto'
+if [[ -x "`whence -p dircolors`" ]]; then
+    eval `dircolors`
+	LSPARAMS='-F --group-directories-first --time-style=long-iso --color=auto'
+else
+	LSPARAMS='-F --group-directories-first --time-style=long-iso'
+fi
 (echo | grep --color=auto '' >/dev/null 2>&1) && GPARAM='--color=auto' || GPARAM=''
 [[ -n ${commands[sudo]} ]] && alias sudo='sudo '
-[[ -n ${commands[tsudo]} ]] && alias sudo='tsudo '
-[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i'  # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i'  # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[tsudo]} ]] && alias sudo='tsudo '         # For Termux
+[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 [[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
-[[ -n ${commands[systemctl]} ]] && alias svc='systemctl'        # Services
-alias free='free -h'                                            # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"                            # Avoid <c-s> terminal hang. <c-q> resumes.
-alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
+[[ -n ${commands[systemctl]} ]] && alias svc='systemctl'   # Services
+alias free='free -h'                                       # Show sizes in MB
+alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
+alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
 alias ls=ls\ $LSPARAMS
 alias ll=ls\ -lh\ $LSPARAMS
 alias la=ls\ -ah\ $LSPARAMS
-alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'                           # List .dirs
-alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
-alias lz='ll -rS'                                               # sort by size
-alias lt='ll -rT'                                               # sort by date
-alias lx='ll -BX'                                               # sort by ext
-alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i '$GPARAM              # ls grep
+alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'                      # List .dirs
+alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
+alias lz='ll -rS'                                          # sort by size
+alias lt='ll -rT'                                          # sort by date
+alias lx='ll -BX'                                          # sort by ext
+alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i '$GPARAM         # ls grep
 alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'          # ps grep
-alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
-alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
+alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
+alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
+alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
@@ -136,24 +144,22 @@ alias ipa='curl -s ifconfig.me'                                 # Public ip
 #alias ipa='dig +short myip.opendns.com @resolver1.opendns.com'  # Public ip
 alias map='telnet mapscii.me'
 alias tts='xsel | text2wave | mpv --af=scaletempo --speed=1.7 -'
-alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab.mpg'
-#alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab.mp4'
+alias grab='ffmpeg -f x11grab -s wxga -r 25 -i :0.0 -sameq ~/Videos/screengrab-'`date +%H-%M-%S`'.mpg'
+#alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'`date +%H-%M-%S`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'`date +%H-%M-%S`'.mp4'
 alias jerr='journalctl -p3 -xb'                                 # Journalctl errors this boot
 
 # Functions
 mcd () { mkdir "$1" && cd "$1" }                                # make dir and cd
 fnd () { find . -iname \*$*\* | less }                          # find
-cdl () { cd "$*" && ls -hal --group-directories-first --time-style=long-iso --color=auto -F } # cd and list
+cdl () { cd "$*" && ls -hal $LSPARAMS }                         # cd and list
 [[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
+[[ -n ${commands[ag]} ]] && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
 alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-vq () { vim -q <(ag "$*") }
 mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}') } # wine kill -9
 fwh () { file $(which $*) }                                     # file which
-err () { cat "$*"|grep -E --line-buffered $GPARAM 'ERROR|error|CRITICAL|WARN|$' }      # search a logfile for issues
-errt () { tail -f "$*"|grep -E --line-buffered $GPARAM 'ERROR|error|CRITICAL|WARN|$' } # watch a logfile for issues
 
 todo () {
     if [[ ! -f $HOME/.todo ]]; then
