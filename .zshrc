@@ -34,27 +34,6 @@ zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' use-cache on
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
-# Custom environment variables
-if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
-        export TERM='xterm-256color'
-else
-        export TERM='xterm-16color'
-fi
-[[ -n ${commands[vim]} ]] && export EDITOR=vim
-[[ -n ${commands[vim]} ]] && export VISUAL=vim
-#export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
-# This may break some apps, like Dropbox device linking? Get url from ps.
-if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=w3m; fi
-export SOCKS_VERSION=5
-export SDL_AUDIODRIVER=pulse
-#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark         # For gtk3
-GTK_OVERLAY_SCROLLING=0                                    # Disable overlay scrollbars in gtk3. >_<
-HISTFILE=~/.zhistory
-HISTSIZE=4000
-SAVEHIST=4000
-WORDCHARS=${WORDCHARS//\/[&.;]}                            # Don't consider certain characters part of the word
-
 bindkey -e
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
@@ -67,13 +46,12 @@ colors
 autoload -Uz run-help
 unalias run-help 2>/dev/null
 alias help=run-help
-autoload -Uz run-help-git
-autoload -Uz run-help-ip
-autoload -Uz run-help-openssl
-autoload -Uz run-help-p4
-autoload -Uz run-help-sudo
-autoload -Uz run-help-svk
-autoload -Uz run-help-svn
+autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn}
+
+HISTFILE=~/.zhistory
+HISTSIZE=8000
+SAVEHIST=8000
+WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
 
 # Phil's custom prompt
 # http://aperiodic.net/phil/prompt/prompt.txt
@@ -94,12 +72,12 @@ if [[ -x "`whence -p dircolors`" ]]; then
 else
 	LSPARAMS='-F --group-directories-first --time-style=long-iso'
 fi
-(echo | grep --color=auto '' >/dev/null 2>&1) && GPARAM='--color=auto' || GPARAM=''
-[[ -n ${commands[sudo]} ]] && alias sudo='sudo '
-[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
-[[ -n ${commands[systemctl]} ]] && alias svc='systemctl'   # Services
+echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
+[[ -n $+commands[sudo] ]] && alias sudo='sudo '
+[[ -n $+commands[acp] ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+[[ -n $+commands[amv] ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+[[ -n $+commands[dfc] ]] && alias df=dfc || alias df='df -h'
+[[ -n $+commands[systemctl] ]] && alias svc='systemctl'    # Services
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -143,12 +121,12 @@ alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`d
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
 cdl () { cd "$*" && ls -hal $LSPARAMS }                    # cd and list
-[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
-[[ -n ${commands[ag]} ]] && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
-[[ -n ${commands[mpv]} ]] && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-[[ -n ${commands[mpv]} ]] && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
-genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16} }
-fwh () { file $(which $*) }                                # file which
+[[ -n $+commands[ag] ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
+[[ -n $+commands[ag] ]] && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
+[[ -n $+commands[mpv] ]] && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+[[ -n $+commands[mpv] ]] && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
+genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
+fwh () { file =$1 }                                # file which
 
 # Personal custom aliases, functions
 [[ -f ~/.zalias.zsh ]] && source ~/.zalias.zsh
