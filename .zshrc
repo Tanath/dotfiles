@@ -92,7 +92,7 @@ autoload -Uz run-help-svn
 # http://aperiodic.net/phil/prompt/prompt.txt
 # Bender apm fix
 # https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
-source ~/.zprompt.zsh
+[[ -f ~/.zprompt.zsh ]] && source ~/.zprompt.zsh
 
 # zsh-syntax-highlighting and autosuggestion
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -139,7 +139,7 @@ alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
 alias lp='lsof -Pnl +M -i4'                                     # lsof ports
-alias np='netstat -ptunl|egrep -vi unix\|-'                     # netstat ports
+alias ssp='ss -ptunl|egrep -vi unix\|-'                     # ss ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
 alias pwcheck='(echo -n "Password: "; read -s pw; curl -s https://api.pwnedpasswords.com/range/$(echo -n $pw | shasum | cut -b 1-5) | grep $(echo -n $pw | shasum | cut -b 6-40 | tr a-f A-F))'
