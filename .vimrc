@@ -144,7 +144,7 @@ set backspace=2                     " Influences the working of <BS>, <Del>, CTR
                                     " separated by commas. Each item allows a way to backspace
                                     " over something.
 "set backspace=indent,eol,start     " Better handling of <BS>
-set smartindent
+"set smartindent
 set autoindent                      " Copy indent from current line when starting a new line
                                     " (typing <CR> in Insert mode or when using the "o" or "O"
                                     " command).
