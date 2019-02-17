@@ -22,7 +22,7 @@ I swap caps & esc in X for better vimming (see `reference/misctweaks.md`). This 
 ## bash
 This `.bashrc` sources [~/zer0prompt/zer0prompt.sh](https://github.com/zer0ed/zer0prompt) for its prompt, which is similar to Phil's zsh prompt above. It defaults to a basic prompt if it doesn't exist.
 It sources the following files if they exist:
-* `~/.balias.bsh`: I use this for personalized aliases which aren't distro-specific yet don't belong in `.zshrc`.
+* `~/.balias.bsh`: I use this for personalized aliases which aren't distro-specific yet don't belong in `.bashrc`.
 * `~/.bpac.bsh`: aliases for pacman-based Linux distros.
 * `~/.bubuntu.bsh`: aliases for Debian-based Linux distros. It only has ubuntu in the name for easier tab-completion due to `.bdesk.bsh`.
 * `~/.bdesk.bsh`: for desktop-only stuff.
