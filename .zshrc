@@ -40,7 +40,7 @@ autoload -Uz compinit colors
 compinit
 colors
 # Completion for kitty
-[[ -n ${commands[kitty]} ]] && kitty + complete setup zsh | source /dev/stdin
+(( $+commands[kitty] )) && kitty + complete setup zsh | source /dev/stdin
 
 # Add zsh help. Alt+h after command.
 autoload -Uz run-help
@@ -73,11 +73,11 @@ else
 	LSPARAMS='-F --group-directories-first --time-style=long-iso'
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
-[[ -n $+commands[sudo] ]] && alias sudo='sudo '
-[[ -n $+commands[acp] ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-[[ -n $+commands[amv] ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
-[[ -n $+commands[dfc] ]] && alias df=dfc || alias df='df -h'
-[[ -n $+commands[systemctl] ]] && alias svc='systemctl'    # Services
+(( $+commands[sudo] )) && alias sudo='sudo '
+(( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+(( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+(( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
+(( $+commands[systemctl] )) && alias svc='systemctl'    # Services
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
