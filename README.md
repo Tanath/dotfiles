@@ -24,7 +24,7 @@ This `.bashrc` sources [~/zer0prompt/zer0prompt.sh](https://github.com/zer0ed/ze
 It sources the following files if they exist:
 * `~/.balias.bsh`: I use this for personalized aliases which aren't distro-specific yet don't belong in `.zshrc`.
 * `~/.bpac.bsh`: aliases for pacman-based Linux distros.
-* `~/.bubuntu.bsh`: aliases for Debian-based Linux distros. It only has ubuntu in the name for easier tab-completion due to `.zdesk.zsh`.
+* `~/.bubuntu.bsh`: aliases for Debian-based Linux distros. It only has ubuntu in the name for easier tab-completion due to `.bdesk.bsh`.
 * `~/.bdesk.bsh`: for desktop-only stuff.
 * `~/.blap.bsh`: for laptop-only stuff.
 * `~/.bmobile.bsh`: for mobile-only stuff.
