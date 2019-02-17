@@ -246,8 +246,10 @@ nmap <leader>s :update<CR>
 vmap <leader>s <Esc>:update<cr>gv
 imap <leader>s <c-o>:update<cr>
 
+nmap <leader>f :Files<cr>  " vim-fzf-git
+
 " Save session
-"nmap <c-S> :mks! session.vim<CR>
+"nmap <c-S> :mks! ~/.vim/sessions/session.vim<CR>
 "vmap <c-S> <Esc><c-S>gv
 "imap <c-S> <c-o><c-S>
 "
