@@ -246,7 +246,17 @@ nmap <leader>s :update<CR>
 vmap <leader>s <Esc>:update<cr>gv
 imap <leader>s <c-o>:update<cr>
 
-nmap <leader>f :Files<cr>  " vim-fzf-git
+" fzf stuff
+" https://github.com/junegunn/fzf.vim
+nmap <leader>f :FZF<cr>      " vim-fzf-git
+nmap <leader>b :Buffers<cr>  " fzf buffers
+nmap <leader>a :Ag\          " fzf silver searcher
+nmap <leader>gc :Commits<cr> " fzf git commits
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
 " Save session
 "nmap <c-S> :mks! ~/.vim/sessions/session.vim<CR>
