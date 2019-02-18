@@ -46,7 +46,8 @@ colors
 autoload -Uz run-help
 unalias run-help 2>/dev/null
 alias help=run-help
-autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn}
+autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
+promptinit
 
 HISTFILE=~/.zhistory
 HISTSIZE=8000
@@ -121,10 +122,10 @@ alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`d
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
 cdl () { cd "$*" && ls -hal $LSPARAMS }                    # cd and list
-[[ -n $+commands[ag] ]] && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
-[[ -n $+commands[ag] ]] && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
-[[ -n $+commands[mpv] ]] && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-[[ -n $+commands[mpv] ]] && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
+(( $+commands[ag] )) && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
+(( $+commands[ag] )) && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
+(( $+commands[mpv] )) && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+(( $+commands[mpv] )) && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 fwh () { file =$1 }                                # file which
 

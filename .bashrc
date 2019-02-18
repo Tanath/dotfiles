@@ -18,14 +18,9 @@ shopt -s histappend
 shopt -s hostcomplete
 shopt -s nocaseglob
 
-if [[ -e /usr/share/terminfo/x/xterm-256color ]]; then
-        export TERM='xterm-256color'
-else
-        export TERM='xterm-16color'
-fi
-export HISTSIZE=10000
-export HISTFILESIZE=${HISTSIZE}
-export HISTCONTROL=ignoreboth
+HISTSIZE=10000
+HISTFILESIZE=${HISTSIZE}
+HISTCONTROL=ignoreboth
 export EDITOR=vim
 export VISUAL=vim
 #export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
