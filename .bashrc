@@ -8,26 +8,21 @@ xhost +local:root > /dev/null 2>&1
 
 complete -cf sudo
 
-shopt -s cdspell
-shopt -s checkwinsize
-shopt -s cmdhist
-shopt -s dotglob
-shopt -s expand_aliases
-shopt -s extglob
-shopt -s histappend
-shopt -s hostcomplete
-shopt -s nocaseglob
+shopt -s cdspell checkwinsize cmdhist dotglob expand_aliases extglob histappend hostcomplete nocaseglob
 
 HISTSIZE=10000
 HISTFILESIZE=${HISTSIZE}
 HISTCONTROL=ignoreboth
-export EDITOR=vim
-export VISUAL=vim
-#export VISUAL="$(if [[ -n $DISPLAY ]]; then echo 'gvim'; else echo 'vim'; fi)"
+command -v vim >/dev/null 2>&1 && export VISUAL=vim
+export COLUMNS                            # Remember columns for subprocesses.
 [[ -d /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-GTK_OVERLAY_SCROLLING=0 # Disable overlay scrollbars in gtk3. >_<
-if [[ -n $DISPLAY ]]; then BROWSER=xdg-open; else BROWSER=elinks; fi
-[[ -n ${commands[kitty]} ]] && source <(kitty + complete setup bash)
+if [[ -n $DISPLAY ]]; then
+	export BROWSER=xdg-open
+	export GTK_OVERLAY_SCROLLING=0        # Disable overlay scrollbars in gtk3. >_<
+else
+	command -v w3m >/dev/null 2>&1 && export BROWSER=w3m
+fi
+command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
 
 # Personal custom aliases, functions
 [[ -f ~/.balias.bsh ]] && source ~/.balias.bsh
@@ -54,66 +49,66 @@ fi
 # Custom aliases
 if [[ -x "`type dircolors`" ]]; then
     eval `dircolors`
-	LSPARAMS='-F --group-directories-first --time-style=long-iso --color=auto'
+	LSPARAMS='-CFh --group-directories-first --time-style=long-iso --color=always'
 else
-	LSPARAMS='-F --group-directories-first --time-style=long-iso'
+	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
 fi
-(echo | grep --color=auto '' >/dev/null 2>&1) && GPARAM='--color=auto' || GPARAM=''
-[[ -n ${commands[sudo]} ]] && alias sudo='sudo '
-[[ -n ${commands[acp]} ]] && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[amv]} ]] && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
-[[ -n ${commands[dfc]} ]] && alias df=dfc || alias df='df -h'
-[[ -n ${commands[systemctl]} ]] && alias svc='systemctl'        # Services
-alias free='free -h'                        # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"        # Fix <c-s> terminal hang
+#alias ls='ls $LSPARAMS'
+ls () { command ls $LSPARAMS "$@" | less -RFX; }
+echo | grep --color=always '' >/dev/null 2>&1 && GPARAM='--color=always' || GPARAM=''
+command -v sudo >/dev/null 2>&1 && alias sudo='sudo '
+command -v acp >/dev/null 2>&1 && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+command -v amv >/dev/null 2>&1 && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+command -v dfc >/dev/null 2>&1 && alias df=dfc || alias df='df -h'
+command -v systemctl >/dev/null 2>&1 && alias svc='systemctl'   # Services
+alias free='free -h'                                            # Show sizes in MB
+alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> terminal hang
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
-alias ls=ls\ $LSPARAMS
-alias ll=ls\ -lh\ $LSPARAMS
-alias la=ls\ -ah\ $LSPARAMS
-alias l.='ls $LSPARAMS -hd .[^.]*'          # List .dirs
+alias ll=ls\ -l\ $LSPARAMS
+alias la=ls\ -a\ $LSPARAMS
+alias l.='ls $LSPARAMS -d .[^.]*'                               # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
 alias lz='ll -rS'                                               # sort by size
 alias lt='ll -rT'                                               # sort by date
 alias lx='ll -BX'                                               # sort by ext
-alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i --color=auto' # ls grep
-alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*' # ps grep
-alias pst='ps -ef --sort=pcpu | tail'       # Most cpu use
-alias psm='ps -ef --sort=vsize | tail'      # Most mem use
+alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i --color=always'        # ls grep
+alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'          # ps grep
+alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
+alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
 alias mc='mc -b' 
 alias mnt='mount | column -t'
-alias lsblk='lsblk -o +FSTYPE,LABEL,UUID'
+alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop' 
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
-alias lp='lsof -Pnl +M -i4' # lsof ports
-alias ssp='ss -ptunl|egrep -vi unix\|-' # ss ports
+alias lp='lsof -Pnl +M -i4'                 # lsof ports
+alias ssp='ss -ptunl|egrep -vi unix\|-'     # ss ports
 alias big='du -sh * | sort -hr' 
 alias bh='big | head' 
-alias pwcheck='(echo -n "Password: "; read -s pw; curl -s https://api.pwnedpasswords.com/range/$(echo -n $pw | shasum | cut -b 1-5) | grep $(echo -n $pw | shasum | cut -b 6-40 | tr a-f A-F))'
-alias wpi='strings -e l' # Windows program info
-alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
-alias ipa='curl -s ifconfig.me' # Public ip
+alias jerr='journalctl -p3 -xb'             # Journalctl errors this boot
+alias wpi='strings -e l'                    # Windows program info
+alias isp='whois $(curl -sSL ifconfig.me) | grep -v "^#\|^%"'
+alias ipa='curl -sSL ifconfig.me'           # Public ip
 #alias ipa='dig +short myip.opendns.com @resolver1.opendns.com' # Public ip
+alias hibp='(echo -n "Password: "; read -s pw; curl -sSL https://api.pwnedpasswords.com/range/$(echo -n $pw | shasum | cut -b 1-5) | grep $(echo -n $pw | shasum | cut -b 6-40 | tr a-f A-F))'
 alias map='telnet mapscii.me'
 alias tts='xsel | text2wave | mpv -af scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`date\ +%H-%M-%S\`'.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'\`date\ +%H-%M-%S\`'.mp4'
-alias jerr='journalctl -p3 -xb' # Journalctl errors this boot
 
 # Functions
-mkcd () { mkdir "$1" && cd "$1"; } # make dir and cd
-fnd () { find . -iname \*$*\* | less; } # find
-cdl () { cd "$*" && ls -hal $LSPARAMS; } # cd and list
-[[ -n ${commands[ag]} ]] && lg () { sudo ag $* /var/log/; } || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
-genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
-alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
+mkcd () { mkdir "$1" && cd "$1"; }          # make dir and cd
+fnd () { find . -iname \*$*\* | less; }     # find
+cdl () { cd "$*" && ls -al $LSPARAMS; }     # cd and list
+command -v ag >/dev/null 2>&1 && lg () { sudo ag $* /var/log/; } || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
+command -v mpv >/dev/null 2>&1 && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
 vq () { vim -q <(ag "$*"); }
 mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"; }
-genpw () { head /dev/urandom | uuencode -m - | sed -n 2p | cut -c1-${1:-16}; }
+genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10; }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill -9
 fwh () { file $(which $*); } # file which
