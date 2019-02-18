@@ -7,6 +7,7 @@ setopt sharehistory                                        # Share history betwe
 setopt menucomplete
 setopt prompt_subst                                        # enable substitution for prompt
 setopt auto_resume # Commands w/o arguments will first try to resume suspended programs of the same name.
+#setopt autocd                                              # CD automatically when path to dir is entered
 setopt no_flow_control                                     # Turns off C-S/C-Q flow control
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
 
@@ -69,32 +70,32 @@ WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the 
 # Custom aliases
 if [[ -x "`whence -p dircolors`" ]]; then
     eval `dircolors`
-	LSPARAMS='-F --group-directories-first --time-style=long-iso --color=auto'
+	LSPARAMS=(-CFh --group-directories-first --time-style=long-iso --color=always)
 else
-	LSPARAMS='-F --group-directories-first --time-style=long-iso'
+	LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
 (( $+commands[sudo] )) && alias sudo='sudo '
 (( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
-(( $+commands[systemctl] )) && alias svc='systemctl'    # Services
+(( $+commands[systemctl] )) && alias svc='systemctl'       # Services
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
-alias ls=ls\ $LSPARAMS
-alias ll=ls\ -lh\ $LSPARAMS
-alias la=ls\ -ah\ $LSPARAMS
-alias l.=ls\ $LSPARAMS\ -hd\ '.[^.]*'                      # List .dirs
+ls () { command ls $LSPARAMS "$@" | less -RFX }
+alias ll=ls\ -l\ $LSPARAMS
+alias la=ls\ -a\ $LSPARAMS
+alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
 alias lz='ll -rS'                                          # sort by size
 alias lt='ll -rT'                                          # sort by date
 alias lx='ll -BX'                                          # sort by ext
-alias lsg=ls\ -hal\ $LSPARAMS\ '| grep -i '$GPARAM         # ls grep
-alias new=ls\ -hlt\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias old=ls\ -hltr\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i '$GPARAM          # ls grep
+alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' 
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
@@ -118,16 +119,16 @@ alias tts='xsel | text2wave | mpv --af=scaletempo --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`date\ +%H-%M-%S\`'.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'`date +%H-%M-%S`'.mp4'
 
-# Functions
+# Misc functions
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
-cdl () { cd "$*" && ls -hal $LSPARAMS }                    # cd and list
+cdl () { cd "$*" && ls -al $LSPARAMS }                     # cd and list
 (( $+commands[ag] )) && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
 (( $+commands[ag] )) && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
 (( $+commands[mpv] )) && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 (( $+commands[mpv] )) && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
-fwh () { file =$1 }                                # file which
+fwh () { file =$1 }                                        # file which
 
 # Personal custom aliases, functions
 [[ -f ~/.zalias.zsh ]] && source ~/.zalias.zsh
