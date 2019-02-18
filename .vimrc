@@ -269,10 +269,10 @@ map Q gq
 " switch to previous buffer
 nnoremap <leader><leader> <C-^>
 
-" Table align
-vmap <leader>ta :!column -t<cr>
+" Table (column) align
+vmap <leader>ca :!column -t<cr>
 
-map <leader>td <Plug>TaskList
+"map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 
 set showmatch       " When a bracket is inserted, briefly jump to the matching
