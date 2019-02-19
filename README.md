@@ -3,8 +3,10 @@
 My dotfiles, and other config files & system tweaks, and miscellaneous references.
 
 ## zsh
-This `.zshrc` sources `.zprompt.zsh` for its prompt. You can replace it with your own if it's not to your liking. This uses a tweaked version of [Phil's zsh prompt](http://aperiodic.net/phil/prompt/) by [Bender](https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5) which has a bugfix for when Atom's `apm` is installed (thanks!). 
+This `.zshrc` sources `.zprompt.zsh` for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/). 
+![zsh prompt](http://aperiodic.net/phil/prompt/normal.png)
 It sources the following files if they exist:
+* `~/.zprompt.zsh`: Phil's prompt. You can replace it with your own.
 * `~/.zalias.zsh`: I use this for personalized aliases which aren't distro-specific yet don't belong in `.zshrc`.
 * `~/.zpac.zsh`: aliases for pacman-based Linux distros.
 * `~/.zubuntu.zsh`: aliases for Debian-based Linux distros. It only has ubuntu in the name for easier tab-completion due to `.zdesk.zsh`.
