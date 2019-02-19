@@ -4,7 +4,9 @@ My dotfiles, and other config files & system tweaks, and miscellaneous reference
 
 ## zsh
 This `.zshrc` sources `.zprompt.zsh` for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/). 
+
 ![zsh prompt](http://aperiodic.net/phil/prompt/normal.png)
+
 It sources the following files if they exist:
 * `~/.zprompt.zsh`: Phil's prompt. You can replace it with your own.
 * `~/.zalias.zsh`: I use this for personalized aliases which aren't distro-specific yet don't belong in `.zshrc`.
