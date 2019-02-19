@@ -3,33 +3,30 @@ function precmd {
     local TERMWIDTH
     (( TERMWIDTH = ${COLUMNS} - 1 ))
 
-
     ###
     # Truncate the path if it's too long.
-    
+
     PR_FILLBAR=""
     PR_PWDLEN=""
-    
+
     local promptsize=${#${(%):---(%n@%m:%l)---()--}}
     local pwdsize=${#${(%):-%~}}
-    
+
     if [[ "$promptsize + $pwdsize" -gt $TERMWIDTH ]]; then
 	    ((PR_PWDLEN=$TERMWIDTH - $promptsize))
     else
 	PR_FILLBAR="\${(l.(($TERMWIDTH - ($promptsize + $pwdsize)))..${PR_HBAR}.)}"
     fi
 
-
     ###
     # Get APM info.
 
-    if which ibam > /dev/null; then
-	PR_APM_RESULT=`ibam --percentbattery`
-    elif which apm > /dev/null; then
-	PR_APM_RESULT=`apm`
+	if (( $+commands[ibam] )); then
+		PR_APM_RESULT=`ibam --percentbattery`
+	elif (( $+commands[apm] )); then
+		PR_APM_RESULT=`apm`
     fi
 }
-
 
 setopt extended_glob
 preexec () {
@@ -39,13 +36,11 @@ preexec () {
     fi
 }
 
-
 setprompt () {
     ###
     # Need this so the prompt will work.
 
     setopt prompt_subst
-
 
     ###
     # See if we can use colors.
@@ -55,16 +50,15 @@ setprompt () {
 	colors
     fi
     for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-	eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-	eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
-	(( count = $count + 1 ))
+		eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+		eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+		(( count = $count + 1 ))
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
 
-
     ###
     # See if we can use extended characters to look nicer.
-    
+
     typeset -A altchar
     set -A altchar ${(s..)terminfo[acsc]}
     PR_SET_CHARSET="%{$terminfo[enacs]%}"
@@ -76,10 +70,9 @@ setprompt () {
     PR_LRCORNER=${altchar[j]:--}
     PR_URCORNER=${altchar[k]:--}
 
-    
     ###
     # Decide if we need to set titlebar text.
-    
+
     case $TERM in
 	xterm*)
 	    PR_TITLEBAR=$'%{\e]0;%(!.-=*[ROOT]*=- | .)%n@%m:%~ | ${COLUMNS}x${LINES} | %y\a%}'
@@ -91,8 +84,7 @@ setprompt () {
 	    PR_TITLEBAR=''
 	    ;;
     esac
-    
-    
+
     ###
     # Decide whether to set a screen title
     if [[ "$TERM" == "screen" ]]; then
@@ -100,20 +92,18 @@ setprompt () {
     else
 	PR_STITLE=''
     fi
-    
-    
+
     ###
     # APM detection
-    
-    if which ibam > /dev/null; then
-	PR_APM='$PR_RED${${PR_APM_RESULT[(f)1]}[(w)-2]}%%(${${PR_APM_RESULT[(f)3]}[(w)-1]})$PR_LIGHT_BLUE:'
-    elif which apm > /dev/null; then
-	PR_APM='$PR_RED${PR_APM_RESULT[(w)5,(w)6]/\% /%%}$PR_LIGHT_BLUE:'
+
+	if (( $+commands[ibam] )); then
+		PR_APM='$PR_RED${${PR_APM_RESULT[(f)1]}[(w)-2]}%%(${${PR_APM_RESULT[(f)3]}[(w)-1]})$PR_LIGHT_BLUE:'
+	elif (( $+commands[apm] )); then
+		PR_APM='$PR_RED${PR_APM_RESULT[(w)5,(w)6]/\% /%%}$PR_LIGHT_BLUE:'
     else
-	PR_APM=''
+		PR_APM=''
     fi
-    
-    
+
     ###
     # Finally, the prompt.
 
