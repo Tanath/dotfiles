@@ -13,14 +13,21 @@ shopt -s cdspell checkwinsize cmdhist dotglob expand_aliases extglob histappend 
 HISTSIZE=10000
 HISTFILESIZE=${HISTSIZE}
 HISTCONTROL=ignoreboth
+# Custom environment variables
 command -v vim >/dev/null 2>&1 && export VISUAL=vim
+command -v less >/dev/null 2>&1 && export VISUAL=less
 export COLUMNS                            # Remember columns for subprocesses.
+export SOCKS_VERSION=5
+export SDL_AUDIODRIVER=pulse
+#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
+[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark # For gtk3
 [[ -d /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
+# This may break some apps, like Dropbox device linking? Get url from ps.
 if [[ -n $DISPLAY ]]; then
 	export BROWSER=xdg-open
 	export GTK_OVERLAY_SCROLLING=0        # Disable overlay scrollbars in gtk3. >_<
 else
-	command -v w3m >/dev/null 2>&1 && export BROWSER=w3m
+	command -v w3m >/dev/null 2>&1 && export BROWSER=w3m || export BROWSER=elinks
 fi
 command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
 
