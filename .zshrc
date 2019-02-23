@@ -51,8 +51,8 @@ autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
 promptinit
 
 HISTFILE=~/.zhistory
-HISTSIZE=8000
-SAVEHIST=8000
+HISTSIZE=12000
+SAVEHIST=12000
 WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
 
 # Phil's custom prompt
