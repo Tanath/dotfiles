@@ -47,6 +47,10 @@ if has('gui_running')
 	set guifont=Noto\ Mono\ 9
 endif
 
+" Set leader to space, consistent with spacemacs.
+let mapleader = " "
+"nnoremap <SPACE> <Nop>
+
 " Up/down by row instead of line:
 nnoremap j gj
 nnoremap k gk
@@ -106,9 +110,9 @@ endif
 set backupdir=$HOME/.vim/backup     " for backup files
 set directory=$HOME/.vim/backup     " for .swp files
 set backupskip=/tmp/*
-set history=1000
+set history=2000
 set undodir=$HOME/.vim/undo         " where to save undo histories
-set undolevels=1000                 " how many undos
+set undolevels=2000                 " how many undos
 set undoreload=10000                " number of lines to save for undo
 
 " Wrapping
@@ -196,6 +200,7 @@ set winaltkeys=no         " Don't use ALT to access the menu
 " Theme/colours
 set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark 
 colors elflord
+set termguicolors
 
 " Folding
 set foldenable
@@ -211,7 +216,7 @@ let g:vimwiki_folding='syntax'
 set foldlevel=99
 set foldnestmax=10		" max 10 depth
 set foldlevelstart=1	" start with fold level of 1
-nnoremap <space> za
+nnoremap <space><space> za
 " Save fold state and cursor
 "set viewoptions=folds,cursor
 "au BufRead * loadview
@@ -220,16 +225,16 @@ nnoremap <space> za
 " Mappings
 "" Quick yank/paste
 set pastetoggle=<F2>
-vmap <A-y> "+y
+vmap <M-y> "+y
 vmap <Leader>y "+y
 vmap <Leader>Y "*y
-nmap <A-p> "+p
+nmap <M-p> "+p
 nmap <Leader>p "+p
 nmap <Leader>P "*p
 
 "" Next/prev "error"
-nmap <Leader>] :cn<CR>
-nmap <Leader>[ :cp<CR>
+nmap <Bslash>] :cn<CR>
+nmap <Bslash>[ :cp<CR>
 
 " :w!! 
 " write the file when you accidentally opened it without the right (root) privileges
@@ -267,7 +272,7 @@ map Y y$
 " Don't use Ex mode, use Q for formatting
 map Q gq
 " switch to previous buffer
-nnoremap <leader><leader> <C-^>
+nnoremap <Bslash><Bslash> <C-^>
 
 " Table (column) align
 vmap <leader>ca :!column -t<cr>
