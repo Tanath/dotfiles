@@ -16,8 +16,10 @@ XTerm*saveLines:              2400
 XTerm.vt100.scrollBar:        true
 XTerm.VT100.rightScrollBar:   true
 XTerm.vt100.scrollbar.width:  8
-XTerm.vt100.faceName:         Noto Mono:size=9
+! Allow sixel graphics. (Try: "convert -colors 16 foo.jpg sixel:-").
+xterm*decTerminalID	:	      vt340
 XTerm.vt100.font:             7x13
+XTerm.vt100.faceName:         Noto Mono:size=9
 XTerm.vt100.bellIsUrgent:     true
 XTerm.vt100.metaSendsEscape:  true
 *VT100*translations:          #override Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
