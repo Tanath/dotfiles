@@ -47,8 +47,9 @@ if has('gui_running')
 	set guifont=Noto\ Mono\ 9
 endif
 
+" Reverted due to insert-mode issues.
 " Set leader to space, consistent with spacemacs.
-let mapleader = " "
+"let mapleader = " "
 "nnoremap <SPACE> <Nop>
 
 " Up/down by row instead of line:
@@ -156,7 +157,7 @@ set autoindent                      " Copy indent from current line when startin
 
 " Tabbing
 set tabstop=4                       " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=4	
+set softtabstop=4
 set shiftwidth=4                    " Number of spaces to use for each step of (auto)indent.
 "set expandtab                      " Use the appropriate number of spaces to insert a <Tab>.
                                     " Spaces are used in indents with the '>' and '<' commands
@@ -198,7 +199,7 @@ set mousehide             " Hide the mouse while typing
 set winaltkeys=no         " Don't use ALT to access the menu
 
 " Theme/colours
-set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark 
+set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark
 colors elflord
 set termguicolors
 
@@ -216,7 +217,7 @@ let g:vimwiki_folding='syntax'
 set foldlevel=99
 set foldnestmax=10		" max 10 depth
 set foldlevelstart=1	" start with fold level of 1
-nnoremap <space><space> za
+nnoremap <space> za
 " Save fold state and cursor
 "set viewoptions=folds,cursor
 "au BufRead * loadview
@@ -236,7 +237,7 @@ nmap <Leader>P "*p
 nmap <Bslash>] :cn<CR>
 nmap <Bslash>[ :cp<CR>
 
-" :w!! 
+" :w!!
 " write the file when you accidentally opened it without the right (root) privileges
 cmap w!! w !sudo tee % > /dev/null
 " F1 to be a context sensitive keyword-under-cursor lookup
