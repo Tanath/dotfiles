@@ -277,6 +277,7 @@ nnoremap <Bslash><Bslash> <C-^>
 
 " Table (column) align
 vmap <leader>ca :!column -t<cr>
+vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 
 "map <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
