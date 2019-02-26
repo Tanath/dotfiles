@@ -217,7 +217,7 @@ let g:vimwiki_folding='syntax'
 set foldlevel=99
 set foldnestmax=10		" max 10 depth
 set foldlevelstart=1	" start with fold level of 1
-nnoremap <space> za
+nnoremap <tab> za
 " Save fold state and cursor
 "set viewoptions=folds,cursor
 "au BufRead * loadview
