@@ -15,7 +15,7 @@ ttyctl -f                                                  # Avoid <c-s> frozen 
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
-zstyle ':completion:*' rehash true                         # automatically find new executables in path 
+zstyle ':completion:*' rehash true                         # automatically find new executables in path
 zstyle ':completion:*' auto-description 'specify: %d'      # Describe options not described by completion functions (with one argument)
 zstyle ':completion:*' format 'Completing %d'
 #zstyle ':completion:*' completer _expand _complete         # Can be used to control completer
@@ -79,6 +79,7 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
+(( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -94,20 +95,20 @@ alias lz='ll -rS'                                          # sort by size
 alias lt='ll -rT'                                          # sort by date
 alias lx='ll -BX'                                          # sort by ext
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i '$GPARAM          # ls grep
-alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head'
+alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
-alias mc='mc -b' 
+alias mc='mc -b'
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
-alias powertop='sudo powertop' 
+alias powertop='sudo powertop'
 alias lp='lsof -Pnl +M -i4'                                # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
-alias big='du -sh * | sort -hr' 
-alias bh='big | head' 
+alias big='du -sh * | sort -hr'
+alias bh='big | head'
 alias jerr='journalctl -p3 -xb'                            # Journalctl errors this boot
 alias wpi='strings -e l'                                   # Windows program info
 alias isp='whois $(curl -s ifconfig.me) | grep -v "^#\|^%"'
@@ -135,7 +136,7 @@ fwh () { file =$1 }                                        # file which
 # Pacman-based distros
 [[ -f ~/.zpac.zsh ]] && source ~/.zpac.zsh
 # Deb-based distros
-[[ -f ~/.zubuntu.zsh ]] && source ~/.zubuntu.zsh 
+[[ -f ~/.zubuntu.zsh ]] && source ~/.zubuntu.zsh
 # Desktop-only stuff
 [[ -f ~/.zdesk.zsh ]] && source ~/.zdesk.zsh
 # Laptop-only stuff
