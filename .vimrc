@@ -237,6 +237,23 @@ nmap <Leader>P "*p
 nmap <Bslash>] :cn<CR>
 nmap <Bslash>[ :cp<CR>
 
+" These aren't fully portable, and sometimes one works where the other
+" doesn't. Cursor moves as expected where they don't work.
+" Alt-up/down to move lines:
+nnoremap [1;3B :m .+1<CR>
+nnoremap [1;3A :m .-2<CR>
+inoremap [1;3B <Esc>:m .+1<CR>gi
+inoremap [1;3A <Esc>:m .-2<CR>gi
+vnoremap [1;3B :m '>+1<CR>gv=gv
+vnoremap [1;3A :m '<-2<CR>gv=gv
+" Alt-j/k to move lines:
+nnoremap <A-j> :m .+1<CR>
+nnoremap <A-k> :m .-2<CR>
+inoremap <A-j> <Esc>:m .+1<CR>gi
+inoremap <A-k> <Esc>:m .-2<CR>gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " :w!!
 " write the file when you accidentally opened it without the right (root) privileges
 cmap w!! w !sudo tee % > /dev/null
@@ -320,7 +337,7 @@ if executable('xmllint')
     au FileType html,xhtml,xml set equalprg=xmllint\ --format\ -
 endif
 if executable('pandoc')
-    au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers
+    au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
 endif
 
 " Not needed:
