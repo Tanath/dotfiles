@@ -79,7 +79,7 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
-alias dmesg='dmesg --color=always'
+alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
 (( $+commands[fzf] )) && alias dmf='dmesg | fzf -m'        # Search dmesg output with fzf.
 (( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
