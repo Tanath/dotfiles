@@ -130,6 +130,7 @@ fnd () { find . -iname \*$*\* | less }                     # find
 cdl () { cd "$*" && ls -al $LSPARAMS }                     # cd and list
 (( $+commands[ag] )) && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
 (( $+commands[ag] )) && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
+(( $+commands[fzf] )) && lf () { locate -i "$@" | fm }     # locate & print from fzf multi-select
 (( $+commands[mpv] )) && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
 (( $+commands[mpv] )) && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
