@@ -56,6 +56,10 @@ endif
 nnoremap j gj
 nnoremap k gk
 
+" New line before/after paragraph:
+nnoremap o }O
+nnoremap O {o
+
 " Automatically equalize splits when Vim is resized
 autocmd VimResized * wincmd =
 
