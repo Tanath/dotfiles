@@ -135,9 +135,11 @@ set hidden                          " Let you switch buffers without saving curr
 set confirm                         " Prompt to save unsaved changes when exiting
 nnoremap <leader>n :enew<CR>
 nnoremap <leader>d :bd<CR>
-" use tab key to cycle through the buffers:
-nnoremap <leader><Tab>   :bnext<CR>
-nnoremap <leader><S-Tab> :bprevious<CR>
+" Cycle through buffers, tabs:
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-k> :bprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 
 " Markdown
 set suffixesadd+='.md'
