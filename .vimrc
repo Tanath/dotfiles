@@ -130,9 +130,9 @@ set ignorecase						" do case insensitive matching
 set smartcase						" overrides ignorecase if uppercase used in search string
 set incsearch						" incremental search
 set wrapscan						" jumps to the beginning if reaching end, and viceversa
-" Toggle search highlight:
+" Ctrl+/ to toggle search highlight:
 let hlstate=0
-nnoremap <C-BSlash> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
+nnoremap <C-_> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
 
 " Buffers
 set hidden                          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
