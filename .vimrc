@@ -310,11 +310,15 @@ set autochdir                                     " Set working dir to open file
 set complete+=kspell
 
 " Better formatting for some filetypes
-au FileType json set equalprg=python\ -m\ json.tool
+if executable('python')
+    au FileType json set equalprg=python\ -m\ json.tool
+endif
 if executable('autopep8')
     au FileType python set equalprg=autopep8\ -
 endif
-au FileType html,xhtml,xml set equalprg=xmllint\ --format\ -
+if executable('xmllint')
+    au FileType html,xhtml,xml set equalprg=xmllint\ --format\ -
+endif
 
 " Not needed:
 "au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
