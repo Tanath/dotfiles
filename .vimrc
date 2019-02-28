@@ -248,8 +248,9 @@ nmap <Bslash>[ :cp<CR>
 " Alt-up/down to move lines:
 nnoremap [1;3B :m .+1<CR>
 nnoremap [1;3A :m .-2<CR>
-inoremap [1;3B <Esc>:m .+1<CR>gi
-inoremap [1;3A <Esc>:m .-2<CR>gi
+" Enabling these two makes you need to ESC twice to ESC insert-mode.
+"inoremap [1;3B <C-o>:m .+1<CR>
+"inoremap [1;3A <C-o>:m .-2<CR>
 vnoremap [1;3B :m '>+1<CR>gv=gv
 vnoremap [1;3A :m '<-2<CR>gv=gv
 " Alt-j/k to move lines:
