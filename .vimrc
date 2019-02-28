@@ -319,6 +319,9 @@ endif
 if executable('xmllint')
     au FileType html,xhtml,xml set equalprg=xmllint\ --format\ -
 endif
+if executable('pandoc')
+    au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers
+endif
 
 " Not needed:
 "au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
