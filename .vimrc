@@ -279,10 +279,12 @@ imap <leader>s <c-o>:update<cr>
 
 " fzf stuff
 " https://github.com/junegunn/fzf.vim
-nmap <leader>f :FZF<cr>      " vim-fzf-git
+nmap <leader>ff :FZF<cr>     " vim-fzf-git
 nmap <leader>b :Buffers<cr>  " fzf buffers
 nmap <leader>a :Ag\          " fzf silver searcher
-nmap <leader>gc :Commits<cr> " fzf git commits
+nmap <leader>fc :Commits<cr> " fzf git commits
+nmap <leader>fm :Maps<cr>    " fzf mappings
+nmap <leader>ft :Tags<cr>    " fzf mappings
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
