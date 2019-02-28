@@ -38,6 +38,7 @@ values."
      ;; ----------------------------------------------------------------
      helm
      auto-completion
+     xclipboard
      ;; better-defaults
      emacs-lisp
      git
@@ -48,6 +49,7 @@ values."
             shell-default-position 'bottom)
      spell-checking
      syntax-checking
+     semantic
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -161,7 +163,7 @@ values."
    ;; works in the GUI. (default nil)
    dotspacemacs-distinguish-gui-tab nil
    ;; If non nil `Y' is remapped to `y$' in Evil states. (default nil)
-   dotspacemacs-remap-Y-to-y$ nil
+   dotspacemacs-remap-Y-to-y$ t
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
@@ -311,7 +313,20 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   (xterm-mouse-mode -1)
+    ;; Save session.
+    dotspacemacs-auto-resume-layouts t
 
+    ;; Org mode stuff
+    (setq org-default-todo-file (concat org-directory "~/todo.org"
+                                    "~/org"))
+    (setq org-agenda-files (list "~/org/"
+                               "~/Documents/writing/org/"
+                               "~/todo.org"))
+    (defun org-summary-todo (n-done n-not-done)
+        "Switch entry to DONE when all subentries are done, to TODO otherwise."
+        (let (org-log-done org-log-states)   ; turn off logging
+            (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+    (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
