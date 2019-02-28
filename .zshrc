@@ -79,8 +79,11 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
-(( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'
+alias dmesg='dmesg --color=always'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
+(( $+commands[fzf] )) && alias dmf='dmesg | fzf'           # Search dmesg output with fzf.
+(( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
+(( $+commands[fzf] )) && alias psf='ps -ef | fzf'          # Use fzf to find and output a process.
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -103,10 +106,10 @@ alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
 alias mc='mc -b'
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
-alias dmesg='dmesg --color=always'
 alias powertop='sudo powertop'
 alias lp='lsof -Pnl +M -i4'                                # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
+(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fzf' # pipe to fzf (ss port find)
 alias big='du -sh * | sort -hr'
 alias bh='big | head'
 alias jerr='journalctl -p3 -xb'                            # Journalctl errors this boot
