@@ -81,9 +81,10 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
 alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
-(( $+commands[fzf] )) && alias dmf='dmesg | fzf -m'        # Search dmesg output with fzf.
+(( $+commands[fzf] )) && alias fm='fzf -m'                 # fzf multi-select
+(( $+commands[fzf] )) && alias dmf='dmesg | fm'            # Search dmesg output with fzf.
 (( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
-(( $+commands[fzf] )) && alias psf='ps -ef | fzf -m'       # Use fzf to find and output a process.
+(( $+commands[fzf] )) && alias psf='ps -ef | fm'           # Use fzf to find and output a process.
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -109,7 +110,7 @@ alias lsblk='lsblk -f'
 alias powertop='sudo powertop'
 alias lp='lsof -Pnl +M -i4'                                # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
-(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fzf -m' # pipe to fzf (ss port find)
+(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fm' # pipe to fzf (ss port find)
 alias big='du -sh * | sort -hr'
 alias bh='big | head'
 alias jerr='journalctl -p3 -xb'                            # Journalctl errors this boot
