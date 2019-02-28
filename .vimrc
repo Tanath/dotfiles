@@ -4,12 +4,14 @@
 "set shell=/bin/zsh\ -i
 set shcf=-c
 
-" Misc essentials {{{
+" ===========
+" Misc basics
+" ===========
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 set encoding=utf-8
 set nocompatible	            " Use vim mode, not vi mode.
-set cm=blowfish2
+silent! set cm=blowfish2
 set spell spelllang=en_ca
 
 " Tell vim to remember certain things when we exit
@@ -19,47 +21,23 @@ set spell spelllang=en_ca
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
-
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
-
-"if filereadable("/usr/sbin/rg")
-"	set grepprg=rg\ --vimgrep
-"	set grepformat^=%f:%l:%c:%m
-"endif
+" Save fold state and cursor
+"set viewoptions=folds,cursor
+"au BufRead * loadview
+"au BufWrite * mkview
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+    syntax on
+    set hlsearch
 endif
 
-if has('gui_running')
-	set guifont=Noto\ Mono\ 9
-endif
-
-" Reverted due to insert-mode issues.
-" Set leader to space, consistent with spacemacs.
-"let mapleader = " "
-"nnoremap <SPACE> <Nop>
-
-" Up/down by row instead of line:
-nnoremap j gj
-nnoremap k gk
-
-" Disabled due to buggy direction keys.
-" New line before/after paragraph:
-"nnoremap o }O
-"nnoremap O {o
+set ttyfast                         " Indicates a fast terminal connection.
+set nosol                           " No start of line jump when selecting.
+set modelines=0                     " Prevent some security issues
+" Quickly time out on keycodes, but never time out on mappings
+set notimeout ttimeout ttimeoutlen=200
 
 " Automatically equalize splits when Vim is resized
 autocmd VimResized * wincmd =
@@ -74,8 +52,8 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  " For all text files set 'textwidth' to 80 characters.
+  autocmd FileType text setlocal textwidth=80
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -84,15 +62,6 @@ if has("autocmd")
 else
   set autoindent                    " always set autoindenting on
 endif " has("autocmd")
-
-set nosol                           " No start of line jump when selecting.
-set ttyfast
-set modelines=0                     " Prevent some security issues
-" retain selection when changing indent level
-vnoremap < <gv
-vnoremap > >gv
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
 
 " Status/Command line
 set showcmd                         " Show (partial) command in status line.
@@ -122,8 +91,8 @@ set undolevels=2000                 " how many undos
 set undoreload=10000                " number of lines to save for undo
 
 " Wrapping
-set textwidth=78
-"set colorcolumn=79                 " Colour column to know when wrapping is needed.
+set textwidth=80
+"set colorcolumn=80                 " Colour column to know when wrapping is needed.
 set wrap linebreak nolist           " Linebreaks at word boundaries.
 
 " Searching
@@ -134,17 +103,6 @@ set wrapscan						" jumps to the beginning if reaching end, and viceversa
 " Ctrl+/ to toggle search highlight:
 let hlstate=0
 nnoremap <C-_> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
-
-" Buffers
-set hidden                          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
-set confirm                         " Prompt to save unsaved changes when exiting
-nnoremap <leader>n :enew<CR>
-nnoremap <leader>d :bd<CR>
-" Cycle through buffers, tabs:
-nnoremap <C-j> :bnext<CR>
-nnoremap <C-k> :bprevious<CR>
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
 
 " Markdown
 set suffixesadd+='.md'
@@ -170,16 +128,34 @@ set shiftwidth=4                    " Number of spaces to use for each step of (
                                     " Spaces are used in indents with the '>' and '<' commands
                                     " and when 'autoindent' is on. To insert a real tab when
                                     " 'expandtab' is on, use CTRL-V <Tab>.
+
 set smarttab                        " When on, a <Tab> in front of a line inserts blanks
                                     " according to 'shiftwidth'. 'tabstop' is used in other
                                     " places. A <BS> will delete a 'shiftwidth' worth of space
                                     " at the start of the line.
 
+set showmatch                       " When a bracket is inserted, briefly jump to the matching
+                                    " one. The jump is only done if the match can be seen on the
+                                    " screen. The time to show the match can be set with
+                                    " 'matchtime'.
+
+" Formatting
+set formatoptions=croqnlj
+"set formatoptions=croqanlj         " This is a sequence of letters which describes how
+                                    " automatic formatting works. See :h fo-table
+"set formatoptions=want             " Attempt markdown list behaviour
+
+" =========
 " Interface
+" =========
+" Theme/colours
+set background=dark                 " If using a dark background, for syntax highlighting. Opts: light/dark
+colors elflord
+
 " Set both for relative and absolute on cursor line:
-set scrolloff=2                     " Keep cursor # lines from top/bottom.
 set number                          " Show line numbers.
 set relativenumber                  " Show relative line numbers.
+set scrolloff=2                     " Keep cursor # lines from top/bottom.
 " Toggle line numbering types:
 nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 if has('mouse')
@@ -192,23 +168,6 @@ set ruler                           " Show the line and column number of the cur
                                     " separated by a comma.
 set splitright                      " vertical splits use right half of screen
 set splitbelow                      " horizontal splits use bottom half of screen
-
-" GUI options
-set guioptions=
-set guioptions+=a         " Automatically make visual selection available in system clipboard
-set guioptions+=A         " Same for modeless selection
-set guioptions+=e         " GUI tabs
-set guioptions+=g         " Grayed-out menu items that aren't active
-set guioptions+=i         " Use a Vim icon
-set guioptions+=m         " Show the menu bar
-set guicursor+=a:blinkon0 " Don't blink the cursor
-set mousehide             " Hide the mouse while typing
-set winaltkeys=no         " Don't use ALT to access the menu
-
-" Theme/colours
-set background=dark " If using a dark background, for syntax highlighting. Opts: light/dark
-colors elflord
-set termguicolors
 
 " Folding
 set foldenable
@@ -224,61 +183,105 @@ let g:vimwiki_folding='syntax'
 set foldlevel=99
 set foldnestmax=10		" max 10 depth
 set foldlevelstart=1	" start with fold level of 1
-nnoremap <tab> za
-" Save fold state and cursor
-"set viewoptions=folds,cursor
-"au BufRead * loadview
-"au BufWrite * mkview
 
+" -----------
+" GUI options
+" -----------
+set guioptions=
+set guioptions+=a         " Automatically make visual selection available in system clipboard
+set guioptions+=A         " Same for modeless selection
+set guioptions+=e         " GUI tabs
+set guioptions+=g         " Grayed-out menu items that aren't active
+set guioptions+=i         " Use a Vim icon
+set guioptions+=m         " Show the menu bar
+set guicursor+=a:blinkon0 " Don't blink the cursor
+set mousehide             " Hide the mouse while typing
+set winaltkeys=no         " Don't use ALT to access the menu
+" Set font for gvim if running.
+if has('gui_running')
+	set guifont=Noto\ Mono\ 9
+endif
+set termguicolors
+
+" ========
 " Mappings
-"" Quick yank/paste
-set pastetoggle=<F2>
-vmap <M-y> "+y
-vmap <Leader>y "+y
-vmap <Leader>Y "*y
-nmap <M-p> "+p
-nmap <Leader>p "+p
-nmap <Leader>P "*p
+" ========
 
-"" Next/prev "error"
-nmap <Bslash>] :cn<CR>
-nmap <Bslash>[ :cp<CR>
+" Set <leader> to space, consistent with spacemacs.
+" Disabled due to insert-mode issues.
+"let mapleader = " "
+"let maplocalleader = " "
+"nnoremap <SPACE> <Nop>
+
+" -----
+" Misc.
+" -----
+" Toggle folds, tab like spacemacs.
+nnoremap <tab> za
+" F1 to be a context sensitive keyword-under-cursor lookup
+nnoremap <F1> :help <C-R><C-W><CR>
+" These don't work in VT:
+"inoremap <C-Del> <C-\><C-O>dw
+inoremap [3;5~ <C-\><C-o>dw
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Quick yank/paste
+set pastetoggle=<F2>
+vnoremap <M-y> "+y
+vnoremap <Leader>y "+y
+vnoremap <Leader>Y "*y
+nnoremap <M-p> "+p
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "*p
+nnoremap Y y$
+
+" New line before/after paragraph:
+" Disabled due to buggy direction keys.
+"nnoremap o }O
+"nnoremap O {o
+
+" Retain selection when changing indent level
+xnoremap < <gv
+xnoremap > >gv
 
 " These aren't fully portable, and sometimes one works where the other
 " doesn't. Cursor moves as expected where they don't work.
-" Alt-up/down to move lines:
+
+" Alt-up/down/left/right to move lines:
 nnoremap [1;3B :m .+1<CR>
 nnoremap [1;3A :m .-2<CR>
+nnoremap [1;3D <<
+nnoremap [1;3C >>
+vnoremap [1;3B :m '>+1<CR>gv=gv
+vnoremap [1;3A :m '<-2<CR>gv=gv
+xnoremap [1;3D <gv
+xnoremap [1;3C >gv
 " Enabling these two makes you need to ESC twice to ESC insert-mode.
 "inoremap [1;3B <C-o>:m .+1<CR>
 "inoremap [1;3A <C-o>:m .-2<CR>
-vnoremap [1;3B :m '>+1<CR>gv=gv
-vnoremap [1;3A :m '<-2<CR>gv=gv
-" Alt-j/k to move lines:
+
+" Alt-h/j/k/l to move lines:
 nnoremap <A-j> :m .+1<CR>
 nnoremap <A-k> :m .-2<CR>
+nnoremap <a-h> <<
+nnoremap <a-l> >>
 inoremap <A-j> <Esc>:m .+1<CR>gi
 inoremap <A-k> <Esc>:m .-2<CR>gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+xnoremap <A-j> :m '>+1<CR>gv=gv
+xnoremap <A-k> :m '<-2<CR>gv=gv
+xnoremap <a-h> <gv
+xnoremap <a-l> >gv
 
-" :w!!
-" write the file when you accidentally opened it without the right (root) privileges
-cmap w!! w !sudo tee % > /dev/null
-" F1 to be a context sensitive keyword-under-cursor lookup
-nnoremap <F1> :help <C-R><C-W><CR>
-" Save if needed. Requires for terminal: alias vim="stty stop '' -ixoff ; vim"
-" If terminal freezes, hit <c-q> to resume.
-nmap <c-s> :update<CR>
-vmap <c-s> <Esc><c-s>gv
-imap <c-s> <c-o><c-s>
-" For when <c-s> doesn't work
-nmap <leader>s :update<CR>
-vmap <leader>s <Esc>:update<cr>gv
-imap <leader>s <c-o>:update<cr>
+" Table (column) align
+vmap <leader>ca :!column -t<cr>
+vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 
-" fzf stuff
-" https://github.com/junegunn/fzf.vim
+" -------
+" Plugins
+" -------
+" fzf stuff https://github.com/junegunn/fzf.vim
 nmap <leader>ff :FZF<cr>     " vim-fzf-git
 nmap <leader>b :Buffers<cr>  " fzf buffers
 nmap <leader>a :Ag\          " fzf silver searcher
@@ -291,36 +294,64 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
+"map <leader>td <Plug>TaskList
+let g:pep8_map='<leader>8'
+
+" =======
+" Buffers
+" =======
+set hidden                          " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
+set confirm                         " Prompt to save unsaved changes when exiting
+" New buffer
+nnoremap <leader>n :enew<CR>
+" Delete buffer
+nnoremap <leader>d :bd<CR>
+" Cycle through buffers, tabs:
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-k> :bprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+" Switch to previous-viewed buffer
+nnoremap <Bslash><Bslash> <C-^>
+
+" ---------------------
+" Navigation in buffer.
+" ---------------------
+" Up/down by row instead of line:
+nnoremap j gj
+nnoremap k gk
+
+" Quickfix/errors
+nnoremap ]] :cnext<cr>zz
+nnoremap [[ :cprev<cr>zz
+nnoremap ]l :lnext<cr>zz
+nnoremap [l :lprev<cr>zz
+
+" ------
+" Saving
+" ------
+" :w!!
+" write the file when you accidentally opened it without the right (root) privileges
+cmap w!! w !sudo tee % > /dev/null
+
+" Save if needed. Requires for terminal: alias vim="stty stop '' -ixoff ; vim"
+" If terminal freezes, hit <c-q> to resume.
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <C-s> :update<cr>
+vmap <c-s> <Esc><c-s>gv
+imap <c-s> <c-o><c-s>
+" For when <c-s> doesn't work
+nnoremap <leader>s :update<cr>
+vmap <leader>s <Esc>:update<cr>gv
+
 " Save session
 "nmap <c-S> :mks! ~/.vim/sessions/session.vim<CR>
 "vmap <c-S> <Esc><c-S>gv
 "imap <c-S> <c-o><c-S>
-"
-map Y y$
-" Don't use Ex mode, use Q for formatting
-map Q gq
-" switch to previous buffer
-nnoremap <Bslash><Bslash> <C-^>
 
-" Table (column) align
-vmap <leader>ca :!column -t<cr>
-vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
-
-"map <leader>td <Plug>TaskList
-let g:pep8_map='<leader>8'
-
-set showmatch       " When a bracket is inserted, briefly jump to the matching
-                    " one. The jump is only done if the match can be seen on the
-                    " screen. The time to show the match can be set with
-                    " 'matchtime'.
-
-" Formatting
-set formatoptions=croqnlj
-"set formatoptions=croqanlj     " This is a sequence of letters which describes how
-                                " automatic formatting works. See :h fo-table
-"set formatoptions=want         " Attempt markdown list behaviour
-
+" ===================
 " Completion/Omnifunc
+" ===================
 set wildignore=*.o,*.obj,*~                       "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
@@ -336,6 +367,29 @@ set infercase                                     " Same-case autocomplete
 set autochdir                                     " Set working dir to open file
 set complete+=kspell
 
+" ======================
+" Set up external tools.
+" ======================
+
+" Use Silver Searcher for :grep
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
+" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" Use ripgrep for :grep if ag not available
+if !executable('ag')
+    if executable('rg')
+    	set grepprg=rg\ --vimgrep
+    	set grepformat^=%f:%l:%c:%m
+    endif
+endif
+
 " Better formatting for some filetypes
 if executable('python')
     au FileType json set equalprg=python\ -m\ json.tool
@@ -349,20 +403,6 @@ endif
 if executable('pandoc')
     au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
 endif
-
-" Not needed:
-"au FileType html,xhtml setl ofu=htmlcomplete#CompleteTags
-"au FileType css setl ofu=csscomplete#CompleteCSS
-"au FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"au FileType python setlocal et sta sw=4 sts=4
-"au FileType python set omnifunc=pythoncomplete#Complete
-"au FileType ruby,eruby setl ofu=rubycomplete#Complete
-"if has("autocmd") && exists("+omnifunc")
-"     autocmd Filetype *
-"   \ if &omnifunc == "" |
-"   \   setlocal omnifunc=syntaxcomplete#Complete |
-"   \ endif
-"endif
 
 if isdirectory($HOME . "/vimwiki/")
 	source ~/.vw.vim
