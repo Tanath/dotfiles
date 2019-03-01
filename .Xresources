@@ -32,6 +32,8 @@ XTerm.vt100.metaSendsEscape:  true
 #define myfont    Noto Mono
 XTerm.termName:               xterm-256color
 XTerm*colorMode:              on
-XTerm.vt100.reverseVideo:     true
-!XTerm*background:             mybg
-!XTerm*foreground:             myfg
+!XTerm.vt100.reverseVideo:     true
+XTerm*vt100.foreground:       myfg
+XTerm*vt100.background:       mybg
+!XTerm*vt100.foreground:       Gray90
+!XTerm*vt100.background:       Gray10
