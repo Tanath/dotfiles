@@ -1,6 +1,6 @@
-# Testing .Xmodmap, should be more permanent.
 #setxkbmap -option "caps:swapescape"
-xmodmap ~/.Xmodmap
+# Should be unnecessary. Should be loaded by .xinitrc
+#xmodmap ~/.Xmodmap
 numlockx on
 if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
     eval "$(dbus-launch --sh-syntax --exit-with-session)"
