@@ -16,8 +16,8 @@ silent! set cm=blowfish2
 let g:lang=tolower(split(expand($LANG), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
-setl spell spellsuggest=best
-map <F7> :setl spell! \| let &spelllang=g:lang<CR>
+set spell spellsuggest=best
+map <F7> :set spell! \| let &spelllang=g:lang<CR>
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
