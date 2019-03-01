@@ -13,6 +13,7 @@ set encoding=utf-8
 set nocompatible	            " Use vim mode, not vi mode.
 silent! set cm=blowfish2
 set spell spelllang=en_ca
+nnoremap <F7> :if !empty(&spell) \| set nospell \| else \| set spell spelllang=en_ca \| endif<cr>
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -413,7 +414,7 @@ if !executable('ag')
     endif
 endif
 
-" Better formatting for some filetypes
+" Better formatting for some file types
 if executable('python')
     au FileType json set equalprg=python\ -m\ json.tool
 endif
