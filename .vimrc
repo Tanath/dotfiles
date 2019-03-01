@@ -221,9 +221,16 @@ set termguicolors
 nnoremap <tab> za
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
-" These don't work in VT:
-"inoremap <C-Del> <C-\><C-O>dw
-inoremap [3;5~ <C-\><C-o>dw
+
+if $TERM == 'linux'
+    " Works in VT
+    inoremap [3~ <C-\><C-o>dw
+else
+    " These don't work in VT:
+    "inoremap <C-Del> <C-\><C-O>dw
+    " Should work outside VT
+    inoremap [3;5~ <C-\><C-o>dw
+endif
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
@@ -247,33 +254,48 @@ nnoremap Y y$
 xnoremap < <gv
 xnoremap > >gv
 
-" These aren't fully portable, and sometimes one works where the other
-" doesn't. Cursor moves as expected where they don't work.
-
 " Alt-up/down/left/right to move lines:
-nnoremap [1;3B :m .+1<CR>
-nnoremap [1;3A :m .-2<CR>
-nnoremap [1;3D <<
-nnoremap [1;3C >>
-vnoremap [1;3B :m '>+1<CR>gv=gv
-vnoremap [1;3A :m '<-2<CR>gv=gv
-xnoremap [1;3D <gv
-xnoremap [1;3C >gv
-" Enabling these two makes you need to ESC twice to ESC insert-mode.
-"inoremap [1;3B <C-o>:m .+1<CR>
-"inoremap [1;3A <C-o>:m .-2<CR>
+if $TERM == 'linux'
+    " Should work in VT
+    nnoremap [A :m .-2<CR>
+    nnoremap [B :m .+1<CR>
+    nnoremap [C >>
+    nnoremap [D <<
+    vnoremap [A :m '<-2<CR>gv=gv
+    vnoremap [B :m '>+1<CR>gv=gv
+    xnoremap [C >gv
+    xnoremap [D <gv
+else
+    " Should work outside VT
+    nnoremap [1;3B :m .+1<CR>
+    nnoremap [1;3A :m .-2<CR>
+    nnoremap [1;3D <<
+    nnoremap [1;3C >>
+    vnoremap [1;3B :m '>+1<CR>gv=gv
+    vnoremap [1;3A :m '<-2<CR>gv=gv
+    xnoremap [1;3D <gv
+    xnoremap [1;3C >gv
+    " Enabling these two makes you need to ESC twice to ESC insert-mode.
+    "inoremap [1;3B <C-o>:m .+1<CR>
+    "inoremap [1;3A <C-o>:m .-2<CR>
+endif
 
 " Alt-h/j/k/l to move lines:
-nnoremap <A-j> :m .+1<CR>
-nnoremap <A-k> :m .-2<CR>
-nnoremap <a-h> <<
-nnoremap <a-l> >>
-inoremap <A-j> <Esc>:m .+1<CR>gi
-inoremap <A-k> <Esc>:m .-2<CR>gi
-xnoremap <A-j> :m '>+1<CR>gv=gv
-xnoremap <A-k> :m '<-2<CR>gv=gv
-xnoremap <a-h> <gv
-xnoremap <a-l> >gv
+if $TERM == 'linux'
+    " No VT versions yet.
+else
+    " Should work outside VT
+    nnoremap <A-j> :m .+1<CR>
+    nnoremap <A-k> :m .-2<CR>
+    nnoremap <a-h> <<
+    nnoremap <a-l> >>
+    inoremap <A-j> <Esc>:m .+1<CR>gi
+    inoremap <A-k> <Esc>:m .-2<CR>gi
+    xnoremap <A-j> :m '>+1<CR>gv=gv
+    xnoremap <A-k> :m '<-2<CR>gv=gv
+    xnoremap <a-h> <gv
+    xnoremap <a-l> >gv
+endif
 
 " Table (column) align
 vmap <leader>ca :!column -t<cr>
