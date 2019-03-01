@@ -12,8 +12,12 @@ set shcf=-c
 set encoding=utf-8
 set nocompatible	            " Use vim mode, not vi mode.
 silent! set cm=blowfish2
-set spell spelllang=en_ca
-map <F7> :setlocal spell! spelllang=en_ca<CR>
+" Set language from user's environment.
+let g:lang=tolower(split(expand($LANG), '\.')[0])
+let &spelllang=g:lang
+let &langmenu=g:lang
+setl spell spellsuggest=best
+map <F7> :setl spell! \| let &spelllang=g:lang<CR>
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
