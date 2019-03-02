@@ -10,7 +10,7 @@ set shcf=-c
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 set encoding=utf-8
-set nocompatible	            " Use vim mode, not vi mode.
+set nocompatible	                   " Use vim mode, not vi mode.
 silent! set cm=blowfish2
 " Set language from user's environment.
 let g:lang=tolower(split(expand($LANG), '\.')[0])
@@ -38,9 +38,9 @@ if &t_Co > 2 || has("gui_running")
     set hlsearch
 endif
 
-set ttyfast                         " Indicates a fast terminal connection.
-set nosol                           " No start of line jump when selecting.
-set modelines=0                     " Prevent some security issues
+set ttyfast                            " Indicates a fast terminal connection.
+set nosol                              " No start of line jump when selecting.
+set modelines=0                        " Prevent some security issues
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
@@ -65,16 +65,16 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   augroup END
 else
-  set autoindent                    " always set autoindenting on
+  set autoindent                       " always set autoindenting on
 endif " has("autocmd")
 
 " Status/Command line
-set showcmd                         " Show (partial) command in status line.
+set showcmd                            " Show (partial) command in status line.
 set showmode
 set wildmenu
-set wildmode=longest,list,full      " complete longest common string, then list alternatives, then select the sortest first
-set laststatus=2                    " Always show status line
-set cmdheight=2                     " Prevent "Press Enter" messages
+set wildmode=longest,list,full         " complete longest common string, then list alternatives, then select the sortest first
+set laststatus=2                       " Always show status line
+set cmdheight=2                        " Prevent "Press Enter" messages
 " Show detailed information in status line:
 set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 let g:airline_powerline_fonts = 1
@@ -83,29 +83,29 @@ let g:airline_powerline_fonts = 1
 " Backup and Swap files
 set backup
 set undofile
-if !isdirectory($HOME . ".vim")     " Create vim dirs if missing
+if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
 	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1
 	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
 endif
-set backupdir=$HOME/.vim/backup     " for backup files
-set directory=$HOME/.vim/backup     " for .swp files
+set backupdir=$HOME/.vim/backup        " for backup files
+set directory=$HOME/.vim/backup        " for .swp files
 set backupskip=/tmp/*
 set history=2000
-set undodir=$HOME/.vim/undo         " where to save undo histories
-set undolevels=2000                 " how many undos
-set undoreload=10000                " number of lines to save for undo
+set undodir=$HOME/.vim/undo            " where to save undo histories
+set undolevels=2000                    " how many undos
+set undoreload=10000                   " number of lines to save for undo
 
 " Wrapping
 set textwidth=80
-"set colorcolumn=80                 " Colour column to know when wrapping is needed.
+"set colorcolumn=80                    " Colour column to know when wrapping is needed.
 set nowrap
-"set wrap linebreak nolist           " Linebreaks at word boundaries.
+"set wrap linebreak nolist             " Linebreaks at word boundaries.
 
 " Searching
-set ignorecase						" do case insensitive matching
-set smartcase						" overrides ignorecase if uppercase used in search string
-set incsearch						" incremental search
-set wrapscan						" jumps to the beginning if reaching end, and viceversa
+set ignorecase						   " do case insensitive matching
+set smartcase						   " overrides ignorecase if uppercase used in search string
+set incsearch						   " incremental search
+set wrapscan						   " jumps to the beginning if reaching end, and viceversa
 " Ctrl+/ to toggle search highlight:
 let hlstate=0
 nnoremap <C-_> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
@@ -115,65 +115,65 @@ set suffixesadd+='.md'
 set suffixesadd+='.wiki'
 
 " Insert mode
-set backspace=2                     " Influences the working of <BS>, <Del>, CTRL-W
-                                    " and CTRL-U in Insert mode. This is a list of items,
-                                    " separated by commas. Each item allows a way to backspace
-                                    " over something.
-"set backspace=indent,eol,start     " Better handling of <BS>
+set backspace=2                        " Influences the working of <BS>, <Del>, CTRL-W
+                                       " and CTRL-U in Insert mode. This is a list of items,
+                                       " separated by commas. Each item allows a way to backspace
+                                       " over something.
+"set backspace=indent,eol,start        " Better handling of <BS>
 "set smartindent
-set autoindent                      " Copy indent from current line when starting a new line
-                                    " (typing <CR> in Insert mode or when using the "o" or "O"
-                                    " command).
-"set nostartofline                  " Emulate typical editor navigation behaviour
+set autoindent                         " Copy indent from current line when starting a new line
+                                       " (typing <CR> in Insert mode or when using the "o" or "O"
+                                       " command).
+"set nostartofline                     " Emulate typical editor navigation behaviour
 
 " Tabbing
-set tabstop=4                       " Number of spaces that a <Tab> in the file counts for.
+set tabstop=4                          " Number of spaces that a <Tab> in the file counts for.
 set softtabstop=4
-set shiftwidth=4                    " Number of spaces to use for each step of (auto)indent.
-"set expandtab                      " Use the appropriate number of spaces to insert a <Tab>.
-                                    " Spaces are used in indents with the '>' and '<' commands
-                                    " and when 'autoindent' is on. To insert a real tab when
-                                    " 'expandtab' is on, use CTRL-V <Tab>.
+set shiftwidth=4                       " Number of spaces to use for each step of (auto)indent.
+"set expandtab                         " Use the appropriate number of spaces to insert a <Tab>.
+                                       " Spaces are used in indents with the '>' and '<' commands
+                                       " and when 'autoindent' is on. To insert a real tab when
+                                       " 'expandtab' is on, use CTRL-V <Tab>.
 
-set smarttab                        " When on, a <Tab> in front of a line inserts blanks
-                                    " according to 'shiftwidth'. 'tabstop' is used in other
-                                    " places. A <BS> will delete a 'shiftwidth' worth of space
-                                    " at the start of the line.
+set smarttab                           " When on, a <Tab> in front of a line inserts blanks
+                                       " according to 'shiftwidth'. 'tabstop' is used in other
+                                       " places. A <BS> will delete a 'shiftwidth' worth of space
+                                       " at the start of the line.
 
-set showmatch                       " When a bracket is inserted, briefly jump to the matching
-                                    " one. The jump is only done if the match can be seen on the
-                                    " screen. The time to show the match can be set with
-                                    " 'matchtime'.
+set showmatch                          " When a bracket is inserted, briefly jump to the matching
+                                       " one. The jump is only done if the match can be seen on the
+                                       " screen. The time to show the match can be set with
+                                       " 'matchtime'.
 
 " Formatting
 set formatoptions=croqnlj
-"set formatoptions=croqanlj         " This is a sequence of letters which describes how
-                                    " automatic formatting works. See :h fo-table
-"set formatoptions=want             " Attempt markdown list behaviour
+"set formatoptions=croqanlj            " This is a sequence of letters which describes how
+                                       " automatic formatting works. See :h fo-table
+"set formatoptions=want                " Attempt markdown list behaviour
 
 " =========
 " Interface
 " =========
 " Theme/colours
-set background=dark                 " If using a dark background, for syntax highlighting. Opts: light/dark
+set background=dark                    " If using a dark background, for syntax highlighting. Opts: light/dark
 colors elflord
 
 " Set both for relative and absolute on cursor line:
-set number                          " Show line numbers.
-set relativenumber                  " Show relative line numbers.
-set scrolloff=2                     " Keep cursor # lines from top/bottom.
+set number                             " Show line numbers.
+set relativenumber                     " Show relative line numbers.
+set scrolloff=2                        " Keep cursor # lines from top/bottom.
 " Toggle line numbering types:
 nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 if has('mouse')
-	set mouse=a                     " Enable the use of the mouse (all modes).
+	set mouse=a                        " Enable the use of the mouse (all modes).
 endif
-set visualbell                      " Flash instead of beep
-"set t_vb=                          " And then disable even the flashing
-set cursorline                      " Underline line with cursor
-set ruler                           " Show the line and column number of the cursor position,
-                                    " separated by a comma.
-set splitright                      " vertical splits use right half of screen
-set splitbelow                      " horizontal splits use bottom half of screen
+set visualbell                         " Flash instead of beep
+"set t_vb=                             " And then disable even the flashing
+set cursorline                         " Underline line with cursor
+set ruler                              " Show the line and column number of the cursor position,
+                                       " separated by a comma.
+set splitright                         " vertical splits use right half of screen
+set splitbelow                         " horizontal splits use bottom half of screen
 
 " Folding
 set foldenable
@@ -187,34 +187,101 @@ set foldenable
 "set foldcolumn=3
 let g:vimwiki_folding='syntax'
 set foldlevel=99
-set foldnestmax=10		" max 10 depth
-set foldlevelstart=1	" start with fold level of 1
+set foldnestmax=10		               " max 10 depth
+set foldlevelstart=1	               " start with fold level of 1
 
 " -----------
 " GUI options
 " -----------
 set guioptions=
-set guioptions+=a         " Automatically make visual selection available in system clipboard
-set guioptions+=A         " Same for modeless selection
-set guioptions+=e         " GUI tabs
-set guioptions+=g         " Grayed-out menu items that aren't active
-set guioptions+=i         " Use a Vim icon
-set guioptions+=m         " Show the menu bar
-set guicursor+=a:blinkon0 " Don't blink the cursor
-set mousehide             " Hide the mouse while typing
-set winaltkeys=no         " Don't use ALT to access the menu
+set guioptions+=a                      " Automatically make visual selection available in system clipboard
+set guioptions+=A                      " Same for modeless selection
+set guioptions+=e                      " GUI tabs
+set guioptions+=g                      " Grayed-out menu items that aren't active
+set guioptions+=i                      " Use a Vim icon
+set guioptions+=m                      " Show the menu bar
+set guicursor+=a:blinkon0              " Don't blink the cursor
+set mousehide                          " Hide the mouse while typing
+set winaltkeys=no                      " Don't use ALT to access the menu
 " Set font for gvim if running.
 if has('gui_running')
 	set guifont=Noto\ Mono\ 9
 endif
 set termguicolors
 
+" ========
+" Mappings
+" ========
+" Set <leader> to space, consistent with spacemacs/spacevim.
+" Disabled due to insert-mode issues.
+"let mapleader = " "
+"let maplocalleader = " "
+"nnoremap <SPACE> <Nop>
+
+" -----
+" Misc.
+" -----
+" Toggle folds, tab like spacemacs/spacevim.
+nnoremap <tab> za
+" F1 to be a context sensitive keyword-under-cursor lookup
+nnoremap <F1> :help <C-R><C-W><CR>
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" Quick yank/paste
+set pastetoggle=<F2>
+" Alt+y
+vnoremap y "+ygv=gv
+vnoremap <Leader>y "+y
+vnoremap <Leader>Y "*y
+nnoremap <M-p> "+p
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "*p
+nnoremap Y y$
+
+" Retain selection when changing indent level
+xnoremap < <gv
+xnoremap > >gv
+
+" Table (column) align
+vmap <leader>ca :!column -t<cr>
+vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
+
+" =======
+" Buffers
+" =======
+set hidden                             " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
+set confirm                            " Prompt to save unsaved changes when exiting
+" New buffer
+nnoremap <leader>n :enew<CR>
+" Delete buffer
+nnoremap <leader>d :bd<CR>
+" Cycle through buffers, tabs:
+nnoremap <C-j> :bnext<CR>
+nnoremap <C-k> :bprevious<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
+" Switch to previous-viewed buffer
+nnoremap <Bslash><Bslash> <C-^>
+
+" Quickfix/errors
+nnoremap ]] :cnext<cr>zz
+nnoremap [[ :cprev<cr>zz
+nnoremap ]l :lnext<cr>zz
+nnoremap [l :lprev<cr>zz
+
+" Up/down by row instead of line:
+nnoremap j gj
+nnoremap k gk
+
+" For mappings needing conditionals/dependencies.
 source ~/.vim/mappings.vim
 
 " ===================
 " Completion/Omnifunc
 " ===================
-set wildignore=*.o,*.obj,*~                       "stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~            "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
 set wildignore+=log/**
@@ -225,8 +292,8 @@ set wildignore+=vendor/rails/**
 set wildignore+=vendor/cache/**
 set wildignore+=*.gem
 set wildignore+=node_modules/*,bower_components/*
-set infercase                                     " Same-case autocomplete
-set autochdir                                     " Set working dir to open file
+set infercase                          " Same-case autocomplete
+set autochdir                          " Set working dir to open file
 set complete+=kspell
 
 " ======================
