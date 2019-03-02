@@ -30,7 +30,7 @@ nmap <leader>2 2z=
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 " Save fold state and cursor
-"set viewoptions=folds,cursor
+set viewoptions=folds,cursor
 "au BufRead * loadview
 "au BufWrite * mkview
 
