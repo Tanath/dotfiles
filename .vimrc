@@ -227,13 +227,13 @@ nnoremap <tab> za
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
 
+" <c-del> not working.
 if $TERM == 'linux'
-    " Works in VT
+    " In VT
     inoremap [3~ <C-\><C-o>dw
 else
-    " These don't work in VT:
-    "inoremap <C-Del> <C-\><C-O>dw
     " Should work outside VT
+    "inoremap <C-Del> <C-\><C-O>dw
     inoremap [3;5~ <C-\><C-o>dw
 endif
 
@@ -261,7 +261,7 @@ xnoremap > >gv
 
 " Alt-up/down/left/right to move lines:
 if $TERM == 'linux'
-    " Should work in VT
+    " In VT
     nnoremap [A :m .-2<CR>
     nnoremap [B :m .+1<CR>
     nnoremap [C >>
@@ -271,7 +271,7 @@ if $TERM == 'linux'
     xnoremap [C >gv
     xnoremap [D <gv
 else
-    " Should work outside VT
+    " Elsewhere
     nnoremap [1;3B :m .+1<CR>
     nnoremap [1;3A :m .-2<CR>
     nnoremap [1;3D <<
@@ -312,7 +312,8 @@ vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 " fzf stuff https://github.com/junegunn/fzf.vim
 nmap <leader>ff :FZF<cr>     " vim-fzf-git
 nmap <leader>b :Buffers<cr>  " fzf buffers
-nmap <leader>a :Ag\          " fzf silver searcher
+" fzf silver searcher
+nmap <leader>a :Ag<space>
 nmap <leader>fc :Commits<cr> " fzf git commits
 nmap <leader>fm :Maps<cr>    " fzf mappings
 nmap <leader>ft :Tags<cr>    " fzf mappings
