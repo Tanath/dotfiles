@@ -31,6 +31,10 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 "au BufRead * loadview
 "au BufWrite * mkview
 
+" Allow conceal, but not if the cursor is on the line
+set conceallevel=2
+set concealcursor=
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
