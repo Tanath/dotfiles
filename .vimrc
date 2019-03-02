@@ -267,11 +267,16 @@ set confirm                            " Prompt to save unsaved changes when exi
 nnoremap <leader>n :enew<CR>
 " Delete buffer
 nnoremap <leader>d :bd<CR>
+" Move between panes:
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 " Cycle through buffers, tabs:
-nnoremap <C-j> :bnext<CR>
-nnoremap <C-k> :bprevious<CR>
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-down> :bnext<CR>
+nnoremap <C-up> :bprevious<CR>
+nnoremap <C-right> :tabnext<CR>
+nnoremap <C-left> :tabprevious<CR>
 " Switch to previous-viewed buffer
 nnoremap <Bslash><Bslash> <C-^>
 
