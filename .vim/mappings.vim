@@ -1,6 +1,3 @@
-nmap <unique> <F3> :grep<space>
-nmap <unique> <F10> :terminal<CR>
-
 " <c-del> not working.
 if $TERM == 'linux'
     " In VT

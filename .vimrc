@@ -235,6 +235,8 @@ nnoremap <F1> :help <C-R><C-W><CR>
 " control + space in terminal hack
 "map <C-@> <C-Space>
 "imap <C-@> <C-Space>
+nmap <F3> :grep<space>
+nmap <F10> :terminal<CR>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
