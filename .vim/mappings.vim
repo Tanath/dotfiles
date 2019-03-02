@@ -47,16 +47,18 @@ if $TERM == 'linux'
     " No VT versions yet.
 else
     " Should work outside VT
-    nnoremap j :m .+1<CR>
-    nnoremap k :m .-2<CR>
-    nnoremap h <<
-    nnoremap l >>
-    inoremap j <Esc>:m .+1<CR>gi
-    inoremap k <Esc>:m .-2<CR>gi
-    xnoremap j :m '>+1<CR>gv=gv
-    xnoremap k :m '<-2<CR>gv=gv
-    xnoremap h <gv
-    xnoremap l >gv
+    " Causing issues, needing extra ESCs
+    "nnoremap j :m .+1<CR>
+    "nnoremap k :m .-2<CR>
+    "nnoremap h <<
+    "nnoremap l >>
+    "inoremap j <Esc>:m .+1<CR>gi
+    "inoremap k <Esc>:m .-2<CR>gi
+    "xnoremap j :m '>+1<CR>gv=gv
+    "xnoremap k :m '<-2<CR>gv=gv
+    "xnoremap h <gv
+    "xnoremap l >gv
+    " Not working
     "nnoremap <A-j> :m .+1<CR>
     "nnoremap <A-k> :m .-2<CR>
     "nnoremap <a-h> <<
