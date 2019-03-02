@@ -30,5 +30,5 @@ let g:pep8_map='<leader>8'
 
 if exists(':SudoWrite')
     " Use eunuch by tpope.
-    nnoremap <unique> <F5> :SudoWrite<cr>
+    nnoremap <leader>S :SudoWrite<cr>
 endif
