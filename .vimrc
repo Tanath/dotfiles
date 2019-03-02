@@ -18,6 +18,9 @@ let &spelllang=g:lang
 let &langmenu=g:lang
 set spell spellsuggest=best
 map <F7> :set spell! \| let &spelllang=g:lang<CR>
+" Quick spelling fixes.
+nmap <leader>1 1z=
+nmap <leader>2 2z=
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -229,6 +232,9 @@ set termguicolors
 nnoremap <tab> za
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
+" control + space in terminal hack
+"map <C-@> <C-Space>
+"imap <C-@> <C-Space>
 
 " Don't use Ex mode, use Q for formatting
 map Q gq
