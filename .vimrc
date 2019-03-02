@@ -337,9 +337,9 @@ if !executable('ag')
 endif
 
 " Use ranger's rifle to open files.
-if executable('rifle')
-    let g:netrw_browsex_viewer = 'rifle'
-endif
+"if executable('rifle')
+"   let g:netrw_browsex_viewer = 'rifle'
+"endif
 
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
