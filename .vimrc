@@ -213,7 +213,7 @@ set termguicolors
 " Mappings
 " ========
 
-" Set <leader> to space, consistent with spacemacs.
+" Set <leader> to space, consistent with spacemacs/spacevim.
 " Disabled due to insert-mode issues.
 "let mapleader = " "
 "let maplocalleader = " "
@@ -222,10 +222,12 @@ set termguicolors
 " -----
 " Misc.
 " -----
-" Toggle folds, tab like spacemacs.
+" Toggle folds, tab like spacemacs/spacevim.
 nnoremap <tab> za
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
+nmap <F3> :grep<space>
+nmap <F10> :term<CR>
 
 " <c-del> not working.
 if $TERM == 'linux'
@@ -360,8 +362,10 @@ nnoremap [l :lprev<cr>zz
 " Saving
 " ------
 " :w!!
-" write the file when you accidentally opened it without the right (root) privileges
+" Write the file when you opened it without root privileges.
 cmap w!! w !sudo tee % > /dev/null
+" Use eunuch by tpope.
+nnoremap <F5> :SudoWrite<cr>
 
 " Save if needed. Requires for terminal: alias vim="stty stop '' -ixoff ; vim"
 " If terminal freezes, hit <c-q> to resume.
