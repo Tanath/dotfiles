@@ -334,6 +334,13 @@ if !executable('ag')
     endif
 endif
 
+" Use ranger's rifle to open files.
+if executable('rifle')
+    let g:netrw_browsex_viewer = 'rifle'
+endif
+
+nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+
 " Better formatting for some file types
 if executable('python')
     au FileType json set equalprg=python\ -m\ json.tool
