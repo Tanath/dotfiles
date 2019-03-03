@@ -1,0 +1,17 @@
+# EditorConfig is awesome: https://EditorConfig.org
+# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties
+
+# top-most EditorConfig file
+root = true
+
+# Setting widely-supported defaults for all files
+[*]
+end_of_line = lf                 # Unix-style newlines with a newline ending every file
+trim_trailing_whitespace = true  # At end of lines
+insert_final_newline = true
+charset = utf-8
+indent_style = space
+indent_size = 4
+
+# Supported by vim & emacs
+#max_line_length = 80
