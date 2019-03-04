@@ -429,6 +429,11 @@ endfunction
 command! Todo call s:todo()
 
 " Vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 "call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes.
 " You can conditionally activate plugins but PlugClean will remove plugins that
