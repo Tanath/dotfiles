@@ -1,12 +1,11 @@
-" -------
 " Plugins
 " -------
+" junegunn/fzf.vim
 if exists(':FZF')
-    " fzf stuff https://github.com/junegunn/fzf.vim
     " vim-fzf-git
-    nmap <unique> <leader>ff :FZF<cr>
+    nmap <unique> <silent> <leader>ff :FZF<cr>
     " fzf buffers
-    nmap <unique> <leader>b :Buffers<cr>
+    nmap <unique> <silent> gb :Buffers<cr>
     " fzf silver searcher
     nmap <leader>a :Ag<space>
     " fzf git commits
@@ -21,14 +20,32 @@ if exists(':FZF')
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
 else
-    nmap <unique> <leader>b :buffers<cr>
-    nmap <unique> <leader>a :grep<space>
+    nmap <unique> <silent> gb :ls<CR>:buffer<Space>
+    nmap <unique> <silent> <leader>a :grep<space>
+    nmap <leader>fm :map<cr>
+endif
+
+" tpope/vim-eunuch
+if exists(':SudoWrite')
+    nnoremap <leader>S :SudoWrite<cr>
+endif
+
+" tpope/fugitive
+if exists(':Gstatus')
+    nnoremap <leader>gs :Gstatus<cr>
+    nnoremap <leader>gbl :Gblame<cr>
+    nnoremap <leader>gc :Gcommit<cr>
+    nnoremap <leader>gpl :Gpull<cr>
+    nnoremap <leader>gps :Gpush<cr>
+    nnoremap <leader>gmr :Gmerge<cr>
+    nnoremap <leader>gmv :Gmove<cr>
+endif
+
+" scrooloose/nerdtree
+if exists(':NERDTree')
+    nnoremap <leader>nn :NERDTreeToggle<cr>
 endif
 
 "map <unique> <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 
-if exists(':SudoWrite')
-    " Use eunuch by tpope.
-    nnoremap <leader>S :SudoWrite<cr>
-endif
