@@ -426,3 +426,43 @@ function! s:todo() abort
   endif
 endfunction
 command! Todo call s:todo()
+
+" Vim-plug
+"call plug#begin('~/.vim/plugged')
+" Make sure you use single quotes.
+" You can conditionally activate plugins but PlugClean will remove plugins that
+" fail, which can be a prob for shared configs (eg., gvim & terminal vim).
+" Workaround example:
+" Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+" Workaround example for Gist as plugin:
+" Plug 'https://gist.github.com/952560a43601cd9898f1.git',
+"    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
+if has('win32') || has('win64')
+    " For Windows users
+    call plug#begin('~/vimfiles/bundle')
+else
+    " For Linux/Mac users
+    call plug#begin('~/.vim/bundle')
+    Plug 'tpope/vim-eunuch'
+endif
+Plug 'junegunn/vim-plug'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf'
+Plug 'tpope/vim-sensible'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'
+Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'davidhalter/jedi-vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'vimwiki/vimwiki'
+Plug 'scrooloose/nerdtree'
+"Plug 'terryma/vim-multiple-cursors'
+call plug#end()
+
+" Source any .vim files from ~/.vim/config
+"runtime! config/*.vim
