@@ -471,6 +471,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'vimwiki/vimwiki'
+Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdtree'
 "Plug 'terryma/vim-multiple-cursors'
 call plug#end()
