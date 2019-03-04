@@ -265,7 +265,10 @@ map Q gq
 " Quick yank/paste
 set pastetoggle=<F2>
 " Alt+y
-"vnoremap y "+ygv
+if !has('gui_running')
+    map y <A-y>
+endif
+"vmap <A-y> "+ygv
 vnoremap <Leader>y "+ygv
 vnoremap <Leader>Y "*ygv
 nnoremap <M-p> "+p
