@@ -430,6 +430,7 @@ function! s:todo() abort
     endif
 endfunction
 command! Todo call s:todo()
+nnoremap <leader>t :Todo<space><cr>
 
 " Vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
