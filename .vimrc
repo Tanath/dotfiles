@@ -454,6 +454,7 @@ endif
 Plug 'junegunn/vim-plug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
