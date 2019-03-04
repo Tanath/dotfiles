@@ -404,6 +404,9 @@ if executable('pandoc')
     au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
 endif
 
+" ALE
+let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
+
 " Vimwiki
 if isdirectory($HOME . "/vimwiki/")
 	source ~/.vw.vim
