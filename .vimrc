@@ -296,6 +296,7 @@ set confirm                            " Prompt to save unsaved changes when exi
 nnoremap <Bslash><Insert> :enew<CR>
 " Delete buffer
 nnoremap <Bslash><Delete> :bdel<CR>
+nnoremap <leader>d :bdel<CR>
 
 " Move between panes:
 nnoremap <C-j> <C-w>j
