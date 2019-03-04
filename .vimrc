@@ -55,8 +55,8 @@ if has('viminfo')
 endif
 " TODO Saving/restoring folds not working.
 set viewoptions=folds,cursor           " Save fold state and cursor
-"au BufRead * loadview
-"au BufWrite * mkview
+au BufRead * loadview
+au BufWrite * mkview
 
 " :h sessionoptions
 "if exists('+sessionoptions')
