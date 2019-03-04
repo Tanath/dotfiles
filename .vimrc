@@ -4,200 +4,216 @@
 "set shell=/bin/zsh\ -i
 set shcf=-c
 
-" ===========
 " Misc basics
 " ===========
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
-set encoding=utf-8
+" Use UTF-8 if we can and env LANG didn't tell us not to
+if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
+  set encoding=utf-8
+endif
 set nocompatible	                   " Use vim mode, not vi mode.
+set modelines=0                        " Prevent some security issues (settings options by buffer content)
+set ttyfast                            " Indicates a fast terminal connection.
+set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes, but never time out on mappings
+set nosol                              " No start of line jump when selecting.
 silent! set cm=blowfish2
+" Automatically equalize splits when Vim is resized
+autocmd VimResized * wincmd =
+set showmatch                          " When a bracket is inserted, briefly jump to the matching
+                                       " one. Only done if the match is on the screen.
+set matchtime=4                        " The timing can be set with 'matchtime'.
+" Add suffixes to check for gf.
+set suffixesadd+='.md'
+set suffixesadd+='.wiki'
+set confirm                            " Prompt instead of just rejecting risky :write, :saveas
+silent! set noesckeys                  " Don't wait for a key after Escape in insert mode
+                                       " In vim-tiny but not NeoVim, so just suppress errors
+set include=                           " Don't assume editing C; let the filetype set this
+set nrformats-=octal                   " Treat numbers with leading 0 as decimal, not octal
+set path+=**                           " Search under cwd.
+
+" Language, spelling.
 " Set language from user's environment.
 let g:lang=tolower(split(expand($LANG), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
 set spell spellsuggest=best
-map <F7> :set spell! \| let &spelllang=g:lang<CR>
+map <F7> :setl spell! \| let &spelllang=g:lang<CR>
 " Quick spelling fixes.
 nmap <leader>1 1z=
 nmap <leader>2 2z=
 
-" Tell vim to remember certain things when we exit
+" Remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.viminfo
-" Save fold state and cursor
-set viewoptions=folds,cursor
+if has('viminfo')
+    set viminfo='15,\"100,:30,%,n~/.viminfo
+endif
+" TODO Saving/restoring folds not working.
+set viewoptions=folds,cursor           " Save fold state and cursor
 "au BufRead * loadview
 "au BufWrite * mkview
 
-" Allow conceal, but not if the cursor is on the line
-set conceallevel=2
-set concealcursor=
+" :h sessionoptions
+"if exists('+sessionoptions')
+"    set sessionoptions-=blank,buffers,options,localoptions
+"endif
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-    syntax on
-    set hlsearch
+" Backup, swap, undo files
+if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
+	silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
+	silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
+	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
 endif
+set backup
+if has('persistent_undo')
+    set undofile
+    set undodir=$HOME/.vim/cache/undo//
+    if has('win32') || has('win64')
+        set undodir-=~/.vim/cache/undo//
+        set undodir^=~/vimfiles/cache/undo//
+    endif
+endif
+set backupdir=$HOME/.vim/cache/backup// " For backup files
+set directory=$HOME/.vim/cache/backup// " For .swp files
+if has('win32') || has('win64')
+    set backupdir-=~/.vim/cache/backup//
+    set backupdir^=~/vimfiles/cache/backup//
+endif
+set backupskip=/tmp/*                  " Add some paths not to back up
+set backupskip^=/dev/shm/*             " Shared memory RAM disk
+set backupskip^=/var/tmp/*             " Debian's $TMPDIR for sudoedit(8)
+if !has('unix')
+  set backupskip-=/dev/shm/*
+  set backupskip-=/var/tmp/*
+endif
+set history=2000
+set undolevels=2000                    " Number of undos
+set undoreload=10000                   " Number of lines to save for undo
 
-set ttyfast                            " Indicates a fast terminal connection.
-set nosol                              " No start of line jump when selecting.
-set modelines=0                        " Prevent some security issues
-" Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
+" Searching
+set ignorecase						   " do case insensitive matching
+set smartcase						   " overrides ignorecase if uppercase used in search string
+set incsearch						   " Incremental search as you type.
+set wrapscan						   " jumps to the beginning if reaching end, and viceversa
+" To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
+nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
-" Automatically equalize splits when Vim is resized
-autocmd VimResized * wincmd =
+" Auto-formatting
+" TODO Test in au bufread to restore after .md format changes.
+set formatoptions=croqnlj              " How automatic formatting works. See :h fo-table
+"au bufread *.md set formatoptions=want " Attempt markdown list behaviour
+" Make sure *.md is seen as markdown.
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" TODO Test md fenced code block syntax:
+"let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 
-" Enable file type detection.
-if has("autocmd")
-  " Only do this part when compiled with support for autocommands.
-  " Use the default filetype settings, s, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-  " For all text files set 'textwidth' to 80 characters.
-  autocmd FileType text setlocal textwidth=80
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  augroup END
-else
-  set autoindent                       " always set autoindenting on
-endif " has("autocmd")
+" Wrapping
+set textwidth=80
+set nowrap linebreak
+"set wrap linebreak nolist             " Linebreaks at word boundaries.
+
+" Indenting.
+set autoindent                         " Copy indent from current line when starting a new line
+"set smartindent
+"set nostartofline                     " Emulate typical editor navigation behaviour
+silent! set breakindent                " Indent wrapped lines
+
+" Tabbing, backspace
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4                       " Number of spaces to use for (auto)indenting.
+set expandtab                          " Expand tabs & indents to spaces. <C-v><tab> to not.
+set smarttab                           " <Tab> at start of a line puts spaces. <BS> deletes
+                                       " 'shiftwidth' spaces.
+set backspace=2                        " Influences <BS>, <Del>, CTRL-W and CTRL-U in insert mode.
+set backspace=indent,eol,start         " Better handling of <BS>
+
+" Interface
+" =========
+if has('mouse')
+	set mouse=a                        " Enable the use of the mouse (all modes).
+endif
+set visualbell                         " Flash instead of beep
+"set t_vb=                              " Disable even the flashing
+set splitright                         " Vertical splits use right half of screen
+set splitbelow                         " Horizontal splits use bottom half of screen
+
+" More 'list' display characters
+set listchars+=extends:>               " Unwrapped text to screen right
+set listchars+=precedes:<              " Unwrapped text to screen left
+set listchars+=tab:>-                  " Tab characters, preserve width
+set listchars+=trail:_                 " Trailing spaces
+silent! set listchars+=nbsp:+          " Non-breaking spaces
+
+" Theme/colours, syntax
+" Switch syntax highlighting on, when the terminal has colours.
+" Also switch on highlighting the last used search pattern.
+if has('syntax')
+    " Handled by vim-plug. Not needed: Use syntax Highlighting
+    "if !exists('g:syntax_on')
+    "    " Keeps current colour settings. 'on' overrules with defaults.
+    "    syntax enable
+    "endif
+    if &t_Co > 2 || has("gui_running")
+        set hlsearch
+    endif
+    if !exists('g:colors_name')
+        set background=dark
+        colors elflord
+    endif
+    " Toggle highlighting column 80:
+    nmap <F9> :if &cc != 80 \| setl cc=80 cc? \| else \| setl cc& cc? \| endif<cr>
+endif
 
 " Status/Command line
 set showcmd                            " Show (partial) command in status line.
 set showmode
 set wildmenu
-set wildmode=longest,list,full         " complete longest common string, then list alternatives, then select the sortest first
+"set wildmode=longest,list,full         " Complete longest common string, then list alternatives, then select the sortest first
+set wildmode=list:longest,list:full    " Complete longest common string, then list alternatives, then select the sortest first
+silent! set wildignorecase             " Case insensitive, if supported
 set laststatus=2                       " Always show status line
-set cmdheight=2                        " Prevent "Press Enter" messages
-" Show detailed information in status line:
+set cmdheight=2                        " Prevent 'Press Enter' messages
+" Show more info in status line if airline isn't available.
 set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
 let g:airline_powerline_fonts = 1
-"let g:airline#extensions#bufferline#enabled " Buffer line. not working?
+let g:airline#extensions#tabline#enabled = 1
 
-" Backup and Swap files
-set backup
-set undofile
-if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
-	silent !mkdir -p ~/.vim/{backup,view} > /dev/null 2>&1
-	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
-endif
-set backupdir=$HOME/.vim/backup        " for backup files
-set directory=$HOME/.vim/backup        " for .swp files
-set backupskip=/tmp/*
-set history=2000
-set undodir=$HOME/.vim/undo            " where to save undo histories
-set undolevels=2000                    " how many undos
-set undoreload=10000                   " number of lines to save for undo
-
-" Wrapping
-set textwidth=80
-"set colorcolumn=80                    " Colour column to know when wrapping is needed.
-set nowrap
-"set wrap linebreak nolist             " Linebreaks at word boundaries.
-
-" Searching
-set ignorecase						   " do case insensitive matching
-set smartcase						   " overrides ignorecase if uppercase used in search string
-set incsearch						   " incremental search
-set wrapscan						   " jumps to the beginning if reaching end, and viceversa
-" Ctrl+/ to toggle search highlight:
-let hlstate=0
-nnoremap <C-_> :if (hlstate == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=1-hlstate<cr>
-
-" Markdown
-set suffixesadd+='.md'
-set suffixesadd+='.wiki'
-
-" Insert mode
-set backspace=2                        " Influences the working of <BS>, <Del>, CTRL-W
-                                       " and CTRL-U in Insert mode. This is a list of items,
-                                       " separated by commas. Each item allows a way to backspace
-                                       " over something.
-"set backspace=indent,eol,start        " Better handling of <BS>
-"set smartindent
-set autoindent                         " Copy indent from current line when starting a new line
-                                       " (typing <CR> in Insert mode or when using the "o" or "O"
-                                       " command).
-"set nostartofline                     " Emulate typical editor navigation behaviour
-
-" Tabbing
-set tabstop=4                          " Number of spaces that a <Tab> in the file counts for.
-set softtabstop=4
-set shiftwidth=4                       " Number of spaces to use for each step of (auto)indent.
-"set expandtab                         " Use the appropriate number of spaces to insert a <Tab>.
-                                       " Spaces are used in indents with the '>' and '<' commands
-                                       " and when 'autoindent' is on. To insert a real tab when
-                                       " 'expandtab' is on, use CTRL-V <Tab>.
-
-set smarttab                           " When on, a <Tab> in front of a line inserts blanks
-                                       " according to 'shiftwidth'. 'tabstop' is used in other
-                                       " places. A <BS> will delete a 'shiftwidth' worth of space
-                                       " at the start of the line.
-
-set showmatch                          " When a bracket is inserted, briefly jump to the matching
-                                       " one. The jump is only done if the match can be seen on the
-                                       " screen. The time to show the match can be set with
-                                       " 'matchtime'.
-
-" Formatting
-set formatoptions=croqnlj
-"set formatoptions=croqanlj            " This is a sequence of letters which describes how
-                                       " automatic formatting works. See :h fo-table
-"set formatoptions=want                " Attempt markdown list behaviour
-
-" =========
-" Interface
-" =========
-" Theme/colours
-set background=dark                    " If using a dark background, for syntax highlighting. Opts: light/dark
-colors elflord
-
-" Set both for relative and absolute on cursor line:
+" Line numbers, cursor
 set number                             " Show line numbers.
 set relativenumber                     " Show relative line numbers.
 set scrolloff=2                        " Keep cursor # lines from top/bottom.
-" Toggle line numbering types:
-nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
-if has('mouse')
-	set mouse=a                        " Enable the use of the mouse (all modes).
-endif
-set visualbell                         " Flash instead of beep
-"set t_vb=                             " And then disable even the flashing
 set cursorline                         " Underline line with cursor
 set ruler                              " Show the line and column number of the cursor position,
                                        " separated by a comma.
-set splitright                         " vertical splits use right half of screen
-set splitbelow                         " horizontal splits use bottom half of screen
+" Cycle line numbering types:
+nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 
 " Folding
-set foldenable
-"set foldmethod=syntax
-""Indent w/manual folds:
+" Fold based on indent, but only when I ask
+if has('folding')
+    set foldenable
+    set foldlevel=99
+    set foldlevelstart=1               " Start with folds open/closed/some, 99/0/1
+    set foldnestmax=10                 " Max depth 10
+    "set foldmethod=syntax
+    "set foldcolumn=2
+    " Allow conceal, but not if the cursor is on the line
+    set conceallevel=2
+    set concealcursor=
+    let g:vimwiki_folding='syntax'
+endif
+"Indent w/manual folds:
 "augroup vimrc
 "  au BufReadPre * setlocal foldmethod=indent
 "  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
 "augroup END
-""
-"set foldcolumn=3
-let g:vimwiki_folding='syntax'
-set foldlevel=99
-set foldnestmax=10		               " max 10 depth
-set foldlevelstart=1	               " start with fold level of 1
 
-" -----------
 " GUI options
 " -----------
 set guioptions=
@@ -216,7 +232,6 @@ if has('gui_running')
 endif
 set termguicolors
 
-" ========
 " Mappings
 " ========
 " Set <leader> to space, consistent with spacemacs/spacevim.
@@ -225,9 +240,11 @@ set termguicolors
 "let maplocalleader = " "
 "nnoremap <SPACE> <Nop>
 
+" Misc mappings.
 " -----
-" Misc.
-" -----
+" Up/down by row instead of line:
+nnoremap j gj
+nnoremap k gk
 " Toggle folds, tab like spacemacs/spacevim.
 nnoremap <tab> za
 " F1 to be a context sensitive keyword-under-cursor lookup
@@ -237,20 +254,30 @@ nnoremap <F1> :help <C-R><C-W><CR>
 "imap <C-@> <C-Space>
 nmap <F3> :grep<space>
 nmap <F10> :terminal<CR>
-
+nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
+if exists("*strftime")
+    nmap <F8> i<c-r>=strftime('%c')<cr><esc>
+    imap <F8> <c-r>=strftime('%c')<cr>
+endif
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
 " Quick yank/paste
 set pastetoggle=<F2>
 " Alt+y
-vnoremap y "+ygv=gv
-vnoremap <Leader>y "+y
-vnoremap <Leader>Y "*y
+"vnoremap y "+ygv
+vnoremap <Leader>y "+ygv
+vnoremap <Leader>Y "*ygv
 nnoremap <M-p> "+p
 nnoremap <Leader>p "+p
 nnoremap <Leader>P "*p
 nnoremap Y y$
+nnoremap <leader>r :<C-U>registers<CR>
+
+" \_ uses last changed or yanked text as a characterwise object
+onoremap <leader>_ :<C-U>normal! `[v`]<CR>
+" \% uses entire buffer as a linewise object
+onoremap <leader>% :<C-U>normal! 1GVG<CR>
 
 " Retain selection when changing indent level
 xnoremap < <gv
@@ -260,44 +287,57 @@ xnoremap > >gv
 vmap <leader>ca :!column -t<cr>
 vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 
+" Buffers, navigation
 " =======
-" Buffers
-" =======
-set hidden                             " Let you switch buffers without saving current. Don't mark buffers as abandoned if hidden.
+set hidden                             " Let you switch buffers without saving current.
+                                       " Don't mark buffers as abandoned if hidden.
 set confirm                            " Prompt to save unsaved changes when exiting
 " New buffer
-nnoremap <leader>n :enew<CR>
+nnoremap <Bslash><Insert> :enew<CR>
 " Delete buffer
-nnoremap <leader>d :bd<CR>
+nnoremap <Bslash><Delete> :bdel<CR>
+
 " Move between panes:
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+
+" Cycle through argument list
+nnoremap [a :prev<CR>
+nnoremap ]a :next<CR>
+" Cycle through buffers
+nnoremap [b :bprev<CR>
+nnoremap ]b :bnext<CR>
+" Cycle through quickfix/errors
+" TODO Clobbered by gitgutter
+"nnoremap [c :cprev<CR>zz
+"nnoremap ]c :cnext<CR>zz
+" TODO Clobbered
+"nnoremap ]] :cnext<cr>zz
+"nnoremap [[ :cprev<cr>zz
+nnoremap [e :cprev<CR>zz
+nnoremap ]e :cnext<CR>zz
+" Cycle through location list items
+nnoremap [l :lprev<CR>zz
+nnoremap ]l :lnext<CR>zz
+
 " Cycle through buffers, tabs:
 nnoremap <C-down> :bnext<CR>
-nnoremap <C-up> :bprevious<CR>
+nnoremap <C-up> :bprev<CR>
 nnoremap <C-right> :tabnext<CR>
-nnoremap <C-left> :tabprevious<CR>
-" Switch to previous-viewed buffer
-nnoremap <Bslash><Bslash> <C-^>
-
-" Quickfix/errors
-nnoremap ]] :cnext<cr>zz
-nnoremap [[ :cprev<cr>zz
-nnoremap ]l :lnext<cr>zz
-nnoremap [l :lprev<cr>zz
-
-" Up/down by row instead of line:
-nnoremap j gj
-nnoremap k gk
+nnoremap <C-left> :tabprev<CR>
 
 " For mappings needing conditionals/dependencies.
 source ~/.vim/mappings.vim
 
-" ===================
 " Completion/Omnifunc
 " ===================
+" Add completion options
+if exists('+completeopt')
+  set completeopt+=longest  " Insert longest common substring
+  set completeopt+=menuone  " Show the menu even if only one match
+endif
 set wildignore=*.o,*.obj,*~            "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
@@ -313,7 +353,6 @@ set infercase                          " Same-case autocomplete
 set autochdir                          " Set working dir to open file
 set complete+=kspell
 
-" ======================
 " Set up external tools.
 " ======================
 
@@ -366,7 +405,6 @@ if isdirectory($HOME . "/vimwiki/")
 	source ~/.vw.vim
 endif
 
-" ----
 " Todo
 " ----
 " https://github.com/junegunn/dotfiles/blob/master/vimrc#L856
@@ -382,7 +420,6 @@ function! s:todo() abort
     endfor
     break
   endfor
-
   if !empty(entries)
     call setqflist(entries)
     copen
