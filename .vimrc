@@ -104,7 +104,10 @@ nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
 " Auto-formatting
 " TODO Test in au bufread to restore after .md format changes.
-set formatoptions=njcroql              " How automatic formatting works. See :h fo-table
+set formatoptions=ncroql              " How automatic formatting works. See :h fo-table
+if v:version + has('patch541') >= 704
+  set formatoptions+=j
+endif
 "au bufread *.md set formatoptions=want " Attempt markdown list behaviour
 " Make sure *.md is seen as markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -196,9 +199,9 @@ let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_extensions = ['branch', 'syntastic', 'fugitiveline']
 
 " Line numbers, cursor
-set number                             " Show line numbers.
-set relativenumber                     " Show relative line numbers.
-set scrolloff=2                        " Keep cursor # lines from top/bottom.
+setg number                            " Show line numbers.
+setg relativenumber                    " Show relative line numbers.
+setg scrolloff=2                       " Keep cursor # lines from top/bottom.
 set cursorline                         " Underline line with cursor
 set ruler                              " Show the line and column number of the cursor position,
                                        " separated by a comma.
