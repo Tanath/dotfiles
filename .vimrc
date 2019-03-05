@@ -115,6 +115,8 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 set textwidth=80
 set nowrap linebreak
 "set wrap linebreak nolist             " Linebreaks at word boundaries.
+" Toggle wrap.
+nnoremap <F4> :set wrap! wrap?<cr>
 
 " Indenting.
 set autoindent                         " Copy indent from current line when starting a new line
