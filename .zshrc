@@ -84,7 +84,7 @@ alias dmesg='dmesg -H --color=always'
 (( $+commands[fzf] )) && alias fm='fzf -m'                 # fzf multi-select
 (( $+commands[fzf] )) && alias dmf='dmesg | fm +s'         # Search dmesg output with fzf.
 (( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
-(( $+commands[fzf] )) && alias psf='ps -ef | fm'           # Use fzf to find and output a process.
+(( $+commands[fzf] )) && alias psf='ps -ef | fm --tac'     # Use fzf to find and output a process.
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
