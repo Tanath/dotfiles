@@ -12,7 +12,6 @@ set shcf=-c
 if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
   set encoding=utf-8
 endif
-set nocompatible	                   " Use vim mode, not vi mode.
 set modelines=0                        " Prevent some security issues (settings options by buffer content)
 set ttyfast                            " Indicates a fast terminal connection.
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes, but never time out on mappings
