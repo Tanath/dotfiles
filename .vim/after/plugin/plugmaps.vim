@@ -3,9 +3,9 @@
 " junegunn/fzf.vim
 if exists(':FZF')
     " vim-fzf-git
-    nmap <unique> <silent> <leader>ff :FZF<cr>
+    nmap <unique><silent> <leader>ff :FZF<cr>
     " fzf buffers
-    nmap <unique> <silent> gb :Buffers<cr>
+    nmap <unique><silent> gb :Buffers<cr>
     " fzf silver searcher
     nmap <leader>a :Ag<space>
     " fzf git commits
@@ -20,8 +20,8 @@ if exists(':FZF')
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
 else
-    nmap <unique> <silent> gb :ls<CR>:buffer<Space>
-    nmap <unique> <silent> <leader>a :grep<space>
+    nmap <unique><silent> gb :b<Space><c-d>
+    nmap <unique><silent> <leader>a :grep<space><c-d>
     nmap <leader>fm :map<cr>
 endif
 

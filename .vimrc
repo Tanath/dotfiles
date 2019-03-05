@@ -315,7 +315,7 @@ map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
-nnoremap <leader>B :b<space><c-d>
+nnoremap <leader>b :b<space><c-d>
 
 " New buffer
 nnoremap <Bslash><Insert> :enew<CR>
@@ -408,7 +408,7 @@ endif
 "   let g:netrw_browsex_viewer = 'rifle'
 "endif
 
-nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
 " Better formatting for some file types
 if executable('python')
