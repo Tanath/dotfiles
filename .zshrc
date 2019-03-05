@@ -82,7 +82,7 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
 (( $+commands[fzf] )) && alias fm='fzf -m'                 # fzf multi-select
-(( $+commands[fzf] )) && alias dmf='dmesg | fm'            # Search dmesg output with fzf.
+(( $+commands[fzf] )) && alias dmf='dmesg | fm +s'         # Search dmesg output with fzf.
 (( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
 (( $+commands[fzf] )) && alias psf='ps -ef | fm'           # Use fzf to find and output a process.
 alias free='free -h'                                       # Show sizes in MB
