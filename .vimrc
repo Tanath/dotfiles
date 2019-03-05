@@ -27,7 +27,6 @@ set matchtime=4                        " The timing can be set with 'matchtime'.
 set suffixesadd+='.md'
 set suffixesadd+='.wiki'
 set confirm                            " Prompt instead of just rejecting risky :write, :saveas
-silent! set noesckeys                  " Don't wait for a key after Escape in insert mode
                                        " In vim-tiny but not NeoVim, so just suppress errors
 set include=                           " Don't assume editing C; let the filetype set this
 set nrformats-=octal                   " Treat numbers with leading 0 as decimal, not octal
