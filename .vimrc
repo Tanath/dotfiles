@@ -113,8 +113,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Wrapping
 set textwidth=80
-set wrap linebreak
-"set wrap linebreak nolist             " Linebreaks at word boundaries.
+set wrap linebreak                    " Linebreaks at word boundaries.
 " Toggle wrap.
 nnoremap <F4> :set wrap! wrap?<cr>
 
@@ -310,6 +309,8 @@ set confirm                            " Prompt to save unsaved changes when exi
 " Have ctrl+scroll move by half-page, not full.
 map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
+nnoremap <space> <C-d>
+"nnoremap <s-space> <C-u>
 
 " New buffer
 nnoremap <Bslash><Insert> :enew<CR>
