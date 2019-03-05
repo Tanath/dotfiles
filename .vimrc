@@ -113,7 +113,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Wrapping
 set textwidth=80
-set nowrap linebreak
+set wrap linebreak
 "set wrap linebreak nolist             " Linebreaks at word boundaries.
 " Toggle wrap.
 nnoremap <F4> :set wrap! wrap?<cr>
@@ -125,8 +125,7 @@ set autoindent                         " Copy indent from current line when star
 silent! set breakindent                " Indent wrapped lines
 
 " Tabbing, backspace
-set tabstop=4
-set softtabstop=4
+set tabstop=4 softtabstop=4
 set shiftwidth=4                       " Number of spaces to use for (auto)indenting.
 set expandtab                          " Expand tabs & indents to spaces. <C-v><tab> to not.
 set smarttab                           " <Tab> at start of a line puts spaces. <BS> deletes
