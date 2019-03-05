@@ -315,6 +315,7 @@ map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
+nnoremap <leader>B :b<space><c-d>
 
 " New buffer
 nnoremap <Bslash><Insert> :enew<CR>
@@ -361,10 +362,10 @@ source ~/.vim/mappings.vim
 " ===================
 " Add completion options
 if exists('+completeopt')
-  set completeopt+=longest  " Insert longest common substring
-  set completeopt+=menuone  " Show the menu even if only one match
+  set completeopt+=longest             " Insert longest common substring
+  set completeopt+=menuone             " Show the menu even if only one match
 endif
-set wildignore=*.o,*.obj,*~            "stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~            " Stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*.png,*.jpg,*.gif,*.ico
 set wildignore+=log/**
