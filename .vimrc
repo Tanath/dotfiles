@@ -24,8 +24,7 @@ set showmatch                          " When a bracket is inserted, briefly jum
                                        " one. Only done if the match is on the screen.
 set matchtime=4                        " The timing can be set with 'matchtime'.
 " Add suffixes to check for gf.
-set suffixesadd+='.md'
-set suffixesadd+='.wiki'
+set suffixesadd+='.md','.wiki'
 set confirm                            " Prompt instead of just rejecting risky :write, :saveas
                                        " In vim-tiny but not NeoVim, so just suppress errors
 set include=                           " Don't assume editing C; let the filetype set this
@@ -34,6 +33,7 @@ set path+=**                           " Search under cwd.
 
 " Language, spelling.
 " Set language from user's environment.
+" TODO: Support multiple comma-separated langs.
 let g:lang=tolower(split(expand($LANG), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
@@ -104,7 +104,7 @@ nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
 " Auto-formatting
 " TODO Test in au bufread to restore after .md format changes.
-set formatoptions=croqnlj              " How automatic formatting works. See :h fo-table
+set formatoptions=njcroql              " How automatic formatting works. See :h fo-table
 "au bufread *.md set formatoptions=want " Attempt markdown list behaviour
 " Make sure *.md is seen as markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -245,8 +245,6 @@ set termguicolors
 
 " Mappings
 " ========
-" Set <leader> to space, consistent with spacemacs/spacevim.
-" Disabled due to insert-mode issues.
 "let mapleader = " "
 "let maplocalleader = " "
 "nnoremap <SPACE> <Nop>
@@ -265,6 +263,9 @@ nnoremap <F1> :help <C-R><C-W><CR>
 "imap <C-@> <C-Space>
 nmap <F3> :grep<space>
 nmap <F10> :terminal<CR>
+" FIXME: Places an error msg over cursor line until line change.
+" Or hides vim until user input.
+"nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
 nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
 if exists("*strftime")
     nmap <F8> i<c-r>=strftime('%c')<cr><esc>
@@ -350,6 +351,7 @@ nnoremap <C-right> :tabnext<CR>
 nnoremap <C-left> :tabprev<CR>
 
 " For mappings needing conditionals/dependencies.
+" TODO Move to config/ or appropriate location.
 source ~/.vim/mappings.vim
 
 " Completion/Omnifunc
@@ -397,6 +399,7 @@ if !executable('ag')
 endif
 
 " Use ranger's rifle to open files.
+" TODO: Opens links incorrectly.
 "if executable('rifle')
 "   let g:netrw_browsex_viewer = 'rifle'
 "endif
@@ -426,7 +429,7 @@ let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
 
 " Vimwiki
 if isdirectory($HOME . "/vimwiki/")
-	source ~/.vw.vim
+	source ~/vw.vim
 endif
 
 " Todo
