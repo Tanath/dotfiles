@@ -294,6 +294,10 @@ vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 set hidden                             " Let you switch buffers without saving current.
                                        " Don't mark buffers as abandoned if hidden.
 set confirm                            " Prompt to save unsaved changes when exiting
+" Have ctrl+scroll move by half-page, not full.
+map <C-ScrollWheelUp> <C-u>
+map <C-ScrollWheelDown> <C-d>
+
 " New buffer
 nnoremap <Bslash><Insert> :enew<CR>
 " Delete buffer
