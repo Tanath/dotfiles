@@ -5,10 +5,10 @@ My dotfiles, and other config files & system tweaks, and miscellaneous reference
 ## vim
 My `.vimrc` uses [vim-plug](https://github.com/junegunn/vim-plug/) and it automatically installs if not present, and installs the enabled plugins from `.vimrc`. Plugins are at the end. `<Leader>` key is default (`\`). Spell check language sourced from `$LANG`. Some useful toggles/mappings:
 
-    * `<F4>` toggles wrap.
-    * `<F7>` toggles spell check.
-    * `<c-/>`/`<c-7>`/`<c-_>` toggles search highlight.
-    * `<F10>` is `:terminal`.
+* `<F4>` toggles wrap.
+* `<F7>` toggles spell check.
+* `<c-/>`/`<c-7>`/`<c-_>` toggles search highlight.
+* `<F10>` is `:terminal`.
 
 I swap caps & esc in X and console for better vimming (see [reference/misctweaks.md](reference/misctweaks.md)). This benefits other programs as well, and doesn't mess with muscle meory. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
 
