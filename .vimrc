@@ -412,6 +412,8 @@ endif
 
 nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
+autocmd Filetype sh autocmd BufWritePost * silent !chmod +x %
+
 " Better formatting for some file types
 if executable('python')
     au FileType json set equalprg=python\ -m\ json.tool
