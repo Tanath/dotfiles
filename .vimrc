@@ -265,7 +265,9 @@ nnoremap <F1> :help <C-R><C-W><CR>
 "map <C-@> <C-Space>
 "imap <C-@> <C-Space>
 nmap <F3> :grep<space>
-nmap <F10> :terminal<CR>
+if has('terminal')
+    nmap <F10> :terminal<CR>
+endif
 nnoremap <leader>m :update <bar> make<cr>
 " FIXME: Places an error msg over cursor line until line change.
 " Or hides vim until user input.
