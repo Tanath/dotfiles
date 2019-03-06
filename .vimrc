@@ -495,6 +495,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-lion'
 Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
+Plug 'wellle/targets.vim'
 "Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 "Plug 'vim-ctrlspace/vim-ctrlspace'
