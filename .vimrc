@@ -320,6 +320,7 @@ nnoremap <Bslash><Insert> :enew<CR>
 " Delete buffer
 nnoremap <Bslash><Delete> :bdel<CR>
 nnoremap <leader>d :bdel<CR>
+nnoremap <leader>e :e **/
 
 " Move between panes:
 nnoremap <C-j> <C-w>j
@@ -385,7 +386,7 @@ set complete+=kspell
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m
+  set grepformat=%f:%l:%c:%m           " :h errorformat
 " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 " ag is fast enough that CtrlP doesn't need to cache
@@ -499,8 +500,9 @@ Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
 "<Git plugins
 "Coding plugins>
 Plug 'tpope/vim-commentary'
-Plug 'vim-syntastic/syntastic'
 Plug 'mattn/emmet-vim'
+" TODO: Consider removing syntastic & ale for native 'au's.
+Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
 "Plug 'terryma/vim-multiple-cursors'
 "<Coding plugins
