@@ -112,6 +112,7 @@ endif
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 " TODO Test md fenced code block syntax:
 "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+let b:lion_squeeze_spaces = 1
 
 " Wrapping
 set textwidth=80
