@@ -121,7 +121,6 @@ nnoremap <F4> :set wrap! wrap?<cr>
 
 " Indenting.
 set autoindent                         " Copy indent from current line when starting a new line
-"set smartindent
 "set nostartofline                     " Emulate typical editor navigation behaviour
 silent! set breakindent                " Indent wrapped lines
 
@@ -223,8 +222,8 @@ if has('folding')
 endif
 "Indent w/manual folds:
 "augroup vimrc
-"  au BufReadPre * setlocal foldmethod=indent
-"  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+"  au BufReadPre * setl foldmethod=indent
+"  au BufWinEnter * if &fdm == 'indent' | setl foldmethod=manual | endif
 "augroup END
 
 " GUI options
@@ -490,7 +489,7 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 "Plug 'vim-ctrlspace/vim-ctrlspace'
 "Git plugins>
