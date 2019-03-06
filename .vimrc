@@ -10,7 +10,7 @@ set shcf=-c
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 " Use UTF-8 if we can and env LANG didn't tell us not to
 if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
-  set encoding=utf-8
+    set encoding=utf-8
 endif
 set modelines=0                        " Prevent some security issues (settings options by buffer content)
 set ttyfast                            " Indicates a fast terminal connection.
@@ -86,8 +86,8 @@ set backupskip=/tmp/*                  " Add some paths not to back up
 set backupskip^=/dev/shm/*             " Shared memory RAM disk
 set backupskip^=/var/tmp/*             " Debian's $TMPDIR for sudoedit(8)
 if !has('unix')
-  set backupskip-=/dev/shm/*
-  set backupskip-=/var/tmp/*
+    set backupskip-=/dev/shm/*
+    set backupskip-=/var/tmp/*
 endif
 set history=2000
 set undolevels=2000                    " Number of undos
@@ -105,7 +105,7 @@ nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 " TODO Test in au bufread to restore after .md format changes.
 set formatoptions=ncroql              " How automatic formatting works. See :h fo-table
 if v:version + has('patch541') >= 704
-  set formatoptions+=j
+    set formatoptions+=j
 endif
 "au bufread *.md set formatoptions=want " Attempt markdown list behaviour
 " Make sure *.md is seen as markdown.
@@ -364,8 +364,8 @@ source ~/.vim/mappings.vim
 " ===================
 " Add completion options
 if exists('+completeopt')
-  set completeopt+=longest             " Insert longest common substring
-  set completeopt+=menuone             " Show the menu even if only one match
+    set completeopt+=longest             " Insert longest common substring
+    set completeopt+=menuone             " Show the menu even if only one match
 endif
 set wildignore=*.o,*.obj,*~            " Stuff to ignore when tab completing
 set wildignore+=*vim/backups*
@@ -387,13 +387,13 @@ set complete+=kspell
 
 " Use Silver Searcher for :grep
 if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m           " :h errorformat
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+    " Use ag over grep
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c:%m           " :h errorformat
+    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
 endif
 
 " Use ripgrep for :grep if ag not available
