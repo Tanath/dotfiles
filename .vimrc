@@ -199,9 +199,9 @@ let g:airline#extensions#syntastic#enabled = 1
 "let g:airline_extensions = ['branch', 'syntastic', 'fugitiveline']
 
 " Line numbers, cursor
-setg number                            " Show line numbers.
-setg relativenumber                    " Show relative line numbers.
-setg scrolloff=2                       " Keep cursor # lines from top/bottom.
+set number                            " Show line numbers.
+set relativenumber                    " Show relative line numbers.
+set scrolloff=2                       " Keep cursor # lines from top/bottom.
 set cursorline                         " Underline line with cursor
 set ruler                              " Show the line and column number of the cursor position,
                                        " separated by a comma.
