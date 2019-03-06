@@ -485,6 +485,7 @@ endif
 Plug 'junegunn/vim-plug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-characterize'
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf'
