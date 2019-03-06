@@ -126,8 +126,8 @@ set autoindent                         " Copy indent from current line when star
 silent! set breakindent                " Indent wrapped lines
 
 " Tabbing, backspace
-set tabstop=4 softtabstop=4
-set shiftwidth=4                       " Number of spaces to use for (auto)indenting.
+set tabstop=4 softtabstop=4 shiftwidth=4
+set shiftround                         " Round indents to multiple of shiftwidth.
 set expandtab                          " Expand tabs & indents to spaces. <C-v><tab> to not.
 set smarttab                           " <Tab> at start of a line puts spaces. <BS> deletes
                                        " 'shiftwidth' spaces.
@@ -496,6 +496,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tommcdo/vim-lion'
 Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
 Plug 'wellle/targets.vim'
+"Plug 'mbbill/undotree'
 "Plug 'scrooloose/nerdtree'
 Plug 'vimwiki/vimwiki'
 "Plug 'vim-ctrlspace/vim-ctrlspace'
