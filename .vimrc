@@ -63,9 +63,9 @@ au BufWrite * mkview
 
 " Backup, swap, undo files
 if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
-	silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
-	silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
-	silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
+    silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
+    silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
+    silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
 endif
 set backup
 if has('persistent_undo')
@@ -94,10 +94,10 @@ set undolevels=2000                    " Number of undos
 set undoreload=10000                   " Number of lines to save for undo
 
 " Searching
-set ignorecase						   " do case insensitive matching
-set smartcase						   " overrides ignorecase if uppercase used in search string
-set incsearch						   " Incremental search as you type.
-set wrapscan						   " jumps to the beginning if reaching end, and viceversa
+set ignorecase                         " Do case insensitive matching
+set smartcase                          " Overrides ignorecase if uppercase used in search string
+set incsearch                          " Incremental search as you type.
+set wrapscan                           " jumps to the beginning if reaching end, and viceversa
 " To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
 nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
@@ -122,12 +122,13 @@ nnoremap <F4> :set wrap! wrap?<cr>
 
 " Indenting.
 set autoindent                         " Copy indent from current line when starting a new line
+set shiftround                         " Round indents to multiple of shiftwidth.
+set copyindent                         " Don't change indent type (spaces/tabs).
 "set nostartofline                     " Emulate typical editor navigation behaviour
 silent! set breakindent                " Indent wrapped lines
 
 " Tabbing, backspace
 set tabstop=4 softtabstop=4 shiftwidth=4
-set shiftround                         " Round indents to multiple of shiftwidth.
 set expandtab                          " Expand tabs & indents to spaces. <C-v><tab> to not.
 set smarttab                           " <Tab> at start of a line puts spaces. <BS> deletes
                                        " 'shiftwidth' spaces.
@@ -137,7 +138,7 @@ set backspace=indent,eol,start         " Better handling of <BS>
 " Interface
 " =========
 if has('mouse')
-	set mouse=a                        " Enable the use of the mouse (all modes).
+    set mouse=a                        " Enable the use of the mouse (all modes).
 endif
 set visualbell                         " Flash instead of beep
 "set t_vb=                              " Disable even the flashing
@@ -241,7 +242,7 @@ set mousehide                          " Hide the mouse while typing
 set winaltkeys=no                      " Don't use ALT to access the menu
 " Set font for gvim if running.
 if has('gui_running')
-	set guifont=Noto\ Mono\ 9
+    set guifont=Noto\ Mono\ 9
 endif
 set termguicolors
 
@@ -398,8 +399,8 @@ endif
 " Use ripgrep for :grep if ag not available
 if !executable('ag')
     if executable('rg')
-    	set grepprg=rg\ --vimgrep
-    	set grepformat^=%f:%l:%c:%m
+        set grepprg=rg\ --vimgrep
+        set grepformat^=%f:%l:%c:%m
     endif
 endif
 
@@ -434,7 +435,7 @@ let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
 
 " Vimwiki
 if isdirectory($HOME . "/vimwiki/")
-	source ~/vw.vim
+    source ~/vw.vim
 endif
 
 " Todo
