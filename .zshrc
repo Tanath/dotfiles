@@ -70,9 +70,9 @@ WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the 
 # Custom aliases
 if [[ -x "`whence -p dircolors`" ]]; then
     eval `dircolors`
-	LSPARAMS=(-CFh --group-directories-first --time-style=long-iso --color=always)
+    LSPARAMS=(-CFh --group-directories-first --time-style=long-iso --color=always)
 else
-	LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
+    LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
 (( $+commands[sudo] )) && alias sudo='sudo '
@@ -81,10 +81,10 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
 alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) && alias svc='systemctl'       # Services
-(( $+commands[fzf] )) && alias fm='fzf -m'                 # fzf multi-select
-(( $+commands[fzf] )) && alias dmf='dmesg | fm +s --tac'         # Search dmesg output with fzf.
+(( $+commands[fzf] )) && alias fm='fzf -m --tac'           # fzf multi-select
+(( $+commands[fzf] )) && alias dmf='dmesg | fm +s'         # Search dmesg output with fzf.
 (( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find a file with fzf and open it.
-(( $+commands[fzf] )) && alias psf='ps -ef | fm --tac'     # Use fzf to find and output a process.
+(( $+commands[fzf] )) && alias psf='ps -ef | fm'           # Use fzf to find and output a process.
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -110,7 +110,7 @@ alias lsblk='lsblk -f'
 alias powertop='sudo powertop'
 alias lp='lsof -Pnl +M -i4'                                # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
-(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fm --tac' # pipe to fzf (ss port find)
+(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fm' # pipe to fzf (ss port find)
 alias big='du -sh * | sort -hr'
 alias bh='big | head'
 alias jerr='journalctl -p3 -xb'                            # Journalctl errors this boot
@@ -184,7 +184,7 @@ x () {
         case $i in
             *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
                    c=(bsdtar xvf);;
-		    *.(tar|iso))
+            *.(tar|iso))
                    c=(bsdtar xvf);;
             *.7z)  c=(7z x);;
             *.Z)   c=(uncompress);;
