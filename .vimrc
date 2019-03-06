@@ -503,6 +503,7 @@ Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
 "Coding plugins>
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
+Plug 'ludovicchabant/vim-gutentags'
 " TODO: Consider removing syntastic & ale for native 'au's.
 Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
