@@ -466,11 +466,6 @@ nnoremap <leader>t :Todo<space><cr>
 
 " Vim-plug
 if executable('curl')
-    if empty(glob('~/.vim/autoload/plug.vim'))
-        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
     "call plug#begin('~/.vim/plugged')
     " Make sure you use single quotes.
     " You can conditionally activate plugins but PlugClean will remove plugins that
@@ -482,9 +477,19 @@ if executable('curl')
     "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
     if has('win32') || has('win64')
         " For Windows users
+        if empty(glob('~/.vimfiles/autoload/plug.vim'))
+            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        endif
         call plug#begin('~/vimfiles/bundle')
     else
         " For Linux/Mac users
+        if empty(glob('~/.vim/autoload/plug.vim'))
+            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        endif
         call plug#begin('~/.vim/bundle')
         Plug 'tpope/vim-eunuch'
     endif
