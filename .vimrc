@@ -216,7 +216,6 @@ if has('folding')
     set foldlevelstart=1               " Start with folds open/closed/some, 99/0/1
     set foldnestmax=10                 " Max depth 10
     "set foldmethod=syntax
-    "set foldcolumn=2
     " Allow conceal, but not if the cursor is on the line
     set conceallevel=2
     set concealcursor=
@@ -268,7 +267,6 @@ nmap <F3> :grep<space>
 if has('terminal')
     nmap <F10> :terminal<CR>
 endif
-nnoremap <leader>m :update <bar> make<cr>
 " FIXME: Places an error msg over cursor line until line change.
 " Or hides vim until user input.
 "nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
@@ -515,6 +513,7 @@ Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
 Plug 'tpope/vim-commentary'
 Plug 'mattn/emmet-vim'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-dispatch'
 " TODO: Consider removing syntastic & ale for native 'au's.
 Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'

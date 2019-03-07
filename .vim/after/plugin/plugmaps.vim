@@ -41,6 +41,13 @@ if exists(':Gstatus')
     nnoremap <leader>gmv :Gmove<cr>
 endif
 
+" tpope/vim-dispatch
+if exists(':Make')
+    nnoremap <leader>m :update <bar> Make<cr>
+else
+    nnoremap <leader>m :update <bar> make<cr>
+endif
+
 " scrooloose/nerdtree
 if exists(':NERDTree')
     nnoremap <leader>nn :NERDTreeToggle<cr>
