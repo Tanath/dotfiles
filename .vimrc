@@ -63,10 +63,20 @@ au BufWrite * mkview
 "endif
 
 " Backup, swap, undo files
-if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
-    silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
-    silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
-    silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
+if has('win32') || has('win64')
+    if !isdirectory($HOME . "vimfiles")        " Create vim dirs if missing
+        silent !md ~/vimfiles/cache/backup
+        silent !md ~/vimfiles/cache/view
+        silent !md ~/vimfiles/cache/undo
+        silent !md ~/vimfiles/pack/plugins/start
+        silent !md ~/vimfiles/pack/plugins/opt
+    endif
+else
+    if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
+        silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
+        silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
+        silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
+    endif
 endif
 set backup
 if has('persistent_undo')
@@ -477,9 +487,8 @@ if executable('curl')
     "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
     if has('win32') || has('win64')
         " For Windows users
-        if empty(glob('~/.vimfiles/autoload/plug.vim'))
-            silent !curl -fLo ~/.vimfiles/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        if empty(glob('~/vimfiles/autoload/plug.vim'))
+            silent !curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
         endif
         call plug#begin('~/vimfiles/bundle')
