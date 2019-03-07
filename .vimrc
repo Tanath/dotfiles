@@ -478,7 +478,7 @@ if executable('curl')
     if has('win32') || has('win64')
         " For Windows users
         if empty(glob('~/.vimfiles/autoload/plug.vim'))
-            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            silent !curl -fLo ~/.vimfiles/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
         endif
