@@ -33,11 +33,11 @@ set path+=**                           " Search under cwd.
 " Language, spelling.
 " Set language from user's environment.
 " TODO: Support multiple comma-separated langs.
-let g:lang=tolower(split(expand($LANG), '\.')[0])
+let g:lang=tolower(split(expand(v:lang), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
-set spell spellsuggest=best
 map <F7> :setl spell! \| let &spelllang=g:lang<CR>
+set spell spellsuggest=best
 " Quick spelling fixes.
 nmap <leader>1 1z=
 nmap <leader>2 2z=

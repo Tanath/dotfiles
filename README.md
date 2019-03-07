@@ -3,7 +3,7 @@
 My dotfiles, and other config files & system tweaks, and miscellaneous references.
 
 ## vim
-My `.vimrc` uses [vim-plug](https://github.com/junegunn/vim-plug/) and it automatically installs if not present, and installs the enabled plugins from `.vimrc`. Plugins are at the end. `<Leader>` key is default (`\`). Spell check language sourced from `$LANG`. Some useful toggles/mappings:
+My `.vimrc` uses [vim-plug](https://github.com/junegunn/vim-plug/) and it automatically installs if not present, and installs the enabled plugins from `.vimrc`. Plugins are at the end. `<Leader>` key is default (`\`). Some useful toggles/mappings:
 
 * `<F4>` toggles wrap.
 * `<F7>` toggles spell check.
