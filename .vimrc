@@ -317,6 +317,26 @@ xnoremap > >gv
 vmap <leader>ca :!column -t<cr>
 vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 
+" Saving
+" ------
+if has('win32') || has('win64')
+    " TODO: Something here.
+else
+    " Write the file when you opened it without root privileges.
+    " :w!!
+    cmap w!! w !sudo tee % > /dev/null
+endif
+" Save if needed. Requires for terminal:
+" alias vim="stty stop '' -ixoff ; vim"
+" If terminal freezes, hit <c-q> to resume.
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <C-s> :update<cr>
+vmap <c-s> <Esc><c-s>gv
+imap <c-s> <c-o><c-s>
+" For when <c-s> doesn't work
+nnoremap <leader>s :update<cr>
+vmap <leader>s <Esc>:update<cr>gv
+
 " Buffers, navigation
 " =======
 set hidden                             " Let you switch buffers without saving current.
@@ -369,7 +389,11 @@ nnoremap <C-left> :tabprev<CR>
 
 " For mappings needing conditionals/dependencies.
 " TODO Move to config/ or appropriate location.
-source ~/.vim/mappings.vim
+if has('win32') || has('win64')
+    silent! source ~/vimfiles/mappings.vim
+else
+    silent! source ~/.vim/mappings.vim
+endif
 
 " Completion/Omnifunc
 " ===================
