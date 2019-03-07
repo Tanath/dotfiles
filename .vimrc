@@ -29,6 +29,7 @@ set confirm                            " Prompt instead of just rejecting risky 
 set include=                           " Don't assume editing C; let the filetype set this
 set nrformats-=octal                   " Treat numbers with leading 0 as decimal, not octal
 set path+=**                           " Search under cwd.
+set shortmess=aToO
 
 " Language, spelling.
 " Set language from user's environment.
