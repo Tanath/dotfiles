@@ -487,9 +487,16 @@ if executable('curl')
     "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
     if has('win32') || has('win64')
         " For Windows users
-        if empty(glob('~/vimfiles/autoload/plug.vim'))
-            silent !curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        if v:progname==?'vim' || v:progname==?'vimdiff'
+            if empty(glob('~/vimfiles/autoload/plug.vim'))
+                silent !curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+            endif
+        elseif v:progname==?'nvim'
+            if empty(glob('~\AppData\Local\nvim\autoload'))
+                silent !curl -fLo ~\AppData\Local\nvim\autoload.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+            endif
         endif
         call plug#begin('~/vimfiles/bundle')
     else
