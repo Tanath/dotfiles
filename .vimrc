@@ -224,7 +224,7 @@ endif
 "Indent w/manual folds:
 "augroup vimrc
 "  au BufReadPre * setl foldmethod=indent
-"  au BufWinEnter * if &fdm == 'indent' | setl foldmethod=manual | endif
+"  au BufWinEnter * if &fdm ==# 'indent' | setl foldmethod=manual | endif
 "augroup END
 
 " GUI options
@@ -464,66 +464,70 @@ command! Todo call s:todo()
 nnoremap <leader>t :Todo<space><cr>
 
 " Vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-"call plug#begin('~/.vim/plugged')
-" Make sure you use single quotes.
-" You can conditionally activate plugins but PlugClean will remove plugins that
-" fail, which can be a prob for shared configs (eg., gvim & terminal vim).
-" Workaround example:
-" Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
-" Workaround example for Gist as plugin:
-" Plug 'https://gist.github.com/952560a43601cd9898f1.git',
-"    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
-if has('win32') || has('win64')
-    " For Windows users
-    call plug#begin('~/vimfiles/bundle')
+if executable('curl')
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+            \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+    "call plug#begin('~/.vim/plugged')
+    " Make sure you use single quotes.
+    " You can conditionally activate plugins but PlugClean will remove plugins that
+    " fail, which can be a prob for shared configs (eg., gvim & terminal vim).
+    " Workaround example:
+    " Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+    " Workaround example for Gist as plugin:
+    " Plug 'https://gist.github.com/952560a43601cd9898f1.git',
+    "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
+    if has('win32') || has('win64')
+        " For Windows users
+        call plug#begin('~/vimfiles/bundle')
+    else
+        " For Linux/Mac users
+        call plug#begin('~/.vim/bundle')
+        Plug 'tpope/vim-eunuch'
+    endif
+    Plug 'junegunn/vim-plug'
+    Plug 'editorconfig/editorconfig-vim'
+    Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-characterize'
+    Plug 'vim-airline/vim-airline'
+    "Plug 'vim-airline/vim-airline-themes'
+    Plug 'junegunn/fzf'
+    Plug 'junegunn/fzf.vim'
+    Plug 'tpope/vim-speeddating'
+    Plug 'tpope/vim-repeat'
+    Plug 'tommcdo/vim-lion'
+    Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
+    Plug 'wellle/targets.vim'
+    Plug 'tpope/vim-surround'
+    "Plug 'mbbill/undotree'
+    "Plug 'scrooloose/nerdtree'
+    Plug 'vimwiki/vimwiki'
+    "Plug 'vim-ctrlspace/vim-ctrlspace'
+    "Git plugins>
+    Plug 'tpope/vim-fugitive'
+    Plug 'rbong/vim-flog'
+    Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+    "<Git plugins
+    "Coding plugins>
+    Plug 'tpope/vim-commentary'
+    Plug 'mattn/emmet-vim'
+    Plug 'ludovicchabant/vim-gutentags'
+    Plug 'tpope/vim-dispatch'
+    " TODO: Consider removing syntastic & ale for native 'au's.
+    Plug 'vim-syntastic/syntastic'
+    Plug 'w0rp/ale'
+    "Plug 'terryma/vim-multiple-cursors'
+    "<Coding plugins
+    "Python plugins>
+    Plug 'davidhalter/jedi-vim'
+    Plug 'jmcantrell/vim-virtualenv'
+    "<Python plugins
+    call plug#end()
 else
-    " For Linux/Mac users
-    call plug#begin('~/.vim/bundle')
-    Plug 'tpope/vim-eunuch'
+    echo "Curl missing, skipping vim-plug & plugins."
 endif
-Plug 'junegunn/vim-plug'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-characterize'
-Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-repeat'
-Plug 'tommcdo/vim-lion'
-Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
-Plug 'wellle/targets.vim'
-Plug 'tpope/vim-surround'
-"Plug 'mbbill/undotree'
-"Plug 'scrooloose/nerdtree'
-Plug 'vimwiki/vimwiki'
-"Plug 'vim-ctrlspace/vim-ctrlspace'
-"Git plugins>
-Plug 'tpope/vim-fugitive'
-Plug 'rbong/vim-flog'
-Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
-"<Git plugins
-"Coding plugins>
-Plug 'tpope/vim-commentary'
-Plug 'mattn/emmet-vim'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'tpope/vim-dispatch'
-" TODO: Consider removing syntastic & ale for native 'au's.
-Plug 'vim-syntastic/syntastic'
-Plug 'w0rp/ale'
-"Plug 'terryma/vim-multiple-cursors'
-"<Coding plugins
-"Python plugins>
-Plug 'davidhalter/jedi-vim'
-Plug 'jmcantrell/vim-virtualenv'
-"<Python plugins
-call plug#end()
 
 " Source any .vim files from ~/.vim/config
 "runtime! config/*.vim
