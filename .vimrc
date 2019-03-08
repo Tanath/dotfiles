@@ -271,7 +271,8 @@ set termguicolors
 nnoremap j gj
 nnoremap k gk
 " Toggle folds, tab like spacemacs/spacevim.
-nnoremap <tab> za
+" Remapping <tab> remaps <c-i> too.
+nnoremap <BS> za
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
 " control + space in terminal hack
