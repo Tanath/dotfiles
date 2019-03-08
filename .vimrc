@@ -523,7 +523,7 @@ if executable('curl')
             endif
         elseif v:progname==?'nvim'
             if empty(glob($HOME.'\AppData\Local\nvim\autoload'))
-                silent !curl --create-dirs -fLo '~\AppData\Local\nvim\autoload\plug.vim' 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+                silent !curl --create-dirs -fLo ~\AppData\Local\nvim\autoload\plug.vim 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         endif
