@@ -510,7 +510,7 @@ if executable('curl')
     " Plug 'https://gist.github.com/952560a43601cd9898f1.git',
     "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
     if has('win32') || has('win64')
-        " For Windows users
+        " For Windows
         if v:progname==?'vim' || v:progname==?'vimdiff'
             if empty(glob('~/vimfiles/autoload/plug.vim'))
                 silent !curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -518,13 +518,13 @@ if executable('curl')
             endif
         elseif v:progname==?'nvim'
             if empty(glob('~\AppData\Local\nvim\autoload'))
-                silent !curl -fLo ~\AppData\Local\nvim\autoload.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                silent !curl -fLo ~\AppData\Local\nvim\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         endif
         call plug#begin('~/vimfiles/bundle')
     else
-        " For Linux/Mac users
+        " For Linux/Mac
         if empty(glob('~/.vim/autoload/plug.vim'))
             silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
