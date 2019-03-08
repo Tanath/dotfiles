@@ -451,7 +451,7 @@ endif
 nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
 if executable('chmod')
-    autocmd Filetype sh autocmd BufWritePost * silent !chmod u+x %
+    autocmd FileType sh autocmd BufWritePost * silent !chmod u+x %
 endif
 
 " Better formatting for some file types
@@ -523,7 +523,7 @@ if executable('curl')
             endif
         elseif v:progname==?'nvim'
             if empty(glob($HOME.'\AppData\Local\nvim\autoload'))
-                silent !curl -fLo ~\AppData\Local\nvim\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                silent !curl --create-dirs -fLo '~\AppData\Local\nvim\autoload\plug.vim' 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         endif
