@@ -64,7 +64,8 @@ au BufWrite * mkview
 
 " Backup, swap, undo files
 if has('win32') || has('win64')
-    if !isdirectory($HOME . "vimfiles")        " Create vim dirs if missing
+    " Create vim dirs if missing
+    if !isdirectory($HOME.'/vimfiles')
         silent !md ~/vimfiles/cache/backup
         silent !md ~/vimfiles/cache/view
         silent !md ~/vimfiles/cache/undo
@@ -72,7 +73,8 @@ if has('win32') || has('win64')
         silent !md ~/vimfiles/pack/plugins/opt
     endif
 else
-    if !isdirectory($HOME . ".vim")        " Create vim dirs if missing
+    " Create vim dirs if missing
+    if !isdirectory($HOME.'/.vim')
         silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
         silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
         silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
@@ -517,7 +519,7 @@ if executable('curl')
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         elseif v:progname==?'nvim'
-            if empty(glob('~\AppData\Local\nvim\autoload'))
+            if empty(glob($HOME.'\AppData\Local\nvim\autoload'))
                 silent !curl -fLo ~\AppData\Local\nvim\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
