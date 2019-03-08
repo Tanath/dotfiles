@@ -112,6 +112,7 @@ set smartcase                          " Overrides ignorecase if uppercase used 
 set incsearch                          " Incremental search as you type.
 set wrapscan                           " jumps to the beginning if reaching end, and viceversa
 " To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
+" FIXME: Not working in NeoVim for Windows.
 nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
 " Auto-formatting
@@ -449,7 +450,9 @@ endif
 
 nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 
-autocmd Filetype sh autocmd BufWritePost * silent !chmod +x %
+if executable('chmod')
+    autocmd Filetype sh autocmd BufWritePost * silent !chmod u+x %
+endif
 
 " Better formatting for some file types
 if executable('python')
