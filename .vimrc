@@ -114,11 +114,6 @@ set wrapscan                           " jumps to the beginning if reaching end,
 " To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
 " FIXME: Not working in NeoVim for Windows.
 nnoremap <C-_> :set hlsearch! hlsearch?<CR>
-" And replace. Change word under cursor, n/N for matches, '.' to repeat.
-nnoremap c* /\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn
-nnoremap c# ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
-nnoremap d* /\<<C-r>=expand('<cword>')<CR>\>\C<CR>``dgn
-nnoremap d# ?\<<C-r>=expand('<cword>')<CR>\>\C<CR>``dgN
 
 " Auto-formatting
 " TODO Test in au bufread to restore after .md format changes.
