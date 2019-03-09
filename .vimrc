@@ -369,9 +369,13 @@ nnoremap <C-l> <C-w>l
 " Cycle through argument list
 nnoremap [a :prev<CR>
 nnoremap ]a :next<CR>
+nnoremap [A :first<CR>
+nnoremap ]A :last<CR>
 " Cycle through buffers
 nnoremap [b :bprev<CR>
 nnoremap ]b :bnext<CR>
+nnoremap [B :bfirst<CR>
+nnoremap ]B :blast<CR>
 " Cycle through quickfix/errors
 " TODO Clobbered by gitgutter
 "nnoremap [c :cprev<CR>zz
@@ -386,6 +390,8 @@ nnoremap ]E :clast<CR>zz
 " Cycle through location list items
 nnoremap [l :lprev<CR>zz
 nnoremap ]l :lnext<CR>zz
+nnoremap [L :lfirst<CR>zz
+nnoremap ]L :llast<CR>zz
 
 " Cycle through buffers, tabs:
 nnoremap <C-down> :bnext<CR>
