@@ -351,8 +351,8 @@ map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
-nnoremap <leader>b :b<space><c-d>
-
+nnoremap <leader>bb :b<space><c-d>
+nnoremap <leader>bm :bm<cr>
 " New buffer
 nnoremap <Bslash><Insert> :enew<CR>
 " Delete buffer
