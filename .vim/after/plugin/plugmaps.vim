@@ -32,7 +32,7 @@ endif
 
 " tpope/vim-fugitive
 if exists(':Gstatus')
-    "nnoremap <leader>gs :Gstatus<cr>
+    nnoremap <leader>gs :Gstatus<cr>
     nnoremap <leader>gbl :Gblame<cr>
     nnoremap <leader>gco :Gcommit<cr>
     nnoremap <leader>gpl :Gpull<cr>
