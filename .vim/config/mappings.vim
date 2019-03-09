@@ -55,6 +55,9 @@ onoremap <leader>_ :<C-U>normal! `[v`]<CR>
 " Uses entire buffer as a linewise object
 onoremap <leader>% :<C-U>normal! 1GVG<CR>
 
+" Find next instance of last changed word and repeat.
+nnoremap R /<c-r>-<cr>.
+
 " Retain selection when changing indent level
 xnoremap < <gv
 xnoremap > >gv
