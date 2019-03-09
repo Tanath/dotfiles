@@ -381,6 +381,8 @@ nnoremap ]b :bnext<CR>
 "nnoremap [[ :cprev<cr>zz
 nnoremap [e :cprev<CR>zz
 nnoremap ]e :cnext<CR>zz
+nnoremap [E :cfirst<CR>zz
+nnoremap ]E :clast<CR>zz
 " Cycle through location list items
 nnoremap [l :lprev<CR>zz
 nnoremap ]l :lnext<CR>zz
