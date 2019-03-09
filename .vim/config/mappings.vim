@@ -7,9 +7,9 @@
 " Up/down by row instead of line:
 nnoremap j gj
 nnoremap k gk
-" Toggle folds, tab like spacemacs/spacevim.
-" Remapping <tab> remaps <c-i> too.
+" Toggle folds. Was tab, but remapping <tab> remaps <c-i> too.
 nnoremap <BS> za
+vnoremap <BS> zf
 " F1 to be a context sensitive keyword-under-cursor lookup
 nnoremap <F1> :help <C-R><C-W><CR>
 " control + space in terminal hack
