@@ -261,8 +261,8 @@ set termguicolors
 
 " Mappings
 " ========
-"let mapleader = " "
-"let maplocalleader = " "
+"let mapleader = "\<space>"
+"let maplocalleader = "\<space>"
 "nnoremap <SPACE> <Nop>
 
 " Misc mappings.
@@ -559,6 +559,7 @@ if executable('curl')
     "Plug 'vim-ctrlspace/vim-ctrlspace'
     "Git plugins>
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'rbong/vim-flog'
     Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
     "<Git plugins

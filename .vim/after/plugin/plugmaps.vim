@@ -30,7 +30,7 @@ if exists(':SudoWrite')
     nnoremap <leader>S :SudoWrite<cr>
 endif
 
-" tpope/fugitive
+" tpope/vim-fugitive
 if exists(':Gstatus')
     nnoremap <leader>gs :Gstatus<cr>
     nnoremap <leader>gbl :Gblame<cr>
