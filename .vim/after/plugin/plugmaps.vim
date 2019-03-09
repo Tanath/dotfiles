@@ -39,6 +39,7 @@ if exists(':Gstatus')
     nnoremap <leader>gps :Gpush<cr>
     nnoremap <leader>gmr :Gmerge<cr>
     nnoremap <leader>gmv :Gmove<cr>
+    autocmd BufReadPost fugitive://* set bufhidden=delete
 endif
 
 " tpope/vim-dispatch
