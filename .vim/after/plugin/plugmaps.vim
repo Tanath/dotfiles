@@ -34,7 +34,7 @@ endif
 if exists(':Gstatus')
     nnoremap <leader>gs :Gstatus<cr>
     nnoremap <leader>gbl :Gblame<cr>
-    nnoremap <leader>gc :Gcommit<cr>
+    nnoremap <leader>gco :Gcommit<cr>
     nnoremap <leader>gpl :Gpull<cr>
     nnoremap <leader>gps :Gpush<cr>
     nnoremap <leader>gmr :Gmerge<cr>
