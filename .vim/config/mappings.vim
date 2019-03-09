@@ -115,6 +115,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Browse oldfiles
+nnoremap <leader>o :browse oldfiles<cr>
+
 " Cycle through argument list
 nnoremap [a :prev<CR>
 nnoremap ]a :next<CR>
