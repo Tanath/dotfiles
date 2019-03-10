@@ -33,8 +33,8 @@ nnoremap Q gq
 " Search definition of  word under cursor.
 " TODO: Test $BROWSER on Windows.
 nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
-command! -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
-command! -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
+command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
+command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
 
 " Quick yank/paste
 set pastetoggle=<F2>
