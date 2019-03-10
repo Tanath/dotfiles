@@ -1,6 +1,6 @@
 " Source config
 " =============
-" Set up vim dirs.
+" Set up vim dirs. {{{
 " Backup, swap, undo files
 if has('win32') || has('win64')
     " Create vim dirs if missing
@@ -46,21 +46,22 @@ endif
 set history=2000
 set undolevels=2000                    " Number of undos
 set undoreload=8000                    " Number of lines to save for undo
+" }}}
 
-" Source any .vim files from config dir.
+" Source any .vim files from config dir. {{{
 if has('win32') || has('win64')
     runtime! config/*.vim
-    " ~/vimfiles/config/settings.vim
-    " ~/vimfiles/config/plugins.vim
-    " ~/vimfiles/config/mappings.vim
+    " vimfiles/config/settings.vim
+    " vimfiles/config/plugins.vim
+    " vimfiles/config/mappings.vim
 else
     runtime! config/*.vim
-    " ~/.vim/config/settings.vim
-    " ~/.vim/config/plugins.vim
-    " ~/.vim/config/mappings.vim
-endif
+    " .vim/config/settings.vim
+    " .vim/config/plugins.vim
+    " .vim/config/mappings.vim
+endif " }}}
 
-" Todo
+" Todo {{{
 " ====
 " https://github.com/junegunn/dotfiles/blob/master/vimrc#L856
 function! s:todo() abort
@@ -82,3 +83,4 @@ function! s:todo() abort
 endfunction
 command! Todo call s:todo()
 nnoremap <leader>t :Todo<space><cr>
+" }}}
