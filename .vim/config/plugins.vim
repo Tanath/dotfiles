@@ -74,6 +74,6 @@ if executable('curl')
     "<Python plugins
     call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
 else
-    echo "Curl missing, skipping vim-plug & plugins."
+    echomsg "Curl missing, skipping vim-plug & plugins."
 endif
 
