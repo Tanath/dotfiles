@@ -62,6 +62,7 @@ if executable('curl')
     Plug 'mattn/emmet-vim'
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'tpope/vim-dispatch'
+    Plug 'janko/vim-test'
     " TODO: Consider removing syntastic & ale for native 'au's.
     Plug 'vim-syntastic/syntastic'
     Plug 'w0rp/ale'
@@ -71,7 +72,7 @@ if executable('curl')
     Plug 'davidhalter/jedi-vim'
     Plug 'jmcantrell/vim-virtualenv'
     "<Python plugins
-    call plug#end()
+    call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
 else
     echo "Curl missing, skipping vim-plug & plugins."
 endif

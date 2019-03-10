@@ -28,9 +28,10 @@ if exists("*strftime")
     imap <F8> <c-r>=strftime('%c')<cr>
 endif
 " Don't use Ex mode, use Q for formatting
-map Q gq
+nnoremap Q gq
 
 " Search definition of  word under cursor.
+" TODO: Test $BROWSER on Windows.
 nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
 command! -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
 command! -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
@@ -39,14 +40,12 @@ command! -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr 
 set pastetoggle=<F2>
 " Alt+y
 if !has('gui_running')
-    map y <A-y>
+    vmap y <A-y>
 endif
-"vmap <A-y> "+ygv
+vnoremap <A-y> "+ygv
 vnoremap <Leader>y "+ygv
-vnoremap <Leader>Y "*ygv
 nnoremap <M-p> "+p
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "*p
+nnoremap <Leader>P "+p
 nnoremap Y y$
 nnoremap <leader>r :<C-U>registers<CR>
 

@@ -1,5 +1,12 @@
 " Plugins
 " -------
+" junegunn/vim-plug
+if exists(':Plug')
+    nnoremap <leader>pu :PlugUpdate
+    nnoremap <leader>ps :PlugStatus
+    nnoremap <leader>pd :PlugDiff
+endif
+
 " junegunn/fzf.vim
 if exists(':FZF')
     " vim-fzf-git
@@ -47,6 +54,27 @@ if exists(':Make')
     nnoremap <leader>m :update <bar> Make<cr>
 else
     nnoremap <leader>m :update <bar> make<cr>
+endif
+
+" janko/vim-test
+if exists(':TestFile')
+    " By default all runners are loaded.
+    let test#enabled_runners = ['python#unittest', 'python#pytest', 'python#djangotest']
+    " Runners available: 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose' and Python's built-in 'unittest'
+    let test#python#runner = 'pytest'
+    " make test commands execute using dispatch.vim
+    "let test#strategy = 'dispatch'
+    " Don't let testers clear terminal.
+    let g:test#preserve_screen = 1
+    " Uses CWD as project root by default.
+    "let test#project_root = '/path/to/your/project'
+    " Auto-run when test file is saved.
+    augroup test
+        autocmd!
+        autocmd BufWrite * if test#exists() |
+            \   TestFile |
+            \ endif
+    augroup END
 endif
 
 " scrooloose/nerdtree
