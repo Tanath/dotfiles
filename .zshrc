@@ -35,6 +35,10 @@ zstyle ':completion:*' accept-exact '*(N)'
 #zstyle ':completion:*' use-cache on
 #zstyle ':completion:*' cache-path ~/.zsh/cache
 
+# Fzf
+[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
+[[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
+
 bindkey -e
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
