@@ -1,10 +1,11 @@
 " Source config
 " =============
 " Set up vim dirs. {{{
+let $VIMDIR = $HOME.(has('nvim') ? '/.config/nvim' : (has('unix') ? '/.vim' : '/vimfiles'))
 " Backup, swap, undo files
 if has('win32') || has('win64')
     " Create vim dirs if missing
-    if !isdirectory($HOME.'/vimfiles')
+    if !isdirectory($VIMDIR)
         silent !md ~/vimfiles/cache/backup
         silent !md ~/vimfiles/cache/view
         silent !md ~/vimfiles/cache/undo
@@ -14,28 +15,24 @@ if has('win32') || has('win64')
     endif
 else
     " Create vim dirs if missing
-    if !isdirectory($HOME.'/.vim')
-        silent !mkdir -p ~/.vim/cache/{backup,view} > /dev/null 2>&1
-        silent !mkdir -p ~/.vim/cache/undo > /dev/null 2>&1
-        silent !mkdir -p ~/.vim/pack/plugins/{start,opt} > /dev/null 2>&1
-        silent !mkdir -p ~/.vim/config/ > /dev/null 2>&1
+    if !isdirectory($VIMDIR)
+        silent !mkdir -p $VIMDIR/cache/{backup,view} > /dev/null 2>&1
+        silent !mkdir -p $VIMDIR/cache/undo > /dev/null 2>&1
+        silent !mkdir -p $VIMDIR/pack/plugins/{start,opt} > /dev/null 2>&1
+        silent !mkdir -p $VIMDIR/config/ > /dev/null 2>&1
     endif
 endif
 set backup
 if has('persistent_undo')
     set undofile
-    set undodir=$HOME/.vim/cache/undo/
+    set undodir=$VIMDIR/cache/undo/
     if has('win32') || has('win64')
         set undodir-=~/.vim/cache/undo/
         set undodir^=~/vimfiles/cache/undo/
     endif
 endif
-set backupdir=$HOME/.vim/cache/backup// " For backup files
-set directory=$HOME/.vim/cache/backup// " For .swp files
-if has('win32') || has('win64')
-    set backupdir-=~/.vim/cache/backup//
-    set backupdir^=~/vimfiles/cache/backup//
-endif
+set backupdir=$VIMDIR/cache/backup//   " For backup files
+set directory=$VIMDIR/cache/backup//   " For .swp files
 set backupskip=/tmp/*                  " Add some paths not to back up
 set backupskip^=/dev/shm/*             " Shared memory RAM disk
 set backupskip^=/var/tmp/*             " Debian's $TMPDIR for sudoedit(8)
@@ -48,18 +45,11 @@ set undolevels=2000                    " Number of undos
 set undoreload=8000                    " Number of lines to save for undo
 " }}}
 
-" Source any .vim files from config dir. {{{
-if has('win32') || has('win64')
-    runtime! config/*.vim
-    " config/settings.vim
-    " config/plugins.vim
-    " config/mappings.vim
-else
-    runtime! config/*.vim
-    " config/settings.vim
-    " config/plugins.vim
-    " config/mappings.vim
-endif " }}}
+" Source any .vim files from config dir.
+runtime! config/*.vim
+" config/settings.vim
+" config/plugins.vim
+" config/mappings.vim
 
 " Todo {{{
 " ====
