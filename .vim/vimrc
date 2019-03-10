@@ -51,14 +51,14 @@ set undoreload=8000                    " Number of lines to save for undo
 " Source any .vim files from config dir. {{{
 if has('win32') || has('win64')
     runtime! config/*.vim
-    " vimfiles/config/settings.vim
-    " vimfiles/config/plugins.vim
-    " vimfiles/config/mappings.vim
+    " config/settings.vim
+    " config/plugins.vim
+    " config/mappings.vim
 else
     runtime! config/*.vim
-    " .vim/config/settings.vim
-    " .vim/config/plugins.vim
-    " .vim/config/mappings.vim
+    " config/settings.vim
+    " config/plugins.vim
+    " config/mappings.vim
 endif " }}}
 
 " Todo {{{
