@@ -121,6 +121,7 @@ if has('syntax')
     endif
     if !exists('g:colors_name')
         set background=dark
+        " Of the dark themes available by default, elflord has best syntax highlighting.
         colors elflord
     endif
     " Toggle highlighting column 80:
