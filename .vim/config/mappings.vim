@@ -1,71 +1,29 @@
 " Misc mappings
 " =============
-"let mapleader = "\<space>"
-"let maplocalleader = "\<space>"
+"let mapleader = '\<space>'
+"let maplocalleader = '\<space>'
 "nnoremap <SPACE> <Nop>
 
 " Up/down by row instead of line:
 nnoremap j gj
 nnoremap k gk
+" Retain selection when changing indent level
+xnoremap < <gv
+xnoremap > >gv
 " Toggle folds. Was tab, but remapping <tab> remaps <c-i> too.
 nnoremap <BS> za
 vnoremap <BS> zf
-" F1 to be a context sensitive keyword-under-cursor lookup
-nnoremap <F1> :help <C-R><C-W><CR>
-" control + space in terminal hack
-"map <C-@> <C-Space>
-"imap <C-@> <C-Space>
-nmap <F3> :grep<space>
-if has('terminal')
-    nmap <F10> :terminal<CR>
-endif
-" FIXME: Places an error msg over cursor line until line change.
-" Or hides vim until user input.
-"nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
-nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
-if exists("*strftime")
-    nmap <F8> i<c-r>=strftime('%c')<cr><esc>
-    imap <F8> <c-r>=strftime('%c')<cr>
-endif
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
-
-" Search definition of  word under cursor.
-" TODO: Test $BROWSER on Windows.
-nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
-command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
-command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
-
-" Quick yank/paste
-set pastetoggle=<F2>
-" Alt+y
-if !has('gui_running')
-    vmap y <A-y>
-endif
-vnoremap <A-y> "+ygv
-vnoremap <Leader>y "+ygv
-nnoremap <M-p> "+p
-nnoremap <Leader>P "+p
-nnoremap Y y$
-nnoremap <leader>r :<C-U>registers<CR>
-
+" Reload config. Useful for testing & troubleshooting.
+nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
 " Uses last changed or yanked text as a characterwise object
 onoremap <leader>_ :<C-U>normal! `[v`]<CR>
 " Uses entire buffer as a linewise object
 onoremap <leader>% :<C-U>normal! 1GVG<CR>
-
 " Find next instance of last changed word and repeat.
 nnoremap R /<c-r>-<cr>.
-
-" Retain selection when changing indent level
-xnoremap < <gv
-xnoremap > >gv
-
-" Table (column) align
-vmap <leader>ca :!column -t<cr>
-vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
-
-" <c-del> not working.
+" Delete words with <C-del> (not working, use codes).
 if $TERM == 'linux'
     " In VT
     inoremap [3~ <C-\><C-o>dw
@@ -75,37 +33,19 @@ else
     inoremap [3;5~ <C-\><C-o>dw
 endif
 
-" Saving
-if has('win32') || has('win64')
-    " TODO: Something here.
-else
-    " Write the file when you opened it without root privileges.
-    " :w!!
-    cmap w!! w !sudo tee % > /dev/null
-endif
-" Save if needed. Requires for terminal:
-" alias vim="stty stop '' -ixoff ; vim"
-" If terminal freezes, hit <c-q> to resume.
-inoremap <C-s> <C-O>:update<cr>
-nnoremap <C-s> :update<cr>
-vmap <c-s> <Esc><c-s>gv
-imap <c-s> <c-o><c-s>
-" For when <c-s> doesn't work
-nnoremap <leader>s :update<cr>
-vmap <leader>s <Esc>:update<cr>gv
-
 " Have ctrl+scroll move by half-page, not full.
 map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
+
+" Buffers.
 nnoremap <leader>bb :b<space><c-d>
 nnoremap <leader>bm :bm<cr>
-" New buffer
 nnoremap <Bslash><Insert> :enew<CR>
-" Delete buffer
 nnoremap <Bslash><Delete> :bdel<CR>
 nnoremap <leader>d :bdel<CR>
+" Edit file including subdirectories.
 nnoremap <leader>e :e **/
 
 " Move between panes:
@@ -163,11 +103,64 @@ nmap <leader>2 2z=
 " FIXME: Not working in NeoVim for Windows.
 nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
-" Toggle wrap.
-nnoremap <F4> :set wrap! wrap?<cr>
-
 " Cycle line numbering types:
 nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
+
+" Function keys.
+" F1 to be a context sensitive keyword-under-cursor lookup
+nnoremap <F1> :help <C-R><C-W><CR>
+" Quick yank/paste
+set pastetoggle=<F2>
+nmap <F3> :grep<space>
+" Toggle wrap.
+nnoremap <F4> :set wrap! wrap?<cr>
+" Toggle spellcheck.
+noremap <F7> :setl spell! \| let &spelllang=g:lang<CR>
+if exists("*strftime")
+    nmap <F8> i<c-r>=strftime('%c')<cr><esc>
+    imap <F8> <c-r>=strftime('%c')<cr>
+endif
+" Toggle highlighting column 80:
+if has('syntax')
+    nnoremap <F9> :if &cc != 80 \| setl cc=80 cc? \| else \| setl cc& cc? \| endif<cr>
+endif
+if has('terminal')
+    nmap <F10> :terminal<CR>
+endif
+
+" <C-Space> in terminal hack
+"map <C-@> <C-Space>
+"imap <C-@> <C-Space>
+
+" Alt+y
+if !has('gui_running')
+    vmap y <A-y>
+endif
+vnoremap <A-y> "+ygv
+vnoremap <Leader>y "+ygv
+nnoremap <M-p> "+p
+nnoremap <Leader>P "+p
+nnoremap Y y$
+nnoremap <leader>r :<C-U>registers<CR>
+
+" Saving
+if has('win32') || has('win64')
+    " TODO: Something here.
+else
+    " Write the file when you opened it without root privileges.
+    " :w!!
+    cmap w!! w !sudo tee % > /dev/null
+endif
+" Save if needed. Requires for terminal:
+" alias vim="stty stop '' -ixoff ; vim"
+" If terminal freezes, hit <c-q> to resume.
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <C-s> :update<cr>
+vmap <c-s> <Esc><c-s>gv
+imap <c-s> <c-o><c-s>
+" For when <c-s> doesn't work
+nnoremap <leader>s :update<cr>
+vmap <leader>s <Esc>:update<cr>gv
 
 " Alt-up/down/left/right to move lines:
 if $TERM == 'linux'
@@ -229,4 +222,16 @@ endif
 "vmap <c-S> <Esc><c-S>gv
 "imap <c-S> <c-o><c-S>
 
+" External tools.
+" FIXME: Places an error msg over cursor line until line change.
+" Or hides vim until user input.
+"nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
+" Search definition of  word under cursor.
+" TODO: Test $BROWSER on Windows.
+nnoremap <silent> <leader>k :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
+command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
+" Table (column) align
+vmap <leader>ca :!column -t<cr>
+vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
 
