@@ -1,24 +1,23 @@
 " Vim-plug
+" Make sure you use single quotes.
+" You can conditionally activate plugins but PlugClean will remove plugins that fail, which can be a prob for shared configs (eg., gvim & terminal vim).
+" Workaround example:
+" Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+" Workaround example for Gist as plugin:
+" Plug 'https://gist.github.com/952560a43601cd9898f1.git',
+"    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
+
 if executable('curl')
-    "call plug#begin('~/.vim/plugged')
-    " Make sure you use single quotes.
-    " You can conditionally activate plugins but PlugClean will remove plugins that
-    " fail, which can be a prob for shared configs (eg., gvim & terminal vim).
-    " Workaround example:
-    " Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
-    " Workaround example for Gist as plugin:
-    " Plug 'https://gist.github.com/952560a43601cd9898f1.git',
-    "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
     if has('win32') || has('win64')
         " Check & install for Windows
         if v:progname==?'vim' || v:progname==?'vimdiff'
             if empty(glob('~/vimfiles/autoload/plug.vim'))
-                silent !curl -fLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+                silent !curl -sfLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         elseif v:progname==?'nvim'
             if empty(glob($HOME.'\AppData\Local\nvim\autoload'))
-                silent !curl --create-dirs -fLo $HOME\AppData\Local\nvim\autoload\plug.vim 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+                silent !curl --create-dirs -sfLo $HOME\AppData\Local\nvim\autoload\plug.vim 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
                 autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
             endif
         endif
