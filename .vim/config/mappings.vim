@@ -48,11 +48,12 @@ nnoremap <leader>d :bdel<CR>
 " Edit file including subdirectories.
 nnoremap <leader>e :e **/
 
-" Move between panes:
+" Window panes.
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+nnoremap <leader>wo :only<cr>
 
 " Browse oldfiles
 nnoremap <leader>o :browse oldfiles<cr>
