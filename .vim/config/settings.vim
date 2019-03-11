@@ -29,10 +29,14 @@ set shortmess=aToO
 " Language, spelling.
 " Set language from user's environment.
 " TODO: Support multiple comma-separated langs.
-let g:lang=tolower(split(expand(v:lang), '\.')[0])
-let &spelllang=g:lang
-let &langmenu=g:lang
-autocmd VimEnter * set spell spellsuggest=best
+if has('syntax')
+    let g:lang=tolower(split(expand(v:lang), '\.')[0])
+    let &spelllang=g:lang
+    let &langmenu=g:lang
+    autocmd VimEnter * set spell spellsuggest=best
+    " FIXME
+    "autocmd FileType vim set nospell
+endif
 
 " Remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
