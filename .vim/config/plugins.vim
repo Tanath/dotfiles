@@ -70,7 +70,8 @@ if exists(':PlugInstall')
     "Plug 'mbbill/undotree'
     "Plug 'scrooloose/nerdtree'
     Plug 'vimwiki/vimwiki'
-    "Plug 'vim-ctrlspace/vim-ctrlspace'
+    Plug 'plasticboy/vim-markdown'
+    Plug 'vim-ctrlspace/vim-ctrlspace'
     "Git plugins>
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
@@ -91,6 +92,10 @@ if exists(':PlugInstall')
     "Python plugins>
     Plug 'davidhalter/jedi-vim'
     Plug 'jmcantrell/vim-virtualenv'
+    if v:version >= 730
+        " TODO: Test this. Clobbers lots of shortcuts.
+        "Plug 'python-mode/python-mode', { 'branch': 'develop' }
+    endif
     "<Python plugins
     call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
 endif
