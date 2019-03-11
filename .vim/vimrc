@@ -7,7 +7,7 @@ let $VIMDIR = $HOME.(has('nvim') ? '/.config/nvim' : (has('unix') ? '/.vim' : '/
 if !isdirectory($VIMDIR.'/undo')   | call mkdir($VIMDIR.'/undo', 'p')   | endif
 if !isdirectory($VIMDIR.'/backup') | call mkdir($VIMDIR.'/backup', 'p') | endif
 if !isdirectory($VIMDIR.'/swap')   | call mkdir($VIMDIR.'/swap', 'p')   | endif
-if !isdirectory($VIMDIR.'/config') | call mkdir($VIMDIR.'/config', 'p')   | endif
+if !isdirectory($VIMDIR.'/config') | call mkdir($VIMDIR.'/config', 'p') | endif
 if has('persistent_undo')
     set undodir=$VIMDIR/undo//
     set undofile
