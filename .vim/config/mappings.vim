@@ -109,8 +109,10 @@ nnoremap <C-left> :tabprev<CR>
 "nnoremap O {o
 
 " Quick spelling fixes.
-nmap <leader>1 1z=
-nmap <leader>2 2z=
+nnoremap z1 1z=
+nnoremap z2 2z=
+nnoremap z3 3z=
+nnoremap z4 4z=
 
 " To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
 " FIXME: Not working in NeoVim for Windows.
