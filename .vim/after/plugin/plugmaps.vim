@@ -14,7 +14,7 @@ if exists(':FZF')
     " fzf buffers
     nmap <unique><silent> gb :Buffers<cr>
     " fzf silver searcher
-    nmap <leader>a :Ag<space>
+    nmap <leader>A :Ag<space>
     " fzf git commits
     nmap <leader>fc :Commits<cr>
     " fzf mappings
@@ -35,6 +35,28 @@ endif
 " tpope/vim-eunuch
 if exists(':SudoWrite')
     nnoremap <leader>S :SudoWrite<cr>
+endif
+
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>ap :Tabularize /<bar>CR>
+    vmap <Leader>ap :Tabularize /<bar>CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+    " Buggy mapping.
+    "inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+    " Auto-align pipe tables in insert mode.
+    "function! s:align()
+    "    let p = '^\s*|\s.*\s|\s*$'
+    "    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    "        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    "        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    "        Tabularize/|/l1
+    "        normal! 0
+    "        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    "    endif
+    "endfunction
 endif
 
 " tpope/vim-fugitive
@@ -62,7 +84,7 @@ if exists(':TestFile')
     let test#enabled_runners = ['python#unittest', 'python#pytest', 'python#djangotest']
     " Runners available: 'pytest', 'nose', 'nose2', 'djangotest', 'djangonose' and Python's built-in 'unittest'
     let test#python#runner = 'pytest'
-    " make test commands execute using dispatch.vim
+    " Make test commands execute using dispatch.vim
     "let test#strategy = 'dispatch'
     " Don't let testers clear terminal.
     let g:test#preserve_screen = 1
