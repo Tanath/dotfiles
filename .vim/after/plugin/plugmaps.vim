@@ -6,31 +6,31 @@ if exists(':Plug')
     nnoremap <leader>pU :PlugUpgrade<cr>
     nnoremap <leader>ps :PlugStatus<cr>
     nnoremap <leader>pd :PlugDiff<cr>
+    nnoremap <leader>pi :PlugInstall<cr>
 endif
 
 " junegunn/fzf.vim
 if exists(':FZF')
     " vim-fzf-git
-    nmap <unique><silent> <leader>ff :FZF<cr>
+    nnoremap <unique><silent> <leader>ff :FZF<cr>
     " fzf buffers
-    nmap <unique><silent> gb :Buffers<cr>
+    nnoremap <unique><silent> gb :Buffers<cr>
     " fzf silver searcher
-    nmap <leader>A :Ag<space>
+    nnoremap <leader>A :Ag<space>
     " fzf git commits
-    nmap <leader>gc :Commits<cr>
+    nnoremap <leader>gc :Commits<cr>
     " fzf mappings
-    nmap <leader>km :Maps<cr>
-    " fzf mappings
-    nmap <leader>ft :Tags<cr>
+    nnoremap <leader>km :Maps<cr>
+    " fzf tags
+    nnoremap <leader>ft :Tags<cr>
     " Insert mode completion
     imap <c-x><c-k> <plug>(fzf-complete-word)
     imap <c-x><c-f> <plug>(fzf-complete-path)
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
 else
-    nmap <unique><silent> gb :b<Space><c-d>
-    nmap <unique><silent> <leader>a :grep<space><c-d>
-    nmap <leader>km :map<cr>
+    nnoremap <unique><silent> gb :b<Space><c-d>
+    nnoremap <unique><silent> <leader>a :grep<space><c-d>
 endif
 
 " tpope/vim-eunuch
@@ -43,12 +43,12 @@ if exists(':SudoWrite')
 endif
 
 if exists(":Tabularize")
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>ap :Tabularize /<bar>CR>
-    vmap <Leader>ap :Tabularize /<bar>CR>
-    nmap <Leader>a: :Tabularize /:\zs<CR>
-    vmap <Leader>a: :Tabularize /:\zs<CR>
+    nnoremap <Leader>a= :Tabularize /=<CR>
+    vnoremap <Leader>a= :Tabularize /=<CR>
+    nnoremap <Leader>ap :Tabularize /<bar>CR>
+    vnoremap <Leader>ap :Tabularize /<bar>CR>
+    nnoremap <Leader>a: :Tabularize /:\zs<CR>
+    vnoremap <Leader>a: :Tabularize /:\zs<CR>
     " Buggy mapping.
     "inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
     " Auto-align pipe tables in insert mode.

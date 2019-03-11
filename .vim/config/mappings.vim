@@ -21,6 +21,8 @@
 "let maplocalleader = '\<space>'
 "nnoremap <SPACE> <Nop>
 
+" Find mappings. <leader>kM for fzf version.
+nnoremap <leader>kM :verb map<space>
 " Up/down by row instead of line:
 nnoremap j gj
 nnoremap k gk
