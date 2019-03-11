@@ -269,7 +269,9 @@ endif
 " External tools.
 " FIXME: Places an error msg over cursor line until line change.
 " Or hides vim until user input.
-"nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
+if executable('xdg-open')
+    nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>:redraw!<cr>
+endif
 " Search definition of  word under cursor.
 " TODO: Test $BROWSER on Windows.
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>:redraw!<cr>
