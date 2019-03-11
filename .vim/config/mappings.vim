@@ -5,6 +5,7 @@
 "     g for git, go
 "     b for buffers
 "     w for windows/panes
+"     d for diff, delete
 " Mappings to avoid:
 "     <tab> clobbers <c-i>.
 "     <c-s> freezes some terminals; tricks to avoid it often fail.
@@ -81,6 +82,10 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <leader>wo :only<cr>
+
+" Diff mappings
+nnoremap <leader>dt :difft<cr>
+nnoremap <leader>do :diffo!<cr>
 
 " Browse oldfiles
 nnoremap <leader>o :browse oldfiles<cr>
