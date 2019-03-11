@@ -1,5 +1,15 @@
 " Misc mappings
 " =============
+" Use mnemonics:
+"     f for files, find
+"     g for git, go
+"     b for buffers
+"     w for windows/panes
+" Mappings to avoid:
+"     <tab> clobbers <c-i>.
+"     <c-s> freezes some terminals; tricks to avoid it often fail.
+"         Also used by a number of plugins anyway.
+" TODO: Consider <space> for <leader>:
 "let mapleader = '\<space>'
 "let maplocalleader = '\<space>'
 "nnoremap <SPACE> <Nop>
