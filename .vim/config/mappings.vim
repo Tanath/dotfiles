@@ -20,17 +20,19 @@ nnoremap k gk
 " Retain selection when changing indent level
 xnoremap < <gv
 xnoremap > >gv
-" Toggle folds. Was tab, but remapping <tab> remaps <c-i> too.
+" Toggle folds.
 nnoremap <BS> za
 vnoremap <BS> zf
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 " Reload config. Useful for testing & troubleshooting.
 nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
-" Uses last changed or yanked text as a characterwise object
+" Uses last changed or yanked text as a characterwise object.
 onoremap <leader>_ :<C-U>normal! `[v`]<CR>
-" Uses entire buffer as a linewise object
+" Uses entire buffer as a linewise object.
 onoremap <leader>% :<C-U>normal! 1GVG<CR>
+" Select last paste, restoring selection mode.
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 " Find next instance of last changed word and repeat.
 nnoremap R /<c-r>-<cr>.
 " Delete words with <C-del> (not working, use codes).
