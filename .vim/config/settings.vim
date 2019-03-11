@@ -34,8 +34,7 @@ if has('syntax')
     let &spelllang=g:lang
     let &langmenu=g:lang
     autocmd VimEnter * set spell spellsuggest=best
-    " FIXME
-    "autocmd FileType vim set nospell
+    autocmd FileType vim setl nospell
 endif
 
 " Remember certain things when we exit
