@@ -122,6 +122,9 @@ nnoremap z4 4z=
 " FIXME: Not working in NeoVim for Windows.
 nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 
+" Toggle hidden characters.
+nnoremap <leader>H :setlocal nolist! nolist?<cr>
+
 " Cycle line numbering types:
 nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 
