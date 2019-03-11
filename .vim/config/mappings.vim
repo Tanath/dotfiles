@@ -13,6 +13,7 @@
 "         <C-7>, <C-/> in terminal, <C-_> in gvim.
 "         Don't set one unless you're ok with setting all.
 "         Due to <C-/>, this toggles search highlight here.
+"     <c-z> is for suspending to terminal.
 " TODO: Consider <space> for <leader>:
 "let mapleader = '\<space>'
 "let maplocalleader = '\<space>'
@@ -54,6 +55,10 @@ map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
+
+" Toggle centered cursor. Disables H & L; use <c-d/u>.
+" Function defined in settings.vim
+nnoremap <leader>zz :call VCenterCursor()<CR>
 
 " Buffers.
 " Show buffer list.

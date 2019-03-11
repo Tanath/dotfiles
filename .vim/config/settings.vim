@@ -179,9 +179,31 @@ let g:airline#extensions#syntastic#enabled = 1
 " Line numbers, cursor
 set number                            " Show line numbers.
 set relativenumber                    " Show relative line numbers.
-set scrolloff=2                       " Keep cursor # lines from top/bottom.
 set cursorline                        " Underline line with cursor
 set ruler                             " Show the line and column number of the cursor position, separated by a comma.
+set scrolloff=2                       " Keep cursor # lines from top/bottom.
+" To toggle keeping cursor centered:
+if !exists('*VCenterCursor')
+  augroup VCenterCursor
+  au!
+  au OptionSet *,*.*
+    \ if and( expand("<amatch>")=='scrolloff' ,
+    \         exists('#VCenterCursor#WinEnter,WinNew,VimResized') )|
+    \   au! VCenterCursor WinEnter,WinNew,VimResized|
+    \ endif
+  augroup END
+  function VCenterCursor()
+    if !exists('#VCenterCursor#WinEnter,WinNew,VimResized')
+      let s:default_scrolloff=&scrolloff
+      let &scrolloff=winheight(win_getid())/2
+      au VCenterCursor WinEnter,WinNew,VimResized *,*.*
+        \ let &scrolloff=winheight(win_getid())/2
+    else
+      au! VCenterCursor WinEnter,WinNew,VimResized
+      let &scrolloff=s:default_scrolloff
+    endif
+  endfunction
+endif
 
 " Folding
 " Fold based on indent, but only when I ask
