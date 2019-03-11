@@ -6,6 +6,7 @@
 "     b for buffers
 "     w for windows/panes
 "     d for diff, delete
+"     Prefer capitals for vim-related when lower is used.
 " Mappings to avoid:
 "     <tab> clobbers <c-i>.
 "     <c-s> freezes some terminals; tricks to avoid it often fail.
