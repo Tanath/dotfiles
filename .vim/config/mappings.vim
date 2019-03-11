@@ -30,6 +30,9 @@ xnoremap > >gv
 " Toggle folds.
 nnoremap <BS> za
 vnoremap <BS> zf
+" Write file(s).
+nnoremap <leader>fw :write<cr>
+nnoremap <leader>fW :wall<cr>
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 " Reload config. Useful for testing & troubleshooting.
@@ -47,7 +50,7 @@ if $TERM == 'linux'
     " In VT
     inoremap [3~ <C-\><C-o>dw
 else
-    " Should work outside VT
+    " Should work outside VT. TODO: Test on Windows.
     "inoremap <C-Del> <C-\><C-O>dw
     inoremap [3;5~ <C-\><C-o>dw
 endif
