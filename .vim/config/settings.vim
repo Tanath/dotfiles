@@ -32,7 +32,7 @@ set shortmess=aToO
 let g:lang=tolower(split(expand(v:lang), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
-set spell spellsuggest=best
+autocmd VimEnter * set spell spellsuggest=best
 
 " Remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
