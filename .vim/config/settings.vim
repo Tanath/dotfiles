@@ -1,10 +1,13 @@
+" Misc
+" ====
 " For multi-byte character support (CJK support, for example):
 "set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,gb18030,latin1
 " Use UTF-8 if we can and env LANG didn't tell us not to
 if has('multi_byte') && !exists('$LANG') && &encoding ==# 'latin1'
     set encoding=utf-8
+    scriptencoding utf-8
 endif
-set shcf=-c
+set shellcmdflag=-c
 set modelines=0                        " Prevent some security issues (settings options by buffer content)
 set ttyfast                            " Indicates a fast terminal connection.
 set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes, but never time out on mappings
@@ -15,8 +18,7 @@ autocmd VimResized * wincmd =
 set showmatch                          " When a bracket is inserted, briefly jump to the matching
                                        " one. Only done if the match is on the screen.
 set matchtime=4                        " The timing can be set with 'matchtime'.
-" Add suffixes to check for gf.
-set suffixesadd+='.md','.wiki'
+set suffixesadd+='.md','.wiki'         " Add suffixes to check for gf.
 set confirm                            " Prompt instead of just rejecting risky :write, :saveas
                                        " In vim-tiny but not NeoVim, so just suppress errors
 set include=                           " Don't assume editing C; let the filetype set this
@@ -30,7 +32,6 @@ set shortmess=aToO
 let g:lang=tolower(split(expand(v:lang), '\.')[0])
 let &spelllang=g:lang
 let &langmenu=g:lang
-map <F7> :setl spell! \| let &spelllang=g:lang<CR>
 set spell spellsuggest=best
 
 " Remember certain things when we exit
@@ -39,8 +40,11 @@ set spell spellsuggest=best
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
+" Put viminfo file in $VIMDIR
 if has('viminfo')
-    set viminfo='15,\"100,:30,%,n~/.viminfo
+    set viminfo='20,\"100,:40,%
+    silent! execute 'set viminfo+=n'.$VIMDIR.'/viminfo'
+    execute 'set viminfofile='.$VIMDIR.'/viminfo'
 endif
 " TODO Saving/restoring folds not working.
 set viewoptions=folds,cursor           " Save fold state and cursor
@@ -55,8 +59,18 @@ au BufWrite * mkview
 " Searching
 set ignorecase                         " Do case insensitive matching
 set smartcase                          " Overrides ignorecase if uppercase used in search string
-set incsearch                          " Incremental search as you type.
-set wrapscan                           " jumps to the beginning if reaching end, and viceversa
+if has('extra_search')
+    set hlsearch                       " Highlight the last used search pattern.
+    set incsearch                      " Incremental search as you type.
+endif
+set wrapscan                           " Jumps to the beginning if reaching end, and viceversa
+" Open folds with incsearch
+try
+    autocmd cmdlinechanged * if expand('<afile>') =~ '[/?]' |
+    \	silent execute 'normal! zv' |
+    \endif
+catch '^Vim\%((\a\+)\)\=:E216'
+endtry
 
 " Auto-formatting
 " TODO Test in au bufread to restore after .md format changes.
@@ -71,6 +85,12 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 "let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
 let b:lion_squeeze_spaces = 1
 
+" Whitespace characters.
+set listchars=trail:~,tab:>\ ,nbsp:~
+silent! set listchars+=trail:·
+silent! set listchars+=tab:›
+silent! set listchars+=nbsp:○
+
 " Wrapping
 set textwidth=80
 set wrap linebreak                    " Linebreaks at word boundaries.
@@ -80,7 +100,9 @@ set autoindent                         " Copy indent from current line when star
 set shiftround                         " Round indents to multiple of shiftwidth.
 set copyindent                         " Don't change indent type (spaces/tabs).
 "set nostartofline                     " Emulate typical editor navigation behaviour
-silent! set breakindent                " Indent wrapped lines
+if exists('+breakindent') && exists('&breakindent')
+	set breakindent
+endif
 
 " Tabbing, backspace
 set tabstop=4 softtabstop=4 shiftwidth=4
@@ -109,32 +131,32 @@ silent! set listchars+=nbsp:+          " Non-breaking spaces
 
 " Theme/colours, syntax
 " Switch syntax highlighting on, when the terminal has colours.
-" Also switch on highlighting the last used search pattern.
 if has('syntax')
-    " Handled by vim-plug. Not needed: Use syntax Highlighting
-    "if !exists('g:syntax_on')
-    "    " Keeps current colour settings. 'on' overrules with defaults.
-    "    syntax enable
-    "endif
-    if &t_Co > 2 || has("gui_running")
-        set hlsearch
+    " Vim-plug enables syntax highlighting.
+    if (!&loadplugins)
+        if !exists('g:syntax_on')
+            " Keeps current colour settings. 'on' overrules with defaults.
+            syntax enable
+        endif
     endif
     if !exists('g:colors_name')
         set background=dark
         " Of the dark themes available by default, elflord has best syntax highlighting.
         colors elflord
     endif
-    " Toggle highlighting column 80:
-    nmap <F9> :if &cc != 80 \| setl cc=80 cc? \| else \| setl cc& cc? \| endif<cr>
 endif
 
 " Status/Command line
-set showcmd                            " Show (partial) command in status line.
+if exists('+showcmd')
+    set showcmd                        " Show (partial) command in status line.
+endif
 set showmode
 set wildmenu
 "set wildmode=longest,list,full         " Complete longest common string, then list alternatives, then select the sortest first
 set wildmode=list:longest,list:full    " Complete longest common string, then list alternatives, then select the sortest first
 silent! set wildignorecase             " Case insensitive, if supported
+set wildcharm=<c-z>
+"set tildeop
 set laststatus=2                       " Always show status line
 set cmdheight=2                        " Prevent 'Press Enter' messages
 " Show more info in status line if airline isn't available.
@@ -197,6 +219,14 @@ if has('gui_running')
     set guifont=Noto\ Mono\ 9
 endif
 set termguicolors
+if has('diff')
+	set diffopt+=vertical              " Vertical split diffs
+	if has('win32')
+		set showbreak=+
+	else
+		set showbreak=↪
+	endif
+endif
 
 " Buffers, navigation
 set hidden                             " Let you switch buffers without saving current.
@@ -207,8 +237,11 @@ set confirm                            " Prompt to save unsaved changes when exi
 " ===================
 " Add completion options
 if exists('+completeopt')
-    set completeopt+=longest             " Insert longest common substring
-    set completeopt+=menuone             " Show the menu even if only one match
+    set completeopt+=longest           " Insert longest common substring
+    set completeopt+=menuone           " Show the menu even if only one match
+endif
+if exists('+omnifunc')
+    autocmd FileType * set omnifunc=syntaxcomplete#Complete
 endif
 set wildignore=*.o,*.obj,*~            " Stuff to ignore when tab completing
 set wildignore+=*vim/backups*
@@ -279,7 +312,8 @@ endif
 let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
 
 " Vimwiki
-if isdirectory($HOME . "/vimwiki/")
+if isdirectory($HOME.'/vimwiki/')
+    let g:vimwiki_folding = 'syntax'
     source ~/vw.vim
 endif
 
