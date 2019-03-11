@@ -78,6 +78,8 @@ nnoremap <leader>wd :close<CR>
 nnoremap <leader>e :e **/<tab>
 " Show messages buffer.
 nnoremap <leader>M :messages<cr>
+" New buffer with contents of clipboard.
+nnoremap <leader>bp :enew<cr>"+P
 
 " Window panes.
 nnoremap <C-j> <C-w>j
