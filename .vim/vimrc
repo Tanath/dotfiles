@@ -3,36 +3,19 @@
 " Set up vim dirs. {{{
 let $VIMDIR = $HOME.(has('nvim') ? '/.config/nvim' : (has('unix') ? '/.vim' : '/vimfiles'))
 " Backup, swap, undo files
-if has('win32') || has('win64')
-    " Create vim dirs if missing
-    if !isdirectory($VIMDIR)
-        silent !md ~/vimfiles/cache/backup
-        silent !md ~/vimfiles/cache/view
-        silent !md ~/vimfiles/cache/undo
-        silent !md ~/vimfiles/pack/plugins/start
-        silent !md ~/vimfiles/pack/plugins/opt
-        silent !md ~/vimfiles/config/
-    endif
-else
-    " Create vim dirs if missing
-    if !isdirectory($VIMDIR)
-        silent !mkdir -p $VIMDIR/cache/{backup,view} > /dev/null 2>&1
-        silent !mkdir -p $VIMDIR/cache/undo > /dev/null 2>&1
-        silent !mkdir -p $VIMDIR/pack/plugins/{start,opt} > /dev/null 2>&1
-        silent !mkdir -p $VIMDIR/config/ > /dev/null 2>&1
-    endif
-endif
-set backup
+" Create vim dirs if missing
+if !isdirectory($VIMDIR.'/undo')   | call mkdir($VIMDIR.'/undo', 'p')   | endif
+if !isdirectory($VIMDIR.'/backup') | call mkdir($VIMDIR.'/backup', 'p') | endif
+if !isdirectory($VIMDIR.'/swap')   | call mkdir($VIMDIR.'/swap', 'p')   | endif
+if !isdirectory($VIMDIR.'/config') | call mkdir($VIMDIR.'/config', 'p')   | endif
 if has('persistent_undo')
+    set undodir=$VIMDIR/undo//
     set undofile
-    set undodir=$VIMDIR/cache/undo/
-    if has('win32') || has('win64')
-        set undodir-=~/.vim/cache/undo/
-        set undodir^=~/vimfiles/cache/undo/
-    endif
 endif
-set backupdir=$VIMDIR/cache/backup//   " For backup files
-set directory=$VIMDIR/cache/backup//   " For .swp files
+set backupdir=$VIMDIR/backup//         " For backup files
+set backup
+set directory=$VIMDIR/backup//         " For .swp files
+set swapfile
 set backupskip=/tmp/*                  " Add some paths not to back up
 set backupskip^=/dev/shm/*             " Shared memory RAM disk
 set backupskip^=/var/tmp/*             " Debian's $TMPDIR for sudoedit(8)
@@ -40,7 +23,9 @@ if !has('unix')
     set backupskip-=/dev/shm/*
     set backupskip-=/var/tmp/*
 endif
-set history=2000
+if exists('+history')
+	set history=2000                   " Max is 10000
+endif
 set undolevels=2000                    " Number of undos
 set undoreload=8000                    " Number of lines to save for undo
 " }}}
