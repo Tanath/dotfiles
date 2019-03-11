@@ -7,32 +7,52 @@
 " Plug 'https://gist.github.com/952560a43601cd9898f1.git',
 "    \ { 'as': 'xxx', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
 
-if executable('curl')
-    if has('win32') || has('win64')
-        " Check & install for Windows
-        if v:progname==?'vim' || v:progname==?'vimdiff'
-            if empty(glob('~/vimfiles/autoload/plug.vim'))
-                silent !curl -sfLo ~/vimfiles/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-            endif
-        elseif v:progname==?'nvim'
-            if empty(glob($HOME.'\AppData\Local\nvim\autoload'))
-                silent !curl --create-dirs -sfLo $HOME\AppData\Local\nvim\autoload\plug.vim 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-                autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-            endif
-        endif
-        call plug#begin('~/vimfiles/bundle')
-    else
-        " Check & install for Linux/Mac
-        if empty(glob('~/.vim/autoload/plug.vim'))
-            silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-        endif
-        call plug#begin('~/.vim/bundle')
+" If --noplugin flag used, exit
+if (!&loadplugins)
+	finish
+endif
+
+" Auto-create autoload directory
+if !isdirectory($VIMDIR.'/autoload')
+	call mkdir($VIMDIR.'/autoload', 'p')
+endif
+" If plug.vim not in autoload directory...
+if empty(glob($VIMDIR.'/autoload/plug.vim'))
+	function! s:plugWarnSetup()
+		echohl WarningMsg
+		if (! executable('curl'))
+			" Warn of missing curl and notify about :PlugDownload
+			echon 'Curl not installed. Install it, then run :PlugDownload'
+			echohl None
+		else
+			" Warn of missing vim-plug and notify about :PlugDownload
+			echon 'Vim-plug is not installed. Run :PlugDownload to install it'
+		endif
+		echohl None
+		" Create :PlugDownload
+		command! -nargs=0 -bar PlugDownload
+		\ call s:plugCurl() <bar> redraw! <bar>
+		\ PlugInstall --sync
+	endfunction
+	function! s:plugCurl()
+		execute 'silent !curl -NsfLo '.$VIMDIR.'/autoload/plug.vim --create-dirs'
+		\ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	endfunction
+	augroup PlugDownload
+		autocmd!
+		" Warn about vim-plug when not installed
+		autocmd VimEnter * call s:plugWarnSetup()
+	augroup end
+	" Exit if vim-plug is not installed
+	finish
+endif
+
+call plug#begin($VIMDIR.'/bundle')
+if exists(':PlugInstall')
+    Plug 'junegunn/vim-plug'
+    if has('unix')
         Plug 'tpope/vim-eunuch'
     endif
-    Plug 'junegunn/vim-plug'
     Plug 'editorconfig/editorconfig-vim'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-characterize'
@@ -40,6 +60,7 @@ if executable('curl')
     "Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+    Plug 'godlygeek/tabular'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-repeat'
     Plug 'tommcdo/vim-lion'
@@ -72,7 +93,5 @@ if executable('curl')
     Plug 'jmcantrell/vim-virtualenv'
     "<Python plugins
     call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
-else
-    echomsg "Curl missing, skipping vim-plug & plugins."
 endif
 
