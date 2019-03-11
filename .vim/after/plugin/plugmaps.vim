@@ -2,9 +2,9 @@
 " -------
 " junegunn/vim-plug
 if exists(':Plug')
-    nnoremap <leader>pu :PlugUpdate
-    nnoremap <leader>ps :PlugStatus
-    nnoremap <leader>pd :PlugDiff
+    nnoremap <leader>pu :PlugUpdate<cr>
+    nnoremap <leader>ps :PlugStatus<cr>
+    nnoremap <leader>pd :PlugDiff<cr>
 endif
 
 " junegunn/fzf.vim
