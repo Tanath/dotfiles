@@ -9,6 +9,10 @@
 "     <tab> clobbers <c-i>.
 "     <c-s> freezes some terminals; tricks to avoid it often fail.
 "         Also used by a number of plugins anyway.
+"     These clobber each other:
+"         <C-7>, <C-/> in terminal, <C-_> in gvim.
+"         Don't set one unless you're ok with setting all.
+"         Due to <C-/>, this toggles search highlight here.
 " TODO: Consider <space> for <leader>:
 "let mapleader = '\<space>'
 "let maplocalleader = '\<space>'
@@ -122,7 +126,7 @@ nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 nnoremap <leader>N :exe 'set nu!' &nu ? 'rnu!' : ''<cr>
 
 " Function keys.
-" F1 to be a context sensitive keyword-under-cursor lookup
+" F1 for context-sensitive keyword-under-cursor lookup.
 nnoremap <F1> :help <C-R><C-W><CR>
 " Quick yank/paste
 set pastetoggle=<F2>
