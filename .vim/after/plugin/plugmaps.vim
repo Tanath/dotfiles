@@ -3,6 +3,7 @@
 " junegunn/vim-plug
 if exists(':Plug')
     nnoremap <leader>pu :PlugUpdate<cr>
+    nnoremap <leader>pU :PlugUpgrade<cr>
     nnoremap <leader>ps :PlugStatus<cr>
     nnoremap <leader>pd :PlugDiff<cr>
 endif
