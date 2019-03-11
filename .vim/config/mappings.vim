@@ -151,16 +151,11 @@ else
     " :w!!
     cmap w!! w !sudo tee % > /dev/null
 endif
-" Save if needed. Requires for terminal:
-" alias vim="stty stop '' -ixoff ; vim"
+" Save if needed.
 " If terminal freezes, hit <c-q> to resume.
 inoremap <C-s> <C-O>:update<cr>
-nnoremap <C-s> :update<cr>
-vmap <c-s> <Esc><c-s>gv
-imap <c-s> <c-o><c-s>
-" For when <c-s> doesn't work
-nnoremap <leader>s :update<cr>
-vmap <leader>s <Esc>:update<cr>gv
+nnoremap <leader>fs :update<cr>
+vnoremap <leader>fs <Esc>:update<cr>gv
 
 " Alt-up/down/left/right to move lines:
 if $TERM == 'linux'
