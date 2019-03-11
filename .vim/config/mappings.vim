@@ -56,13 +56,19 @@ nnoremap <space> <C-d>
 "nnoremap <s-space> <C-u>
 
 " Buffers.
+" Show buffer list.
 nnoremap <leader>bb :b<space><c-d>
+" Go to next modified buffer.
 nnoremap <leader>bm :bm<cr>
+" New buffer.
 nnoremap <Bslash><Insert> :enew<CR>
+" Del buffer.
 nnoremap <Bslash><Delete> :bdel<CR>
-nnoremap <leader>d :bdel<CR>
+nnoremap <leader>bd :bdel<CR>
+" Close window/pane.
+nnoremap <leader>wd :close<CR>
 " Edit file including subdirectories.
-nnoremap <leader>e :e **/
+nnoremap <leader>e :e **/<tab>
 
 " Window panes.
 nnoremap <C-j> <C-w>j
