@@ -17,7 +17,7 @@ if exists(':FZF')
     " fzf silver searcher
     nmap <leader>A :Ag<space>
     " fzf git commits
-    nmap <leader>fc :Commits<cr>
+    nmap <leader>gc :Commits<cr>
     " fzf mappings
     nmap <leader>fm :Maps<cr>
     " fzf mappings
