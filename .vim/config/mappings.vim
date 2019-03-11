@@ -272,7 +272,7 @@ endif
 "nnoremap <silent> <F6> :!xdg-open<space><c-r><c-p><cr>
 " Search definition of  word under cursor.
 " TODO: Test $BROWSER on Windows.
-nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>
+nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>:redraw!<cr>
 command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
 command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
 " Table (column) align
