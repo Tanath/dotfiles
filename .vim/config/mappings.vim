@@ -78,8 +78,14 @@ nnoremap <leader>wd :close<CR>
 nnoremap <leader>e :e **/<tab>
 " Show messages buffer.
 nnoremap <leader>M :messages<cr>
+" Paste to new buffer.
+nnoremap <leader>bp :enew<cr>P
 " New buffer with contents of clipboard.
-nnoremap <leader>bp :enew<cr>"+P
+nnoremap <leader>bP :enew<cr>"+P
+" Yank buffer.
+nnoremap <leader>by ggyG``
+" Yank buffer to clipboard.
+nnoremap <leader>bY gg"+yG``
 
 " Window panes.
 nnoremap <C-j> <C-w>j
