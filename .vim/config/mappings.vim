@@ -75,6 +75,8 @@ nnoremap <leader>bd :bdel<CR>
 nnoremap <leader>wd :close<CR>
 " Edit file including subdirectories.
 nnoremap <leader>e :e **/<tab>
+" Show messages buffer.
+nnoremap <leader>M :messages<cr>
 
 " Window panes.
 nnoremap <C-j> <C-w>j
