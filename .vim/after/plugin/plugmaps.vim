@@ -19,7 +19,7 @@ if exists(':FZF')
     " fzf git commits
     nmap <leader>gc :Commits<cr>
     " fzf mappings
-    nmap <leader>fm :Maps<cr>
+    nmap <leader>km :Maps<cr>
     " fzf mappings
     nmap <leader>ft :Tags<cr>
     " Insert mode completion
@@ -30,12 +30,16 @@ if exists(':FZF')
 else
     nmap <unique><silent> gb :b<Space><c-d>
     nmap <unique><silent> <leader>a :grep<space><c-d>
-    nmap <leader>fm :map<cr>
+    nmap <leader>km :map<cr>
 endif
 
 " tpope/vim-eunuch
 if exists(':SudoWrite')
     nnoremap <leader>S :SudoWrite<cr>
+    nnoremap <leader>fr :Rename<space>
+    nnoremap <leader>fm :Move<space>
+    nnoremap <leader>fD :Delete
+    nnoremap <leader>fl :Llocate<space>
 endif
 
 if exists(":Tabularize")
