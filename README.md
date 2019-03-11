@@ -9,10 +9,10 @@ My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads t
 * `<F7>` toggles spell check.
 * `<c-/>`/`<c-7>`/`<c-_>` toggles search highlight.
 * `<F10>` is `:terminal`.
-* `gb` opens `:Buffers` from [fzf.vim](https://github.com/junegunn/fzf.vim).
+* `gb` opens `:Buffers` from [fzf.vim](https://github.com/junegunn/fzf.vim). `<Leader>bb` for built-in version.
 * `<leader>fm` opens `:Maps` from fzf.vim to search mappings.
 
-I swap caps & esc in X and console for better vimming (see [reference/misctweaks.md](reference/misctweaks.md)). This benefits other programs as well, and doesn't mess with muscle meory. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
+I swap caps & esc in X and console for better vimming (see [reference/misctweaks.md](reference/misctweaks.md)). This benefits other programs as well, and doesn't mess with muscle memory by keeping consistent. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
 
 ## zsh
 This [.zshrc](.zshrc) sources [.zprompt.zsh](.zprompt.zsh) for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/).
