@@ -25,6 +25,8 @@ set include=                           " Don't assume editing C; let the filetyp
 set nrformats-=octal                   " Treat numbers with leading 0 as decimal, not octal
 set path+=**                           " Search under cwd.
 set shortmess=aToO
+set lazyredraw                         " Help with large files.
+"set regexpengine=1                     " Use if large files too slow.
 
 " Language, spelling.
 " Set language from user's environment.
