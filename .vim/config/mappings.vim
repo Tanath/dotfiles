@@ -99,6 +99,9 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <leader>wo :only<cr>
 
+" CD to current window's file
+nnoremap <leader>cd :lcd %:p:h<cr>
+
 " Diff mappings
 nnoremap <leader>dt :difft<cr>
 nnoremap <leader>do :diffo!<cr>
