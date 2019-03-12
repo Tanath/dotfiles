@@ -77,10 +77,11 @@ nnoremap <Bslash><Insert> :enew<CR>
 " Del buffer.
 nnoremap <Bslash><Delete> :bdel<CR>
 nnoremap <leader>bd :bdel<CR>
+nnoremap <leader>b- :bdel #<CR>
 " Close window/pane.
 nnoremap <leader>wd :close<CR>
 " Edit file including subdirectories.
-nnoremap <leader>e :e **/<tab>
+nnoremap <leader>e :e **/
 " Show messages buffer.
 nnoremap <leader>M :messages<cr>
 " Paste to new buffer.
