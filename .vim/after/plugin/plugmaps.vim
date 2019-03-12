@@ -16,7 +16,7 @@ if exists(':FZF')
     " fzf buffers
     nnoremap <unique><silent> gb :Buffers<cr>
     " fzf silver searcher
-    nnoremap <leader>A :Ag<space>
+    nnoremap <leader>fa :Ag<space>
     " fzf git commits
     nnoremap <leader>gc :Commits<cr>
     " fzf mappings
