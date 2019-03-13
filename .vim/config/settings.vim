@@ -167,22 +167,23 @@ set cmdheight=2                        " Prevent 'Press Enter' messages
 " Show more info in status line if airline isn't available.
 if empty(g:airline_theme)
     set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
+else
+    " Configure Airline:
+    "set statusline=%!airline#statusline(1)
+    "let g:airline_powerline_fonts = 1
+    " :h airline-extensions
+    let g:airline#extensions#wordcount#enabled = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#branch#enabled = 1
+    let g:airline#extensions#fugitiveline#enabled = 1
+    let g:airline#extensions#hunks#enabled = 1
+    let g:airline#extensions#syntastic#enabled = 1
+    "let g:airline#extensions#tabline#enabled = 0
+    "let g:airline#extensions#ale#enabled = 1
+    "let g:airline#extensions#virtualenv#enabled = 1
+    " Airline extension opt-in:
+    "let g:airline_extensions = ['branch', 'syntastic', 'fugitiveline']
 endif
-" Configure Airline:
-"set statusline=%!airline#statusline(1)
-"let g:airline_powerline_fonts = 1
-" :h airline-extensions
-let g:airline#extensions#wordcount#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#fugitiveline#enabled = 1
-let g:airline#extensions#hunks#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#tabline#enabled = 0
-"let g:airline#extensions#ale#enabled = 1
-"let g:airline#extensions#virtualenv#enabled = 1
-" Airline extension opt-in:
-"let g:airline_extensions = ['branch', 'syntastic', 'fugitiveline']
 
 " Line numbers, cursor
 set number                            " Show line numbers.
