@@ -165,9 +165,11 @@ set wildcharm=<c-z>
 set laststatus=2                       " Always show status line
 set cmdheight=2                        " Prevent 'Press Enter' messages
 " Show more info in status line if airline isn't available.
-set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
+if empty(g:airline_theme)
+    set statusline=%f%m%r%h%w\ [%n:%{&ff}/%Y]%=[0x\%04.4B][%03v][%p%%\ line\ %l\ of\ %L]
+endif
 " Configure Airline:
-set statusline=%!airline#statusline(1)
+"set statusline=%!airline#statusline(1)
 "let g:airline_powerline_fonts = 1
 " :h airline-extensions
 let g:airline#extensions#wordcount#enabled = 1
