@@ -64,11 +64,13 @@ if exists(':PlugInstall')
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-repeat'
     Plug 'tommcdo/vim-lion'
+    Plug 'unblevable/quick-scope'
     Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
     Plug 'wellle/targets.vim'
     Plug 'tpope/vim-surround'
     "Plug 'mbbill/undotree'
-    "Plug 'scrooloose/nerdtree'
+    " Load on first use.
+    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
     Plug 'vim-ctrlspace/vim-ctrlspace'
