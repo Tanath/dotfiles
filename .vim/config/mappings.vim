@@ -61,7 +61,7 @@ endif
 map <C-ScrollWheelUp> <C-u>
 map <C-ScrollWheelDown> <C-d>
 nnoremap <space> <C-d>
-"nnoremap <s-space> <C-u>
+"nnoremap <S-Space> <C-u>
 
 " Toggle centered cursor. Disables H & L; use <c-d/u>.
 " Function defined in settings.vim
@@ -284,6 +284,7 @@ endif
 " Search definition of  word under cursor.
 " TODO: Test $BROWSER on Windows.
 nnoremap <silent> <leader>K :silent ! $BROWSER https://en.wiktionary.org/wiki/<cword><cr>:redraw!<cr>
+nnoremap <silent> <leader>gg :silent ! $BROWSER 'https://www.google.ca/search?safe=off&num=30&q=<cword>'<cr>:redraw!<cr>
 command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
 command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
 " Table (column) align
