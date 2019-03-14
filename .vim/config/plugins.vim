@@ -65,6 +65,9 @@ if exists(':PlugInstall')
     Plug 'tpope/vim-repeat'
     Plug 'tommcdo/vim-lion'
     Plug 'unblevable/quick-scope'
+    " Highlight when pressing these keys:
+    " Off for quicker vim-sneaking.
+    "let g:qs_highlight_on_keys = ['f', 'F', 't', 'T', 's', 'S']
     Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
     Plug 'wellle/targets.vim'
     Plug 'tpope/vim-surround'

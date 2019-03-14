@@ -42,6 +42,12 @@ if exists(':SudoWrite')
     nnoremap <leader>fl :Llocate<space>
 endif
 
+" unblevable/quick-scope
+if exists(':QuickScopeToggle')
+    nnoremap <leader><F3> :QuickScopeToggle<cr>
+endif
+
+" godlygeek/tabular
 if exists(":Tabularize")
     nnoremap <Leader>a= :Tabularize /=<CR>
     vnoremap <Leader>a= :Tabularize /=<CR>
