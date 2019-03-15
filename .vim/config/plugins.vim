@@ -84,6 +84,7 @@ if exists(':PlugInstall')
     Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
     "<Git plugins
     "Coding plugins>
+    Plug 'romainl/vim-devdocs'
     Plug 'tpope/vim-commentary'
     Plug 'mattn/emmet-vim'
     Plug 'ludovicchabant/vim-gutentags'
