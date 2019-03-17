@@ -57,5 +57,5 @@ function! s:todo() abort
     endif
 endfunction
 command! Todo call s:todo()
-nnoremap <leader>t :Todo<space><cr>
+nnoremap <leader>T :Todo<space><cr>
 " }}}
