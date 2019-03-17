@@ -72,7 +72,7 @@ set wrapscan                           " Jumps to the beginning if reaching end,
 " Open folds with incsearch
 try
     autocmd cmdlinechanged * if expand('<afile>') =~ '[/?]' |
-    \	silent execute 'normal! zv' |
+    \   silent execute 'normal! zv' |
     \endif
 catch '^Vim\%((\a\+)\)\=:E216'
 endtry
@@ -91,9 +91,9 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let b:lion_squeeze_spaces = 1
 
 " Whitespace characters.
-set listchars=trail:§,tab:❯\ ,nbsp:~
+set listchars=trail:~,tab:>\ ,nbsp:~
 silent! set listchars+=trail:·
-silent! set listchars+=tab:›
+silent! set listchars+=tab:❯
 silent! set listchars+=nbsp:○
 
 " Wrapping
@@ -106,7 +106,7 @@ set shiftround                         " Round indents to multiple of shiftwidth
 set copyindent                         " Don't change indent type (spaces/tabs).
 "set nostartofline                     " Emulate typical editor navigation behaviour
 if exists('+breakindent') && exists('&breakindent')
-	set breakindent
+    set breakindent
 endif
 
 " Tabbing, backspace
@@ -251,12 +251,12 @@ if has('gui_running')
 endif
 set termguicolors
 if has('diff')
-	set diffopt+=vertical              " Vertical split diffs
-	if has('win32')
-		set showbreak=+
-	else
-		set showbreak=↪
-	endif
+    set diffopt+=vertical              " Vertical split diffs
+    if has('win32')
+        set showbreak=+
+    else
+        set showbreak=↪
+    endif
 endif
 
 " Buffers, navigation
