@@ -93,24 +93,26 @@ nnoremap <leader>by ggyG``
 " Yank buffer to clipboard.
 nnoremap <leader>bY gg"+yG``
 
-" Tabs
-" New tab/tab edit
-nnoremap <leader>tn :tabnew<cr>
-nnoremap <leader>te :tabedit<cr>
-" List tabs
-nnoremap <leader>tt :tabs<cr>
-" Close tab
-nnoremap <leader>tc :tabclose<cr>
-nnoremap <leader>tq :tabclose!<cr>
-" Only this tab
-nnoremap <leader>to :tabonly<cr>
-" Command in new tab
-nnoremap <leader>t: :tab<space>
-" Cycle through buffers, tabs:
+if has('windows')
+    " Tabs
+    " New tab/tab edit
+    nnoremap <leader>tn :tabnew<cr>
+    nnoremap <leader>te :tabedit<cr>
+    " List tabs
+    nnoremap <leader>tt :tabs<cr>
+    " Close tab
+    nnoremap <leader>tc :tabclose<cr>
+    nnoremap <leader>tq :tabclose!<cr>
+    " Only this tab
+    nnoremap <leader>to :tabonly<cr>
+    " Command in new tab
+    nnoremap <leader>t: :tab<space>
+    " Cycle through tabs, buffers:
+    nnoremap <C-right> :tabnext<CR>
+    nnoremap <C-left> :tabprev<CR>
+endif
 nnoremap <C-down> :bnext<CR>
 nnoremap <C-up> :bprev<CR>
-nnoremap <C-right> :tabnext<CR>
-nnoremap <C-left> :tabprev<CR>
 
 " Window panes.
 nnoremap <C-j> <C-w>j
