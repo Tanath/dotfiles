@@ -91,7 +91,7 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 let b:lion_squeeze_spaces = 1
 
 " Whitespace characters.
-set listchars=trail:~,tab:>\ ,nbsp:~
+set listchars=trail:§,tab:❯\ ,nbsp:~
 silent! set listchars+=trail:·
 silent! set listchars+=tab:›
 silent! set listchars+=nbsp:○
