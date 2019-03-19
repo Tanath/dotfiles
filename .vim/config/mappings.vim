@@ -92,6 +92,17 @@ nnoremap <leader>bP :enew<cr>"+P
 nnoremap <leader>by ggyG``
 " Yank buffer to clipboard.
 nnoremap <leader>bY gg"+yG``
+" Go to buffer by number:
+nnoremap <leader>b1 :b1<cr>
+nnoremap <leader>b2 :b2<cr>
+nnoremap <leader>b3 :b3<cr>
+nnoremap <leader>b4 :b4<cr>
+nnoremap <leader>b5 :b5<cr>
+nnoremap <leader>b6 :b6<cr>
+nnoremap <leader>b7 :b7<cr>
+nnoremap <leader>b8 :b8<cr>
+nnoremap <leader>b9 :b9<cr>
+nnoremap <leader>b0 :b10<cr>
 
 if has('windows')
     " Tabs
