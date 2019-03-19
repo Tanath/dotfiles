@@ -29,9 +29,13 @@ nnoremap k gk
 " Retain selection when changing indent level
 xnoremap < <gv
 xnoremap > >gv
+" Tab indents in visual mode
+xnoremap <tab> >gv
+xnoremap <s-tab> <gv
 " Toggle folds.
 nnoremap <BS> za
 vnoremap <BS> zf
+nnoremap <leader><BS> zA
 " Write file(s).
 nnoremap <leader>fw :write<cr>
 nnoremap <leader>fW :wall<cr>
