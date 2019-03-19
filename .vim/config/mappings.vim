@@ -39,6 +39,8 @@ nnoremap <leader><BS> zA
 " Write file(s).
 nnoremap <leader>fw :write<cr>
 nnoremap <leader>fW :wall<cr>
+" Quit quickly, no save.
+nnoremap <leader>Q :qall!
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 " Reload config. Useful for testing & troubleshooting.
