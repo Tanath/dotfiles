@@ -320,6 +320,6 @@ nnoremap <silent> <leader>gg :silent ! $BROWSER 'https://www.google.ca/search?sa
 command -range=% CL <line1>,<line2>w !curl -F 'clbin=<-' https://clbin.com | tr -d '\n' | xclip -i -selection clipboard
 command -range=% VP <line1>,<line2>w !curl -F 'text=<-' http://vpaste.net | tr -d '\n' | xclip -i -selection clipboard
 " Table (column) align
-vmap <leader>ca :!column -t<cr>
-vmap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
-
+vnoremap <leader>ca :!column -t<cr>
+vnoremap <leader>ta :!column -to<bslash><bar> -s<bslash><bar><cr>
+nnoremap <leader>i :r!
