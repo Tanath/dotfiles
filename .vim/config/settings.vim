@@ -19,7 +19,7 @@ set showmatch                          " When a bracket is inserted, briefly jum
                                        " one. Only done if the match is on the screen.
 set matchtime=4                        " The timing can be set with 'matchtime'.
 set suffixesadd+='.md','.wiki'         " Add suffixes to check for gf.
-set confirm                            " Prompt instead of just rejecting risky :write, :saveas
+"set confirm                            " Prompt instead of just rejecting risky :write, :saveas
                                        " In vim-tiny but not NeoVim, so just suppress errors
 set include=                           " Don't assume editing C; let the filetype set this
 set nrformats-=octal                   " Treat numbers with leading 0 as decimal, not octal
