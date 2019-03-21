@@ -114,8 +114,7 @@ set tabstop=4 softtabstop=4 shiftwidth=4
 set expandtab                          " Expand tabs & indents to spaces. <C-v><tab> to not.
 set smarttab                           " <Tab> at start of a line puts spaces. <BS> deletes
                                        " 'shiftwidth' spaces.
-set backspace=2                        " Influences <BS>, <Del>, CTRL-W and CTRL-U in insert mode.
-set backspace=indent,eol,start         " Better handling of <BS>
+set backspace=2                        " Influences <BS>, <Del>, CTRL-W and CTRL-U in insert mode. Backwards compatible version of: set backspace=indent,eol,start
 
 " Interface
 " =========
