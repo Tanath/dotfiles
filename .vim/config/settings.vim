@@ -347,6 +347,6 @@ if isdirectory($HOME.'/vimwiki/')
 endif
 
 " Gitgutter
-if g:gitgutter_enabled
-    let g:gitgutter_max_signs = 1300
-endif
+"if g:gitgutter_enabled
+"    let g:gitgutter_max_signs = 1300
+"endif
