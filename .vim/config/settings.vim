@@ -177,7 +177,6 @@ else
     let g:airline#extensions#fugitiveline#enabled = 1
     let g:airline#extensions#hunks#enabled = 1
     let g:airline#extensions#syntastic#enabled = 1
-    "let g:airline#extensions#tabline#enabled = 0
     "let g:airline#extensions#ale#enabled = 1
     "let g:airline#extensions#virtualenv#enabled = 1
     " Airline extension opt-in:
@@ -347,3 +346,7 @@ if isdirectory($HOME.'/vimwiki/')
     source ~/vw.vim
 endif
 
+" Gitgutter
+if g:gitgutter_enabled
+    let g:gitgutter_max_signs = 1300
+endif
