@@ -140,6 +140,8 @@ nnoremap <leader>wo :only<cr>
 
 " CD to current window's file
 nnoremap <leader>cd :lcd %:p:h<cr>
+" Make dir for buffer path
+nnoremap <leader>md :!mkdir -p %:p:h<CR>
 
 " Diff mappings
 nnoremap <leader>dt :difft<cr>
