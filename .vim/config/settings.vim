@@ -272,20 +272,21 @@ endif
 if exists('+omnifunc')
     autocmd FileType * set omnifunc=syntaxcomplete#Complete
 endif
-set wildignore=*.o,*.obj,*~            " Stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*.png,*.jpg,*.gif,*.ico
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=node_modules/*,bower_components/*
 set infercase                          " Same-case autocomplete
 set autochdir                          " Set working dir to open file
 set complete+=kspell
+" Stuff to ignore when tab-completing
+set wildignore=*.swp,*~,._*
+set wildignore+=tmp/**
+set wildignore+=*vim/backups*
+set wildignore+=log/**
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=*.png,*.jpg,*.jpeg,*.gif,*.ico
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*,*/vendor/rails/*
+set wildignore+=*DS_Store*
+set wildignore+=node_modules/*,bower_components/*
+set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
 
 " Set up external tools.
 " ======================
