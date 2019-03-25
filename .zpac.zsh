@@ -2,6 +2,12 @@
 NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
 [[ -f $NOTFOUND ]] && source $NOTFOUND
 
+[[ -n ${commands[yay]} ]] && alias y='yay'
+[[ -n ${commands[yay]} ]] && alias yu='yay -Syu'  # Yay upgrade
+[[ -n ${commands[yay]} ]] && alias ys='yay -Ss'   # Yay search
+[[ -n ${commands[yay]} ]] && alias yr='yay -R'    # Yay remove
+[[ -n ${commands[yay]} ]] && alias yc='yay -Sc'   # Yay clean cache
+[[ -n ${commands[yay]} ]] && alias yrc='yay -Rns' # Yay remove w/config
 [[ -n ${commands[pacui]} ]] && alias p='pacui'
 [[ -n ${commands[pacmatic]} ]] && alias pm='sudo pacmatic' || alias pm='sudo pacman'
 [[ -n ${commands[pacmatic]} ]] && alias pmr='sudo pacmatic -R' || alias pmr='sudo pacman -R'       # Pacman remove
@@ -14,9 +20,9 @@ alias pml='pacman -Ql'	           # List (files)
 alias pmo='pacman -Qtd'	           # Orphans
 owns () { pacman -Qo $(which $*) } # Ownership of binary
 [[ -n ${commands[pacaur]} ]] && alias pa='pacaur'
-[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'  # Pacaur upgrade  
-[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'   # Pacaur search   
-[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'    # Pacaur remove   
+[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'  # Pacaur upgrade
+[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'   # Pacaur search
+[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'    # Pacaur remove
 [[ -n ${commands[pacaur]} ]] && alias pac='pacaur -Sc'   # Pacaur clean cache
 [[ -n ${commands[pacaur]} ]] && alias parc='pacaur -Rns' # Pacaur remove w/config
 
