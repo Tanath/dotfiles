@@ -10,7 +10,7 @@ endif
 set shellcmdflag=-c
 set modelines=0                        " Prevent some security issues (settings options by buffer content)
 set ttyfast                            " Indicates a fast terminal connection.
-set notimeout ttimeout ttimeoutlen=200 " Quickly time out on keycodes, but never time out on mappings
+set ttimeout ttimeoutlen=200           " Quickly time out on keycodes
 set nosol                              " No start of line jump when selecting.
 silent! set cm=blowfish2
 " Automatically equalize splits when Vim is resized
