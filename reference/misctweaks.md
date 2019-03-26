@@ -1,3 +1,5 @@
+This is mostly for me, for reference if I need it. Some of it may be useful to others.
+
 # Enable VTs
 
 Edit `/etc/systemd/logind.conf` to have `NAutoVTs=6`.
@@ -29,6 +31,7 @@ evdev:input:b0003v045Ep00DB*
 ```
 
 For more info on remapping keys on Linux, see https://wiki.archlinux.org/index.php/Keyboard_input
+
 Particularly, https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes
 
 I used to use this, which only applies to X. Resume from suspend reverts for me.
