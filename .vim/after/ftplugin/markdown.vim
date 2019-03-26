@@ -1,3 +1,4 @@
+let g:vim_markdown_folding_disabled = 1 " Disable vim-markdown's folding
 function MarkdownLevel()
     let h = matchstr(getline(v:lnum), '^#\+')
     if empty(h)
