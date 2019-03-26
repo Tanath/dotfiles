@@ -77,7 +77,18 @@ if exists(':PlugInstall')
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
-    Plug 'vim-ctrlspace/vim-ctrlspace'
+"    TODO: Test, FIXME.
+"    if v:version >= 800 || has('nvim')
+"        if !has('nvim')
+"            Plug 'roxma/vim-hug-neovim-rpc', { 'do': 'python3 -m pip install --user pynvim' }
+"            Plug 'dunstontc/projectile.nvim', {'depends': 'Shougo/denite.nvim', 'depends': 'roxma/nvim-yarp'}
+"        else
+"            Plug 'dunstontc/projectile.nvim', {'depends': 'Shougo/denite.nvim'}
+"        endif
+"    else
+        Plug 'vim-ctrlspace/vim-ctrlspace'
+"    endif
+    "Plug 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
     "Git plugins>
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
