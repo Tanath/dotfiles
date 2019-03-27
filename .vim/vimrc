@@ -40,8 +40,7 @@ runtime! config/*.vim
 if has("autocmd")
     augroup templates
         au!
-        autocmd BufNewFile *.sh 0r ~/.vim/templates/script.sh
-        autocmd BufNewFile *.html 0r ~/.vim/templates/index.html
+        autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
     augroup END
 endif
 
