@@ -322,20 +322,20 @@ endif
 
 " Better formatting for some file types
 if executable('python')
-    au FileType json set equalprg=python\ -m\ json.tool
+    au FileType json setl equalprg=python\ -m\ json.tool
 endif
 if executable('autopep8')
-    au FileType python set equalprg=autopep8\ -
+    au FileType python setl equalprg=autopep8\ -
 endif
 if executable('xmllint')
-    au FileType html,xhtml,xml set equalprg=xmllint\ --format\ -
+    au FileType html,xhtml,xml setl equalprg=xmllint\ --format\ -
 endif
 "if executable('tidy')
 "    " Tidy gives more formatting options than xmllint
 "    au FileType html,xhtml,xml setl equalprg=tidy\ --indent-spaces\ 4\ --indent-attributes\ yes\ --sort-attributes\ alpha\ --drop-empty-paras\ no\ --vertical-space\ yes\ --wrap\ 80\ -i\ -xml\ 2>/dev/null
 "endif
 if executable('pandoc')
-    au FileType markdown set equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
+    au FileType markdown setl equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
 endif
 
 " ALE
