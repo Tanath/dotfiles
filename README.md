@@ -2,7 +2,10 @@
 
 My dotfiles, and other config files & system tweaks, and miscellaneous references.
 
+<details>
+    <summary>
 ## vim
+    </summary>
 My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads the enabled plugins from [.vim/config/plugins.vim](.vim/config/plugins.vim). Any `.vim` files in `.vim/config/` are loaded. `<Leader>` key is default (`\`). Some useful toggles & mappings:
 
 * `<F4>` toggles wrap.
@@ -13,8 +16,12 @@ My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads t
 * `<leader>km` opens `:Maps` from fzf.vim to search mappings.
 
 I swap caps & esc in X and console for better vimming (see [reference/misctweaks.md](reference/misctweaks.md)). This benefits other programs as well, and doesn't mess with muscle memory by keeping consistent. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
+</details>
 
+<details>
+    <summary>
 ## zsh
+    </summary>
 This [.zshrc](.zshrc) sources [.zprompt.zsh](.zprompt.zsh) for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/).
 
 ![zsh prompt](http://aperiodic.net/phil/prompt/normal.png)
@@ -30,8 +37,12 @@ It sources the following files if they exist:
 
 This `.zshrc` gives [zsh autosuggestions](https://github.com/zsh-users/zsh-autosuggestions). If you don't have a distro package, clone the repo in `~`:
 `git clone https://github.com/zsh-users/zsh-autosuggestions`
+</details>
 
+<details>
+    <summary>
 ## bash
+    </summary>
 This [.bashrc](.bashrc) sources [~/zer0prompt/zer0prompt.sh](https://github.com/zer0ed/zer0prompt) for its prompt, which is similar to Phil's zsh prompt above. It defaults to a basic prompt if it doesn't exist.
 It sources the following files if they exist:
 * [~/.balias.bsh](.balias.bsh): I use this for personalized aliases which aren't distro-specific yet don't belong in `.bashrc`.
@@ -40,4 +51,5 @@ It sources the following files if they exist:
 * `~/.bdesk.bsh`: for desktop-only stuff.
 * `~/.blap.bsh`: for laptop-only stuff.
 * `~/.bmobile.bsh`: for mobile-only stuff.
+</details>
 
