@@ -36,6 +36,15 @@ runtime! config/*.vim
 " config/plugins.vim
 " config/mappings.vim
 
+" Templates
+if has("autocmd")
+    augroup templates
+        au!
+        autocmd BufNewFile *.sh 0r ~/.vim/templates/script.sh
+        autocmd BufNewFile *.html 0r ~/.vim/templates/index.html
+    augroup END
+endif
+
 " Todo {{{
 " ====
 " https://github.com/junegunn/dotfiles/blob/master/vimrc#L856
