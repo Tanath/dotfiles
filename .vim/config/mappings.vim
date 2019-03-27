@@ -217,7 +217,8 @@ if has('syntax')
     nnoremap <F9> :if &cc != 80 \| setl cc=80 cc? \| else \| setl cc& cc? \| endif<cr>
 endif
 if has('terminal')
-    nmap <F10> :terminal<CR>
+    nnoremap <F10> :terminal<CR>
+    nnoremap <S-F10> :tab terminal<CR>
 endif
 
 " <C-Space> in terminal hack
