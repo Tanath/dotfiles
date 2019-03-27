@@ -86,9 +86,6 @@ endif
 "au bufread *.md set formatoptions=want " Attempt markdown list behaviour
 " Make sure *.md is seen as markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-" TODO Test md fenced code block syntax:
-"let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
-let b:lion_squeeze_spaces = 1
 
 " Whitespace characters.
 set listchars=trail:~,tab:>\ ,nbsp:~
@@ -223,7 +220,6 @@ if has('folding')
     " Allow conceal, but not if the cursor is on the line
     set conceallevel=2
     set concealcursor=
-    let g:vimwiki_folding='syntax'
 endif
 "Indent w/manual folds:
 "augroup vimrc
@@ -296,10 +292,6 @@ if executable('ag')
     " Use ag over grep
     set grepprg=ag\ --nogroup\ --nocolor\ --column
     set grepformat=%f:%l:%c:%m           " :h errorformat
-    " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
 endif
 
 " Use ripgrep for :grep if ag not available
@@ -338,16 +330,3 @@ if executable('pandoc')
     au FileType markdown setl equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
 endif
 
-" ALE
-let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
-
-" Vimwiki
-if isdirectory($HOME.'/vimwiki/')
-    let g:vimwiki_folding = 'syntax'
-    source ~/vw.vim
-endif
-
-" Gitgutter
-"if g:gitgutter_enabled
-"    let g:gitgutter_max_signs = 1300
-"endif
