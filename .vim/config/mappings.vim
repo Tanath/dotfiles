@@ -230,7 +230,7 @@ if !has('gui_running')
     vmap y <A-y>
 endif
 vnoremap <A-y> "+ygv
-vnoremap <Leader>y "+ygv
+vnoremap <Leader>y "+y
 nnoremap <M-p> "+p
 nnoremap <Leader>P "+p
 nnoremap Y y$
