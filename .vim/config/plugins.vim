@@ -58,8 +58,7 @@ if exists(':PlugInstall')
     Plug 'tpope/vim-characterize'
     Plug 'vim-airline/vim-airline'
     "Plug 'vim-airline/vim-airline-themes'
-    Plug 'junegunn/fzf'
-    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf.vim', {'depends': 'junegunn/fzf'}
     Plug 'godlygeek/tabular'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-repeat'
@@ -77,6 +76,7 @@ if exists(':PlugInstall')
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
+    "Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
 "    TODO: Test, FIXME.
 "    if v:version >= 800 || has('nvim')
 "        if !has('nvim')
@@ -99,6 +99,7 @@ if exists(':PlugInstall')
     Plug 'romainl/vim-devdocs'
     Plug 'tpope/vim-commentary'
     Plug 'mattn/emmet-vim'
+    Plug 'sheerun/vim-polyglot'
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'tpope/vim-dispatch'
     Plug 'janko/vim-test'
