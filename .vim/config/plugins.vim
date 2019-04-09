@@ -74,6 +74,7 @@ if exists(':PlugInstall')
     "Plug 'mbbill/undotree'
     " Load on first use.
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    Plug 'will133/vim-dirdiff'
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
     "Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
