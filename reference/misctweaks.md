@@ -19,7 +19,12 @@ Volume buttons:
 
 ## Swap CAPS & ESC
 
-I now use udev to swap keys in the kernel, to make it permanent and consistent. For my keyboard I have the following in `/usr/lib/udev/hwdb.d/60-keyboard.hwdb`:
+There's handy AUR packages for this:
+
+* `interception-caps2esc`
+* `caps2esc`
+
+I use udev to swap keys in the kernel, to make it permanent and consistent. For my keyboard I have the following in `/usr/lib/udev/hwdb.d/60-keyboard.hwdb`:
 
 ```
 # Microsoft Natural Ergonomic Keyboard 4000
@@ -30,11 +35,13 @@ evdev:input:b0003v045Ep00DB*
  KEYBOARD_KEY_70029=capslock                            # esc > caps
 ```
 
-For more info on remapping keys on Linux, see https://wiki.archlinux.org/index.php/Keyboard_input
+For more info on remapping keys on Linux, see:
 
-Particularly, https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes
+* https://wiki.archlinux.org/index.php/Keyboard_input
+* https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes
 
 I used to use this, which only applies to X. Resume from suspend reverts for me.
+
 `setxkbmap -option "caps:swapescape"`
 
 # Package management/building
