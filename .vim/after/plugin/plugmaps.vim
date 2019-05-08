@@ -29,6 +29,7 @@ if exists(':FZF')
     imap <c-x><c-j> <plug>(fzf-complete-file-ag)
     imap <c-x><c-l> <plug>(fzf-complete-line)
 else
+    nnoremap <unique><silent> <leader>ff :find<space><cr>
     nnoremap <unique><silent> gb :b<Space><c-d>
     nnoremap <unique><silent> <leader>a :grep<space><c-d>
 endif
@@ -51,8 +52,8 @@ endif
 if exists(":Tabularize")
     nnoremap <Leader>a= :Tabularize /=<CR>
     vnoremap <Leader>a= :Tabularize /=<CR>
-    nnoremap <Leader>ap :Tabularize /<bar>CR>
-    vnoremap <Leader>ap :Tabularize /<bar>CR>
+    nnoremap <Leader>ap :Tabularize /<bar><CR>
+    vnoremap <Leader>ap :Tabularize /<bar><CR>
     nnoremap <Leader>a: :Tabularize /:\zs<CR>
     vnoremap <Leader>a: :Tabularize /:\zs<CR>
     " Buggy mapping.
