@@ -269,7 +269,7 @@ if exists('+omnifunc')
     autocmd FileType * set omnifunc=syntaxcomplete#Complete
 endif
 set infercase                          " Same-case autocomplete
-set autochdir                          " Set working dir to open file
+"set autochdir                          " Set working dir to open file
 set complete+=kspell
 " Stuff to ignore when tab-completing
 set wildignore=*.swp,*~,._*
