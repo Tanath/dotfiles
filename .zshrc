@@ -95,8 +95,8 @@ alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> termina
 alias ed='vim'
 alias u='cd ..'
 ls () { command ls $LSPARAMS "$@" | less -RFX }
-alias ll=ls\ -l\ $LSPARAMS
-alias la=ls\ -a\ $LSPARAMS
+(( $+commands[exa] )) && alias ll='exa -Fhs=type' || alias ll=ls\ -l\ $LSPARAMS
+(( $+commands[exa] )) && alias la='exa -Fahs=type' || alias la=ls\ -a\ $LSPARAMS
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
 alias lz='ll -rS'                                          # sort by size
