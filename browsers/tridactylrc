@@ -11,5 +11,8 @@ bind e scrollpage -0.5
 bind k scrollpage -0.25
 bind j scrollpage 0.25
 
+" Ignored sites
+autocmd DocStart mail.google.com mode ignore
+
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
