@@ -47,6 +47,11 @@ colors
 # Completion for kitty
 (( $+commands[kitty] )) && kitty + complete setup zsh | source /dev/stdin
 
+# up/down takes existing text into account
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 # Add zsh help. Alt+h after command.
 autoload -Uz run-help
 unalias run-help 2>/dev/null
@@ -246,6 +251,11 @@ bindkey "\eOH" beginning-of-line
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "\e[3~" delete-char                      # Del
+# up/down takes existing text into account
+bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
+bindkey '^[OA'  up-line-or-beginning-search
+bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
+bindkey '^[OB'  down-line-or-beginning-search
 
 # Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
