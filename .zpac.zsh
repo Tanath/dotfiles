@@ -3,11 +3,12 @@ NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
 [[ -f $NOTFOUND ]] && source $NOTFOUND
 
 [[ -n ${commands[yay]} ]] && alias y='yay'
-[[ -n ${commands[yay]} ]] && alias yu='yay -Syu'  # Yay upgrade
-[[ -n ${commands[yay]} ]] && alias ys='yay -Ss'   # Yay search
-[[ -n ${commands[yay]} ]] && alias yr='yay -R'    # Yay remove
-[[ -n ${commands[yay]} ]] && alias yc='yay -Sc'   # Yay clean cache
-[[ -n ${commands[yay]} ]] && alias yrc='yay -Rns' # Yay remove w/config
+[[ -n ${commands[yay]} ]] && alias yu='yay -Syu'           # Yay upgrade
+[[ -n ${commands[yay]} ]] && alias yud='yay -Syu --devel'  # Yay upgrade incl. git
+[[ -n ${commands[yay]} ]] && alias ys='yay -Ss'            # Yay search
+[[ -n ${commands[yay]} ]] && alias yr='yay -R'             # Yay remove
+[[ -n ${commands[yay]} ]] && alias yc='yay -Sc'            # Yay clean cache
+[[ -n ${commands[yay]} ]] && alias yrc='yay -Rns'          # Yay remove w/config
 [[ -n ${commands[pacui]} ]] && alias p='pacui'
 [[ -n ${commands[pacmatic]} ]] && alias pm='sudo pacmatic' || alias pm='sudo pacman'
 [[ -n ${commands[pacmatic]} ]] && alias pmr='sudo pacmatic -R' || alias pmr='sudo pacman -R'       # Pacman remove
