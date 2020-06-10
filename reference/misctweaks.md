@@ -65,6 +65,25 @@ When = PostTransaction
 Exec = /usr/bin/paccache -ruk2
 ```
 
+## Check for firmware updates.
+```
+sudoedit /etc/pacman.d/hooks/fwupd.hook
+```
+Contents:
+```
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Depends = fwupd
+When = PostTransaction
+Exec = /usr/bin/fwupdmgr get-updates
+Description = Checking for firmware updates...
+```
+
 ## Manjaro driver installation
 Find classid, then use it to install:
 ```
