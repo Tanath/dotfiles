@@ -92,8 +92,8 @@ sudo mhwd -a pci nonfree <classid>
 ```
 
 # QT & GTK
-https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications
-https://wiki.manjaro.org/index.php?title=Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
+* https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications
+* https://wiki.manjaro.org/index.php?title=Set_all_Qt_app%27s_to_use_GTK%2B_font_%26_theme_settings
 
 Install `qt5-styleplugins` and `qt5ct`. Restart, run `qt5ct` from terminal and select gtk2.
 For gtk2 apps install `gtk-theme-switch2` and select theme.
