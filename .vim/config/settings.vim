@@ -96,10 +96,11 @@ silent! set listchars+=nbsp:○
 
 " Wrapping
 set textwidth=80
-set wrap linebreak                    " Linebreaks at word boundaries.
+set wrap linebreak                     " Linebreaks at word boundaries.
 
 " Indenting.
 set autoindent                         " Copy indent from current line when starting a new line
+filetype plugin indent on
 set shiftround                         " Round indents to multiple of shiftwidth.
 set copyindent                         " Don't change indent type (spaces/tabs).
 "set nostartofline                     " Emulate typical editor navigation behaviour
