@@ -71,6 +71,7 @@ if exists(':PlugInstall')
     Plug 'justinmk/vim-sneak', v:version >= 720 ? {} : { 'on': [] }
     Plug 'wellle/targets.vim'
     Plug 'tpope/vim-surround'
+    Plug 'dbmrq/vim-ditto'
     "Plug 'mbbill/undotree'
     " Load on first use.
     Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -87,14 +88,15 @@ if exists(':PlugInstall')
 "            Plug 'dunstontc/projectile.nvim', {'depends': 'Shougo/denite.nvim'}
 "        endif
 "    else
-        Plug 'vim-ctrlspace/vim-ctrlspace'
+        "Plug 'vim-ctrlspace/vim-ctrlspace'
 "    endif
     "Plug 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
     "Git plugins>
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-rhubarb'
     Plug 'rbong/vim-flog'
-    Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
+    Plug 'mhinz/vim-signify', has('signs') ? {} : { 'on': [] }
+    "Plug 'airblade/vim-gitgutter', has('signs') ? {} : { 'on': [] }
     "<Git plugins
     "Coding plugins>
     Plug 'romainl/vim-devdocs'
