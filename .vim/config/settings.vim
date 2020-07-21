@@ -26,7 +26,8 @@ set nrformats-=octal                   " Treat numbers with leading 0 as decimal
 set path+=**                           " Search under cwd.
 set shortmess=aToO
 set lazyredraw                         " Help with large files.
-"set regexpengine=1                     " Use if large files too slow.
+set redrawtime=3000                    " Help with large files.
+set regexpengine=1                     " Use if large files too slow.
 
 " Language, spelling.
 " Set language from user's environment.
