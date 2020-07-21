@@ -41,6 +41,8 @@ nnoremap <leader>fw :write<cr>
 nnoremap <leader>fW :wall<cr>
 " Quit quickly, no save.
 nnoremap <leader>Q :qall!
+" Format paragraph.
+nnoremap <leader>= vip=''
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 " Reload config. Useful for testing & troubleshooting.
@@ -86,6 +88,8 @@ nnoremap <leader>bd :bdel<CR>
 nnoremap <leader>b- :bdel #<CR>
 " Close window/pane.
 nnoremap <leader>wd :close<CR>
+" Find file
+nnoremap <leader>F :find<space>
 " Edit file including subdirectories.
 nnoremap <leader>e :e **/
 " Show messages buffer.
@@ -95,7 +99,8 @@ nnoremap <leader>bp :enew<cr>P
 " New buffer with contents of clipboard.
 nnoremap <leader>bP :enew<cr>"+P
 " Yank buffer.
-nnoremap <leader>by ggyG``
+"nnoremap <leader>by ggyG``
+nnoremap <leader>by :%y<cr>
 " Yank buffer to clipboard.
 nnoremap <leader>bY gg"+yG``
 " Go to buffer by number:
