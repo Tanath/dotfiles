@@ -29,14 +29,16 @@ if [[ -n $DISPLAY ]]; then
 else
 	command -v w3m >/dev/null 2>&1 && export BROWSER=w3m || export BROWSER=elinks
 fi
-command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
+if [[ $TERM == 'xterm-kitty' ]]; then
+    command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
+fi
 
 # Personal custom aliases, functions
 [[ -f ~/.balias.bsh ]] && source ~/.balias.bsh
 # Pacman-based distros
 [[ -f ~/.bpac.bsh ]] && source ~/.bpac.bsh
 # Deb-based distros
-[[ -f ~/.bubuntu.bsh ]] && source ~/.bubuntu.bsh 
+[[ -f ~/.bubuntu.bsh ]] && source ~/.bubuntu.bsh
 # Desktop-only stuff
 [[ -f ~/.bdesk.bsh ]] && source ~/.bdesk.bsh
 # Laptop-only stuff
@@ -134,21 +136,21 @@ alias lz='ll -rS'                                               # sort by size
 alias lt='ll -rT'                                               # sort by date
 alias lx='ll -BX'                                               # sort by ext
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i --color=always'        # ls grep
-alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' 
-alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' 
+alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head'
+alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'          # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                           # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                          # Most mem use
-alias mc='mc -b' 
+alias mc='mc -b'
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
-alias powertop='sudo powertop' 
+alias powertop='sudo powertop'
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
 alias lp='lsof -Pnl +M -i4'                 # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'     # ss ports
-alias big='du -sh * | sort -hr' 
-alias bh='big | head' 
+alias big='du -sh * | sort -hr'
+alias bh='big | head'
 alias jerr='journalctl -p3 -xb'             # Journalctl errors this boot
 alias wpi='strings -e l'                    # Windows program info
 alias isp='whois $(curl -sSL ifconfig.me) | grep -v "^#\|^%"'
