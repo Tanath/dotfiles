@@ -100,13 +100,21 @@ alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> termina
 alias ed='vim'
 alias u='cd ..'
 ls () { command ls $LSPARAMS "$@" | less -RFX }
-(( $+commands[exa] )) && alias ll='exa -Fhs=type' || alias ll=ls\ -l\ $LSPARAMS
-(( $+commands[exa] )) && alias la='exa -Fahs=type' || alias la=ls\ -a\ $LSPARAMS
+(( $+commands[exa] )) && \
+    alias ll='exa -Flhs=type' && \
+    alias la='exa -Fahs=type' && \
+    alias lla='exa -Falhs=type' && \
+    alias lz='exa -Fhs=size' && \
+    alias lt='exa -Fhs=modified' && \
+    alias lx='exa -Fhs=type' || \
+    alias ll=ls\ -l\ $LSPARAMS && \
+    alias la=ls\ -a\ $LSPARAMS && \
+    alias lla=ls\ -la\ $LSPARAMS && \
+    alias lz='ll -rS' && \
+    alias lt='ll -rT' && \
+    alias lx='ll -BX'                                      # sort by ext
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
-alias lz='ll -rS'                                          # sort by size
-alias lt='ll -rT'                                          # sort by date
-alias lx='ll -BX'                                          # sort by ext
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i '$GPARAM          # ls grep
 alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head'
 alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
