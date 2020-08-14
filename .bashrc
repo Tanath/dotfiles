@@ -128,13 +128,14 @@ alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> term
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
-alias ll=ls\ -l\ $LSPARAMS
-alias la=ls\ -a\ $LSPARAMS
+command -v exa >/dev/null 2>&1 && alias ll='exa -Flhs=type' || alias ll=ls\ -l\ $LSPARAMS
+command -v exa >/dev/null 2>&1 && alias la='exa -Fahs=type' || alias la=ls\ -a\ $LSPARAMS
+command -v exa >/dev/null 2>&1 && alias lla='exa -Falhs=type' || alias lla=ls\ -la\ $LSPARAMS
+command -v exa >/dev/null 2>&1 && alias lz='exa -Fhs=size' || alias lz='ll -rS'
+command -v exa >/dev/null 2>&1 && alias lt='exa -Fhs=modified' || alias lt='ll -rT'
+command -v exa >/dev/null 2>&1 && alias lx='exa -Fhs=type' || alias lx='ll -BX'                                           # sort by ext
 alias l.='ls $LSPARAMS -d .[^.]*'                               # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
-alias lz='ll -rS'                                               # sort by size
-alias lt='ll -rT'                                               # sort by date
-alias lx='ll -BX'                                               # sort by ext
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i --color=always'        # ls grep
 alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head'
 alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
