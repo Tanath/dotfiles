@@ -121,6 +121,7 @@ alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
+(( $+commands[topgrade] )) && alias tg='topgrade'
 alias mc='mc -b'
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
