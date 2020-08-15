@@ -146,6 +146,7 @@ alias mc='mc -b'
 alias mnt='mount | column -t'
 alias lsblk='lsblk -f'
 alias dmesg='dmesg --color=always'
+alias tg='topgrade'
 alias powertop='sudo powertop'
 alias mpv='mpv -fs -af scaletempo --really-quiet --speed=1.5'
 alias lp='lsof -Pnl +M -i4'                 # lsof ports
