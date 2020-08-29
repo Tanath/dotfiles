@@ -311,7 +311,7 @@ endif
 "endif
 
 if executable('chmod')
-    autocmd FileType sh autocmd BufWritePost * silent !chmod u+x %
+    autocmd FileType sh autocmd BufWritePost * silent !chmod a+x %
 endif
 
 " Better formatting for some file types
