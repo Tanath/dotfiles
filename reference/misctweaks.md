@@ -48,8 +48,7 @@ I used to use this, which only applies to X. Resume from suspend reverts for me.
 
 ## Automatically clean the package cache.
 ```
-sudo mkdir /etc/pacman.d/hooks
-sudoedit /etc/pacman.d/hooks/clean_package_cache.hook
+sudoedit /usr/share/libalpm/hooks/pacman_cache.hook
 ```
 Contents:
 ```
