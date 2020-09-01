@@ -1,0 +1,39 @@
+command -v yay >/dev/null 2>&1 \
+    && alias y='yay' \
+    && alias yu='yay -Syu' \
+    && alias yud='yay -Syu --devel' \
+    && alias ys='yay -Ss' \
+    && alias yr='yay -R' \
+    && alias yc='yay -Sc' \
+    && alias yrc='yay -Rns'
+
+command -v pacui >/dev/null 2>&1 && alias p='pacui'
+command -v pacmatic >/dev/null 2>&1 && alias pm='sudo pacmatic' || alias pm='sudo pacman'
+command -v pacmatic >/dev/null 2>&1 && alias pmr='sudo pacmatic -R' || alias pmr='sudo pacman -R'
+command -v pacmatic >/dev/null 2>&1 && alias pmc='sudo pacmatic -Sc' || alias pmc='sudo pacman -Sc'
+command -v pacmatic >/dev/null 2>&1 && alias pmrc='sudo pacmatic -Rns' || alias pmrc='sudo pacman -Rns'
+command -v pacmatic >/dev/null 2>&1 && alias pmu='sudo pacmatic -Syu' || alias pmu='sudo pacman -Syu'
+command -v pacman >/dev/null 2>&1 \
+    && alias pms='pacman -Ss' \
+    && alias pmls='pacman -Qs' \
+    && alias pml='pacman -Ql' \
+    && alias pmo='pacman -Qtd'
+
+command -v pacdiff >/dev/null 2>&1 && command -v vimdiff >/dev/null 2>&1 && export DIFFPROG=vimdiff
+command -v makepkg >/dev/null 2>&1 \
+    && alias mk='makepkg' \
+    && alias mks='makepkg -s' \
+    && alias mki='makepkg -is'
+
+bin () { pacman -Ql $* | grep $GPARAM bin/ | awk '{print $2}'; } # Binaries from package
+#command -v pkgfile >/dev/null 2>&1 && bin () { pkgfile -l $* | grep $GPARAM bin/; }
+owns () { pacman -Qo $(which $*); }                              # Ownership of binary
+
+command -v pacaur >/dev/null 2>&1 \
+    && alias pa='pacaur' \
+    && alias pau='pacaur -Syu' \
+    && alias pas='pacaur -Ss' \
+    && alias par='pacaur -R' \
+    && alias pac='pacaur -Sc' \
+    && alias parc='pacaur -Rns'
+
