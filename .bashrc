@@ -116,7 +116,6 @@ else
 	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
 fi
 #alias ls='ls $LSPARAMS'
-ls () { command ls $LSPARAMS "$@" | less -RFX; }
 echo | grep --color=always '' >/dev/null 2>&1 && GPARAM='--color=always' || GPARAM=''
 command -v sudo >/dev/null 2>&1 && alias sudo='sudo '
 command -v acp >/dev/null 2>&1 && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
@@ -165,6 +164,7 @@ alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`d
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'\`date\ +%H-%M-%S\`'.mp4'
 
 # Functions
+ls () { command ls $LSPARAMS "$@" | less -RFX; }
 mkcd () { mkdir "$1" && cd "$1"; }          # make dir and cd
 fnd () { find . -iname \*$*\* | less; }     # find
 cdl () { cd "$*" && ls -al $LSPARAMS; }     # cd and list
