@@ -115,6 +115,8 @@ For gtk2 apps install `gtk-theme-switch2` and select theme.
 
 # Bootable USB w/various ISOs
 
+This section is outdated. Use [Ventoy](https://github.com/ventoy/Ventoy#--ventoy) now.
+
 1. Install syslinux:
 	`sudo pacman -S syslinux`
 	or
