@@ -17,6 +17,7 @@ HISTCONTROL=ignoreboth
 command -v vim >/dev/null 2>&1 && export VISUAL=vim
 command -v less >/dev/null 2>&1 && export VISUAL=less
 export COLUMNS                            # Remember columns for subprocesses.
+command -v vim >/dev/null 2>&1 && export SYSTEMD_EDITOR=vim
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
 #[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
@@ -32,6 +33,14 @@ fi
 if [[ $TERM == 'xterm-kitty' ]]; then
     command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
 fi
+if [[ -x "`type dircolors`" ]]; then
+    eval `dircolors`
+	LSPARAMS='-CFh --group-directories-first --time-style=long-iso --color=always'
+else
+	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
+fi
+#alias ls='ls $LSPARAMS'
+echo | grep --color=always '' >/dev/null 2>&1 && GPARAM='--color=always' || GPARAM=''
 
 # Personal custom aliases, functions
 [[ -f ~/.balias.bsh ]] && source ~/.balias.bsh
@@ -109,19 +118,15 @@ else
 fi
 
 # Custom aliases
-if [[ -x "`type dircolors`" ]]; then
-    eval `dircolors`
-	LSPARAMS='-CFh --group-directories-first --time-style=long-iso --color=always'
-else
-	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
-fi
-#alias ls='ls $LSPARAMS'
-echo | grep --color=always '' >/dev/null 2>&1 && GPARAM='--color=always' || GPARAM=''
 command -v sudo >/dev/null 2>&1 && alias sudo='sudo '
 command -v acp >/dev/null 2>&1 && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
 command -v amv >/dev/null 2>&1 && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
 command -v dfc >/dev/null 2>&1 && alias df=dfc || alias df='df -h'
-command -v systemctl >/dev/null 2>&1 && alias svc='systemctl'   # Services
+command -v systemctl >/dev/null 2>&1 && alias sc='systemctl'    # Services
+command -v fzf >/dev/null 2>&1 && alias fm='fzf -m --tac'       # fzf multi-select
+command -v fzf >/dev/null 2>&1 && alias dmf='dmesg | fm +s'     # Search dmesg with fzf
+command -v fzf >/dev/null 2>&1 && alias o='xdg-open "$(fzf)"'   # Find & open with fzf
+command -v fzf >/dev/null 2>&1 && alias psf='ps -ef | fm'       # Find process with fzf
 alias free='free -h'                                            # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> terminal hang
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -169,6 +174,7 @@ mkcd () { mkdir "$1" && cd "$1"; }          # make dir and cd
 fnd () { find . -iname \*$*\* | less; }     # find
 cdl () { cd "$*" && ls -al $LSPARAMS; }     # cd and list
 command -v ag >/dev/null 2>&1 && lg () { sudo ag $* /var/log/; } || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
+command -v fzf >/dev/null 2>&1  && lf () { locate -i "$@" | fm +s; }  # locate & print from fzf multi-select
 command -v mpv >/dev/null 2>&1 && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
 vq () { vim -q <(ag "$*"); }
 mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"; }
