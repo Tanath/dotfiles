@@ -29,6 +29,7 @@ zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' select-prompt %SScrolling: current selection at %p%s
 setopt magic_equal_subst                                   # Do file completion on <value> in foo=<value>
+zstyle ':completion:*' rehash true                         # Check for new binaries when doing completion
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'
