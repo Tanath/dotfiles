@@ -1,0 +1,19 @@
+" General Settings
+set update.lastchecktime 1587925524900
+set configversion 1.9
+set updatenaglastversion 1.17.1
+set theme dark
+
+" Binds
+bind d scrollpage 0.5
+bind x tabclose
+bind e scrollpage -0.5
+bind k scrollpage -0.25
+bind j scrollpage 0.25
+
+" Ignored sites
+autocmd DocStart mail.google.com mode ignore
+autocmd DocStart youtube.com mode ignore
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
