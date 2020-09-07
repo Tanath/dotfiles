@@ -1,3 +1,4 @@
+(( $+commands[exa] )) && EXA_COLORS="da=32"
 (( $+commands[vim] )) && export EDITOR=vim && export VISUAL=vim && SYSTEMD_EDITOR=vim
 (( $+commands[less] )) && export PAGER=less
 export COLUMNS  # Remember columns for subprocesses.
