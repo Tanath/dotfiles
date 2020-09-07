@@ -15,17 +15,17 @@ NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
 [[ -n ${commands[pacmatic]} ]] && alias pmc='sudo pacmatic -Sc' || alias pmc='sudo pacman -Sc'     # Clean cache
 [[ -n ${commands[pacmatic]} ]] && alias pmrc='sudo pacmatic -Rns' || alias pmrc='sudo pacman -Rns' # Remove w/config
 [[ -n ${commands[pacmatic]} ]] && alias pmu='sudo pacmatic -Syu' || alias pmu='sudo pacman -Syu'   # Pacman upgrade
-alias pms='pacman -Ss'             # Pacman search
-alias pmls='pacman -Qs'	           # Local search
-alias pml='pacman -Ql'	           # List (files)
-alias pmo='pacman -Qtd'	           # Orphans
-owns () { pacman -Qo $(which $*) } # Ownership of binary
+alias pms='pacman -Ss'                                     # Pacman search
+alias pmls='pacman -Qs'	                                   # Local search
+alias pml='pacman -Ql'	                                   # List (files)
+alias pmo='pacman -Qtd'	                                   # Orphans
+alias owns='pacman -Qo'                                    # Ownership of file
 [[ -n ${commands[pacaur]} ]] && alias pa='pacaur'
-[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'  # Pacaur upgrade
-[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'   # Pacaur search
-[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'    # Pacaur remove
-[[ -n ${commands[pacaur]} ]] && alias pac='pacaur -Sc'   # Pacaur clean cache
-[[ -n ${commands[pacaur]} ]] && alias parc='pacaur -Rns' # Pacaur remove w/config
+[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'    # Pacaur upgrade
+[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'     # Pacaur search
+[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'      # Pacaur remove
+[[ -n ${commands[pacaur]} ]] && alias pac='pacaur -Sc'     # Pacaur clean cache
+[[ -n ${commands[pacaur]} ]] && alias parc='pacaur -Rns'   # Pacaur remove w/config
 
 [[ -n ${commands[vimdiff]} ]] && export DIFFPROG=vimdiff # pacdiff
 [[ -n ${commands[jq]} ]] && aurj () { curl -sSL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]' }
