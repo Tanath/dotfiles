@@ -10,6 +10,13 @@ zplug "zdharma/fast-syntax-highlighting"
 # Prefix command with doas by pressing esc twice
 zplug "anatolykopyl/doas-zsh-plugin"
 
+# Access external clipboards in vi-mode keymaps, and synchronize registers
+zplug "zsh-vi-more/evil-registers"
+
+# Zsh easy motion, like Vim's
+#zplug "IngoHeimbach/zsh-easy-motion"
+#bindkey -M vicmd '#' vi-easy-motion
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
