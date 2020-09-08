@@ -7,6 +7,9 @@ zplug "zsh-users/zsh-autosuggestions"
 # Syntax highlighting in zsh
 zplug "zdharma/fast-syntax-highlighting"
 
+# Prefix command with doas by pressing esc twice
+zplug "anatolykopyl/doas-zsh-plugin"
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
