@@ -58,10 +58,11 @@ Operation = Install
 Operation = Remove
 Type = Package
 Target = *
+
 [Action]
 Description = Cleaning pacman cache...
 When = PostTransaction
-Exec = /usr/bin/paccache -ruk2
+Exec = /usr/bin/paccache -rk2
 ```
 
 ## Check for firmware updates.
