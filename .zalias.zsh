@@ -38,8 +38,11 @@ ls () { command ls $LSPARAMS "$@" | less -RFX }
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i '$GPARAM          # ls grep
-alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head'
-alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
+(( $+commands[exa] )) && \
+    alias new='exa --icons -Flhrs=modified' && \
+    alias old='exa --icons -Flhs=modified' || \
+    alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
+    alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
