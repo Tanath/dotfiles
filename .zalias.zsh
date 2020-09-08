@@ -78,7 +78,9 @@ alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
 # Misc functions
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
-cdl () { cd "$*" && ls -al $LSPARAMS }                     # cd and list
+(( $+commands[exa] )) && \
+    cdl () { cd "$*" && exa --icons -Flhs=type } || \
+    cdl () { cd "$*" && ls -al $LSPARAMS }                     # cd and list
 (( $+commands[ag] )) && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
 (( $+commands[ag] )) && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
 (( $+commands[fzf] )) && lf () { locate -i "$@" | fm +s }  # locate & print from fzf multi-select
