@@ -1,6 +1,9 @@
 [[ -f ~/.zplug/init.zsh ]] && export ZPLUG_HOME=~/.zplug && source ~/.zplug/init.zsh
 # git clone https://github.com/zplug/zplug $ZPLUG_HOME
 
+# Replace zsh's default completion selection menu with fzf
+zplug "Aloxaf/fzf-tab"
+
 # Fish-like autosuggestions for zsh
 zplug "zsh-users/zsh-autosuggestions"
 
