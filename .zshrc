@@ -44,6 +44,8 @@ zstyle ':completion:*' accept-exact '*(N)'
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
 #bindkey -e
+# Add alt+. to vi mode
+bindkey -v '\e.' insert-last-word
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
 compinit
