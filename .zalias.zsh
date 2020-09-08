@@ -23,12 +23,12 @@ alias ed='vim'
 alias u='cd ..'
 ls () { command ls $LSPARAMS "$@" | less -RFX }
 (( $+commands[exa] )) && \
-    alias ll='exa -Flhs=type' && \
-    alias la='exa -Fahs=type' && \
-    alias lla='exa -Falhs=type' && \
-    alias lz='exa -Fhs=size' && \
-    alias lt='exa -Fhs=modified' && \
-    alias lx='exa -Fhs=type' || \
+    alias ll='exa -Flhs=type --icons' && \
+    alias la='exa -Fahs=type --icons' && \
+    alias lla='exa -Falhs=type --icons' && \
+    alias lz='exa -Fhs=size --icons' && \
+    alias lt='exa -Fhs=modified --icons' && \
+    alias lx='exa -Fhs=type --icons' || \
     alias ll=ls\ -l\ $LSPARAMS && \
     alias la=ls\ -a\ $LSPARAMS && \
     alias lla=ls\ -la\ $LSPARAMS && \
