@@ -20,6 +20,7 @@ alias pmls='pacman -Qs'	                                   # Local search
 alias pml='pacman -Ql'	                                   # List (files)
 alias pmo='pacman -Qtd'	                                   # Orphans
 alias owns='pacman -Qo'                                    # Ownership of file
+[[ -n ${commands[expac]} ]] && alias bigp='expac -HM "%m %n" | sort -n' # List packages by size
 [[ -n ${commands[pacaur]} ]] && alias pa='pacaur'
 [[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'    # Pacaur upgrade
 [[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'     # Pacaur search
