@@ -12,12 +12,12 @@ My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads t
 * `gb` opens `:Buffers` from [fzf.vim](https://github.com/junegunn/fzf.vim). `<Leader>bb` for built-in version.
 * `<leader>km` opens `:Maps` from fzf.vim to search mappings.
 
-I swap caps & esc in X and console for better vimming (see [reference/misctweaks.md](reference/misctweaks.md)). This benefits other programs as well, and doesn't mess with muscle memory by keeping consistent. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
+I swap caps & esc via udev for better vimming (see [reference/misctweaks.md](reference/misctweaks.md#swap-caps--esc)). This benefits other programs as well, and doesn't mess with muscle memory by keeping consistent. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
 
 ## zsh
 This [.zshrc](.zshrc) sources [.zprompt.zsh](.zprompt.zsh) for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/).
 
-![zsh prompt](http://aperiodic.net/phil/prompt/normal.png)
+![zsh prompt](https://github.com/Tanath/dotfiles/raw/master/terminal-exa-2020-09-09_18-44.png)
 
 It sources the following files if they exist:
 * [~/.zprompt.zsh](.zprompt.zsh): Phil's prompt. You can replace it with your own.
