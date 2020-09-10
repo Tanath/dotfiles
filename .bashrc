@@ -132,6 +132,7 @@ alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> term
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
+alias uu='cd ../..'
 command -v exa >/dev/null 2>&1 && alias ll='exa -Flhs=type' || alias ll=ls\ -l\ $LSPARAMS
 command -v exa >/dev/null 2>&1 && alias la='exa -Fahs=type' || alias la=ls\ -a\ $LSPARAMS
 command -v exa >/dev/null 2>&1 && alias lla='exa -Falhs=type' || alias lla=ls\ -la\ $LSPARAMS
