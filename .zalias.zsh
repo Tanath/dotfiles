@@ -21,7 +21,7 @@ alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> termina
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
 alias ed='vim'
 alias u='cd ..'
-alias uu='cd ${${PWD:h:h}:-/}'                             # Up twice or to /
+alias uu='cd ../..'                                        # Up twice or to /
 ls () { command ls $LSPARAMS "$@" | less -RFX }
 (( $+commands[exa] )) && \
     alias ll='exa -Flhs=type --icons' && \
