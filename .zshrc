@@ -43,6 +43,9 @@ zstyle ':completion:*' accept-exact '*(N)'
 [[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
 [[ -f /usr/share/fzf/completion.zsh ]] && source /usr/share/fzf/completion.zsh
 
+# Make Vi mode transitions faster
+export KEYTIMEOUT=20
+
 #bindkey -e
 # Add alt+. to vi mode
 bindkey -v '\e.' insert-last-word
