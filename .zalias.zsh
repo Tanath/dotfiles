@@ -38,7 +38,6 @@ ls () { command ls $LSPARAMS "$@" | less -RFX }
     alias lx='ll -BX'                                      # sort by ext
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
-alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i '$GPARAM          # ls grep
 (( $+commands[exa] )) && \
     alias new='exa --icons -Flhrs=modified' && \
     alias old='exa --icons -Flhs=modified' || \
@@ -77,6 +76,7 @@ alias avfix='sudo sysctl -w kernel.shmmax=100000000'
 alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
 
 # Misc functions
+lsg () { ls -CFhal | grep -i $GPARAM "$*" }                # ls grep
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
 (( $+commands[exa] )) && \
