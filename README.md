@@ -15,12 +15,10 @@ My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads t
 I swap caps & esc via udev for better vimming (see [reference/misctweaks.md](reference/misctweaks.md#swap-caps--esc)). This benefits other programs as well, and doesn't mess with muscle memory by keeping consistent. Capslock rarely gets used and esc gets used frequently, it's better that esc is closer and caps is further.
 
 ## zsh
-This [.zshrc](.zshrc) sources [.zprompt.zsh](.zprompt.zsh) for its prompt. You can replace it with your own if it's not to your liking. This uses [Phil's zsh prompt](http://aperiodic.net/phil/prompt/).
-
-![zsh prompt](https://github.com/Tanath/dotfiles/raw/master/terminal-exa-2020-09-09_18-44.png)
+This [.zshrc](.zshrc) uses [p10k](https://github.com/romkatv/powerlevel10k) for its prompt. You can replace it with your own if it's not to your liking by uncommenting the sourcing of `.zprompt.zsh` and putting your prompt config there.
 
 It sources the following files if they exist:
-* [~/.zprompt.zsh](.zprompt.zsh): Phil's prompt. You can replace it with your own.
+* [~/.zprompt.zsh](.zprompt.zsh): Disabled/commented out for now. Formerly Phil's prompt. You can replace it with your own.
 * [~/.zalias.zsh](.zalias.zsh): I use this for personalized aliases which aren't distro-specific yet don't belong in `.zshrc`.
 * [~/.zpac.zsh](.zpac.zsh): aliases for pacman-based Linux distros.
 * [~/.zubuntu.zsh](.zubuntu.zsh): aliases for Debian-based Linux distros. It only has ubuntu in the name for easier tab-completion due to `.zdesk.zsh`.

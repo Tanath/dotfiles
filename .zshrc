@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Options
 setopt correct                                             # Auto correct mistakes
 setopt numericglobsort                                     # Sort filenames numerically when it makes sense
@@ -67,8 +74,8 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 autoload -Uz run-help
 unalias run-help 2>/dev/null
 alias help=run-help
-autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
-promptinit
+#autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
+#promptinit
 
 HISTFILE=~/.zhistory
 HISTSIZE=12000
@@ -79,7 +86,7 @@ WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the 
 # http://aperiodic.net/phil/prompt/prompt.txt
 # Bender apm fix
 # https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
-[[ -f ~/.zprompt.zsh ]] && source ~/.zprompt.zsh
+#[[ -f ~/.zprompt.zsh ]] && source ~/.zprompt.zsh
 
 # zsh-syntax-highlighting and autosuggestion
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -209,3 +216,5 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
