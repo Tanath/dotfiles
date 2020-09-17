@@ -75,6 +75,8 @@ alias yta='youtube-dl -x'
 alias rserv='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 8001, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"'
 alias avfix='sudo sysctl -w kernel.shmmax=100000000'
 alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
+alias dp='xclip -o | curl -s -F "content=<-" https://dpaste.com/api/' # selection to dpaste
+alias dpc='xclip -o -sel clip | curl -s -F "content=<-" https://dpaste.com/api/' # clipboard to dpaste
 
 # Misc functions
 lsg () { ls -CFhal | grep -i $GPARAM "$*" }                # ls grep
