@@ -103,6 +103,33 @@ sudo mhwd -a pci nonfree <classid>
 Install `qt5-styleplugins` and `qt5ct`. Restart, run `qt5ct` from terminal and select gtk2.
 For gtk2 apps install `gtk-theme-switch2` and select theme.
 
+# Emoji font config
+* `sudo pacman -S noto-fonts-emoji`
+* `mkdir -p ~/.config/fontconfig/conf.d`
+* `$EDITOR ~/.config/fontconfig/conf.d/30-color-fonts.conf`
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <alias binding="same">
+        <family>emoji</family>
+        <prefer>
+            <family>Noto Color Emoji</family> <!-- Google -->
+            <family>Apple Color Emoji</family> <!-- Apple -->
+            <family>Segoe UI Emoji</family> <!-- Microsoft -->
+            <family>Twitter Color Emoji</family> <!-- Twitter -->
+            <family>EmojiOne Mozilla</family> <!-- Mozilla -->
+            <family>Emoji Two</family>
+            <family>JoyPixels</family>
+            <family>Emoji One</family>
+            <!-- Non-color -->
+            <family>Noto Emoji</family> <!-- Google -->
+            <family>Android Emoji</family> <!-- Google -->
+        </prefer>
+    </alias>
+</fontconfig>
+```
+
 # Default web browser for xdg-open
 
 `xdg-settings set default-web-browser google-chrome-beta.desktop`
