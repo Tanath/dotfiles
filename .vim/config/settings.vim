@@ -84,8 +84,9 @@ if v:version + has('patch541') >= 704
     set formatoptions+=j
 endif
 "au bufread *.md set formatoptions=want " Attempt markdown list behaviour
-" Make sure *.md is seen as markdown.
+" Make sure *.md is seen as markdown, *.conf as conf.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+autocmd BufNewFile,BufReadPost *.conf set filetype=conf
 
 " Whitespace characters.
 set listchars=trail:~,tab:>\ ,nbsp:~
