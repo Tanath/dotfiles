@@ -36,8 +36,7 @@ if has('syntax')
     let g:lang=tolower(split(expand(v:lang), '\.')[0])
     let &spelllang=g:lang
     let &langmenu=g:lang
-    autocmd VimEnter * set spell spellsuggest=best
-    autocmd FileType vim setl nospell
+    "autocmd VimEnter * set spell spellsuggest=best
 endif
 
 " Remember certain things when we exit
