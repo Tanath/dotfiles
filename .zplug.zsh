@@ -1,5 +1,7 @@
-[[ -f ~/.zplug/init.zsh ]] && export ZPLUG_HOME=~/.zplug && source ~/.zplug/init.zsh
-# git clone https://github.com/zplug/zplug $ZPLUG_HOME
+[[ -f ~/.zplug/init.zsh ]] && \
+    export ZPLUG_HOME=~/.zplug && \
+    source ~/.zplug/init.zsh || \
+    echo "Install zplug:\ngit clone https://github.com/zplug/zplug ~/.zplug"
 
 # pl10k prompt
 zplug romkatv/powerlevel10k, as:theme, depth:1
