@@ -74,6 +74,7 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 autoload -Uz run-help
 unalias run-help 2>/dev/null
 alias help=run-help
+alias h=run-help
 #autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
 #promptinit
 
