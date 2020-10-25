@@ -14,24 +14,34 @@ HISTSIZE=10000
 HISTFILESIZE=${HISTSIZE}
 HISTCONTROL=ignoreboth
 # Custom environment variables
-command -v vim >/dev/null 2>&1 && export VISUAL=vim
-command -v less >/dev/null 2>&1 && export VISUAL=less
+command -v vim >/dev/null 2>&1 \
+    && export VISUAL=vim
+command -v less >/dev/null 2>&1 \
+    && export VISUAL=less
 export COLUMNS                            # Remember columns for subprocesses.
-command -v vim >/dev/null 2>&1 && export SYSTEMD_EDITOR=vim
+command -v vim >/dev/null 2>&1 \
+    && export SYSTEMD_EDITOR=vim
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
 #[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d /usr/share/themes/Menda-Dark/ ]] && export GTK_THEME=Menda-Dark || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d /usr/share/themes/Numix-DarkBlue ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
+[[ -d /usr/share/themes/Menda-Dark/ ]] \
+    && export GTK_THEME=Menda-Dark \
+    || export GTK_THEME=Adwaita:dark      # For gtk3
+[[ -d /usr/share/themes/Numix-DarkBlue ]] \
+    && export GTK_THEME=Numix-DarkBlue \
+    || export GTK_THEME=Adwaita:dark      # For gtk3
 # This may break some apps, like Dropbox device linking? Get url from ps.
 if [[ -n $DISPLAY ]]; then
 	export BROWSER=xdg-open
 	export GTK_OVERLAY_SCROLLING=0        # Disable overlay scrollbars in gtk3. >_<
 else
-	command -v w3m >/dev/null 2>&1 && export BROWSER=w3m || export BROWSER=elinks
+	command -v w3m >/dev/null 2>&1 \
+	    && export BROWSER=w3m \
+	    || export BROWSER=elinks
 fi
 if [[ $TERM == 'xterm-kitty' ]]; then
-    command -v kitty >/dev/null 2>&1 && source <(kitty + complete setup bash)
+    command -v kitty >/dev/null 2>&1 \
+        && source <(kitty + complete setup bash)
 fi
 if [[ -x "`type dircolors`" ]]; then
     eval `dircolors`
@@ -40,7 +50,9 @@ else
 	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
 fi
 #alias ls='ls $LSPARAMS'
-echo | grep --color=always '' >/dev/null 2>&1 && GPARAM='--color=always' || GPARAM=''
+echo | grep --color=always '' >/dev/null 2>&1 \
+    && GPARAM='--color=always' \
+    || GPARAM=''
 
 # Personal custom aliases, functions
 [[ -f ~/.balias.bsh ]] && source ~/.balias.bsh
@@ -122,9 +134,15 @@ command -v starship >/dev/null 2>&1 \
 
 # Custom aliases
 command -v sudo >/dev/null 2>&1 && alias sudo='sudo '
-command -v acp >/dev/null 2>&1 && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-command -v amv >/dev/null 2>&1 && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
-command -v dfc >/dev/null 2>&1 && alias df=dfc || alias df='df -h'
+command -v acp >/dev/null 2>&1 \
+    && alias cp='acp -gi' \
+    || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
+command -v amv >/dev/null 2>&1 \
+    && alias mv='amv -gi' \
+    || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
+command -v dfc >/dev/null 2>&1 \
+    && alias df=dfc \
+    || alias df='df -h'
 command -v systemctl >/dev/null 2>&1 && alias sc='systemctl'    # Services
 command -v fzf >/dev/null 2>&1 && alias fm='fzf -m --tac'       # fzf multi-select
 command -v fzf >/dev/null 2>&1 && alias dmf='dmesg | fm +s'     # Search dmesg with fzf
@@ -136,12 +154,24 @@ alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> te
 alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'
-command -v exa >/dev/null 2>&1 && alias ll='exa -Flhs=type' || alias ll=ls\ -l\ $LSPARAMS
-command -v exa >/dev/null 2>&1 && alias la='exa -Fahs=type' || alias la=ls\ -a\ $LSPARAMS
-command -v exa >/dev/null 2>&1 && alias lla='exa -Falhs=type' || alias lla=ls\ -la\ $LSPARAMS
-command -v exa >/dev/null 2>&1 && alias lz='exa -Fhs=size' || alias lz='ll -rS'
-command -v exa >/dev/null 2>&1 && alias lt='exa -Fhs=modified' || alias lt='ll -rT'
-command -v exa >/dev/null 2>&1 && alias lx='exa -Fhs=type' || alias lx='ll -BX'                                           # sort by ext
+command -v exa >/dev/null 2>&1 \
+    && alias ll='exa -Flhs=type' \
+    || alias ll=ls\ -l\ $LSPARAMS
+command -v exa >/dev/null 2>&1 \
+    && alias la='exa -Fahs=type' \
+    || alias la=ls\ -a\ $LSPARAMS
+command -v exa >/dev/null 2>&1 \
+    && alias lla='exa -Falhs=type' \
+    || alias lla=ls\ -la\ $LSPARAMS
+command -v exa >/dev/null 2>&1 \
+    && alias lz='exa -Fhs=size' \
+    || alias lz='ll -rS'
+command -v exa >/dev/null 2>&1 \
+    && alias lt='exa -Fhs=modified' \
+    || alias lt='ll -rT'
+command -v exa >/dev/null 2>&1 \
+    && alias lx='exa -Fhs=type' \
+    || alias lx='ll -BX'                                           # sort by ext
 alias l.='ls $LSPARAMS -d .[^.]*'                               # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i --color=always'        # ls grep
@@ -177,9 +207,13 @@ ls () { command ls $LSPARAMS "$@" | less -RFX; }
 mkcd () { mkdir "$1" && cd "$1"; }          # make dir and cd
 fnd () { find . -iname \*$*\* | less; }     # find
 cdl () { cd "$*" && ls -al $LSPARAMS; }     # cd and list
-command -v ag >/dev/null 2>&1 && lg () { sudo ag $* /var/log/; } || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
-command -v fzf >/dev/null 2>&1  && lf () { locate -i "$@" | fm +s; }  # locate & print from fzf multi-select
-command -v mpv >/dev/null 2>&1 && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
+command -v ag >/dev/null 2>&1 \
+    && lg () { sudo ag $* /var/log/; } \
+    || lg () { sudo grep $GPARAM -ir $* /var/log/*; } # log grep
+command -v fzf >/dev/null 2>&1 \
+    && lf () { locate -i "$@" | fm +s; }    # locate & print from fzf multi-select
+command -v mpv >/dev/null 2>&1 \
+    && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga; }
 vq () { vim -q <(ag "$*"); }
 mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"; }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10; }
