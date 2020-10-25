@@ -108,14 +108,17 @@ function nonzero_return() {
 }
 
 # Check for zer0prompt. Needs folder moved to ~ after cloning.
-if [[ -f ~/zer0prompt/zer0prompt.sh ]]; then
-	source ~/zer0prompt/zer0prompt.sh
-	zer0prompt
-	unset zer0prompt
-else
-	#PS1='[\u@\h \W]\$ '
-	PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]:\[\e[32m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]-\[\e[33m\]\d\[\e[m\]-\[\e[33m\]\A\[\e[m\]\[\e[36m\]-\[\e[m\]\`parse_git_branch\`> "
-fi
+#if [[ -f ~/zer0prompt/zer0prompt.sh ]]; then
+#	source ~/zer0prompt/zer0prompt.sh
+#	zer0prompt
+#	unset zer0prompt
+
+# Use Starship prompt, or install it, or use fallback.
+command -v starship >/dev/null 2>&1 \
+    && eval "$(starship init bash)" \
+    || curl -fsSL https://starship.rs/install.sh | bash \
+    || PS1="\[\e[31m\]\`nonzero_return\`\[\e[m\]:\[\e[32m\]\u\[\e[m\]@\[\e[32m\]\h\[\e[m\]-\[\e[33m\]\d\[\e[m\]-\[\e[33m\]\A\[\e[m\]\[\e[36m\]-\[\e[m\]\`parse_git_branch\`> "
+    # || PS1='[\u@\h \W]\$ '
 
 # Custom aliases
 command -v sudo >/dev/null 2>&1 && alias sudo='sudo '
