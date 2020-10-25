@@ -7,9 +7,15 @@ else
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
 (( $+commands[sudo] )) && alias sudo='sudo '
-(( $+commands[acp] )) && alias cp='acp -gi' || alias cp='cp -i' # advcp w/progress bar, confirm overwrite
-(( $+commands[amv] )) && alias mv='amv -gi' || alias mv='mv -i' # advcp w/progress bar, confirm overwrite
-(( $+commands[dfc] )) && alias df=dfc || alias df='df -h'
+(( $+commands[acp] )) \
+    && alias cp='acp -gi' \
+    || alias cp='cp -i'                    # advcp w/progress bar, confirm overwrite
+(( $+commands[amv] )) \
+    && alias mv='amv -gi' \
+    || alias mv='mv -i'                    # advcp w/progress bar, confirm overwrite
+(( $+commands[dfc] )) \
+    && alias df=dfc \
+    || alias df='df -h'
 alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) && alias sc='systemctl'        # Services
 (( $+commands[fzf] )) && alias fm='fzf -m --tac'           # fzf multi-select
@@ -23,26 +29,26 @@ alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'                                        # Up twice or to /
 ls () { command ls $LSPARAMS "$@" | less -RFX }
-(( $+commands[exa] )) && \
-    alias ll='exa -Flhs=type --icons' && \
-    alias la='exa -Fahs=type --icons' && \
-    alias lla='exa -Falhs=type --icons' && \
-    alias lz='exa -Fhs=size --icons' && \
-    alias lt='exa -Fhs=modified --icons' && \
-    alias lx='exa -Fhs=type --icons' || \
-    alias ll=ls\ -l\ $LSPARAMS && \
-    alias la=ls\ -a\ $LSPARAMS && \
-    alias lla=ls\ -la\ $LSPARAMS && \
-    alias lz='ll -rS' && \
-    alias lt='ll -rT' && \
-    alias lx='ll -BX'                                      # sort by ext
+(( $+commands[exa] )) \
+    && alias ll='exa -Flhs=type --icons' \
+    && alias la='exa -Fahs=type --icons' \
+    && alias lla='exa -Falhs=type --icons' \
+    && alias lz='exa -Fhs=size --icons' \
+    && alias lt='exa -Fhs=modified --icons' \
+    && alias lx='exa -Fhs=type --icons' \
+    || alias ll=ls\ -l\ $LSPARAMS \
+    && alias la=ls\ -a\ $LSPARAMS \
+    && alias lla=ls\ -la\ $LSPARAMS \
+    && alias lz='ll -rS' \
+    && alias lt='ll -rT' \
+    && alias lx='ll -BX'                                      # sort by ext
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
-(( $+commands[exa] )) && \
-    alias new='exa --icons -Flhrs=modified' && \
-    alias old='exa --icons -Flhs=modified' || \
-    alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
-    alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
+(( $+commands[exa] )) \
+    && alias new='exa -Flhrs=modified --icons' \
+    && alias old='exa -Flhs=modified --icons' \
+    || alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
+    && alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
 alias psg='ps -efw | grep -v grep | grep '$GPARAM' $*'     # ps grep
 alias pst='ps -ef --sort=pcpu | tail'                      # Most cpu use
 alias psm='ps -ef --sort=vsize | tail'                     # Most mem use
@@ -82,14 +88,21 @@ alias dpc='xclip -o -sel clip | curl -s -F "content=<-" https://dpaste.com/api/'
 lsg () { ls -CFhal | grep -i $GPARAM "$*" }                # ls grep
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
-(( $+commands[exa] )) && \
-    cdl () { cd "$*" && exa --icons -Flhs=type } || \
-    cdl () { cd "$*" && ls -al $LSPARAMS }                     # cd and list
-(( $+commands[ag] )) && lg () { sudo ag $* /var/log/ } || lg () { sudo grep $GPARAM -ir $* /var/log/* } # log grep
-(( $+commands[ag] )) && vq () { vim -q <(ag "$*") } || vq () { vim -q <(grep -i "$*") }
-(( $+commands[fzf] )) && lf () { locate -i "$@" | fm +s }  # locate & print from fzf multi-select
-(( $+commands[mpv] )) && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-(( $+commands[mpv] )) && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
+(( $+commands[exa] )) \
+    && cdl () { cd "$*" && exa -Flhs=type --icons } \
+    || cdl () { cd "$*" && ls -al $LSPARAMS }              # cd and list
+(( $+commands[ag] )) \
+    && lg () { sudo ag $* /var/log/ } \
+    || lg () { sudo grep $GPARAM -ir $* /var/log/* }       # log grep
+(( $+commands[ag] )) \
+    && vq () { vim -q <(ag "$*") } \
+    || vq () { vim -q <(grep -i "$*") }
+(( $+commands[fzf] )) \
+    && lf () { locate -i "$@" | fm +s }  # locate & print from fzf multi-select
+(( $+commands[mpv] )) \
+    && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+(( $+commands[mpv] )) \
+    && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 fwh () { file =$1 }                                        # file which
 yt () { youtube-dl -c -f 18/22 $* }
