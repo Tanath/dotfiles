@@ -217,9 +217,11 @@ if exists("*strftime")
     nmap <F8> i<c-r>=strftime('%c')<cr><esc>
     imap <F8> <c-r>=strftime('%c')<cr>
 endif
-" Toggle highlighting column 80:
+" Toggle highlighting column 81:
 if has('syntax')
-    nnoremap <F9> :if &cc != 80 \| setl cc=80 cc? \| else \| setl cc& cc? \| endif<cr>
+    " Show overflowing lines.
+    call matchadd('ColorColumn', '\%81v', 100)
+    nnoremap <F9> :if &cc != 81 \| setl cc=81 cc? \| else \| setl cc& cc? \| endif<cr>
 endif
 if has('terminal')
     nnoremap <F10> :terminal<CR>
