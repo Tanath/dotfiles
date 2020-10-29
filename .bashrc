@@ -144,10 +144,11 @@ command -v dfc >/dev/null 2>&1 \
     && alias df=dfc \
     || alias df='df -h'
 command -v systemctl >/dev/null 2>&1 && alias sc='systemctl'    # Services
-command -v fzf >/dev/null 2>&1 && alias fm='fzf -m --tac'       # fzf multi-select
-command -v fzf >/dev/null 2>&1 && alias dmf='dmesg | fm +s'     # Search dmesg with fzf
-command -v fzf >/dev/null 2>&1 && alias o='xdg-open "$(fzf)"'   # Find & open with fzf
-command -v fzf >/dev/null 2>&1 && alias psf='ps -ef | fm'       # Find process with fzf
+command -v fzf >/dev/null 2>&1 \
+    && alias fm='fzf -m --tac' \
+    && alias dmf='dmesg | fm +s' \
+    && alias o='xdg-open "$(fzf)"' \
+    && alias psf='ps -ef | fm' \
 alias free='free -h'                                            # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> terminal hang
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
