@@ -100,10 +100,10 @@ fnd () { find . -iname \*$*\* | less }                     # find
 (( $+commands[ag] )) \
     && vq () { vim -q <(ag "$*") } \
     && lg () { sudo ag -C $* /var/log/ } \
-    || vq () { vim -q <(grep -i "$*") }
+    || vq () { vim -q <(grep -i "$*") } \
     && lg () { sudo grep $GPARAM -ir $* /var/log/* }
 (( $+commands[mpv] )) \
-    && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
+    && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 fwh () { file =$1 }                                        # file which
