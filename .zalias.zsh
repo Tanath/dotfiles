@@ -1,4 +1,4 @@
-# Custom aliases
+# Custom aliases & function
 if [[ -x "`whence -p dircolors`" ]]; then
     eval `dircolors`
     LSPARAMS=(-CFh --group-directories-first --time-style=long-iso --color=always)
@@ -17,14 +17,19 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
     && alias df=dfc \
     || alias df='df -h'
 alias dmesg='dmesg -H --color=always'
-(( $+commands[systemctl] )) && alias sc='systemctl'        # Services
-(( $+commands[fzf] )) && alias fm='fzf -m --tac'           # fzf multi-select
-(( $+commands[fzf] )) && alias dmf='dmesg | fm +s'         # Search dmesg with fzf
-(( $+commands[fzf] )) && alias o='xdg-open "$(fzf)"'       # Find & open with fzf
-(( $+commands[fzf] )) && alias psf='ps -ef | fm'           # Find process with fzf
+(( $+commands[systemctl] )) \
+    && alias sc='systemctl'
+(( $+commands[fzf] )) \
+    && alias fm='fzf -m --tac' \
+    && alias dmf='dmesg | fm +s' \
+    && alias o='xdg-open "$(fzf)"' \
+    && alias psf='ps -ef | fm' \
+    && lf () { locate -i "$@" | fm +s } \
+    && alias spf='ss -ptunl|egrep -vi unix | fm'
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
+alias v=vim
 alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'                                        # Up twice or to /
@@ -41,7 +46,7 @@ ls () { command ls $LSPARAMS "$@" | less -RFX }
     && alias lla=ls\ -la\ $LSPARAMS \
     && alias lz='ll -rS' \
     && alias lt='ll -rT' \
-    && alias lx='ll -BX'                                      # sort by ext
+    && alias lx='ll -BX'                                   # sort by ext
 alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
 (( $+commands[exa] )) \
@@ -60,7 +65,6 @@ alias powertop='sudo powertop'
 alias lp='ss -np4'                                         # lsof ports
 #alias lp='lsof -Pnl +M -i4'                                # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
-(( $+commands[fzf] )) && alias spf='ss -ptunl|egrep -vi unix|fm' # pipe to fzf (ss port find)
 alias big='du -sh * | sort -hr'
 alias bh='big | head'
 alias jerr='journalctl -eaxp4 -b'                          # Journalctl errors this boot
@@ -74,17 +78,19 @@ alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`d
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'`date +%H-%M-%S`'.mp4'
 alias map='telnet mapscii.me'
 alias wttr='curl wttr.in/hamilton'
-alias pdfs='lsof | grep "\.pdf" | grep zathura | sed "s/\s\+/ /g" | cut --complement -d" " -f-8'
+(( $+commands[zathura] )) \
+    && alias pdfs='lsof | grep "\.pdf" | grep zathura | sed "s/\s\+/ /g" | cut --complement -d" " -f-8'
 #alias wtf='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-alias ytnp='youtube-dl --no-playlist'
-alias yta='youtube-dl -x'
+(( $+commands[youtube-dl] )) \
+    && alias ytnp='youtube-dl --no-playlist' \
+    && alias yta='youtube-dl -x' \
+    && yt () { youtube-dl -c -f 18/22 $* }
 alias rserv='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 8001, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"'
 alias avfix='sudo sysctl -w kernel.shmmax=100000000'
-alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
+(( $+commands[deadbeef] )) \
+    && alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
 alias dp='xclip -o | curl -s -F "content=<-" https://dpaste.com/api/' # selection to dpaste
 alias dpc='xclip -o -sel clip | curl -s -F "content=<-" https://dpaste.com/api/' # clipboard to dpaste
-
-# Misc functions
 lsg () { ls -CFhal | grep -i $GPARAM "$*" }                # ls grep
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less }                     # find
@@ -92,17 +98,13 @@ fnd () { find . -iname \*$*\* | less }                     # find
     && cdl () { cd "$*" && exa -Flhs=type --icons } \
     || cdl () { cd "$*" && ls -al $LSPARAMS }              # cd and list
 (( $+commands[ag] )) \
-    && lg () { sudo ag $* /var/log/ } \
-    || lg () { sudo grep $GPARAM -ir $* /var/log/* }       # log grep
-(( $+commands[ag] )) \
     && vq () { vim -q <(ag "$*") } \
+    && lg () { sudo ag -C $* /var/log/ } \
     || vq () { vim -q <(grep -i "$*") }
-(( $+commands[fzf] )) \
-    && lf () { locate -i "$@" | fm +s }  # locate & print from fzf multi-select
+    && lg () { sudo grep $GPARAM -ir $* /var/log/* }
 (( $+commands[mpv] )) \
     && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga }
-(( $+commands[mpv] )) \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 fwh () { file =$1 }                                        # file which
-yt () { youtube-dl -c -f 18/22 $* }
+
