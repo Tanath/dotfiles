@@ -84,7 +84,7 @@ alias wttr='curl wttr.in/hamilton'
 #alias wtf='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 (( $+commands[youtube-dl] )) \
     && alias ytnp='youtube-dl --no-playlist' \
-    && alias yta='youtube-dl -x' \
+    && alias yta='youtube-dl -x --add-metadata --embed-thumbnail' \
     && yt () { youtube-dl -c -f 18/22 $* }
 alias rserv='ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 8001, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"'
 alias avfix='sudo sysctl -w kernel.shmmax=100000000'
