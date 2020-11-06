@@ -32,7 +32,7 @@ zstyle ':completion:*' menu select                         # Completion menu
 zstyle ":completion:*:descriptions" format "%B%d%b"
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' select-prompt %SScrolling: current selection at %p%s
 setopt magic_equal_subst                                   # Do file completion on <value> in foo=<value>
