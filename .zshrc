@@ -21,7 +21,6 @@ ttyctl -f                                                  # Avoid <c-s> frozen 
 # Completions
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"    # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' rehash true                         # automatically find new executables in path
 zstyle ':completion:*' auto-description 'specify: %d'      # Describe options not described by completion functions (with one argument)
 zstyle ':completion:*' format 'Completing %d'
