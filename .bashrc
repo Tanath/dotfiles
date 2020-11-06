@@ -148,7 +148,7 @@ command -v fzf >/dev/null 2>&1 \
     && alias fm='fzf -m --tac' \
     && alias dmf='dmesg | fm +s' \
     && alias o='xdg-open "$(fzf)"' \
-    && alias psf='ps -ef | fm' \
+    && alias psf='ps -ef | fm'
 alias free='free -h'                                            # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> terminal hang
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
