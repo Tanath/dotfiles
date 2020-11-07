@@ -14,17 +14,20 @@ Usage: ${0##*/} [OPTION]
 EOF
 }
 
-while [[ "$1" =~ ^- && ! "$1" == "--" ]]; do case $1 in
-  -h | --help )
-    help
-    exit 0
-    ;;
-  -V | --version )
-    echo ${0##*/} version $version
-    exit 0
-    ;;
-  -f | --flag )
-    shift; flag=$1
-    ;;
+while [[ "${1-}" =~ ^- && ! "${1-}" == "--" ]]; do case ${1-} in
+    -h | --help )
+        help
+        exit 0
+        ;;
+    -V | --version )
+        echo ${0##*/} version $version
+        exit 0
+        ;;
+    -f | --flag )
+        shift; flag=${1-}
+        ;;
+    -* )
+        echo "Invalid option $1"
+        ;;
 esac; shift; done
-if [[ "$1" == '--' ]]; then shift; fi
+if [[ "${1-}" == '--' ]]; then shift; fi
