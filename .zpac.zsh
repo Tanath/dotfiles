@@ -21,12 +21,12 @@ alias pml='pacman -Ql'	                                   # List (files)
 alias pmo='pacman -Qtd'	                                   # Orphans
 alias owns='pacman -Qo'                                    # Ownership of file
 [[ -n ${commands[expac]} ]] && alias bigp='expac -HM "%m %n" | sort -n' # List packages by size
-[[ -n ${commands[pacaur]} ]] && alias pa='pacaur'
-[[ -n ${commands[pacaur]} ]] && alias pau='pacaur -Syu'    # Pacaur upgrade
-[[ -n ${commands[pacaur]} ]] && alias pas='pacaur -Ss'     # Pacaur search
-[[ -n ${commands[pacaur]} ]] && alias par='pacaur -R'      # Pacaur remove
-[[ -n ${commands[pacaur]} ]] && alias pac='pacaur -Sc'     # Pacaur clean cache
-[[ -n ${commands[pacaur]} ]] && alias parc='pacaur -Rns'   # Pacaur remove w/config
+[[ -n ${commands[paru]} ]] && alias p='paru'
+[[ -n ${commands[paru]} ]] && alias pu='paru -Syu'    # Paru upgrade
+[[ -n ${commands[paru]} ]] && alias ps='paru -Ss'     # Paru search
+[[ -n ${commands[paru]} ]] && alias pr='paru -R'      # Paru remove
+[[ -n ${commands[paru]} ]] && alias pc='paru -Sc'     # Paru clean cache
+[[ -n ${commands[paru]} ]] && alias prc='paru -Rns'   # Paru remove w/config
 
 [[ -n ${commands[vimdiff]} ]] && export DIFFPROG=vimdiff # pacdiff
 [[ -n ${commands[jq]} ]] && aurj () { curl -sSL "https://aur.archlinux.org/rpc/?v=5&type=search&arg=$@" | jq -r '.results[]' }
