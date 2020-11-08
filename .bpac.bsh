@@ -29,11 +29,11 @@ bin () { pacman -Ql $* | grep $GPARAM bin/ | awk '{print $2}'; } # Binaries from
 #command -v pkgfile >/dev/null 2>&1 && bin () { pkgfile -l $* | grep $GPARAM bin/; }
 owns () { pacman -Qo $(which $*); }                              # Ownership of binary
 
-command -v pacaur >/dev/null 2>&1 \
-    && alias pa='pacaur' \
-    && alias pau='pacaur -Syu' \
-    && alias pas='pacaur -Ss' \
-    && alias par='pacaur -R' \
-    && alias pac='pacaur -Sc' \
-    && alias parc='pacaur -Rns'
+command -v paru >/dev/null 2>&1 \
+    && alias p='paru' \
+    && alias pu='paru -Syu' \
+    && alias pas='paru -Ss' \
+    && alias pr='paru -R' \
+    && alias pc='paru -Sc' \
+    && alias prc='paru -Rns'
 
