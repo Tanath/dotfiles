@@ -6,8 +6,8 @@
 # pl10k prompt
 zplug romkatv/powerlevel10k, as:theme, depth:1
 
-# Replace zsh's default completion selection menu with fzf
-zplug "Aloxaf/fzf-tab"
+# Colour man pages
+zplug "ael-code/zsh-colored-man-pages"
 
 # Fish-like autosuggestions for zsh
 zplug "zsh-users/zsh-autosuggestions"
@@ -27,6 +27,9 @@ zplug "zsh-vi-more/evil-registers"
 # Zsh easy motion, like Vim's
 #zplug "IngoHeimbach/zsh-easy-motion"
 #bindkey -M vicmd '#' vi-easy-motion
+
+# Replace zsh's default completion selection menu with fzf
+zplug "Aloxaf/fzf-tab"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
