@@ -17,7 +17,7 @@ silent! set cm=blowfish2
 autocmd VimResized * wincmd =
 set showmatch                          " When a bracket is inserted, briefly jump to the matching
                                        " one. Only done if the match is on the screen.
-set matchtime=4                        " The timing can be set with 'matchtime'.
+set matchtime=2                        " The timing can be set with 'matchtime'.
 set suffixesadd+='.md','.wiki'         " Add suffixes to check for gf.
 "set confirm                            " Prompt instead of just rejecting risky :write, :saveas
                                        " In vim-tiny but not NeoVim, so just suppress errors
