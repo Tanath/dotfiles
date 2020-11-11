@@ -118,6 +118,8 @@ if exists(':PlugInstall')
         " TODO: Test this. Clobbers lots of shortcuts.
         "Plug 'python-mode/python-mode', { 'branch': 'develop' }
     endif
+    " Always load vim-devicons last.
+    Plug 'ryanoasis/vim-devicons'
     "<Python plugins
     call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
 endif
