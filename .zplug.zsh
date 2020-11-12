@@ -31,6 +31,9 @@ zplug "zsh-vi-more/evil-registers"
 # Replace zsh's default completion selection menu with fzf
 zplug "Aloxaf/fzf-tab"
 
+# Git + fzf
+zplug "wfxr/forgit"
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
