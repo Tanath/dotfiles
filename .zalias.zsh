@@ -1,6 +1,5 @@
 # Custom aliases & function
 if [[ -x "`whence -p dircolors`" ]]; then
-    eval `dircolors`
     LSPARAMS=(-CFh --group-directories-first --time-style=long-iso --color=always)
 else
     LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
