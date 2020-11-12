@@ -33,22 +33,26 @@ alias v=vim
 alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'                                        # Up twice or to /
-ls () { command ls $LSPARAMS "$@" | less -RFX }
-(( $+commands[exa] )) \
-    && alias ll='exa -Flhs=type --icons' \
-    && alias la='exa -Fahs=type --icons' \
-    && alias lla='exa -Falhs=type --icons' \
-    && alias lz='exa -Fhs=size --icons' \
-    && alias lt='exa -Fhs=modified --icons' \
-    && alias lx='exa -Fhs=type --icons' \
-    || alias ll=ls\ -l\ $LSPARAMS \
-    && alias la=ls\ -a\ $LSPARAMS \
-    && alias lla=ls\ -la\ $LSPARAMS \
-    && alias lz='ll -rS' \
-    && alias lt='ll -rT' \
-    && alias lx='ll -BX'                                   # sort by ext
-alias l.=ls\ $LSPARAMS\ -d\ '.[^.]*'                       # List .dirs
-alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                         # List dirs & symlinks to dirs
+# ls () { command ls $LSPARAMS "$@" | less -RFX }
+if (( $+commands[exa] )); then
+    alias ls='exa -Fhs=type --icons'
+    alias ll='exa -Flhs=type --icons'                      # List long
+    alias la='exa -Fahs=type --icons'                      # List all
+    alias lla='exa -Falhs=type --icons'                    # List all long
+    alias lz='exa -Flhs=size --icons'                      # List by size
+    alias lt='exa -Flhs=modified --icons'                  # List by time
+    alias lx='exa -Fhs=type --icons'                       # List by type
+else
+    alias ls="ls ${LSPARAMS} | less -RFX"
+    alias ll="\ls -l ${LSPARAMS} | less -RFX"              # List long. TODO
+    alias la="\ls -a ${LSPARAMS} | less -RFX"              # List all
+    alias lla="\ls -la ${LSPARAMS} | less -RFX"            # List all long
+    alias lz="\ls -lrS | less -RFX"                        # List by size
+    alias lt="\ls -lrT | less -RFX"                        # List by time
+    alias lx="\ls -lBX | less -RFX"                        # sort by ext
+    alias l.="\ls ${LSPARAMS} -d .[^.]*"                   # List .dirs
+    alias lsd="\ls ${LSPARAMS} *(-/DN)"                    # List dirs & symlinks to dirs
+fi
 (( $+commands[exa] )) \
     && alias new='exa -Flhrs=modified --icons' \
     && alias old='exa -Flhs=modified --icons' \
