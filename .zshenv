@@ -1,3 +1,5 @@
+(( $+commands[vivid] )) \
+    && export LS_COLORS="$(vivid generate molokai)"
 (( $+commands[exa] )) && export EXA_COLORS="da=32"
 (( $+commands[vim] )) \
     && export EDITOR=vim \
