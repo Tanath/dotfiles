@@ -151,6 +151,19 @@ vgh() {
   fi
 }
 
+# fuzzy ag open, incl. hidden, no recurse, with line number
+vgr() {
+  local file
+  local line
+
+  read -r file line <<<"$(ag -n --hidden --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+  if [[ -n $file ]]
+  then
+     vim $file +$line
+  fi
+}
+
 todo () {
     if [[ ! -f $HOME/.todo ]]; then
         touch "$HOME/.todo"
