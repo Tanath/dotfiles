@@ -45,6 +45,8 @@ if [[ $TERM == 'xterm-kitty' ]]; then
 fi
 if [[ -x "`type dircolors`" ]]; then
     eval `dircolors`
+	command -v vivid >/dev/null 2>&1 \
+        && export LS_COLORS="$(vivid generate molokai)"
 	LSPARAMS='-CFh --group-directories-first --time-style=long-iso --color=always'
 else
 	LSPARAMS='-CFh --group-directories-first --time-style=long-iso'
