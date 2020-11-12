@@ -125,8 +125,21 @@ vf() {
   fi
 }
 
-# fuzzy grep open via ag with line number
+# fuzzy ag open with line number
 vg() {
+  local file
+  local line
+
+  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+
+  if [[ -n $file ]]
+  then
+     vim $file +$line
+  fi
+}
+
+# fuzzy ag open, incl. hidden, with line number
+vgh() {
   local file
   local line
 
