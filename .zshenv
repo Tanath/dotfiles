@@ -15,4 +15,5 @@ else
 fi
 (( $+commands[fzf] )) \
     && export FZF_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"' \
-    && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+    && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" \
+    && export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
