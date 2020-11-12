@@ -3,6 +3,8 @@ NOTFOUND="/usr/share/doc/pkgfile/command-not-found.zsh"
 [[ -f $NOTFOUND ]] && source $NOTFOUND
 
 [[ -n ${commands[yay]} ]] && alias y='yay'
+# Yay install with fzf
+[[ -n ${commands[yay]} ]] && alias yi='yay -Slq | fzf -q "$1" -m --preview "yay -Si {1}"| xargs -ro yay -S'
 [[ -n ${commands[yay]} ]] && alias yu='yay -Syu'           # Yay upgrade
 [[ -n ${commands[yay]} ]] && alias yud='yay -Syu --devel'  # Yay upgrade incl. git
 [[ -n ${commands[yay]} ]] && alias ys='yay -Ss'            # Yay search
@@ -22,6 +24,8 @@ alias pmo='pacman -Qtd'	                                   # Orphans
 alias owns='pacman -Qo'                                    # Ownership of file
 [[ -n ${commands[expac]} ]] && alias bigp='expac -HM "%m %n" | sort -n' # List packages by size
 [[ -n ${commands[paru]} ]] && alias p='paru'
+# Paru install with fzf
+[[ -n ${commands[paru]} ]] && alias pi='paru -Slq | fzf -q "$1" -m --preview "paru -Si {1}"| xargs -ro paru -S'
 [[ -n ${commands[paru]} ]] && alias pu='paru -Syu'    # Paru upgrade
 [[ -n ${commands[paru]} ]] && alias pas='paru -Ss'    # Paru search
 [[ -n ${commands[paru]} ]] && alias pr='paru -R'      # Paru remove
