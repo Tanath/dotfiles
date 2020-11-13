@@ -1,0 +1,23 @@
+/* Show entire current config:
+    rofi -dump-config
+   Install rofi-emoji for emoji modi.
+*/
+configuration {
+	modi: "combi,keys,emoji";
+	location: 0;
+	lines: 20;
+	yoffset: -20;
+	show-icons: true;
+	drun-icon-theme: "Papirus-Maia";
+	icon-theme: "Papirus-Maia";
+	window-thumbnail: false;
+	terminal: "xfce4-terminal --tab";
+	//run-shell-command: "{terminal} -e {cmd}; read -sk 1";
+	//window-command: "wmctrl -i -R {window}";
+	sidebar-mode: true;
+	//combi-modi: "window,run";
+	sort: false;
+	sorting-method: "fzf";
+	scroll-method: 1;
+	theme: "/usr/share/rofi/themes/glue_pro_blue.rasi";
+}
