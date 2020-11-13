@@ -8,7 +8,6 @@ configuration {
 	lines: 20;
 	yoffset: -20;
 	show-icons: true;
-	drun-icon-theme: "Papirus-Maia";
 	icon-theme: "Papirus-Maia";
 	window-thumbnail: false;
 	terminal: "xfce4-terminal --tab";
