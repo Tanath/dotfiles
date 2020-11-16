@@ -30,7 +30,7 @@ This `.zshrc` gives [zsh autosuggestions](https://github.com/zsh-users/zsh-autos
 `git clone https://github.com/zsh-users/zsh-autosuggestions`
 
 ## bash
-This [.bashrc](.bashrc) sources [~/zer0prompt/zer0prompt.sh](https://github.com/zer0ed/zer0prompt) for its prompt, which is similar to Phil's zsh prompt above. It defaults to a basic prompt if it doesn't exist.
+This [.bashrc](.bashrc) uses [Starship](https://starship.rs) for its prompt. It defaults to a basic prompt if it doesn't exist.
 It sources the following files if they exist:
 * [~/.balias.bsh](.balias.bsh): I use this for personalized aliases which aren't distro-specific yet don't belong in `.bashrc`.
 * [~/.bpac.bsh](.bpac.bsh): aliases for pacman-based Linux distros.
