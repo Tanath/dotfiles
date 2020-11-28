@@ -110,6 +110,6 @@ fnd () { find . -iname \*$*\* | less }                     # find
     && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
-mkpw () { < /dev/urandom tr -dc '_A-Z-a-z-0-9=.[]' | head -c16; echo }
+mkpw () { head -c 24 /dev/urandom | base64 }
 fwh () { file =$1 }                                        # file which
 
