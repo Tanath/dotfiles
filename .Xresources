@@ -27,13 +27,32 @@ XTerm.vt100.metaSendsEscape:  true
 !rofi*bg: mybg
 
 ! Theming
-#define myfg      grey
-#define mybg      black
-#define myfont    Noto Mono
+!#define myfg      grey
+!#define mybg      black
+!#define myfont    Noto Mono
 XTerm.termName:               xterm-256color
 XTerm*colorMode:              on
 !XTerm.vt100.reverseVideo:     true
-XTerm*vt100.foreground:       myfg
-XTerm*vt100.background:       mybg
+!XTerm*vt100.foreground:       myfg
+!XTerm*vt100.background:       mybg
 !XTerm*vt100.foreground:       Gray90
 !XTerm*vt100.background:       Gray10
+*background:  #303030
+*foreground:  #eeeeee
+*color0:  #1a1832
+*color1:  #de313f
+*color2:  #38bc72
+*color3:  #dbcf2b
+*color4:  #2c70cc
+*color5:  #7b2ccc
+*color6:  #3ab1cc
+*color7:  #bfbfbf
+*color8:  #201e3c
+*color9:  #cc3c46
+*color10:  #3bd647
+*color11:  #eacc54
+*color12:  #5fa7f5
+*color13:  #7242d1
+*color14:  #46daea
+*color15:  #95b1db
+
