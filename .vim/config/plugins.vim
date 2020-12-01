@@ -54,6 +54,7 @@ if exists(':PlugInstall')
         Plug 'tpope/vim-eunuch'
     endif
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-characterize'
     Plug 'vim-airline/vim-airline'
@@ -118,9 +119,11 @@ if exists(':PlugInstall')
         " TODO: Test this. Clobbers lots of shortcuts.
         "Plug 'python-mode/python-mode', { 'branch': 'develop' }
     endif
+    "<Python plugins
+    " Haxe Plugin
+    "Plug 'jdonaldson/vaxe'
     " Always load vim-devicons last.
     Plug 'ryanoasis/vim-devicons'
-    "<Python plugins
     call plug#end() " Does 'filetype plugin indent on' and 'syntax enable'.
 endif
 
