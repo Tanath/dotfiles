@@ -1,0 +1,6 @@
+set default-fg "#DDDDDD"
+set default-bg "#000000"
+set recolor true
+set window-height 1000
+set recolor-keephue true
+set recolor-reverse-video true
