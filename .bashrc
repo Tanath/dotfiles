@@ -18,8 +18,6 @@ HISTCONTROL=ignoreboth
 # Custom environment variables
 command -v vim >/dev/null 2>&1 \
     && export VISUAL=vim
-command -v less >/dev/null 2>&1 \
-    && export VISUAL=less
 export COLUMNS                            # Remember columns for subprocesses.
 command -v vim >/dev/null 2>&1 \
     && export SYSTEMD_EDITOR=vim
