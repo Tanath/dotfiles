@@ -112,4 +112,16 @@ fnd () { find . -iname \*$*\* | less -RFX }                # find
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 mkpw () { head -c 24 /dev/urandom | base64 }
 fwh () { file =$1 }                                        # file which
-
+rgf () {
+	RG_PREFIX="rga --files-with-matches"
+	local file
+	file="$(
+		FZF_DEFAULT_COMMAND="$RG_PREFIX '$1'" \
+			fzf --sort --preview="[[ ! -z {} ]] && rga --pretty --context 5 {q} {}" \
+				--phony -q "$1" \
+				--bind "change:reload:$RG_PREFIX {q}" \
+				--preview-window="70%:wrap"
+	)" &&
+	echo "opening $file" &&
+	xdg-open "$file"
+}
