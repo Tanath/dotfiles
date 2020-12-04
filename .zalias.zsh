@@ -29,6 +29,7 @@ alias dmesg='dmesg -H --color=always'
 alias free='free -h'                                       # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
 alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
+alias vd='vimdiff'
 alias v=vim
 alias ed='vim'
 alias u='cd ..'
