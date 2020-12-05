@@ -14,6 +14,7 @@ setopt sharehistory                                        # Share history betwe
 setopt menucomplete
 setopt prompt_subst                                        # enable substitution for prompt
 setopt auto_resume # Commands w/o arguments will first try to resume suspended programs of the same name.
+setopt extendedglob
 #setopt autocd                                              # CD automatically when path to dir is entered
 setopt no_flow_control                                     # Turns off C-S/C-Q flow control
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
@@ -28,7 +29,7 @@ zstyle ':completion:*' group-name ''                       # Name of tag for mat
 zstyle ':completion:*' menu select                         # Completion menu
 #zstyle ':completion:*' menu select=5                       # Only show if more than num
 zstyle ":completion:*:descriptions" format "%B%d%b"
-eval "$(dircolors -b)"
+#eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
