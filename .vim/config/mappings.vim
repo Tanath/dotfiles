@@ -151,6 +151,10 @@ nnoremap <leader>md :!mkdir -p %:p:h<CR>
 " Diff mappings
 nnoremap <leader>dt :difft<cr>
 nnoremap <leader>do :diffo!<cr>
+" shortcuts for 3-way merge
+map <Leader>1 :diffget LOCAL<CR>
+map <Leader>2 :diffget BASE<CR>
+map <Leader>3 :diffget REMOTE<CR>
 
 " Browse oldfiles
 nnoremap <leader>o :browse oldfiles<cr>
