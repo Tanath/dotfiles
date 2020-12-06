@@ -1,6 +1,3 @@
-(( $+commands[vivid] )) \
-    && export LS_COLORS="$(vivid generate molokai)"
-(( $+commands[exa] )) && export EXA_COLORS="da=32"
 (( $+commands[vim] )) \
     && export EDITOR=vim \
     && export VISUAL=vim \
@@ -15,9 +12,17 @@ else
 	    && export BROWSER=w3m \
 	    || export BROWSER=elinks
 fi
+
+# Exit if not interactive shell
+[[ $- != *i* ]] && return
+
+(( $+commands[vivid] )) \
+    && export LS_COLORS="$(vivid generate molokai)"
+(( $+commands[exa] )) && export EXA_COLORS="da=32"
 (( $+commands[fzf] )) \
     && export FZF_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"' \
     && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" \
     && export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 (( $+commands[sk] )) \
     && export SKIM_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"'
+
