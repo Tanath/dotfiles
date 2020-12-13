@@ -108,7 +108,7 @@ fnd () { find . -iname \*$*\* | less -RFX }                # find
     || vq () { vim -q <(grep -i "$*") } \
     && lg () { sudo grep $GPARAM -ir $* /var/log/* }
 (( $+commands[mpv] )) \
-    && alarm () { sleep $*; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
+    && alarm () { sleep $1; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 mkpw () { head -c 24 /dev/urandom | base64 }
