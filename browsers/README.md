@@ -1,7 +1,8 @@
 Web browser configs
 ===================
 
-* [cvimrc](https://gist.github.com/Tanath/46d32ae096cc6a9566cef7ffbf945830) - Settings for cvim Chrome extension.
+* [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension.
+* [SurfingKeysRC](https://gist.github.com/Tanath/3802c263d90cbc78ec1ab2231f85505a) - Settings for [SurfingKeys](https://github.com/brookhong/Surfingkeys) Chrome extension.
 * [my-umatrix-rules-basic.txt](my-umatrix-rules-basic.txt) - Importable rules for uMatrix extension.
 * [chrome-policies.md](chrome-policies.md) - How to set up policies for Chrome/Chromium.
 * [required.json](required.json) - Chrome 'managed' policy file.
