@@ -55,8 +55,10 @@ bind d scrollpage 0.5
 bind e scrollpage -0.5
 bind k scrollpage -0.25
 bind j scrollpage 0.25
-bind J scrollline 5
-bind K scrollline -5
+bind J scrollpage 0.125
+bind K scrollpage -0.125
+"bind J scrollline 5
+"bind K scrollline -5
 bind S back
 bind D forward
 bind <C-r> reloadhard
