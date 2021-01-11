@@ -169,8 +169,9 @@ autocmd DocStart ptb.discord.com mode ignore
 autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
-quickmark t https://gist.github.com/Tanath/095edac3c671269529efae30af3efe84
+quickmark t https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc
 quickmark i https://www.inoreader.com/all_articles
+quickmark r https://www.reddit.com/user/me/comments/
 
 " Commands
 command cache composite get_current_url | tabopen gc
