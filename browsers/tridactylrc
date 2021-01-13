@@ -31,7 +31,7 @@ set searchurls.tr https://translate.google.com/translate?hl=en&u=%s&sl=auto&tl=e
 set searchurls.tw https://twitter.com/search?q=%s
 set searchurls.txt https://www.google.ca/search?q=cache:%s&strip=1
 set searchurls.ud https://www.urbandictionary.com/define.php?term=%s
-set searchurls.w https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go
+set searchurls.wp https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go
 set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.wb https://web.archive.org/web/*/%s
 set searchurls.wi https://en.wiktionary.org/wiki/Special:Search?search=%s&go=Go
