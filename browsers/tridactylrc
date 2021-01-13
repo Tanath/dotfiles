@@ -10,8 +10,8 @@ set theme dark
 set hintchars fdsagrewqtvcxzbjklhuiopynm
 "set hintchars hjklasdfgyuiopqwertnmzxcvb
 set hintdelay 150
-set followpagepatterns.next ^(next|newer|forward)\b|»|>>|→
-set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|«|<<|←
+set followpagepatterns.next ^(next|newer|forward)\b|»|>>|→|❯
+set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|«|<<|←|❮
 "set allowautofocus false
 
 " Searches
