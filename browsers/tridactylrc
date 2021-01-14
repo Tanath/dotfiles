@@ -173,7 +173,7 @@ autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
 quickmark i https://www.inoreader.com/all_articles
-quickmark r https://www.reddit.com/user/me/comments/
+quickmark r https://www.reddit.com/user/me/
 quickmark s http://localhost:8989/calendar
 quickmark t https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc
 
