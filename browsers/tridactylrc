@@ -44,6 +44,8 @@ bind x composite tab #; tabclose #
 bind X undo
 bind E tabprev
 bind R tabnext
+bind \p hint -wp
+bind \t fillcmdline tabpush
 " Clobbers Youtube. Avoid 2-key binds without modifiers. Use <CS-pgdn> instead of >>
 unbind >>
 unbind <<
