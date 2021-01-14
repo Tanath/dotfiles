@@ -46,6 +46,7 @@ bind E tabprev
 bind R tabnext
 bind \p hint -wp
 bind \t fillcmdline tabpush
+bind \T fillcmdline tabgrab
 " Clobbers Youtube. Avoid 2-key binds without modifiers. Use <CS-pgdn> instead of >>
 unbind >>
 unbind <<
@@ -72,9 +73,9 @@ bind N findnext -1
 set incsearch true
 bind <C-\> clearsearchhighlight
 """ Media
-bind <A-]> js javascript:document.querySelector('video').playbackRate+=0.25;
-bind <A-[> js javascript:document.querySelector('video').playbackRate-=0.25;
-bind <A-=> js javascript:document.querySelector('video').playbackRate=1;
+bind <A-]> js document.querySelector('video').playbackRate+=0.25
+bind <A-[> js document.querySelector('video').playbackRate-=0.25
+bind <A-=> js document.querySelector('video').playbackRate=1
 """ Misc
 " Clobbers paste. Use <C-]> instead.
 unbind <S-Insert>
