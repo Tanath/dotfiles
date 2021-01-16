@@ -85,6 +85,7 @@ unbind --mode=ignore <S-Insert>
 " Swap these to make the more common one easier
 bind gf hint -qb
 bind gF viewsource
+bind \b fillcmdline bmarks -t
 " Open right click menu on links. Based on https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc#L86
 bind ;C composite hint -; !s xdotool key Menu
 bind ;c hint -c [class*="expand"],[class="togg"],[class="comment_folder"]
