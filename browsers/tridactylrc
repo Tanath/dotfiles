@@ -20,6 +20,7 @@ set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
 " Searches
 set searchengine g
 set searchurls.alt https://alternativeto.net/browse/search?q=%s
+set searchurls.af https://www.acronymfinder.com/~/search/af.aspx?string=exact&Acronym=%s
 set searchurls.aw https://wiki.archlinux.org/index.php?title=Special%3ASearch&search=%s
 set searchurls.g https://www.google.ca/search?safe=off&num=20&q=%s
 set searchurls.gc https://www.google.ca/search?q=cache:%s
