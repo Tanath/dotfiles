@@ -96,7 +96,7 @@ alias avfix='sudo sysctl -w kernel.shmmax=100000000'
     && alias dbp='deadbeef --nowplaying "%a - %t | %e/%l\"'
 alias dp='xclip -o | curl -s -F "content=<-" https://dpaste.com/api/' # selection to dpaste
 alias dpc='xclip -o -sel clip | curl -s -F "content=<-" https://dpaste.com/api/' # clipboard to dpaste
-lsg () { ls -CFhal | grep -i $GPARAM "$*" }                # ls grep
+lsg () { ls -Fhal | grep -i $GPARAM "$*" }                 # ls grep
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
 fnd () { find . -iname \*$*\* | less -RFX }                # find
 (( $+commands[exa] )) \
