@@ -23,10 +23,10 @@ set searchurls.alt https://alternativeto.net/browse/search?q=%s
 set searchurls.af https://www.acronymfinder.com/~/search/af.aspx?string=exact&Acronym=%s
 set searchurls.ar https://archive.is/search/?q=%s
 set searchurls.aw https://wiki.archlinux.org/index.php?title=Special%3ASearch&search=%s
-set searchurls.g https://www.google.ca/search?safe=off&num=20&q=%s
+set searchurls.g https://www.google.ca/search?safe=images&num=20&q=%s
 set searchurls.gc https://www.google.ca/search?q=cache:%s
 set searchurls.gh https://github.com/search?utf8=%s
-set searchurls.gi https://images.google.ca/images?safe=off&q=%s
+set searchurls.gi https://www.google.ca/search?tbm=isch&q=%s
 set searchurls.gl https://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=%s
 set searchurls.gm https://www.google.ca/maps?q=%s
 set searchurls.gn https://news.google.ca/news?hl=en&num=30&q=%s&btnG=Search+News
