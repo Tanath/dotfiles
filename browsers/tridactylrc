@@ -182,6 +182,7 @@ autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
 quickmark a https://www.artstation.com/?sort_by=trending
+quickmark g https://ground.news/
 quickmark h https://news.ycombinator.com/
 quickmark i https://www.inoreader.com/all_articles
 quickmark n https://news.google.com/foryou
