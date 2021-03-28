@@ -73,13 +73,13 @@ endif
 
 " tpope/vim-fugitive
 if exists(':Gstatus')
-    nnoremap <leader>gs :Gstatus<cr>
-    nnoremap <leader>gbl :Gblame<cr>
-    nnoremap <leader>gco :Gcommit<cr>
-    nnoremap <leader>gpl :Gpull<cr>
-    nnoremap <leader>gps :Gpush<cr>
-    nnoremap <leader>gmr :Gmerge<cr>
-    nnoremap <leader>gmv :Gmove<cr>
+    nnoremap <leader>gs :G status<cr>
+    nnoremap <leader>gbl :G blame<cr>
+    nnoremap <leader>gco :G commit<cr>
+    nnoremap <leader>gpl :G pull<cr>
+    nnoremap <leader>gps :G push<cr>
+    nnoremap <leader>gmr :G merge<cr>
+    nnoremap <leader>gmv :G move<cr>
     autocmd BufReadPost fugitive://* set bufhidden=delete
 endif
 
