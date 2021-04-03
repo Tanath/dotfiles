@@ -329,6 +329,6 @@ endif
 "    au FileType html,xhtml,xml setl equalprg=tidy\ --indent-spaces\ 4\ --indent-attributes\ yes\ --sort-attributes\ alpha\ --drop-empty-paras\ no\ --vertical-space\ yes\ --wrap\ 80\ -i\ -xml\ 2>/dev/null
 "endif
 if executable('pandoc')
-    au FileType markdown setl equalprg=pandoc\ -t\ markdown\ --reference-links\ --atx-headers\ --wrap=preserve
+    au FileType markdown setl equalprg=pandoc\ -t\ markdown\ --reference-links\ --markdown-headings=atx\ --wrap=preserve
 endif
 
