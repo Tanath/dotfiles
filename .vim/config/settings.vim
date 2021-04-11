@@ -321,6 +321,9 @@ endif
 if executable('autopep8')
     au FileType python setl equalprg=autopep8\ -
 endif
+if executable('js-beautify')
+    au FileType javascript setl equalprg=js-beautify\ --stdin
+endif
 if executable('xmllint')
     au FileType html,xhtml,xml setl equalprg=xmllint\ --format\ -
 endif
