@@ -18,5 +18,5 @@ configuration {
 	sort: false;
 	sorting-method: "fzf";
 	scroll-method: 1;
-	theme: "/usr/share/rofi/themes/glue_pro_blue.rasi";
 }
+@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
