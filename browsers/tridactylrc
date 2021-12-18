@@ -79,8 +79,8 @@ bind N findnext -1
 set incsearch true
 bind <C-\> clearsearchhighlight
 """ Media
-bind <A-]> js document.querySelector('video').playbackRate+=0.25
-bind <A-[> js document.querySelector('video').playbackRate-=0.25
+bind <A-]> js document.querySelector('video').playbackRate+=0.2
+bind <A-[> js document.querySelector('video').playbackRate-=0.2
 bind <A-=> js document.querySelector('video').playbackRate=1
 """ Misc
 bind s fillcmdline tabopen search
@@ -182,7 +182,7 @@ autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
 quickmark a https://www.artstation.com/
-quickmark g https://ground.news/
+quickmark g https://ground.news/blindspot
 quickmark h https://news.ycombinator.com/
 quickmark i https://www.inoreader.com/all_articles
 quickmark n https://news.google.com/foryou
