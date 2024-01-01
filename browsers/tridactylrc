@@ -30,6 +30,7 @@ set searchurls.gi https://www.google.ca/search?tbm=isch&q=%s
 set searchurls.gl https://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=%s
 set searchurls.gm https://www.google.ca/maps?q=%s
 set searchurls.gn https://news.google.ca/news?hl=en&num=30&q=%s&btnG=Search+News
+set searchurls.m https://search.marginalia.nu/search?js=&adtech=&profile=&query=%s
 set searchurls.mc https://www.google.ca/search?num=20&q=%s%20site:metacritic.com
 set searchurls.ol https://www.onelook.com/?w=%s&ls=b
 set searchurls.th https://www.thesaurus.com/browse/%s
