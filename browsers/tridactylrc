@@ -82,8 +82,8 @@ bind N findnext -1
 set incsearch true
 bind <C-\> clearsearchhighlight
 """ Media
-bind <A-]> js document.querySelector('video').playbackRate+=0.2
-bind <A-[> js document.querySelector('video').playbackRate-=0.2
+bind <A-]> js document.querySelector('video').playbackRate+=0.25
+bind <A-[> js document.querySelector('video').playbackRate-=0.25
 bind <A-=> js document.querySelector('video').playbackRate=1
 """ Misc
 bind s fillcmdline tabopen search
