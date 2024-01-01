@@ -36,7 +36,8 @@ set searchurls.ol https://www.onelook.com/?w=%s&ls=b
 set searchurls.p https://www.perplexity.ai/search?q=%s
 set searchurls.rr https://www.royalroad.com/fictions/search?title=%s
 set searchurls.th https://www.thesaurus.com/browse/%s
-set searchurls.tr https://translate.google.com/translate?hl=en&u=%s&sl=auto&tl=en
+set searchurls.tr https://translate.google.com/?op=translate&text=%s&sl=auto&tl=en
+set searchurls.tu https://translate.google.com/translate?hl=en&u=%s&sl=auto&tl=en
 set searchurls.tw https://twitter.com/search?q=%s
 set searchurls.txt https://www.google.ca/search?q=cache:%s&strip=1
 set searchurls.ud https://www.urbandictionary.com/define.php?term=%s
