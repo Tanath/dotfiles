@@ -7,8 +7,7 @@ set updatenaglastversion 1.20.4
 colors dark
 set theme dark
 " Start with left-hand chars for fewer mouse interrupts
-set hintchars fdsagrewqtvcxzbjklhuiopynm
-"set hintchars hjklasdfgyuiopqwertnmzxcvb
+set hintchars fdsagrewqcxzvtbjklhuiopnmy
 set hintdelay 150
 set followpagepatterns.next ^(next|newer|forward)\b|→|❯|›|>>
 set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
