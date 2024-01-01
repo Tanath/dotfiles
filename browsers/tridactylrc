@@ -33,6 +33,8 @@ set searchurls.gn https://news.google.ca/news?hl=en&num=30&q=%s&btnG=Search+News
 set searchurls.m https://search.marginalia.nu/search?js=&adtech=&profile=&query=%s
 set searchurls.mc https://www.google.ca/search?num=20&q=%s%20site:metacritic.com
 set searchurls.ol https://www.onelook.com/?w=%s&ls=b
+set searchurls.p https://www.perplexity.ai/search?q=%s
+set searchurls.rr https://www.royalroad.com/fictions/search?title=%s
 set searchurls.th https://www.thesaurus.com/browse/%s
 set searchurls.tr https://translate.google.com/translate?hl=en&u=%s&sl=auto&tl=en
 set searchurls.tw https://twitter.com/search?q=%s
