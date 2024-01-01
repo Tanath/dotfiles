@@ -3,6 +3,7 @@
 // @version      0.4.1
 // @description  Set font to Atkinson Hyperlegible.
 // @author       Tanath
+// @updateURL https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
 // @match        https://*/*
 // @match        http://*/*
 // @grant        GM_addStyle
