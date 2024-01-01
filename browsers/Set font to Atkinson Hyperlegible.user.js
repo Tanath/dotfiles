@@ -1,8 +1,9 @@
 // ==UserScript==
 // @name         Set font to Atkinson Hyperlegible
-// @version      0.4.2
+// @version      0.4.3
 // @description  Set font to Atkinson Hyperlegible.
 // @author       Tanath
+// @downloadURL  https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
 // @updateURL    https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
 // @match        https://*/*
 // @match        http://*/*
