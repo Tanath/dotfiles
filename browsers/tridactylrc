@@ -63,12 +63,12 @@ bind `1 tabpush 1
 bind gd tabdetach
 bind yT tabduplicate
 """ Navigation
-bind d scrollpage 0.5
-bind e scrollpage -0.5
+bind d scrollpage 0.4
+bind e scrollpage -0.4
 bind k scrollpage -0.25
 bind j scrollpage 0.25
-bind J scrollpage 0.125
-bind K scrollpage -0.125
+bind J scrollpage 0.10
+bind K scrollpage -0.10
 "bind J scrollline 5
 "bind K scrollline -5
 bind S back
