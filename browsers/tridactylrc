@@ -4,7 +4,7 @@ sanitise tridactyllocal tridactylsync
 set update.lastchecktime 1609457332531
 set configversion 1.9
 set updatenaglastversion 1.20.4
-colourscheme midnight
+colourscheme dark
 " Start with left-hand chars for fewer mouse interrupts
 set hintchars fdsagrewqcxzvtbjklhuiopnmy
 set hintdelay 150
