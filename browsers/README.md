@@ -1,15 +1,8 @@
 Web browser configs
 ===================
 
-* [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension.
+Use Firefox. Chrome and most browsers based on it (like [Brave](https://www.spacebar.news/p/stop-using-brave-browser)) I can no longer recommend due to manifest v3.
+* [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension which adds vim-like browser controls.
+    * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
+* Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here, it will offer to install them.
 * [SurfingKeysRC](https://gist.github.com/Tanath/3802c263d90cbc78ec1ab2231f85505a) - Settings for [SurfingKeys](https://github.com/brookhong/Surfingkeys) Chrome extension.
-* [my-umatrix-rules-basic.txt](my-umatrix-rules-basic.txt) - Importable rules for uMatrix extension.
-* [chrome-policies.md](chrome-policies.md) - How to set up policies for Chrome/Chromium.
-* [required.json](required.json) - Chrome 'managed' policy file.
-    * Bluetooth disabled for security.
-    * Built-in DNS disabled for troubleshooting & security (when dnscrypt is used).
-    * Force install HTTPS Everywhere extension.
-    * P2P auto-update disabled for security.
-* [suggested.json](suggested.json) - Chrome 'recommended' policy file.
-    * Disable by default: cookies, javascript, popups, geolocation, site notifications.
-    * Some exceptions included.
