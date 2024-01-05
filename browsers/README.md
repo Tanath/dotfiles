@@ -9,6 +9,10 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
 
       4759639
       Tanath-mobile-collection
+* Dark themes:
+
+    * https://github.com/overdodactyl/ShadowFox (universal)
+    * https://addons.mozilla.org/en-US/firefox/addon/matte-black-blue/ (fallback available in Addons)
 * List of privacy & security settings:
     https://github.com/arkenfox/user.js/wiki
 
