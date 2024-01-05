@@ -9,6 +9,10 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
 
       4759639
       Tanath-mobile-collection
+* List of privacy & security settings:
+    https://github.com/arkenfox/user.js/wiki
+
+  Lots of good info there, but take with a grain of salt.
 * [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension which adds vim-like browser controls.
     * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
     * On Windows, put it in `~\.tridactyl\_tridactyrc` (with no extension).
