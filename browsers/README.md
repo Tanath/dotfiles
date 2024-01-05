@@ -20,6 +20,6 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
 * [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension which adds vim-like browser controls.
     * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
     * On Windows, put it in `~\.tridactyl\_tridactyrc` (with no extension).
-    * On either, you can copy the link to the raw file on GitHub and use `:source --url ...`
+    * On either, you can copy the link to the raw file on GitHub and use `:source --url https://github.com/Tanath/dotfiles/raw/master/browsers/tridactylrc`
 * Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here, it will offer to install them.
 * [SurfingKeysRC](https://gist.github.com/Tanath/3802c263d90cbc78ec1ab2231f85505a) - Settings for [SurfingKeys](https://github.com/brookhong/Surfingkeys) Chrome extension.
