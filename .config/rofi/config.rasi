@@ -1,6 +1,7 @@
 /* Show entire current config:
     rofi -dump-config
-   Install rofi-emoji for emoji modi.
+    Install rofi-emoji for emoji modi.
+    Set shortcut command to `rofi -show combi` and bind it to win+space or ctrl+shift+space.
 */
 configuration {
 	modi: "combi,keys,emoji";
