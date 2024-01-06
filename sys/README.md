@@ -1,8 +1,8 @@
 # Some system setup stuff
 
+* For most people I'd recommend Linux Mint Cinnamon edge edition. There's some config files here you can import for certain applets.
 * [xprofile](xprofile) - Goes to `/etc/xprofile`. Swaps <kbd>caps</kbd> & <kbd>esc</kbd> in X before login, enable numlock.
 * Install `mlocate`, run `sudo updatedb`, and set to run hourly: `echo '@hourly root updatedb' | sudo tee -a /etc/crontab`
-* [dns.txt](dns.txt) - Some alternative DNS servers to use.
 * [ssh.md](ssh.md) - SSH setup & tips.
 * `background.png` - A few grub backgrounds I like. To use, put in `/usr/share/grub/background.png`.
 
