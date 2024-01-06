@@ -17,13 +17,19 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
 
     * There's a few options in my extension collection.
     * https://addons.mozilla.org/en-US/firefox/addon/matte-black-blue/ (fallback available in Addons)
+* Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here (above), it will offer to install them.
 * List of privacy & security settings:
     https://github.com/arkenfox/user.js/wiki
 
   Lots of good info there, but take with a grain of salt.
+* The Context search origin extension adds custom search engines to the context menu (right click). Just add a folder called `Searches` with crafted bookmarks for your search engines. Usually you can go to a search page and right click on the search box, and choose "add keyword for this search" to add the right kind of bookmark. Move those bookmarks to that folder for them to appear in the context menu.
+    * These bookmarks all have `%s` in them somewhere, which is a search variable that gets replaced with your search. Firefox lets you add keywords to these bookmarks so you can use them from the address bar, like `wp Firefox` could search Wikipedia for Firefox if you set 'wp' as its keyword. my tridactylrc has ideas for keywords and URLs in the search engines section.
 * [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension which adds vim-like browser controls.
     * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
     * On Windows, put it in `~\.tridactyl\_tridactyrc` (with no extension).
     * On either, you can copy the link to the raw file on GitHub and use `:source --url https://github.com/Tanath/dotfiles/raw/master/browsers/tridactylrc`
-* Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here, it will offer to install them.
+
+Chrome
+======
+
 * [SurfingKeysRC](https://gist.github.com/Tanath/3802c263d90cbc78ec1ab2231f85505a) - Settings for [SurfingKeys](https://github.com/brookhong/Surfingkeys) Chrome extension.
