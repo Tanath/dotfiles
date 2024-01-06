@@ -1,6 +1,6 @@
 # Tanath's Dotfiles (and related)
 
-My dotfiles, and other config files & system tweaks, and miscellaneous references.
+My dotfiles for Linux, [browser reference](https://github.com/Tanath/dotfiles/tree/master/browsers#readme) & userscripts, other config files & system tweaks, and miscellaneous references.
 
 ## vim
 My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads the enabled plugins from [.vim/config/plugins.vim](.vim/config/plugins.vim). Any `.vim` files in `.vim/config/` are loaded. `<Leader>` key is default (`\`). Some useful toggles & mappings:
