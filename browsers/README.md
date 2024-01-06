@@ -22,7 +22,7 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     https://github.com/arkenfox/user.js/wiki
 
   Lots of good info there, but take with a grain of salt.
-* The Context search origin extension adds custom search engines to the context menu (right click). Just add a bookmarks folder called `Searches` with crafted bookmarks for your search engines. Usually you can go to a search page and right click on the search box, and choose "add keyword for this search" to add the right kind of bookmark. Move those bookmarks to that folder for them to appear in the context menu.
+* The Context search origin extension adds custom search engines to the context menu (right click). Just add a bookmarks folder called `Searches` (needs the capital) with crafted bookmarks for your search engines. Usually you can go to a search page and right click on the search box, and choose "add keyword for this search" to add the right kind of bookmark. Move those bookmarks to that folder for them to appear in the context menu.
     * These bookmarks all have `%s` in them somewhere, which is a search variable that gets replaced with your search. Firefox lets you add keywords to these bookmarks so you can use them from the address bar, like `wp Firefox` could search Wikipedia for Firefox if you set 'wp' as its keyword. my tridactylrc has ideas for keywords and URLs in the search engines section.
 * [Tridactylrc](https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc) - Settings for [Tridactyl](https://github.com/tridactyl/tridactyl) Firefox extension which adds vim-like browser controls.
     * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
