@@ -11,3 +11,11 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 [[ -d ~/.themes/oomox-materia-dark-mod1 ]] \
     && export GTK_THEME=oomox-materia-dark-mod1 \
     || export GTK_THEME=Adwaita:dark   # For gtk3
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
