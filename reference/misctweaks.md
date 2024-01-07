@@ -192,5 +192,6 @@ sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
 # Clock applet format
 Date format: 
 * `%a. %b. %e%n%H:%M %p`
+
 Tooltip:
 * `%Y-%m-%d%n%I:%M %p`
