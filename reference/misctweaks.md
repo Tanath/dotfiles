@@ -196,7 +196,7 @@ LABEL labelname
 
 # Mount virtualbox shared folder in linux
 ```
-sudo mount -t vboxsf vbox ~/vbox
+sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
 ```
 
 # XFCE clock format
