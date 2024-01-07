@@ -89,13 +89,13 @@
         "description": "Panel icon",
         "default": "folder",
         "tooltip": "Accepts icon name or direct path (supports symbolic icons)",
-        "value": "folder"
+        "value": "folder-activities"
     },
     "panelText": {
         "type": "entry",
         "description": "Panel text",
         "default": "",
-        "value": "~"
+        "value": ""
     },
     "keyOpen": {
         "type": "keybinding",
@@ -119,7 +119,7 @@
         "default": "~/",
         "select-dir": true,
         "tooltip": "Leave blank to disable",
-        "value": "~/"
+        "value": "file:///mnt/vbox-shared"
     },
     "showDesktop": {
         "type": "checkbox",
