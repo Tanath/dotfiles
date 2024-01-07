@@ -137,7 +137,7 @@ Emoji font config:
 
 # Default web browser for xdg-open
 
-`xdg-settings set default-web-browser google-chrome-beta.desktop`
+`xdg-settings set default-web-browser firefox.desktop`
 
 # Blocking net in Wine
 1. `wine regedit`
