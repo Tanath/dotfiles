@@ -103,7 +103,11 @@ sudo mhwd -a pci nonfree <classid>
 Install `qt5-styleplugins` and `qt5ct`. Restart, run `qt5ct` from terminal and select gtk2.
 For gtk2 apps install `gtk-theme-switch2` and select theme.
 
-# Emoji font config
+# Fonts
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this. Atkinson Hyperlegible does a great job and is my gold standard fit comparison, hence my userscript to change web pages to it. For mono, the best nerd font I've found which doesn't fail at this is Monoid. Check these characters in your font:
+* q9gB80OoailI1LCGQ{}
+* `q9gB80OoailI1LCGQ{}`
+Emoji font config:
 * `sudo pacman -S noto-fonts-emoji`
 * `mkdir -p ~/.config/fontconfig/conf.d`
 * `$EDITOR ~/.config/fontconfig/conf.d/30-color-fonts.conf`
