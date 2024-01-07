@@ -71,6 +71,7 @@ bind J scrollpage 0.10
 bind K scrollpage -0.10
 "bind J scrollline 5
 "bind K scrollline -5
+bind % fillcmdline scrollto
 bind S back
 bind D forward
 bind <C-r> reloadhard
