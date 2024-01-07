@@ -1,8 +1,59 @@
-This is mostly for me, for reference if I need it. Some of it may be useful to others.
+This is mostly for my reference if I need it. Some of it may be useful to others.
+
+# Fonts
+
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my userscript to change web pages to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro. Check these characters in your font:
+* q9gB80OoailI1LCGQ{}
+* `q9gB80OoailI1LCGQ{}`
+
+Emoji font config:
+* `sudo pacman -S noto-fonts-emoji`
+* `mkdir -p ~/.config/fontconfig/conf.d`
+* `$EDITOR ~/.config/fontconfig/conf.d/30-color-fonts.conf`
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <alias binding="same">
+        <family>emoji</family>
+        <prefer>
+            <family>Noto Color Emoji</family> <!-- Google -->
+            <family>Apple Color Emoji</family> <!-- Apple -->
+            <family>Segoe UI Emoji</family> <!-- Microsoft -->
+            <family>Twitter Color Emoji</family> <!-- Twitter -->
+            <family>EmojiOne Mozilla</family> <!-- Mozilla -->
+            <family>Emoji Two</family>
+            <family>JoyPixels</family>
+            <family>Emoji One</family>
+            <!-- Non-color -->
+            <family>Noto Emoji</family> <!-- Google -->
+            <family>Android Emoji</family> <!-- Google -->
+        </prefer>
+    </alias>
+</fontconfig>
+```
+
+# Clock applet format
+Date format: 
+* `%H:%M %p%n%a. %b. %e`
+
+Tooltip:
+* `%I:%M %p%n%Y-%m-%d`
+
+[Syntax reference](https://foragoodstrftime.com/).
+# Default web browser for xdg-open
+
+`xdg-settings set default-web-browser firefox.desktop`
+
+# Mount virtualbox shared folder in linux
+```
+sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
+```
 
 # Enable VTs
 
-Edit `/etc/systemd/logind.conf` to have `NAutoVTs=6`.
+Edit `/etc/systemd/logind.conf` to have `NAutoVTs=4`.
 Should take effect immediately.
 
 # Keyboard
@@ -32,6 +83,7 @@ Now I use udev to swap keys in the kernel, to make it permanent and consistent. 
 
 ```
 # Microsoft Natural Ergonomic Keyboard 4000
+
 evdev:input:b0003v045Ep00DB*
  KEYBOARD_KEY_c022d=up                                  # zoomin
  KEYBOARD_KEY_c022e=down                                # zoomout
@@ -103,54 +155,6 @@ sudo mhwd -a pci nonfree <classid>
 Install `qt5-styleplugins` and `qt5ct`. Restart, run `qt5ct` from terminal and select gtk2.
 For gtk2 apps install `gtk-theme-switch2` and select theme.
 
-# Fonts
-Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my userscript to change web pages to it. For mono, the best nerd font I've found which doesn't fail at this is Monoid. Check these characters in your font:
-* q9gB80OoailI1LCGQ{}
-* `q9gB80OoailI1LCGQ{}`
-
-Emoji font config:
-* `sudo pacman -S noto-fonts-emoji`
-* `mkdir -p ~/.config/fontconfig/conf.d`
-* `$EDITOR ~/.config/fontconfig/conf.d/30-color-fonts.conf`
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-    <alias binding="same">
-        <family>emoji</family>
-        <prefer>
-            <family>Noto Color Emoji</family> <!-- Google -->
-            <family>Apple Color Emoji</family> <!-- Apple -->
-            <family>Segoe UI Emoji</family> <!-- Microsoft -->
-            <family>Twitter Color Emoji</family> <!-- Twitter -->
-            <family>EmojiOne Mozilla</family> <!-- Mozilla -->
-            <family>Emoji Two</family>
-            <family>JoyPixels</family>
-            <family>Emoji One</family>
-            <!-- Non-color -->
-            <family>Noto Emoji</family> <!-- Google -->
-            <family>Android Emoji</family> <!-- Google -->
-        </prefer>
-    </alias>
-</fontconfig>
-```
-
-# Default web browser for xdg-open
-
-`xdg-settings set default-web-browser firefox.desktop`
-
-# Blocking net in Wine
-1. `wine regedit`
-2. Go to: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings`
-3. You should see a ProxyEnable key that is set to 0. Set it to 1.
-4. Create the following DWORD values (right-click and select new):
-	"MigrateProxy" set to
-	"ProxyHttp.1.1" set to 0
-5. Create the following Strings:
-	"ProxyOverride" set to "<local>"
-	"ProxyServer" set to "http://prohibited:80"
-	"UserAgent" set to "Mozilla/4.0 (compatible; MSIE 8.0; Win32)"
-
 # Bootable USB w/various ISOs
 
 This section is outdated. Use [Ventoy](https://github.com/ventoy/Ventoy#--ventoy) now.
@@ -184,16 +188,15 @@ LABEL labelname
 10. Done! Boot with it.
 11. [Troubleshoot](http://www.syslinux.org/wiki/index.php/MEMDISK#INT_13h_access:_Not_all_images_will_complete_the_boot_process.21)
 
-# Mount virtualbox shared folder in linux
-```
-sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
-```
+# Blocking net in Wine
+1. `wine regedit`
+2. Go to: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings`
+3. You should see a ProxyEnable key that is set to 0. Set it to 1.
+4. Create the following DWORD values (right-click and select new):
+	"MigrateProxy" set to
+	"ProxyHttp.1.1" set to 0
+5. Create the following Strings:
+	"ProxyOverride" set to "<local>"
+	"ProxyServer" set to "http://prohibited:80"
+	"UserAgent" set to "Mozilla/4.0 (compatible; MSIE 8.0; Win32)"
 
-# Clock applet format
-Date format: 
-* `%H:%M %p%n%a. %b. %e`
-
-Tooltip:
-* `%I:%M %p%n%Y-%m-%d`
-
-[Syntax reference](https://foragoodstrftime.com/).
