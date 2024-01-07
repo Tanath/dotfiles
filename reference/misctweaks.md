@@ -195,3 +195,5 @@ Date format:
 
 Tooltip:
 * `%Y-%m-%d%n%I:%M %p`
+
+[Syntax reference](https://foragoodstrftime.com/).
