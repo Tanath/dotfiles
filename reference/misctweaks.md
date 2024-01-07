@@ -189,7 +189,8 @@ LABEL labelname
 sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
 ```
 
-# XFCE clock format
-Tooltip: %c
-Format:
-%a %T%n%h %e/%y
+# Clock applet format
+Date format: 
+* `%a. %b. %e%n%H:%M %p`
+Tooltip:
+* `%Y-%m-%d%n%I:%M %p`
