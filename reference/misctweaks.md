@@ -184,16 +184,6 @@ LABEL labelname
 10. Done! Boot with it.
 11. [Troubleshoot](http://www.syslinux.org/wiki/index.php/MEMDISK#INT_13h_access:_Not_all_images_will_complete_the_boot_process.21)
 
-# Firefox theme integration
-```
-==> vertex-maia-themes:
-  -> For seamless integration of Firefox and Palemoon browsers
-  -> please copy the 'chrome' folder of the desired theme to your browser profile
-  -> or create a symlink.
-==> For example:
-  -> 'ln -s /usr/share/themes/Palemoon/Vertex-Maia-Dark/chrome/ ~/.moonchild\ productions/pale\ moon/<xyz123>.default/chrome'
-```
-
 # Mount virtualbox shared folder in linux
 ```
 sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
