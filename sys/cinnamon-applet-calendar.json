@@ -30,7 +30,7 @@
         "description": "Date format",
         "dependency": "use-custom-format",
         "tooltip": "Set your custom format here.",
-        "value": "%a. %b. %e%n%I:%M %p"
+        "value": "%I:%M %p%n%a. %b. %e"
     },
     "custom-tooltip-format": {
         "type": "entry",
@@ -38,7 +38,7 @@
         "description": "Date format for tooltip",
         "dependency": "use-custom-format",
         "tooltip": "Set your custom tooltip format here.",
-        "value": "%a. %b. %e / %Y%n%H:%M %p"
+        "value": "%H:%M %p%n%Y-%m-%d"
     },
     "format-button": {
         "type": "button",
