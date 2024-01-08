@@ -7,7 +7,7 @@ Fonts should be readable with characters that are easy to distinguish from each 
 * `q9gB80OoailI1LCGQ{}`
 
 To install on Linux, check for `fonts-firacode` and `texlive-fonts-extra` for AH. 
-On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to download it yourself.
+On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
 
 Emoji font config:
 * `sudo pacman -S noto-fonts-emoji`
