@@ -186,11 +186,14 @@ autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
 quickmark a https://www.artstation.com/
-quickmark g https://ground.news/blindspot
+quickmark g https://github.com/tanath/dotfiles
 quickmark h https://news.ycombinator.com/
 quickmark i https://www.inoreader.com/all_articles
 quickmark n https://news.google.com/foryou
+quickmark N https://news.google.com/
+quickmark p https://www.perplexity.ai/
 quickmark r https://www.reddit.com/user/me/
+quickmark R https://www.reddit.com/
 quickmark s http://localhost:8989/calendar
 quickmark t https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc
 quickmark w https://wallhaven.cc/random
