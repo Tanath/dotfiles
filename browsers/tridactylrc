@@ -59,7 +59,7 @@ bind \T fillcmdline tabgrab
 " Clobbers Youtube. Avoid 2-key binds without modifiers. Use <CS-pgdn> instead of >>
 unbind >>
 unbind <<
-bind `1 tabpush 1
+"bind `1 tabpush 1
 bind gd tabdetach
 bind yT tabduplicate
 """ Navigation
