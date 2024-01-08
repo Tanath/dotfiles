@@ -1,19 +1,214 @@
 " General Settings
-set update.lastchecktime 1587925524900
+" Removing lines removes the setting.
+sanitise tridactyllocal tridactylsync
+set update.lastchecktime 1609457332531
 set configversion 1.9
-set updatenaglastversion 1.17.1
-set theme dark
+set updatenaglastversion 1.20.4
+colourscheme dark
+" Start with left-hand chars for fewer mouse interrupts
+set hintchars fdsagrewqcxzvtbjklhuiopnmy
+set hintdelay 150
+set followpagepatterns.next ^(next|newer|forward)\b|→|❯|›|>>
+set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
+" Don't use » by default. Used more often for last instead.
+"set followpagepatterns.next ^(next|newer|forward)\b|→|❯|›|»|>>
+"set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|«|<<
+"set allowautofocus false
 
-" Binds
-bind d scrollpage 0.5
-bind x tabclose
-bind e scrollpage -0.5
+" Searches
+set searchengine g
+set searchurls.alt https://alternativeto.net/browse/search?q=%s
+set searchurls.af https://www.acronymfinder.com/~/search/af.aspx?string=exact&Acronym=%s
+set searchurls.ar https://archive.is/search/?q=%s
+set searchurls.aw https://wiki.archlinux.org/index.php?title=Special%3ASearch&search=%s
+set searchurls.fc https://toolbox.google.com/factcheck/explorer/%s;hl=en
+set searchurls.g https://www.google.ca/search?safe=off&num=20&q=%s
+set searchurls.gc https://www.google.ca/search?q=cache:%s
+set searchurls.gh https://github.com/search?utf8=%s
+set searchurls.gi https://www.google.ca/search?tbm=isch&safe=off&q=%s
+set searchurls.gl https://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=%s
+set searchurls.gm https://www.google.ca/maps?q=%s
+set searchurls.gn https://news.google.ca/news?hl=en&num=30&q=%s&btnG=Search+News
+set searchurls.m https://search.marginalia.nu/search?js=&adtech=&profile=&query=%s
+set searchurls.mc https://www.google.ca/search?num=20&q=%s%20site:metacritic.com
+set searchurls.ol https://www.onelook.com/?w=%s&ls=b
+set searchurls.p https://www.perplexity.ai/search?q=%s
+set searchurls.rr https://www.royalroad.com/fictions/search?title=%s
+set searchurls.th https://www.thesaurus.com/browse/%s
+set searchurls.tr https://translate.google.com/?op=translate&text=%s&sl=auto&tl=en
+set searchurls.tu https://translate.google.com/translate?hl=en&u=%s&sl=auto&tl=en
+set searchurls.tw https://twitter.com/search?q=%s
+set searchurls.txt https://www.google.ca/search?q=cache:%s&strip=1
+set searchurls.ud https://www.urbandictionary.com/define.php?term=%s
+set searchurls.wp https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go
+set searchurls.wa https://www.wolframalpha.com/input/?i=%s
+set searchurls.wb https://web.archive.org/web/*/%s
+set searchurls.wi https://en.wiktionary.org/wiki/Special:Search?search=%s&go=Go
+set searchurls.yt https://www.youtube.com/results?search_query=%s
+
+" Binds. :help bind
+" bind --mode=$mode $key $excmd
+""" Tabs
+bind x composite tab #; tabclose #
+bind X undo
+bind E tabprev
+bind R tabnext
+bind \p hint -wp
+bind \t fillcmdline tabpush
+bind \T fillcmdline tabgrab
+" Clobbers Youtube. Avoid 2-key binds without modifiers. Use <CS-pgdn> instead of >>
+unbind >>
+unbind <<
+bind `1 tabpush 1
+bind gd tabdetach
+bind yT tabduplicate
+""" Navigation
+bind d scrollpage 0.4
+bind e scrollpage -0.4
 bind k scrollpage -0.25
 bind j scrollpage 0.25
+bind J scrollpage 0.10
+bind K scrollpage -0.10
+"bind J scrollline 5
+"bind K scrollline -5
+bind % fillcmdline scrollto
+bind S back
+bind D forward
+bind <C-r> reloadhard
+""" Find in page
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+set incsearch true
+bind <C-\> clearsearchhighlight
+""" Media
+bind <A-]> js document.querySelector('video').playbackRate+=0.25
+bind <A-[> js document.querySelector('video').playbackRate-=0.25
+bind <A-=> js document.querySelector('video').playbackRate=1
+""" Misc
+bind s fillcmdline tabopen search
+" Clobbers paste. Use <C-]> instead.
+unbind <S-Insert>
+bind <C-]> mode ignore
+bind --mode=ignore <C-]> mode normal
+unbind --mode=ignore <S-Insert>
+" Swap these to make the more common one easier
+bind gf hint -qb
+bind gF viewsource
+bind \b fillcmdline bmarks -t
+" Open right click menu on links. Based on https://github.com/tridactyl/tridactyl/blob/master/.tridactylrc#L86
+bind ;C composite hint -; !s xdotool key Menu
+bind ;c hint -c [class*="expand"],[class="togg"],[class="comment_folder"]
+bind ;u hint -Jc [class*="arrow"]
+bind ga js void(open('https://archive.is/search/?q='+encodeURIComponent(document.location)))
+bind gc composite get_current_url | tabopen gc
+bind gT js void(open('https://translate.google.com/translate?hl=en&sl=auto&tl=en&u='+encodeURIComponent(document.location)))
+bind <A-t> composite hint -W | js -p tri.excmds.open('https://translate.google.com/translate?hl=en&sl=auto&tl=en&u=' + JS_ARG)
+
+" Site binds
+" Use ;f and ;F for site-specific hints for most likely links.
+bindurl www.google.com ;f hint -Jc .rc > .yuRUbf > a,.hide-focus-ring
+bindurl www.google.com ;F hint -Jbc .rc > .yuRUbf > a,.hide-focus-ring
+bindurl www.google.ca ;f hint -Jc .rc > .yuRUbf > a,.hide-focus-ring
+bindurl www.google.ca ;F hint -Jbc .rc > .yuRUbf > a,.hide-focus-ring
+" WIP
+bindurl youtube.com ;f hint -Jc button > .yt-icon-button.style-scope,ytd-guide-entry-renderer.style-scope,.ytd-menu-renderer.style-scope,h3.ytd-grid-video-renderer.style-scope
+bindurl youtube.com ;F hint -Jbc button > .yt-icon-button.style-scope,ytd-guide-entry-renderer.style-scope,.ytd-menu-renderer.style-scope,h3.ytd-grid-video-renderer.style-scope
+unbindurl youtube.com f
+unbindurl youtube.com t
+unbindurl youtube.com c
+unbindurl youtube.com j
+unbindurl youtube.com l
+unbindurl youtube.com m
+unbindurl youtube.com p
+unbindurl youtube.com N
+unbindurl youtube.com P
+"unbindurl youtube.com >>
+"unbindurl youtube.com <<
+unbindurl youtube.com ,
+unbindurl youtube.com .
+unbindurl reddit.com a
+unbindurl reddit.com z
+unbindurl reddit.com A
+unbindurl reddit.com ZZ
+unbindurl reddit.com Z
+unbindurl reddit.com j
+unbindurl reddit.com k
+unbindurl reddit.com h
+unbindurl reddit.com x
+unbindurl reddit.com J
+unbindurl reddit.com K
+unbindurl reddit.com p
+unbindurl reddit.com P
+unbindurl reddit.com s
+unbindurl reddit.com r
+"unbindurl reddit.com e
+unbindurl reddit.com c
+unbindurl reddit.com C
+unbindurl reddit.com y
+unbindurl reddit.com Y
+unbindurl reddit.com u
+unbindurl reddit.com U
+unbindurl reddit.com ?
+unbindurl reddit.com [
+unbindurl reddit.com ]
+unbindurl inoreader.com j
+unbindurl inoreader.com k
+unbindurl inoreader.com n
+unbindurl inoreader.com p
+unbindurl inoreader.com l
+unbindurl inoreader.com w
+unbindurl inoreader.com v
+unbindurl inoreader.com b
+unbindurl inoreader.com m
+unbindurl inoreader.com A
+unbindurl inoreader.com f
+unbindurl inoreader.com s
+unbindurl inoreader.com q
+unbindurl inoreader.com h
+bindurl inoreader.com F hint -Jc .article_header_text
+bindurl inoreader.com ;f hint -Jc .bluelink.underlink
+bindurl inoreader.com ;F hint -Jbc .bluelink.underlink
+bindurl inoreader.com J scrollline 10
+bindurl inoreader.com K scrollline -10
+" TODO: fix
+bindurl inoreader.com --mode=normal ;; hint -;c .reader_pane_sinner,tree_pane
 
 " Ignored sites
+"autocmd DocStart youtube.com mode ignore
 autocmd DocStart mail.google.com mode ignore
-autocmd DocStart youtube.com mode ignore
+autocmd DocStart docs.google.com mode ignore
+autocmd DocStart discord.com mode ignore
+autocmd DocStart canary.discord.com mode ignore
+autocmd DocStart ptb.discord.com mode ignore
+autocmd DocStart www.codecademy.com mode ignore
+
+" Quickmarks
+quickmark a https://www.artstation.com/
+quickmark g https://ground.news/blindspot
+quickmark h https://news.ycombinator.com/
+quickmark i https://www.inoreader.com/all_articles
+quickmark n https://news.google.com/foryou
+quickmark r https://www.reddit.com/user/me/
+quickmark s http://localhost:8989/calendar
+quickmark t https://github.com/Tanath/dotfiles/blob/master/browsers/tridactylrc
+quickmark w https://wallhaven.cc/random
+quickmark y https://www.youtube.com/playlist?list=WL
+quickmark Y https://www.youtube.com/
+
+" Commands
+command cache composite get_current_url | tabopen gc
+command text composite get_current_url | tabopen txt
+command translate composite get_current_url | tabopen tr
+command wayback composite get_current_url | tabopen wb
+""" Inject Google Translate
+" From https://github.com/jeremiahlee/page-translator
+"command translate js let googleTranslateCallback = document.createElement('script'); googleTranslateCallback.innerHTML = "function googleTranslateElementInit(){ new google.translate.TranslateElement(); }"; document.body.insertBefore(googleTranslateCallback, document.body.firstChild); let googleTranslateScript = document.createElement('script'); googleTranslateScript.charset="UTF-8"; googleTranslateScript.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit&tl=&sl=&hl="; document.body.insertBefore(googleTranslateScript, document.body.firstChild);
+
+" Isolate Facebook in its own container
+set auconcreatecontainer true
+autocontain facebook\.com facebook
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
