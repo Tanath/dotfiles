@@ -11,27 +11,27 @@ On Windows you can use `scoop install firacode` or `choco install firacode atkin
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
 * Arial:
-	![Arial sucks](reference/fonts-arial-sucks.png)
+	![Arial sucks](fonts-arial-sucks.png)
 * Consolas:
-	![Consolas sucks](reference/fonts-consolas-sucks.png
+	![Consolas sucks](fonts-consolas-sucks.png)
 * DejaVu Sans:
-	![DejaVu Sans sucks](reference/fonts-dejavu-sans-sucks.png)
+	![DejaVu Sans sucks](fonts-dejavu-sans-sucks.png)
 * Noto Sans:
-	![Noto Sans sucks](reference/fonts-noto-sans-sucks.png)
+	![Noto Sans sucks](fonts-noto-sans-sucks.png)
 * Segoe UI:
-	![Segoe UI sucks](reference/fonts-segoe-ui-sucks.png)
+	![Segoe UI sucks](fonts-segoe-ui-sucks.png)
 * Source Code Pro is decent:
-	![Source Code Pro is decent](reference/fonts-source-code-pro-decent.png)
+	![Source Code Pro is decent](fonts-source-code-pro-decent.png)
 * Tahoma:
-	![Tahoma sucks](reference/fonts-tahoma-sucks.png)
+	![Tahoma sucks](fonts-tahoma-sucks.png)
 * Verdana:
-	![Verdana sucks](reference/fonts-verdana-sucks.png)
+	![Verdana sucks](fonts-verdana-sucks.png)
 * Monoid's design is great, but it's too tall (like double the height of AH):
-	![Monoid is great, but too tall](reference/fonts-monoid-tall.png)
+	![Monoid is great, but too tall](fonts-monoid-tall.png)
 * Fira Code is great:
-	![Fira Code is great](reference/fonts-fira-code-great.png)
+	![Fira Code is great](fonts-fira-code-great.png)
 * Atkinson Hyperlegible is great:
-	![Atkinson Hyperlegible is great](reference/fonts-Atkinson-Hyperlegible-great.png)
+	![Atkinson Hyperlegible is great](fonts-Atkinson-Hyperlegible-great.png)
 
 # Clock applet format
 Date format: 
