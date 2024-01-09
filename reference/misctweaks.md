@@ -2,40 +2,36 @@ This is mostly for my reference if I need it. Some of it may be useful to others
 
 # Fonts
 
-Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my userscript to change web pages to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro. Check these characters in your font:
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my userscript to change web pages to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro (mostly). Check these characters in your font:
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
 To install on Linux, check for `fonts-firacode` and `texlive-fonts-extra` for AH. 
 On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
 
-Emoji font config:
-* `sudo pacman -S noto-fonts-emoji`
-* `mkdir -p ~/.config/fontconfig/conf.d`
-* `$EDITOR ~/.config/fontconfig/conf.d/30-color-fonts.conf`
-
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-    <alias binding="same">
-        <family>emoji</family>
-        <prefer>
-            <family>Noto Color Emoji</family> <!-- Google -->
-            <family>Apple Color Emoji</family> <!-- Apple -->
-            <family>Segoe UI Emoji</family> <!-- Microsoft -->
-            <family>Twitter Color Emoji</family> <!-- Twitter -->
-            <family>EmojiOne Mozilla</family> <!-- Mozilla -->
-            <family>Emoji Two</family>
-            <family>JoyPixels</family>
-            <family>Emoji One</family>
-            <!-- Non-color -->
-            <family>Noto Emoji</family> <!-- Google -->
-            <family>Android Emoji</family> <!-- Google -->
-        </prefer>
-    </alias>
-</fontconfig>
-```
+Here are examples of common fonts which suck at this, plus AH & FC for comparison:
+* Arial:
+	![Arial sucks](reference/fonts-arial-sucks.png)
+* Consolas:
+	![Consolas sucks](reference/fonts-consolas-sucks.png
+* DejaVu Sans:
+	![DejaVu Sans sucks](reference/fonts-dejavu-sans-sucks.png)
+* Noto Sans:
+	![Noto Sans sucks](reference/fonts-noto-sans-sucks.png)
+* Segoe UI:
+	![Segoe UI sucks](reference/fonts-segoe-ui-sucks.png)
+* Source Code Pro is decent:
+	![Source Code Pro is decent](reference/fonts-source-code-pro-decent.png)
+* Tahoma:
+	![Tahoma sucks](reference/fonts-tahoma-sucks.png)
+* Verdana:
+	![Verdana sucks](reference/fonts-verdana-sucks.png)
+* Monoid's design is great, but it's too tall (like double the height of AH):
+	![Monoid is great, but too tall](reference/fonts-monoid-tall.png)
+* Fira Code is great:
+	![Fira Code is great](reference/fonts-fira-code-great.png)
+* Atkinson Hyperlegible is great:
+	![Atkinson Hyperlegible is great](reference/fonts-Atkinson-Hyperlegible-great.png)
 
 # Clock applet format
 Date format: 
