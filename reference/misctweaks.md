@@ -11,26 +11,37 @@ On Windows you can use `scoop install firacode` or `choco install firacode atkin
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
 * Arial:
+
 	![Arial sucks](fonts-arial-sucks.png)
 * Consolas:
+
 	![Consolas sucks](fonts-consolas-sucks.png)
 * DejaVu Sans:
+
 	![DejaVu Sans sucks](fonts-dejavu-sans-sucks.png)
 * Noto Sans:
+
 	![Noto Sans sucks](fonts-noto-sans-sucks.png)
 * Segoe UI:
+
 	![Segoe UI sucks](fonts-segoe-ui-sucks.png)
 * Source Code Pro is decent:
+
 	![Source Code Pro is decent](fonts-source-code-pro-decent.png)
 * Tahoma:
+
 	![Tahoma sucks](fonts-tahoma-sucks.png)
 * Verdana:
+
 	![Verdana sucks](fonts-verdana-sucks.png)
 * Monoid's design is great, but it's too tall (like double the height of AH):
+
 	![Monoid is great, but too tall](fonts-monoid-tall.png)
 * Fira Code is great:
+
 	![Fira Code is great](fonts-fira-code-great.png)
 * Atkinson Hyperlegible is great:
+
 	![Atkinson Hyperlegible is great](fonts-Atkinson-Hyperlegible-great.png)
 
 # Clock applet format
