@@ -24,7 +24,7 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     javascript:(function() {  'use strict';  var style = `  * {  font-family: 'Atkinson Hyperlegible', 'Fira Code', 'Noto Sans Symbols', sans-serif !important;  }  `;  var styleElement = document.createElement('style'); styleElement.appendChild(document.createTextNode(style)); document.head.appendChild(styleElement); })();
     ```
     
-    The userscript sets the font where it can without breaking some text icons, making tofu. The bookmarklet uses `!important` to override if you don't care and want to change it anyway. It depends on the userscript to make the font available though.
+    The userscript sets the font where it can without breaking some text icons, making tofu. The bookmarklet uses `!important` to override if you don't care and want to try to change it anyway. It depends on the userscript to make the font available though.
 * List of privacy & security settings:
     https://github.com/arkenfox/user.js/wiki
 
