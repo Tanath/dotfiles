@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Set font to Atkinson Hyperlegible
-// @version      0.6.2
+// @version      0.6.3
 // @description  Set font to Atkinson Hyperlegible.
 // @author       Tanath
 // @downloadURL  https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
@@ -24,7 +24,7 @@
 
     var style = `
         body, h1, h2, h3, main, article, .article, article-body, section, div, span, p, td, li, a {
-            font-family: 'Atkinson Hyperlegible', 'Fira Code', 'Noto Sans Symbols', sans-serif !important;
+            font-family: 'Atkinson Hyperlegible', 'Fira Code', 'Noto Sans Symbols', sans-serif;
         }
     `;
     GM_addStyle(style);
