@@ -2,7 +2,7 @@ This is mostly for my reference if I need it. Some of it may be useful to others
 
 # Fonts
 
-Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](../browsers/Set font to Atkinson Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro (mostly). Check these characters in your font:
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro (mostly). Check these characters in your font:
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
