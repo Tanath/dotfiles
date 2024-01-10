@@ -18,6 +18,13 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * There's a few options in my extension collection.
     * https://addons.mozilla.org/en-US/firefox/addon/matte-black-blue/ (fallback available in Addons)
 * Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here (above), it will offer to install them.
+* If you use the [userscript to set the font to Atkinson Hyperlegible](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js), then you might want to put this bookmarklet on your toolbar on desktop, and in `Bookmarks` on mobile:
+
+    ```js
+    javascript:(function() {  'use strict';  var style = `  * {  font-family: 'Atkinson Hyperlegible', 'Fira Code', 'Noto Sans Symbols', sans-serif !important;  }  `;  var styleElement = document.createElement('style'); styleElement.appendChild(document.createTextNode(style)); document.head.appendChild(styleElement); })();
+    ```
+    
+    The userscript sets the font where it can without breaking some text icons, making tofu. The bookmarklet uses `!important` to override if you don't care and want to change it anyway. It depends on the userscript to make the font available though.
 * List of privacy & security settings:
     https://github.com/arkenfox/user.js/wiki
 
