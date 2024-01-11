@@ -14,6 +14,7 @@ set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
 "set followpagepatterns.next ^(next|newer|forward)\b|→|❯|›|»|>>
 "set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|«|<<
 "set allowautofocus false
+set smootgscroll true
 
 " Searches
 set searchengine g
@@ -71,6 +72,7 @@ bind J scrollpage 0.10
 bind K scrollpage -0.10
 "bind J scrollline 5
 "bind K scrollline -5
+bind <space> scrollpage 0.8
 bind % fillcmdline scrollto
 bind S back
 bind D forward
