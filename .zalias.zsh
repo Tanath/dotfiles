@@ -75,6 +75,7 @@ alias bh='big | head'
 alias t='cat .todo | less -RFX'
 alias vt='vim .todo'
 alias gpl='git pull'
+alias gcm='git commit -am'
 alias gps='git push'
 alias jerr='journalctl -eaxp4 -b'                          # Journalctl errors this boot
 alias wpi='strings -e l'                                   # Windows program info
