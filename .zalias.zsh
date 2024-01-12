@@ -44,13 +44,13 @@ if (( $+commands[exa] )); then
     alias lt='exa -Flhs=modified --icons'                  # List by time
     alias lx='exa -Fhs=type --icons'                       # List by type
 else
-    alias ls="ls ${LSPARAMS} | less -RFX"
-    alias ll="\ls -l ${LSPARAMS} | less -RFX"              # List long. TODO
-    alias la="\ls -a ${LSPARAMS} | less -RFX"              # List all
-    alias lla="\ls -la ${LSPARAMS} | less -RFX"            # List all long
-    alias lz="\ls -lrS | less -RFX"                        # List by size
-    alias lt="\ls -lrT | less -RFX"                        # List by time
-    alias lx="\ls -lBX | less -RFX"                        # sort by ext
+    alias ls="ls ${LSPARAMS} "$@" | less -RFX"
+    alias ll="\ls -l ${LSPARAMS} "$@" | less -RFX"         # List long. TODO
+    alias la="\ls -a ${LSPARAMS} "$@" | less -RFX"         # List all
+    alias lla="\ls -la ${LSPARAMS} "$@" | less -RFX"       # List all long
+    alias lz="\ls -lrS "$@" | less -RFX"                   # List by size
+    alias lt="\ls -lrT "$@" | less -RFX"                   # List by time
+    alias lx="\ls -lBX "$@" | less -RFX"                   # sort by ext
     alias l.="\ls ${LSPARAMS} -d .[^.]*"                   # List .dirs
     alias lsd="\ls ${LSPARAMS} *(-/DN)"                    # List dirs & symlinks to dirs
 fi
