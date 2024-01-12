@@ -115,7 +115,7 @@ fnd () { find . -iname \*$*\* | less -RFX }                # find
 (( $+commands[mpv] )) \
     && alarm () { sleep $1; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*" }
-    aw () { local url="https://wiki.archlinux.org/index.php?title=Special%3ASearch&search=$*"; exo-open "$url" }
+aw () { local url="https://wiki.archlinux.org/index.php?title=Special%3ASearch&search=$*"; exo-open "$url" }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10 }
 mkpw () { head -c 24 /dev/urandom | base64 }
 fwh () { file =$1 }                                        # file which
