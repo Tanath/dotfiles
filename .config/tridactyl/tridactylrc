@@ -126,6 +126,7 @@ unbindurl youtube.com m
 unbindurl youtube.com p
 unbindurl youtube.com N
 unbindurl youtube.com P
+unbindurl youtube.com <space>
 "unbindurl youtube.com >>
 "unbindurl youtube.com <<
 unbindurl youtube.com ,
