@@ -145,7 +145,10 @@ if has('syntax')
     if !exists('g:colors_name')
         set background=dark
         " Of the dark themes available by default, elflord has best syntax highlighting.
-        colors elflord
+        "colors elflord
+        "colors base16-3024
+        colors base16-google-dark
+        "colors base16-spqcemacs
     endif
 endif
 

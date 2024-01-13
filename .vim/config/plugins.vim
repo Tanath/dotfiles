@@ -57,6 +57,7 @@ if exists(':PlugInstall')
         Plug 'tpope/vim-eunuch'
     endif
     Plug 'editorconfig/editorconfig-vim'
+    Plug 'chriskempson/base16-vim'
     Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-characterize'
