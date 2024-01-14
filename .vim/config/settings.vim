@@ -297,18 +297,18 @@ set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
 " Set up external tools.
 " ======================
 
-" Use Silver Searcher for :grep
-if executable('ag')
-    " Use ag over grep
-    set grepprg=ag\ --nogroup\ --nocolor\ --column
-    set grepformat=%f:%l:%c:%m           " :h errorformat
+" Use ripgrep for :grep
+if executable('rg')
+    " Use rg over grep
+    set grepprg=rg\ --vimgrep\ --smart-case
+    set grepformat^=%f:%l:%c:%m
 endif
 
-" Use ripgrep for :grep if ag not available
-if !executable('ag')
-    if executable('rg')
-        set grepprg=rg\ --vimgrep
-        set grepformat^=%f:%l:%c:%m
+" Use Silver Searcher for :grep if rg not available
+if !executable('rg')
+    if executable('ag')
+        set grepprg=ag\ --nogroup\ --nocolor\ --column
+        set grepformat=%f:%l:%c:%m           " :h errorformat
     endif
 endif
 
