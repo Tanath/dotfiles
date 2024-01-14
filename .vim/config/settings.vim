@@ -147,8 +147,13 @@ if has('syntax')
         " Of the dark themes available by default, elflord has best syntax highlighting.
         "colors elflord
         "colors base16-3024
+        "colors base16-classic-dark
         colors base16-google-dark
-        "colors base16-spqcemacs
+        "colors base16-monokai
+        "colors base16-pico
+        "colors base16-railscasts
+        "colors base16-seti
+        "colors base16-spacemacs
     endif
 endif
 
