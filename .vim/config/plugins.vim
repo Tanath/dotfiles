@@ -79,7 +79,8 @@ if exists(':PlugInstall')
     Plug 'dbmrq/vim-ditto'
     "Plug 'mbbill/undotree'
     " Load on first use.
-    Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+    Plug 'tpope/vim-vinegar'
+    "Plug 'preservim/nerdtree'
     Plug 'will133/vim-dirdiff'
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
