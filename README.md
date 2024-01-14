@@ -2,6 +2,13 @@
 
 My dotfiles for Linux, [browser reference](https://github.com/Tanath/dotfiles/tree/master/browsers#readme) & userscripts, other config files & system tweaks, and miscellaneous references.
 
+## Misc
+* I use ranger, the terminal file manager. It's configured for devicons, so you need to add that for it to work well without complaining:
+
+    ```
+    git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
+    ```
+
 ## vim
 My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads the enabled plugins from [.vim/config/plugins.vim](.vim/config/plugins.vim). Any `.vim` files in `.vim/config/` are loaded. `<Leader>` key is default (`\`). Some useful toggles & mappings:
 
