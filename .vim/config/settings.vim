@@ -301,7 +301,7 @@ set wildignore+=*/tmp/librarian/*,*/.vagrant/*,*/.kitchen/*,*/vendor/cookbooks/*
 if executable('rg')
     " Use rg over grep
     set grepprg=rg\ --vimgrep\ --smart-case
-    set grepformat^=%f:%l:%c:%m
+    "set grepformat^=%f:%l:%c:%m
 endif
 
 " Use Silver Searcher for :grep if rg not available
