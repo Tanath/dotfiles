@@ -146,6 +146,7 @@ if has('syntax')
         set background=dark
         " Of the dark themes available by default, elflord has best syntax highlighting.
         "colors elflord
+        "colors torte
         "colors base16-3024
         "colors base16-classic-dark
         colors base16-google-dark
