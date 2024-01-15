@@ -19,6 +19,7 @@ alias dmesg='dmesg -H --color=always'
 (( $+commands[systemctl] )) \
     && alias sc='systemctl'
 (( $+commands[fzf] )) \
+    && alias fcd='cd $(locate -r "/[^\.]*$" | fzf --algo=v1 +s )' \
     && alias fm='fzf -m --tac' \
     && alias dmf='dmesg | fm +s' \
     && alias o='xdg-open "$(fzf)"' \
