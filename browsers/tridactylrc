@@ -25,7 +25,7 @@ set searchurls.aw https://wiki.archlinux.org/index.php?title=Special%3ASearch&se
 set searchurls.fc https://toolbox.google.com/factcheck/explorer/%s;hl=en
 set searchurls.g https://www.google.ca/search?safe=off&num=20&q=%s
 set searchurls.gc https://www.google.ca/search?q=cache:%s
-set searchurls.gh https://github.com/search?utf8=%s
+set searchurls.gh https://github.com/search?q=%s
 set searchurls.gi https://www.google.ca/search?tbm=isch&safe=off&q=%s
 set searchurls.gl https://www.google.com/search?btnI=I%27m+Feeling+Lucky&q=%s
 set searchurls.gm https://www.google.ca/maps?q=%s
