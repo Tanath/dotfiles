@@ -108,7 +108,6 @@ if exists(':PlugInstall')
     "Coding plugins>
     Plug 'romainl/vim-devdocs'
     Plug 'tpope/vim-commentary'
-    Plug 'mattn/emmet-vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'ludovicchabant/vim-gutentags'
     Plug 'tpope/vim-dispatch'
