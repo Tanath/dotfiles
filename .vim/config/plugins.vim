@@ -58,6 +58,7 @@ if exists(':PlugInstall')
     endif
     Plug 'editorconfig/editorconfig-vim'
     Plug 'chriskempson/base16-vim'
+    "Plug 'srcery-colors/srcery-vim'
     Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-characterize'

@@ -145,8 +145,8 @@ if has('syntax')
     if !exists('g:colors_name')
         set background=dark
         " Of the dark themes available by default, elflord has best syntax highlighting.
-        "colors elflord
         "colors torte
+        "colors elflord
         "colors base16-3024
         "colors base16-classic-dark
         colors base16-google-dark
@@ -155,6 +155,8 @@ if has('syntax')
         "colors base16-railscasts
         "colors base16-seti
         "colors base16-spacemacs
+        " Enable srcery plugin for:
+        "colors srcery
     endif
 endif
 
