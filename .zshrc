@@ -72,9 +72,9 @@ zstyle ':completion:*' accept-exact '*(N)'
 # Make Vi mode transitions faster
 export KEYTIMEOUT=20
 
-#bindkey -e
 # Add alt+. to vi mode
 bindkey -v '\e.' insert-last-word
+bindkey -e
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
 compinit
@@ -210,7 +210,7 @@ x () {
         c=''
         e=1
         if [[ ! -r $i ]]; then
-            echo "$0: file is unreadable: \`$i'" >&2
+            echo "$0: file is unreadable: '$i'" >&2
             continue
         fi
         case $i in
@@ -227,7 +227,7 @@ x () {
             *.xz)  c=(unxz);;
             *.zip) c=(unzip);;
             *.deb) c=(ar x);;
-            *)     echo "$0: unrecognized file extension: \`$i'" >&2
+            *)     echo "$0: unrecognized file extension: '$i'" >&2
                    continue;;
         esac
         command "${c[@]}" "$i"
@@ -301,9 +301,9 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 bindkey "\e[3~" delete-char                      # Del
 # up/down takes existing text into account
-bindkey '^[[A'  up-line-or-beginning-search    # Arrow up
+bindkey '^[[A'  up-line-or-beginning-search      # Arrow up
 bindkey '^[OA'  up-line-or-beginning-search
-bindkey '^[[B'  down-line-or-beginning-search  # Arrow down
+bindkey '^[[B'  down-line-or-beginning-search    # Arrow down
 bindkey '^[OB'  down-line-or-beginning-search
 
 # Color man pages
