@@ -259,8 +259,8 @@ endif
 " Save if needed.
 " If terminal freezes, hit <c-q> to resume.
 inoremap <C-s> <C-O>:update<cr>
-nnoremap <leader>fs :update<cr>
-vnoremap <leader>fs <Esc>:update<cr>gv
+nnoremap <leader>s :update<cr>
+vnoremap <leader>s <Esc>:update<cr>gv
 
 " Alt-up/down/left/right to move lines:
 if $TERM == 'linux'
