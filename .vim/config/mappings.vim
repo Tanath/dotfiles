@@ -46,6 +46,7 @@ nnoremap <leader>= vip=''
 " Don't use Ex mode, use Q for formatting
 nnoremap Q gq
 " Reload config. Useful for testing & troubleshooting.
+nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>R :<C-U>source $MYVIMRC<CR>
 " Uses last changed or yanked text as a characterwise object.
 onoremap <leader>_ :<C-U>normal! `[v`]<CR>
