@@ -9,8 +9,8 @@
 
 # Server
 Use ed25519 for security, rsa for compatibility. Putty doesn't support ed25519 last I checked, and is still a common client.  
-Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org` if you can.
-Install: openssh, sshguard. 
+Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org` if you can.  
+Install: openssh, sshguard.   
 Regenerate keys on server:  
 
 ```sh
