@@ -26,7 +26,8 @@ awk '$5 >= 3071' /etc/ssh/moduli > /etc/ssh/moduli.safe
 mv /etc/ssh/moduli.safe /etc/ssh/moduli
 ```
 
-The .pub is for server. Also append to `~/.ssh/authorized_keys` on server.
+To generate the keys for the ssh user, go to a shell prompt as the user you want to log in to the server as. You can use `sudo -u USER -i` to switch to another user. Generate the key and send the files to the client.
+Also append to `~/.ssh/authorized_keys` on server.
 If you genned the key pair on client, .pub key should be single-line version.  
 If the key pair is genned on server and someone stubbornly insists on using putty instead of something better like mobaxterm, you can convert the key to putty's format:  
 
