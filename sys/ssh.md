@@ -1,4 +1,6 @@
+# References, notes
 * https://infosec.mozilla.org/guidelines/openssh
+* https://www.ssh-audit.com/hardening_guides.html
 * https://wiki.archlinux.org/title/Openssh
 * https://man.openbsd.org/sshd_config
 * SSH with certificates
@@ -6,92 +8,142 @@
 * Never use DSA or ECDSA. If you connect to your server from a machine with a poor random number generator and eg. the same k happens to be used twice, an observer of the traffic can figure out your private key.
 
 # Server
-Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org`  
-Install openssh, sshguard.  
-For keygen on server:  
-```
-ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "$(whoami)@$(hostname)-$(date -I)" -a 512
-ssh-keygen -t ed25519 -b 2048 -C "$(whoami)@$(hostname)-$(date -I)"
+Use ed25519 for security, rsa for compatibility. Putty doesn't support ed25519 last I checked, and is still a common client.  
+Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org` if you can.
+Install: openssh, sshguard. 
+Regenerate keys on server:  
+
+```sh
+rm /etc/ssh/ssh_host_*
+ssh-keygen -t rsa -b 4096 -f /etc/ssh/ssh_rsa_key -C "$(whoami)@$(hostname)-$(date -I)" -a 512
+ssh-keygen -t ed25519 -b 2048 -f /etc/ssh/ssh_host_ed25519_key -C "$(whoami)@$(hostname)-$(date -I)"
 ```
 
-The .pub is for server. Also append to `~/.ssh/authorized_keys` on server  
-If key pair genned by client, .pub key should be single-line version.  
-If key pair is genned on server and you insist on using putty instead of something better like mobaxterm, you can convert the key to putty's format:  
-```
-	Open PuTTYgen, select Type of key to generate as: SSH-2 RSA
-	Click "Load" on the right side about 3/4 down
-	Set the file type to *.*
-	Browse to, and Open your .pem file
-	PuTTY will auto-detect everything it needs, and you just need to click "Save private key" and you can save your ppk key for use with PuTTY
+Remove small DH moduli:
+
+```sh
+awk '$5 >= 3071' /etc/ssh/moduli > /etc/ssh/moduli.safe
+mv /etc/ssh/moduli.safe /etc/ssh/moduli
 ```
 
-Add to `sshd_config`:
+The .pub is for server. Also append to `~/.ssh/authorized_keys` on server.
+If you genned the key pair on client, .pub key should be single-line version.  
+If the key pair is genned on server and someone stubbornly insists on using putty instead of something better like mobaxterm, you can convert the key to putty's format:  
+
+    * Open PuTTYgen, select Type of key to generate as: SSH-2 RSA
+	* Click "Load" on the right side about 3/4 down
+	* Set the file type to *.*
+	* Browse to, and open your .pem file
+	* PuTTY will auto-detect everything it needs, and you just need to click "Save private key" and you can save your ppk key for use with PuTTY.
+
+Enable the keys on server, and avoid weak algorithms. Add/uncomment in `/etc/ssh/sshd_config` or `/etc/ssh/sshd_config.d/algorithm_hardening.conf`:
+
 ```
-KexAlgorithms curve25519-sha256@libssh.org
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+
+# Restrict key exchange, cipher, and MAC algorithms, as per sshaudit.com
+# hardening guide.
+KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,gss-curve25519-sha256-,diffie-hellman-group16-sha512,gss-group16-sha512-,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256
+
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
+
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+
+HostKeyAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+
+CASignatureAlgorithms sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+
+GSSAPIKexAlgorithms gss-curve25519-sha256-,gss-group16-sha512-
+
+HostbasedAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256
+
+PubkeyAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256
+```
+
+While editing the server config, also do:
+
+```
+# Require public key auth, no passwords.
+AuthenticationMethods publickey
+PubkeyAuthentication yes
+PasswordAuthentication no
+
+# Disable root login.
+PermitRootLogin no
+
+# Log fingerprint for auditing.
+LogLevel VERBOSE
 ```
 
 Add user if they don't already exist:
-```
-sudo useradd -d /path/to/home username  
+
+```sh
+sudo useradd -d /path/to/home USERNAME  
 ```
 
 Add user to ssh group:
-```
-sudo usermod -a -G ssh username
+
+```sh
+sudo usermod -a -G ssh USERNAME
   OR
-sudo gpasswd -a username ssh  
+sudo gpasswd -a USERNAME ssh  
 ```
 
 Permissions should be:
+
 ```
 drwx------ 2 username users 4.0K Apr 17 00:23 .ssh
 -rw------- 1 username users  738 Apr 17 00:23 user-key.pub
 -rw------- 1 username users  738 Apr 17 00:18 authorized_keys
 ```
-Set up Google Authenticator for 2fa:  
-https://wiki.archlinux.org/index.php/Google_Authenticator
 
-## curveprotect
-Add to `/etc/ssh/ssh_config`:
-```
-ProxyCommand /opt/curveprotect/bin/nettunnel -u -c %h %p  
-```
+You can [set up Google Authenticator](https://wiki.archlinux.org/index.php/Google_Authenticator) for 2FA.
 
 # Client
+On client edit `~/.ssh/config`:
+
+```
+# Ensure KnownHosts are unreadable if leaked - it is otherwise easier to know which hosts your keys have access to.
+HashKnownHosts yes
+# Host keys the client accepts - order here is honored by OpenSSH
+HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
+
+KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
+```
 
 For keygen on client:  
+
+```sh
+ssh-keygen -t ed25519 -b 2048 -f ~/.ssh/id_ed25519_$(date -I) -C "USER@RHOST-$(date -I)"
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa4096_$(date -I) -C "USER@$RHOST-$(date -I)" -a 512
 ```
-ssh-keygen -b 4096 -f .ssh/id_rsa4096 -C "USER@$RHOST-$(date -I)" -a 512
-ssh-keygen -t ed25519 -b 2048 -C "USER@RHOST-$(date -I)"
-```
-User ed25519 for security, rsa for compatibility. Putty doesn't support ed25519.  
-They copy to server:  
+
+Then copy to server (adjust filenames):
 `ssh-copy-id -i ~/.ssh/id_ed25519.pub USER@RHOST`
 
-```
+```sh
 ssh-add .ssh/id_ed25519  
 ```
 
-Install keychain.  
+Install keychain agent.  
 Add to `~/.zshrc`:
-```
+
+```sh
 /usr/bin/keychain ~/.ssh/id_ed25519
 source ~/.ssh-agent > /dev/null
 ssh-copy-id IPADDR -p PORT
 ```
 
-Add to `ssh_config`:
-```
-Host *  
-	KexAlgorithms curve25519-sha256@libssh.org  
-```
-
 ## Multiplexing
-```
+```sh
 mkdir -p ~/.ssh/cm_socket
 ```
 
 Add to `~/.ssh/config`:
+
 ```
 Host *  
 ControlMaster auto  
@@ -101,23 +153,26 @@ ServerAliveInterval 60
 
 ## Sshfs
 Install sshfs. Mount sshfs:
-```
+
+```sh
 sshfs USER@IPADDR:/ ~/remotefs/ -C -p PORT  
 ```
 
 Unmount sshfs:
-```
+
+```sh
 fusermount -u ~/remotefs/  
 ```
 
 ## Edit remote files with local vim:
-```
+```sh
 vim scp://USER@IPADDR//path/to/file
 ```
 
 ## Audio
 paprefs > network server > enable local devices  
 Use pax11publish to discover your PulseAudio port (usually 4713),
+
 ```
 ssh -R 24713:localhost:4713  
 export PULSE_SERVER="tcp:localhost:24713"  
@@ -127,6 +182,7 @@ Or: copy ~/.pulse-cookie, and run pasystray
 
 ## Send only specified key to server
 In your `~/.ssh/config`, something like:
+
 ```
 # Ignore SSH keys unless specified in Host subsection
 IdentitiesOnly yes
@@ -138,25 +194,27 @@ Host github.com
 ## Tunnel
 On client:  
 SOCKS:
-```
+
+```sh
 ssh -NC -p PORT -D 4443 USER@HOST  
 ```
 
 Forwarding:
-```
+
+```sh
 ssh -NC -p PORT USER@HOST -L LPORT:RHOST:RPORT
 ```
 
 Set proxy to port 4443.
 
 ## Copying
-```
+```sh
 rsync -zhuvaPi -e "ssh -vp PORT" SOURCE USER@HOST:DEST
 scp -P PORT SOURCE USER@HOST:DEST
 ```
 
 ## VNC
-```
+```sh
 ssh USER@HOST -p PORT -L 5900:localhost:5900 "x11vnc -display :0 -noxdamage"  
 ```
 
@@ -167,7 +225,7 @@ x11vnc -safer -localhost -nopw -once -display :0
 ```
 
 Or:
-```
+```sh
 ssh -t -L 5900:localhost:5900 USER@HOST 'sudo x11vnc -display :0 -auth /home/USER/.Xauthority'  
 ```
 
