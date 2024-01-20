@@ -1,5 +1,4 @@
 * https://stribika.github.io/2015/01/04/secure-secure-shell.html
-* http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
 * SSH with certificates
   https://github.com/nsheridan/cashier
 * Never use DSA or ECDSA. If you connect to your server from a machine with a poor random number generator and eg. the same k happens to be used twice, an observer of the traffic can figure out your private key.
