@@ -2,11 +2,11 @@ This is mostly for my reference if I need it. Some of it may be useful to others
 
 # Fonts
 
-Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Hasklig, or Source Code Pro (mostly). Check these characters in your font:
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Source Code Pro (mostly), or Hasklig. Fira Code is a bit better designed than Source Code Pro, but has ligatures which is unacceptable sometimes, and SCP is more widely and easily available. Check these characters in your font:
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
-To install on Linux, check for `fonts-firacode` and `texlive-fonts-extra` for AH. 
+To install on Linux, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
 On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
@@ -170,24 +170,42 @@ For gtk2 apps install `gtk-theme-switch2` and select theme.
 This section is outdated. Use [Ventoy](https://github.com/ventoy/Ventoy#--ventoy) now.
 
 1. Install syslinux:
-	`sudo pacman -S syslinux`
+
+	```sh
+	sudo pacman -S syslinux
+	```
 	or
-	`sudo apt-get install syslinux`
+	```sh
+	sudo apt-get install syslinux
+	```
 2. Repartition and format USB as FAT.
 3. Mark as bootable.
 	Use gparted.
 	Set label.
 4. Copy syslinux master boot record to drive:
-	`sudo dd if=/usr/lib/syslinux/mbr.bin of=/dev/sdg`
+
+	```sh
+	sudo dd if=/usr/lib/syslinux/mbr.bin of=/dev/sdg
+	```
 5. Install syslinux on the drive partition:
-	`sudo syslinux /dev/sdg1`
+
+	```sh
+	sudo syslinux /dev/sdg1
+	```
 6. Mount the drive.
 	Use file manager or,
-	`sudo mount /dev/sdg1 /media/temp`
+	
+	```sh
+	sudo mount /dev/sdg1 /media/temp
+	```
 7. Copy the memdisk bootloader to drive:
-	`sudo cp /usr/lib/syslinux/memdisk /media/temp`
+
+	```sh
+	sudo cp /usr/lib/syslinux/memdisk /media/temp
+	```
 8. Copy the .iso to drive.
 9. Create file named `syslinux.cfg` on drive with the following, using correct iso name:
+
 ```
 DEFAULT labelname
 LABEL labelname
@@ -196,7 +214,7 @@ LABEL labelname
   APPEND iso
 ```
 10. Done! Boot with it.
-11. [Troubleshoot](http://www.syslinux.org/wiki/index.php/MEMDISK#INT_13h_access:_Not_all_images_will_complete_the_boot_process.21)
+11. [Troubleshoot](https://www.syslinux.org/wiki/index.php/MEMDISK#INT_13h_access:_Not_all_images_will_complete_the_boot_process.21)
 
 # Blocking net in Wine
 1. `wine regedit`
