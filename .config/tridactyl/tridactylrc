@@ -84,7 +84,7 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 set incsearch true
-bind <C-\> clearsearchhighlight
+bind <C-/> clearsearchhighlight
 """ Media
 bind <A-]> js document.querySelector('video').playbackRate+=0.25
 bind <A-[> js document.querySelector('video').playbackRate-=0.25
