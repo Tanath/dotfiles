@@ -76,9 +76,11 @@ export KEYTIMEOUT=20
 # Add alt+. to vi mode
 bindkey -v '\e.' insert-last-word
 bindkey "\M." insert-last-word
+
 bindkey "^R" history-incremental-search-backward
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
+## See man zshzle; bindkeys -M main, bindkeys -M viins
 
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
