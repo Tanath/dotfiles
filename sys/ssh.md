@@ -6,6 +6,7 @@
 * SSH with certificates
   https://github.com/nsheridan/cashier
 * Never use DSA or ECDSA. If you connect to your server from a machine with a poor random number generator and eg. the same k happens to be used twice, an observer of the traffic can figure out your private key.
+* Whenever you make changes to sshd_config you need to restart sshd for them to take effect.
 
 # Server
 Use ed25519 for security, rsa for compatibility. Putty doesn't support ed25519 last I checked, and is still a common client.  
@@ -27,7 +28,13 @@ mv /etc/ssh/moduli.safe /etc/ssh/moduli
 ```
 
 To generate the keys for the ssh user, go to a shell prompt as the user you want to log in to the server as. You can use `sudo -u USER -i` to switch to another user. Generate the key and send the files to the client.
-Also append to `~/.ssh/authorized_keys` on server.
+Also append to `~/.ssh/authorized_keys` on server. You may also need/want to have the authorized_keys file in `/etc/ssh/USER/authorized_keys` and put `AuthorizedKeysFile  /etc/%u/authorized_keys` in `/etc/ssh/sshd_config` with user ownership & readable permissions:
+
+```sh
+sudo chown USER /etc/ssh/USER/authorized_keys
+sudo chmod go+r /etc/ssh/USER/authorized_keys
+```
+
 If you genned the key pair on client, .pub key should be single-line version.  
 If the key pair is genned on server and someone stubbornly insists on using putty instead of something better like mobaxterm, you can convert the key to putty's format:  
 
