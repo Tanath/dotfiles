@@ -93,6 +93,8 @@ nnoremap <leader>wd :close<CR>
 nnoremap <leader>F :find<space>
 " Edit file including subdirectories.
 nnoremap <leader>e :e **/
+" Show undo tree from vim-mundo.
+nnoremap <F5> :MundoToggle<CR>
 " Show messages buffer.
 nnoremap <leader>M :messages<cr>
 " Paste to new buffer.
