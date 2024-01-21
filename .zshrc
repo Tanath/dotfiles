@@ -2,8 +2,8 @@
 export SOCKS_VERSION=5
 export SDL_AUDIODRIVER=pulse
 #[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d ~/.themes/oomox-materia-dark-mod1 ]] \
-    && export GTK_THEME=oomox-materia-dark-mod1 \
+[[ -d ~/.themes/oomox-materia-dark-mod3 ]] \
+    && export GTK_THEME=oomox-materia-dark-mod3 \
     || export GTK_THEME=Adwaita:dark   # For gtk3
 export GTK_OVERLAY_SCROLLING=0         # Disable overlay scrollbars in gtk3. >_<
 command -v qt5ct >/dev/null 2>&1 \
@@ -72,9 +72,14 @@ zstyle ':completion:*' accept-exact '*(N)'
 # Make Vi mode transitions faster
 export KEYTIMEOUT=20
 
+## Set up vi mode & shortcuts:
 # Add alt+. to vi mode
 bindkey -v '\e.' insert-last-word
-bindkey -e
+bindkey "\M." insert-last-word
+bindkey "^R" history-incremental-search-backward
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
+
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
 compinit
@@ -86,8 +91,6 @@ colors
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey -M vicmd "k" up-line-or-beginning-search
-bindkey -M vicmd "j" down-line-or-beginning-search
 
 # Add zsh help. Alt+h after command.
 autoload -Uz run-help
@@ -101,12 +104,6 @@ HISTFILE=~/.zhistory
 HISTSIZE=12000
 SAVEHIST=12000
 WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
-
-# Phil's custom prompt
-# http://aperiodic.net/phil/prompt/prompt.txt
-# Bender apm fix
-# https://gist.github.com/bender-the-greatest/802e33cc20d0685c33715c3b8d035af5
-#[[ -f ~/.zprompt.zsh ]] && source ~/.zprompt.zsh
 
 # zsh-syntax-highlighting and autosuggestion
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
