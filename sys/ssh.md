@@ -138,6 +138,17 @@ source ~/.ssh-agent > /dev/null
 ssh-copy-id IPADDR -p PORT
 ```
 
+After logging in to the server, confirming it works, you may want to add it to your `~/.ssh/config`:
+
+```
+Host SERVERALIAS
+    HostName 192.168.0.22
+    User tanath
+    IdentityFile ~/.ssh/id_ed25519
+```
+
+Along with any other server settings.
+
 ## Multiplexing
 ```sh
 mkdir -p ~/.ssh/cm_socket
