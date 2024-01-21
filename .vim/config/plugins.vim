@@ -62,6 +62,7 @@ if exists(':PlugInstall')
     Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-characterize'
+    Plug 'simnalamburt/vim-mundo'
     Plug 'vim-airline/vim-airline'
     "Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
