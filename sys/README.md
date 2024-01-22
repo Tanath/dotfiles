@@ -1,6 +1,6 @@
 # Some system setup stuff
 
-* For most people I'd recommend [Linux Mint Cinnamon edge edition](https://www.linuxmint.com/edition.php?id=314). There's some config files here you can import for certain Cinnamon applets. And here's a [package list](lmcpackages-most.txt) for some recommended packages to install.
+* For most people I'd recommend [Linux Mint Cinnamon edge edition](https://www.linuxmint.com/edition.php?id=314). There's some config files here you can import for certain Cinnamon applets. And here's a [package list](lmcpackages-most.txt) for some recommended packages to install. Also install [topgrade](https://github.com/topgrade-rs/topgrade) with `pip install topgrade`.
 * [xprofile](xprofile) - Goes to `/etc/xprofile`. Swaps <kbd>caps</kbd> & <kbd>esc</kbd> in X before login, enables numlock (requires numlockx).
 * For instant file searching, install `plocate`, run `sudo updatedb` to index files, and set to run hourly: `echo '@hourly root updatedb' | sudo tee -a /etc/crontab`
 * [ssh.md](ssh.md) - SSH setup & tips.
