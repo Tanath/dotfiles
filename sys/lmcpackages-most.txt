@@ -19,7 +19,6 @@ rofi
 silversearcher-ag
 texlive-fonts-extra
 tldr
-topgrade
 vim-fugitive
 vim-gitgutter
 vim-gtk
