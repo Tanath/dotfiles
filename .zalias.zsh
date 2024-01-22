@@ -28,8 +28,8 @@ alias dmesg='dmesg -H --color=always'
 (( $+commands[fzf] )) \
     && lf () { locate -i "$@" | fm +s }
 alias free='free -h'                                       # Show sizes in MB
-alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes.
-alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes.
+alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
+alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
 alias vd='vimdiff'
 alias v=vim
 alias ed='vim'
