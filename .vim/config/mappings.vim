@@ -205,7 +205,7 @@ nnoremap z4 4z=
 if has('win32')
     nnoremap <C-\> :set hlsearch! hlsearch?<CR>
 else
-    nnoremap <C-/> :set hlsearch! hlsearch?<CR>
+    nnoremap <C-_> :set hlsearch! hlsearch?<CR>
 endif
 
 " Toggle hidden characters.
