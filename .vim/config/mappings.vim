@@ -201,8 +201,12 @@ nnoremap z3 3z=
 nnoremap z4 4z=
 
 " To toggle search highlight: C-/ in terminal, C-_ in gvim. C-7 also works?
-" FIXME: Not working in NeoVim for Windows.
-nnoremap <C-_> :set hlsearch! hlsearch?<CR>
+" Use <C-/> in Linux, <C-\> in Windows.
+if has('win32')
+    nnoremap <C-\> :set hlsearch! hlsearch?<CR>
+else
+    nnoremap <C-/> :set hlsearch! hlsearch?<CR>
+endif
 
 " Toggle hidden characters.
 nnoremap <leader>H :setlocal nolist! nolist?<cr>
