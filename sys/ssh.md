@@ -145,7 +145,7 @@ source ~/.ssh-agent > /dev/null
 ssh-copy-id IPADDR -p PORT
 ```
 
-After logging in to the server, confirming it works, you may want to add it to your `~/.ssh/config`:
+After logging in to the server, confirming it works, you may want to add it to your `~/.ssh/config`, like:
 
 ```
 Host SERVERALIAS
@@ -154,7 +154,23 @@ Host SERVERALIAS
     IdentityFile ~/.ssh/id_ed25519
 ```
 
-Along with any other server settings.
+Along with any other server settings.  
+So your user config might look like:
+
+```
+# Ensure KnownHosts are unreadable if leaked - it is otherwise easier to know which hosts your keys have access to.
+HashKnownHosts yes
+# Host keys the client accepts - order here is honored by OpenSSH
+HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
+
+KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
+
+Host 2048
+    HostName ascii.town
+    User play
+```
 
 ## Multiplexing
 ```sh
