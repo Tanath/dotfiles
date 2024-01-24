@@ -95,7 +95,7 @@ silent! set listchars+=tab:❯
 silent! set listchars+=nbsp:○
 
 " Wrapping
-set textwidth=80
+set textwidth=72
 set wrap linebreak                     " Linebreaks at word boundaries.
 
 " Indenting.
