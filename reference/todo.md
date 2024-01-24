@@ -37,7 +37,7 @@ If you want to insert the path into a command you're typing you can use backtick
 vim `lf todo`
 ```
 
-<kbd>Tab</kbd> at the end triggers evaluation of `lf conf` and outputs the path you select in fzf.
+<kbd>Tab</kbd> at the end triggers evaluation of `lf todo` and outputs the path you select in fzf.
 
 To start, you can add tasks by echoing from the terminal:
 
