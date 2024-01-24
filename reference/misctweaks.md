@@ -3,6 +3,7 @@ This is mostly for my reference if I need it. Some of it may be useful to others
 # Fonts
 
 Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Source Code Pro (mostly), or Hasklig. Fira Code is a bit better designed than Source Code Pro, but has ligatures which is unacceptable sometimes, and SCP is more widely and easily available. Check these characters in your font:
+
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
@@ -46,18 +47,28 @@ Here are examples of common fonts which suck at this, plus AH & FC for compariso
 
 # Clock applet format
 Date format: 
-* `%H:%M %p%n%a. %b. %e`
+
+```
+%H:%M %p%n%a. %b. %e
+```
 
 Tooltip:
-* `%I:%M %p%n%Y-%m-%d`
+
+```
+%I:%M %p%n%Y-%m-%d
+```
 
 [Syntax reference](https://foragoodstrftime.com/).
+
 # Default web browser for xdg-open
 
-`xdg-settings set default-web-browser firefox.desktop`
+```sh
+xdg-settings set default-web-browser firefox.desktop
+```
 
 # Mount virtualbox shared folder in linux
-```
+
+```sh
 sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
 ```
 
@@ -70,13 +81,25 @@ Should take effect immediately.
 
 Enable Magic sysrq keys:
 
-* To use these, they must first be activated with either `sysctl kernel.sysrq=1` or `echo "1" > /proc/sys/kernel/sysrq`. If you wish to have it enabled during boot, edit `/etc/sysctl.d/99-sysctl.conf` and insert the text `kernel.sysrq = 1`. If you want to make sure it will be enabled even before the partitions are mounted and in the initrd, then add `sysrq_always_enabled=1` to your kernel parameters.
+* To use these, they must first be activated with either ```sysctl kernel.sysrq=1``` or ```echo "1" > /proc/sys/kernel/sysrq```. If you wish to have it enabled during boot, edit `/etc/sysctl.d/99-sysctl.conf` and insert the text `kernel.sysrq = 1`. If you want to make sure it will be enabled even before the partitions are mounted and in the initrd, then add `sysrq_always_enabled=1` to your kernel parameters.
 
 Volume buttons:
 
-* Set `XF86AudioRaiseVolume` to `amixer set Master playback 5%+ unmute`
-* Set `XF86AudioLowerVolume` to `amixer set Master playback 5%-`
-* Set `XF86AudioMute` to `amixer set Master toggle`
+* Set `XF86AudioRaiseVolume` to:
+
+    ```sh
+    amixer set Master playback 5%+ unmute
+    ```
+* Set `XF86AudioLowerVolume` to:
+
+    ```sh
+    amixer set Master playback 5%-
+    ```
+* Set `XF86AudioMute` to:
+
+    ```sh
+    amixer set Master toggle
+    ```
 
 ## Swap CAPS & ESC
 
@@ -87,7 +110,9 @@ There's handy AUR packages for this:
 
 I used to use this, which only applies to X and not in VTs. Resume from suspend also reverts it for me.
 
-`setxkbmap -option "caps:swapescape"`
+```sh
+setxkbmap -option "caps:swapescape"
+```
 
 Now I use udev to swap keys in the kernel, to make it permanent and consistent. For my keyboard I put the following in `/usr/lib/udev/hwdb.d/70-keyboard.hwdb`:
 
@@ -103,8 +128,13 @@ evdev:input:b0003v045Ep00DB*
 
 Then run:
 
-* `sudo systemd-hwdb update`
-* `sudo udevadm trigger`
+    ```sh
+    sudo systemd-hwdb update
+    ```
+
+    ```sh
+    sudo udevadm trigger
+    ```
 
 For more info on remapping keys on Linux, see:
 
@@ -114,10 +144,12 @@ For more info on remapping keys on Linux, see:
 # Package management/building
 
 ## Automatically clean the package cache.
-```
+
+```sh
 sudoedit /usr/share/libalpm/hooks/pacman_cache.hook
 ```
 Contents:
+
 ```
 [Trigger]
 Operation = Upgrade
@@ -133,10 +165,12 @@ Exec = /usr/bin/paccache -rk2
 ```
 
 ## Check for firmware updates.
-```
+
+```sh
 sudoedit /etc/pacman.d/hooks/fwupd.hook
 ```
 Contents:
+
 ```
 [Trigger]
 Operation = Install
@@ -153,8 +187,11 @@ Description = Checking for firmware updates...
 
 ## Manjaro driver installation
 Find classid, then use it to install:
-```
+
+```sh
 mhwd --pci -l -d | grep 'INFO\|CLASS'
+```
+```sh
 sudo mhwd -a pci nonfree <classid>
 ```
 
