@@ -15,6 +15,6 @@ session.vim
 .vim/backup
 .vim/view
 # Auto-generated tag files
-tags
+tags*
 # Persistent undo
 [._]*.un~
