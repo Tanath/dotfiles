@@ -23,6 +23,10 @@ fi
     && export FZF_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"' \
     && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" \
     && export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+(( $+commands[fzf] )) && (( $+commands[rg] )) \
+    && export FZF_DEFAULT_COMMAND='rg --hidden -l' \
+    || (( $+commands[fzf] )) && (( $+commands[ag] )) \
+    && export FZF_DEFAULT_COMMAND='ag --hidden -l'
 (( $+commands[sk] )) \
     && export SKIM_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"'
 
