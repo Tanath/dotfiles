@@ -24,7 +24,7 @@ fi
     && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" \
     && export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
 if (( $+commands[fzf] )) && (( $+commands[rg] )); then
-    export FZF_DEFAULT_COMMAND='rg --hidden -l';
+    export FZF_DEFAULT_COMMAND='rg --hidden -l .';
 elif (( $+commands[fzf] )) && (( $+commands[ag] )); then
     export FZF_DEFAULT_COMMAND='ag --hidden -l';
 fi
