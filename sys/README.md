@@ -6,7 +6,9 @@
 * For instant file searching, install `plocate`, run `sudo updatedb` to index files, and set to run hourly: `echo '@hourly root updatedb' | sudo tee -a /etc/crontab`
     * On Debian, Linux Mint, and others which support Debian's modifications to cron, just move the daily to hourly:
 
-    sudo mv /etc/cron.daily/plocate /etc/cron.hourly/
+        ```sh
+        sudo mv /etc/cron.daily/plocate /etc/cron.hourly/
+        ```
 
 * [ssh.md](ssh.md) - SSH setup & tips.
 
