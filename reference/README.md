@@ -1,6 +1,7 @@
 # Misc Reference
 
 * [misctweaks.md](misctweaks.md)
+* [todo.md](todo.md) - A simple todo method using common shell tools.
 * [vimhacks.md](vimhacks.md) - Some useful vim tricks I want a reference for.
 * [netcat.md](netcat.md) - Transferring files with netcat.
 * [cat5e-wiring.md](cat5e-wiring.md) - There's incorrect info out there. If you're doing ethernet cables, this is how the wires go.
