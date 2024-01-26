@@ -38,6 +38,19 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * On Linux, save the file to `~/.config/tridactyl/tridactylrc` and run `:source` in Firefox.
     * On Windows, put it in `~\.tridactyl\_tridactyrc` (with no extension).
     * On either, you can copy the link to the raw file on GitHub and use `:source --url https://github.com/Tanath/dotfiles/raw/master/browsers/tridactylrc`
+* Bookmarklet for decoding selected base64-encoded text:
+
+```js
+javascript:(function(){
+    var selectedText = window.getSelection().toString();
+    if (selectedText) {
+        var decodedText = atob(selectedText);
+        var newSelection = window.getSelection().getRangeAt(0);
+        newSelection.deleteContents();
+        newSelection.insertNode(document.createTextNode(decodedText));
+    }
+})();
+```
 
 Chrome
 ======
