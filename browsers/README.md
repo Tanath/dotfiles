@@ -18,13 +18,20 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * There's a few options in my extension collection.
     * https://addons.mozilla.org/en-US/firefox/addon/matte-black-blue/ (fallback available in Addons)
 * Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here (above), it will offer to install them.
-* If you use my [userscript to set the font to Atkinson Hyperlegible](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js), then I suggest changing the font in the Dark Reader extension:
-    * <img src="set font AH with dark reader.png">
-    * The userscript makes the font available on the page, and DR does a better job of setting the font.
+* If you use my [userscript to set the font to Atkinson Hyperlegible](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js), then you might want to change the font in the Dark Reader extension:
+    * ![]("set font AH with dark reader.png" | width=200)
+    * The userscript makes the font available on the page, and DR does a better job of setting the font, though it makes tofu on some pages.
     * Here's a bookmarklet to put on your toolbar on desktop, and in `Bookmarks` on mobile, to try overriding with !important:
 
     ```js
-    javascript:(function() { 'use strict'; var style = ` * { font-family: 'Atkinson Hyperlegible', 'Fira Code', 'Source Code Pro', 'Noto Sans Symbols', sans-serif !important; } `; var styleElement = document.createElement('style'); styleElement.appendChild(document.createTextNode(style)); document.head.appendChild(styleElement); })();
+    javascript:(function() {
+        'use strict';
+        var style = ` * {
+            font-family: 'Atkinson Hyperlegible', 'Source Code Pro', 'Fira Code', 'Noto Sans Symbols', sans-serif !important;
+        } `;
+        var styleElement = document.createElement('style');
+        styleElement.appendChild(document.createTextNode(style));
+        document.head.appendChild(styleElement); })();
     ```
     
     The userscript sets the font where it can without breaking some text icons, making tofu. The bookmarklet uses `!important` to override if you don't care and want to try to change it anyway. It depends on the userscript to make the font available though.
@@ -40,17 +47,17 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * On either, you can copy the link to the raw file on GitHub and use `:source --url https://github.com/Tanath/dotfiles/raw/master/browsers/tridactylrc`
 * Bookmarklet for decoding selected base64-encoded text:
 
-```js
-javascript:(function(){
-    var selectedText = window.getSelection().toString();
-    if (selectedText) {
-        var decodedText = atob(selectedText);
-        var newSelection = window.getSelection().getRangeAt(0);
-        newSelection.deleteContents();
-        newSelection.insertNode(document.createTextNode(decodedText));
-    }
-})();
-```
+    ```js
+    javascript:(function(){
+        var selectedText = window.getSelection().toString();
+        if (selectedText) {
+            var decodedText = atob(selectedText);
+            var newSelection = window.getSelection().getRangeAt(0);
+            newSelection.deleteContents();
+            newSelection.insertNode(document.createTextNode(decodedText));
+        }
+    })();
+    ```
 
 Chrome
 ======
