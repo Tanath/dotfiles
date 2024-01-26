@@ -11,8 +11,8 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
 
     They will show in add-ons as recommended.
 
-      * 4759639
-      * Tanath-mobile-collection
+      4759639
+      Tanath-mobile-collection
 * Dark themes:
 
     * There's a few options in my extension collection.
