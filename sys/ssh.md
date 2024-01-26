@@ -3,6 +3,8 @@
 * https://www.ssh-audit.com/hardening_guides.html
 * https://wiki.archlinux.org/title/Openssh
 * https://man.openbsd.org/sshd_config
+* [Signing git commits with ssh keys](https://docs.gitlab.com/ee/user/project/repository/signed_commits/ssh.html)
+* [Signing arbitrary data with ssh keys](https://www.agwa.name/blog/post/ssh_signatures)
 * SSH with certificates
   https://github.com/nsheridan/cashier
 * Never use DSA or ECDSA. If you connect to your server from a machine with a poor random number generator and eg. the same k happens to be used twice, an observer of the traffic can figure out your private key.
