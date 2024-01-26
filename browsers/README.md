@@ -19,7 +19,7 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * https://addons.mozilla.org/en-US/firefox/addon/matte-black-blue/ (fallback available in Addons)
 * Install Violentmonkey or Tampermonkey for userscripts, and when you click on 'raw' (or 'view' in the menu on mobile) for the userscripts here (above), it will offer to install them.
 * If you use my [userscript to set the font to Atkinson Hyperlegible](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js), then you might want to change the font in the Dark Reader extension:
-    * ![]("set font AH with dark reader.png" | width=200)
+    * <img src="set font AH with dark reader.png" width=200>
     * The userscript makes the font available on the page, and DR does a better job of setting the font, though it makes tofu on some pages.
     * Here's a bookmarklet to put on your toolbar on desktop, and in `Bookmarks` on mobile, to try overriding with !important:
 
