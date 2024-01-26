@@ -7,12 +7,12 @@ Use Firefox. I can no longer recommend Chrome and most browsers based on it (lik
     * `iwr -uri 'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US' -outfile firefox-installer.exe`
 * Recommended [extensions for desktop](https://addons.mozilla.org/en-US/firefox/collections/4759639/tanath/), and [for mobile](https://addons.mozilla.org/en-CA/android/collections/4759639/Tanath-mobile-collection).
     *  To add the mobile collection, use [Firefox beta](https://play.google.com/store/apps/details?id=org.mozilla.firefox_beta&hl=en), go to settings, about. Tap the logo 5 times to enable debug settings. Go back and tap custom add-on collection. Enter the ID and collection name from the URL:
-    <img src="https://lh7-us.googleusercontent.com/MCX496ctbJavayFSNxBOLsDwSg9imKT9eMVwdMgTDdjk8l7KCsfhmrLJ_UoRQDbqt5_a0lbz0zuy1qsuREPh0BxfPo0eCyLUKNGm4lSvR_eo8RIqnq6HhHFWsToswMGc-vDuNdh9b2Xe46brSDCpdn4=s320">
+    <img src="https://lh7-us.googleusercontent.com/MCX496ctbJavayFSNxBOLsDwSg9imKT9eMVwdMgTDdjk8l7KCsfhmrLJ_UoRQDbqt5_a0lbz0zuy1qsuREPh0BxfPo0eCyLUKNGm4lSvR_eo8RIqnq6HhHFWsToswMGc-vDuNdh9b2Xe46brSDCpdn4=s320" width=250>
 
     They will show in add-ons as recommended.
 
-      4759639
-      Tanath-mobile-collection
+      * 4759639
+      * Tanath-mobile-collection
 * Dark themes:
 
     * There's a few options in my extension collection.
