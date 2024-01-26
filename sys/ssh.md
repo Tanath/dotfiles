@@ -5,8 +5,7 @@
 * https://man.openbsd.org/sshd_config
 * [Signing git commits with ssh keys](https://docs.gitlab.com/ee/user/project/repository/signed_commits/ssh.html)
 * [Signing arbitrary data with ssh keys](https://www.agwa.name/blog/post/ssh_signatures)
-* SSH with certificates
-  https://github.com/nsheridan/cashier
+* [SSH with certificates](https://github.com/nsheridan/cashier)
 * Never use DSA or ECDSA. If you connect to your server from a machine with a poor random number generator and eg. the same k happens to be used twice, an observer of the traffic can figure out your private key.
 * Whenever you make changes to sshd_config you need to restart sshd for them to take effect.
 
