@@ -84,12 +84,12 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 """ Scroll to next/prev section with }/{
-bind { js (function() { var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main'); var currentY = window.scrollY; var prevTargetY = -1; for (var i = 0; i < prevTargetElements.length; i++) { var pElementY = prevTargetElements[i].getBoundingClientRect().top + window.scrollY; if (pElementY > currentY) {  break;  } prevTargetY = pElementY; } if (prevTargetY > -1) { window.scrollTo({ top: prevTargetY, behavior: 'smooth', block: 'start' }); } })();
-bind } js (function() { var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main'); var currentY = window.scrollY; for (var i = 0; i < nextTargetElements.length; i++) { var nElementY = nextTargetElements[i].getBoundingClientRect().top + window.scrollY; if (nElementY > (currentY+1)) { window.scrollTo({ top: nElementY, behavior: 'smooth', block: 'start' }); break; } } })();
+bind { js (function() { var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, hr, section, article, aside, nav, header, main'); var currentY = window.scrollY; var prevTargetY = -1; for (var i = 0; i < prevTargetElements.length; i++) { var pElementY = prevTargetElements[i].getBoundingClientRect().top + window.scrollY; if (pElementY > currentY) {  break;  } prevTargetY = pElementY; } if (prevTargetY > -1) { window.scrollTo({ top: prevTargetY, behavior: 'smooth', block: 'start' }); } })();
+bind } js (function() { var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, hr, section, article, aside, nav, header, main'); var currentY = window.scrollY; for (var i = 0; i < nextTargetElements.length; i++) { var nElementY = nextTargetElements[i].getBoundingClientRect().top + window.scrollY; if (nElementY > (currentY+1)) { window.scrollTo({ top: nElementY, behavior: 'smooth', block: 'start' }); break; } } })();
 
 """ Expanded for readability:
 "bind { js (function() {
-"    var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main');
+"    var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, hr, section, article, aside, nav, header, main');
 "    var currentY = window.scrollY;
 "    var prevTargetY = -1;
 "    for (var i = 0; i < prevTargetElements.length; i++) {
@@ -103,7 +103,7 @@ bind } js (function() { var nextTargetElements = document.querySelectorAll('h1, 
 "})();
 
 "bind } js (function() {
-"    var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main');
+"    var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, hr, section, article, aside, nav, header, main');
 "    var currentY = window.scrollY;
 "    for (var i = 0; i < nextTargetElements.length; i++) {
 "        var nElementY = nextTargetElements[i].getBoundingClientRect().top + window.scrollY;
