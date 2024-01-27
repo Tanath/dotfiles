@@ -6,7 +6,7 @@ set configversion 1.9
 set updatenaglastversion 1.20.4
 colourscheme dark
 " Start with left-hand chars for fewer mouse interrupts
-set hintchars fdsacvgtrewqzxbhyjklnmuiop
+set hintchars fdsagvcxztrewqbhyjklnmuiop
 set hintdelay 150
 set followpagepatterns.next ^(next|newer|forward)\b|→|❯|›|>>
 set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
