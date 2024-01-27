@@ -84,8 +84,36 @@ bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
 """ Scroll to next/prev section with }/{
-bind { js javascript:(function() {  var blockElements = document.querySelectorAll('h1, h2, h3, h4, div, section, article, aside, nav, header, footer, main');  var currentY = window.scrollY;  var previousElementY = -1;  for (var i = 0; i < blockElements.length; i++) {  var elementY = blockElements[i].getBoundingClientRect().top + window.scrollY;  if (elementY > currentY) {  break;  }  previousElementY = elementY;  }  if (previousElementY > -1) {  window.scrollTo({ top: previousElementY, behavior: 'smooth' });  } })();
-bind } js (function() { var blockElements = document.querySelectorAll('h1, h2, h3, h4, div, section, article, aside, nav, header, footer, main');  var currentY = window.scrollY + 1;  var found = false;  for (var i = 0; i < blockElements.length; i++) {  var elementY = blockElements[i].getBoundingClientRect().top + window.scrollY;  if (elementY > currentY) {  blockElements[i].scrollIntoView({ behavior: "smooth", block: "start" });  found = true;  break;  }  }  if (!found && blockElements.length > 0) {  blockElements[0].scrollIntoView({ behavior: "smooth", block: "start" });  } })();
+bind { js (function() { var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main'); var currentY = window.scrollY; var prevTargetY = -1; for (var i = 0; i < prevTargetElements.length; i++) { var pElementY = prevTargetElements[i].getBoundingClientRect().top + window.scrollY; if (pElementY > currentY) {  break;  } prevTargetY = pElementY; } if (prevTargetY > -1) { window.scrollTo({ top: prevTargetY, behavior: 'smooth', block: 'start' }); } })();
+bind } js (function() { var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main'); var currentY = window.scrollY; for (var i = 0; i < nextTargetElements.length; i++) { var nElementY = nextTargetElements[i].getBoundingClientRect().top + window.scrollY; if (nElementY > (currentY+1)) { window.scrollTo({ top: nElementY, behavior: 'smooth', block: 'start' }); break; } } })();
+
+""" Expanded for readability:
+"bind { js (function() {
+"    var prevTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main');
+"    var currentY = window.scrollY;
+"    var prevTargetY = -1;
+"    for (var i = 0; i < prevTargetElements.length; i++) {
+"        var pElementY = prevTargetElements[i].getBoundingClientRect().top + window.scrollY;
+"        if (pElementY > currentY) { break; }
+"        prevTargetY = pElementY;
+"    }
+"    if (prevTargetY > -1) {
+"        window.scrollTo({ top: prevTargetY, behavior: 'smooth', block: 'start' });
+"    }
+"})();
+
+"bind } js (function() {
+"    var nextTargetElements = document.querySelectorAll('h1, h2, h3, h4, h5, section, article, aside, nav, header, main');
+"    var currentY = window.scrollY;
+"    for (var i = 0; i < nextTargetElements.length; i++) {
+"        var nElementY = nextTargetElements[i].getBoundingClientRect().top + window.scrollY;
+"        if (nElementY > (currentY+1)) {
+"            window.scrollTo({ top: nElementY, behavior: 'smooth', block: 'start' });
+"            break;
+"        }
+"    }
+"})();
+
 set incsearch true
 bind <C-/> clearsearchhighlight
 """ Media
