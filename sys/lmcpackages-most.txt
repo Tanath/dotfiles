@@ -1,6 +1,7 @@
 7zip
 aria2
 atool
+clementine
 dfc
 dnscrypt-proxy
 duf
