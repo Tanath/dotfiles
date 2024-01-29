@@ -3,9 +3,11 @@
 // @match       https://*/*
 // @match       http://*/*
 // @grant       window.close
-// @version     0.1
+// @version     0.2
 // @author      Tanath
 // @description Add vim keys for some basic functions like scrolling.
+// @downloadURL https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
+// @updateURL   https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
 // ==/UserScript==
 
 document.addEventListener('keydown', function(e) {
