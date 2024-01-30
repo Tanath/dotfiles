@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Set font to Atkinson Hyperlegible
-// @version      0.8.1
+// @version      0.8.2
 // @description  Set font to Atkinson Hyperlegible.
 // @author       Tanath
 // @downloadURL  https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
@@ -10,7 +10,7 @@
 // @grant        GM_addStyle
 // ==/UserScript==
 
-(function() {
+window.onload = function() {
     'use strict';
     var link1 = document.createElement('link');
     link1.href = 'https://fonts.googleapis.com';
@@ -32,4 +32,5 @@
     document.head.appendChild(styleElement);
 
     GM_addStyle(style);
-})();
+};
+
