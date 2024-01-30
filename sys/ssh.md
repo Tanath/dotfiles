@@ -121,28 +121,33 @@ HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,
 KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
+
+AddKeysToAgent  yes
 ```
 
-For keygen on client:  
+To generate keys on the client...  
+
+* Where misc is your name for the key,
+* and -C is a comment,
+* and RHOST is the remote host the key is for...
 
 ```sh
-ssh-keygen -t ed25519 -b 2048 -f ~/.ssh/id_ed25519_$(date -I) -C "USER@RHOST-$(date -I)"
-ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa4096_$(date -I) -C "USER@$RHOST-$(date -I)" -a 512
+ssh-keygen -t ed25519 -b 2048 -f ~/.ssh/id_ed25519_misc -C "USER@RHOST-$(date -I)"
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa4096_misc -C "USER@$RHOST-$(date -I)" -a 512
 ```
 
-Then copy to server (adjust filenames):
-`ssh-copy-id -i ~/.ssh/id_ed25519.pub USER@RHOST`
+Then copy to server:
+`ssh-copy-id -i ~/.ssh/id_ed25519_misc.pub USER@RHOST`
 
 ```sh
-ssh-add .ssh/id_ed25519  
+ssh-add ~/.ssh/id_ed25519_misc
 ```
 
 Install keychain agent.  
-Add to `~/.zshrc`:
+Add to your shell config, eg. `~/.zshrc` or `~/.zshenv`, after interactive shell check:
 
 ```sh
-/usr/bin/keychain ~/.ssh/id_ed25519
-source ~/.ssh-agent > /dev/null
+/usr/bin/keychain --quiet ~/.ssh/id_ed25519_misc
 ssh-copy-id IPADDR -p PORT
 ```
 
@@ -152,7 +157,7 @@ After logging in to the server, confirming it works, you may want to add it to y
 Host SERVERALIAS
     HostName 192.168.0.22
     User tanath
-    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_ed25519_misc
 ```
 
 Along with any other server settings.  
@@ -167,6 +172,8 @@ HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,
 KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
+
+AddKeysToAgent  yes
 
 Host 2048
     HostName ascii.town
