@@ -120,6 +120,7 @@ bind <A-[> js document.querySelector('video').playbackRate-=0.25
 bind <A-=> js document.querySelector('video').playbackRate=1
 """ Misc
 bind s fillcmdline tabopen search
+bind gW fillcmdline winopen -private
 " Clobbers paste. Use <C-]> instead.
 unbind <S-Insert>
 bind <C-]> mode ignore
