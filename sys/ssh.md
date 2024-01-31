@@ -10,6 +10,7 @@
 * Whenever you make changes to sshd_config you need to restart sshd for them to take effect.
 
 # Server
+For details, see `man sshd_config`.  
 Use ed25519 for security, rsa for compatibility. Putty doesn't support ed25519 last I checked, and is still a common client.  
 Use `chacha20-poly1305@openssh.com` and `curve25519-sha256@libssh.org` if you can.  
 Install: openssh, sshguard.   
@@ -78,6 +79,9 @@ AuthenticationMethods publickey
 PubkeyAuthentication yes
 PasswordAuthentication no
 
+# If you only have IPv4 connectivity:
+#AddressFamily inet
+
 # Disable root login.
 PermitRootLogin no
 
@@ -110,19 +114,30 @@ drwx------ 2 username users 4.0K Apr 17 00:23 .ssh
 You can [set up Google Authenticator](https://wiki.archlinux.org/index.php/Google_Authenticator) for 2FA.
 
 # Client
+For details, see `man ssh_config`.  
 On client edit `~/.ssh/config`:
 
 ```
+AddKeysToAgent  yes
+PubkeyAuthentication yes
+# If you only have IPv4 connectivity:
+#AddressFamily inet
+
 # Ensure KnownHosts are unreadable if leaked - it is otherwise easier to know which hosts your keys have access to.
 HashKnownHosts yes
-# Host keys the client accepts - order here is honored by OpenSSH
-HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
 
-KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+# Host keys the client accepts - order here is honored by OpenSSH
+HostKeyAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+
+KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,gss-curve25519-sha256-,diffie-hellman-group16-sha512,gss-group16-sha512-,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256
+
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
 
-AddKeysToAgent  yes
+PubkeyAcceptedAlgorithms ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-rsa-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com
+
+HostbasedAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256
+GSSAPIKexAlgorithms gss-curve25519-sha256-,gss-group16-sha512-
 ```
 
 To generate keys on the client...  
@@ -164,16 +179,27 @@ Along with any other server settings.
 So your user config might look like:
 
 ```
+AddKeysToAgent  yes
+PubkeyAuthentication yes
+
+# If you only have IPv4 connectivity:
+#AddressFamily inet
+
 # Ensure KnownHosts are unreadable if leaked - it is otherwise easier to know which hosts your keys have access to.
 HashKnownHosts yes
-# Host keys the client accepts - order here is honored by OpenSSH
-HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa
 
-KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+# Host keys the client accepts - order here is honored by OpenSSH
+HostKeyAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512,rsa-sha2-256
+
+KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,gss-curve25519-sha256-,diffie-hellman-group16-sha512,gss-group16-sha512-,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha256
+
 MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
 Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes256-ctr,aes192-ctr
 
-AddKeysToAgent  yes
+PubkeyAcceptedAlgorithms ssh-ed25519,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-rsa-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com
+
+HostbasedAcceptedAlgorithms sk-ssh-ed25519-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,ssh-ed25519,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-512,rsa-sha2-256-cert-v01@openssh.com,rsa-sha2-256
+GSSAPIKexAlgorithms gss-curve25519-sha256-,gss-group16-sha512-
 
 Host 2048
     HostName ascii.town
