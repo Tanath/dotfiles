@@ -8,7 +8,8 @@ Fonts should be readable with characters that are easy to distinguish from each 
 * `q9gB80OoailI1LCGQ{}`
 
 To install on Linux, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
-On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
+On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.  
+There's an improved version of Atkinson Hyperlegible called [Atkinson Hyperlegible Pro](https://github.com/jacobxperez/atkinson-hyperlegible-pro), which has font icons and stuff missing from default Atkinson Hyperlegible. See here to [install on Windows](https://github.com/jacobxperez/atkinson-hyperlegible-pro?tab=readme-ov-file#installing-the-font). On Linux, [download the archive](https://github.com/jacobxperez/atkinson-hyperlegible-pro/archive/refs/heads/main.zip) and extract the fonts\otf folder into `~/.local/share/fonts/` and rename it if you like.
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
 * Arial:
@@ -26,9 +27,9 @@ Here are examples of common fonts which suck at this, plus AH & FC for compariso
 * Segoe UI:
 
 	![Segoe UI sucks](fonts-segoe-ui-sucks.png)
-* Source Code Pro is decent:
+* Source Code Pro is good:
 
-	![Source Code Pro is decent](fonts-source-code-pro-decent.png)
+	![Source Code Pro is good](fonts-source-code-pro-decent.png)
 * Tahoma:
 
 	![Tahoma sucks](fonts-tahoma-sucks.png)
@@ -38,7 +39,7 @@ Here are examples of common fonts which suck at this, plus AH & FC for compariso
 * Monoid's design is great, but it's too tall (like double the height of AH):
 
 	![Monoid is great, but too tall](fonts-monoid-tall.png)
-* Fira Code is great:
+* Fira Code is great but has ligatures:
 
 	![Fira Code is great](fonts-fira-code-great.png)
 * Atkinson Hyperlegible is great:
