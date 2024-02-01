@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Set font to Atkinson Hyperlegible
-// @version      0.9
+// @version      0.9.1
 // @description  Set font to Atkinson Hyperlegible (Pro).
 // @author       Tanath
 // @downloadURL  https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
@@ -35,7 +35,10 @@ window.onload = function() {
                  url('https://github.com/jacobxperez/atkinson-hyperlegible-pro/raw/main/fonts/web/AtkinsonHyperPro-Italic.woff2') format('woff2'),
                  url('https://github.com/jacobxperez/atkinson-hyperlegible-pro/raw/main/fonts/web/AtkinsonHyperPro-BoldItalic.woff2') format('woff2');
             font-weight: 400 700;
+            font-size: 100%;
             font-style: normal italic;
+            font-variant-numeric: slashed-zero;
+            font-variant-ligatures: no-common-ligatures;
         }
     `;
     var styleElement = document.createElement('style');
