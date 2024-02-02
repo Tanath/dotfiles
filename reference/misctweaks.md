@@ -8,8 +8,7 @@ Fonts should be readable with characters that are easy to distinguish from each 
 * `q9gB80OoailI1LCGQ{}`
 
 To install on Linux, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
-On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.  
-There's an improved version of Atkinson Hyperlegible called [Atkinson Hyperlegible Pro](https://github.com/jacobxperez/atkinson-hyperlegible-pro), which has font icons and stuff missing from default Atkinson Hyperlegible. See here to [install on Windows](https://github.com/jacobxperez/atkinson-hyperlegible-pro?tab=readme-ov-file#installing-the-font). On Linux, [download the archive](https://github.com/jacobxperez/atkinson-hyperlegible-pro/archive/refs/heads/main.zip) and extract the fonts\otf folder into `~/.local/share/fonts/` and rename it if you like.
+On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
 * Arial:
@@ -27,9 +26,9 @@ Here are examples of common fonts which suck at this, plus AH & FC for compariso
 * Segoe UI:
 
 	![Segoe UI sucks](fonts-segoe-ui-sucks.png)
-* Source Code Pro is good:
+* Source Code Pro is decent:
 
-	![Source Code Pro is good](fonts-source-code-pro-decent.png)
+	![Source Code Pro is decent](fonts-source-code-pro-decent.png)
 * Tahoma:
 
 	![Tahoma sucks](fonts-tahoma-sucks.png)
@@ -39,7 +38,7 @@ Here are examples of common fonts which suck at this, plus AH & FC for compariso
 * Monoid's design is great, but it's too tall (like double the height of AH):
 
 	![Monoid is great, but too tall](fonts-monoid-tall.png)
-* Fira Code is great but has ligatures:
+* Fira Code is great:
 
 	![Fira Code is great](fonts-fira-code-great.png)
 * Atkinson Hyperlegible is great:
@@ -67,64 +66,33 @@ Tooltip:
 xdg-settings set default-web-browser firefox.desktop
 ```
 
-# Mount virtualbox shared folder in linux
-
-```sh
-sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
-```
-
-# Enable VTs
-
-Edit `/etc/systemd/logind.conf` to have `NAutoVTs=4`.
-Should take effect immediately.
-
 # Keyboard
 
 Enable Magic sysrq keys:
 
 * To use these, they must first be activated with either ```sysctl kernel.sysrq=1``` or ```echo "1" > /proc/sys/kernel/sysrq```. If you wish to have it enabled during boot, edit `/etc/sysctl.d/99-sysctl.conf` and insert the text `kernel.sysrq = 1`. If you want to make sure it will be enabled even before the partitions are mounted and in the initrd, then add `sysrq_always_enabled=1` to your kernel parameters.
 
-Volume buttons:
+## Swap caps & esc
 
-* Set `XF86AudioRaiseVolume` to:
+I recommend swapping <kbd>caps</kbd> & <kbd>esc</kbd>. <kbd>esc</kbd> is much more useful for most people than <kbd>caps</kbd>, which is rarely used, so it makes sense to swap them. If this isn't true for you, then this doesn't apply for you. Some do similar things like turning <kbd>caps</kbd> into another <kbd>ctrl</kbd>, but that makes little sense when there's already a <kbd>ctrl</kbd> right there, two keys away, which you can hit with the side of your hand, or pinky if you're reaching.
 
-    ```sh
-    amixer set Master playback 5%+ unmute
-    ```
-* Set `XF86AudioLowerVolume` to:
-
-    ```sh
-    amixer set Master playback 5%-
-    ```
-* Set `XF86AudioMute` to:
-
-    ```sh
-    amixer set Master toggle
-    ```
-
-## Swap CAPS & ESC
-
-There's handy AUR packages for this:
-
-* `interception-caps2esc`
-* `caps2esc`
-
-I used to use this, which only applies to X and not in VTs. Resume from suspend also reverts it for me.
+I used to use this, which only applies to X and not in virtual terminals (eg. <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>f2</kbd>). Resume from suspend also reverts it for me.
 
 ```sh
 setxkbmap -option "caps:swapescape"
 ```
 
-Now I use udev to swap keys in the kernel, to make it permanent and consistent. For my keyboard I put the following in `/usr/lib/udev/hwdb.d/70-keyboard.hwdb`:
+If you don't mind it only working in the GUI and use Cinnamon, you can just change it in the keyboard layout options, at the bottom of the options for <kbd>caps</kbd>.  
+If you want to keep it permanent and consistent everywhere so you don't get thrown if you end up in a VT after getting used to it, use udev to swap keys in the kernel. For my keyboard I put the following in `/usr/lib/udev/hwdb.d/70-keyboard.hwdb`:
 
 ```
 # Microsoft Natural Ergonomic Keyboard 4000
 
 evdev:input:b0003v045Ep00DB*
- KEYBOARD_KEY_c022d=up                                  # zoomin
- KEYBOARD_KEY_c022e=down                                # zoomout
  KEYBOARD_KEY_70039=esc                                 # caps > esc
  KEYBOARD_KEY_70029=capslock                            # esc > caps
+ KEYBOARD_KEY_c022d=up                                  # zoomin
+ KEYBOARD_KEY_c022e=down                                # zoomout
 ```
 
 Then run:
@@ -137,10 +105,21 @@ Then run:
     sudo udevadm trigger
     ```
 
-For more info on remapping keys on Linux, see:
+For more info on remapping keys on Linux, and how to determine the config for your keyboard, see:
 
 * https://wiki.archlinux.org/index.php/Keyboard_input
 * https://wiki.archlinux.org/index.php/Map_scancodes_to_keycodes
+
+# Mount virtualbox shared folder in Linux
+
+```sh
+sudo mount -t vboxsf vbox-shared /mnt/vbox-shared
+```
+
+# Enable VTs
+
+Edit `/etc/systemd/logind.conf` to have `NAutoVTs=4`.
+Should take effect immediately.
 
 # Package management/building
 
