@@ -3,12 +3,14 @@
 // @match       https://*/*
 // @match       http://*/*
 // @grant       window.close
-// @version     1.0
+// @version     1.0.1
 // @author      Tanath
 // @description Add vim keys for some basic functions like scrolling.
 // @downloadURL https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
 // @updateURL   https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
 // ==/UserScript==
+// Changelog:
+// 1.0 -> 1.0.1: fix focusInput bug.
 
 const scrollDown = 'j';
 const scrollUp = 'k';
@@ -51,10 +53,12 @@ const actions = {
     [focusInput]: () => {
         let input = document.querySelector('input, textarea');
         if (input) {
-            input.focus();
-            input.addEventListener('beforeinput', (event) => {
-                if (event.inputType === 'insertText' && event.data === 'i') {
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'i' && document.activeElement !== input) {
                     event.preventDefault();
+                    setTimeout(() => {
+                        input.focus();
+                    });
                 }
             });
         }
@@ -110,3 +114,4 @@ document.addEventListener('keydown', function(e) {
         }
     }
 });
+
