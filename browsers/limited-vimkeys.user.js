@@ -3,14 +3,14 @@
 // @match       https://*/*
 // @match       http://*/*
 // @grant       window.close
-// @version     1.0.1
+// @version     1.0.2
 // @author      Tanath
 // @description Add vim keys for some basic functions like scrolling.
 // @downloadURL https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
 // @updateURL   https://github.com/Tanath/dotfiles/raw/master/browsers/limited-vimkeys.user.js
 // ==/UserScript==
 // Changelog:
-// 1.0 -> 1.0.1: fix focusInput bug.
+// 1.0.1 -> 1.0.2: fix bug with input typing & consolidate 2 event listeners.
 
 const scrollDown = 'j';
 const scrollUp = 'k';
@@ -36,8 +36,8 @@ const repeatAction = '.';
 let lastAction = null;
 
 const actions = {
-    [scrollDown]: () => window.scrollBy({ left: 0, top: window.innerHeight * 0.25, behavior: "instant" }),
-    [scrollUp]: () => window.scrollBy({ left: 0, top: -window.innerHeight * 0.25, behavior: "instant" }),
+    [scrollDown]: () => window.scrollBy({left: 0, top: window.innerHeight * 0.25, behavior: "instant"}),
+    [scrollUp]: () => window.scrollBy({left: 0, top: -window.innerHeight * 0.25, behavior: "instant"}),
     [scrollDownHalf]: () => window.scrollBy({left: 0, top: window.innerHeight * 0.4, behavior: "instant"}),
     [scrollUpHalf]: () => window.scrollBy({left: 0, top: -window.innerHeight * 0.4, behavior: "instant"}),
     [downSmall]: () => window.scrollBy({left: 0, top: window.innerHeight * 0.1, behavior: "instant"}),
@@ -98,20 +98,13 @@ document.addEventListener('keydown', function(e) {
     if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'textarea') {
         return;
     }
-
     let key = e.key;
-    if (actions[key]) {
+    if (key === repeatAction && lastAction && actions[lastAction]) {
+        e.preventDefault();
+        actions[lastAction]();
+    } else if (actions[key]) {
         actions[key]();
         lastAction = key;
-    }
-});
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === repeatAction) {
-        e.preventDefault();
-        if (lastAction && actions[lastAction]) {
-           actions[lastAction]();
-        }
     }
 });
 
