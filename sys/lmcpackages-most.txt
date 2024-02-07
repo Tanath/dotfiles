@@ -9,6 +9,7 @@ fonts-firacode
 fzf
 git
 logwatch
+lutris
 mpv
 numlockx
 profile-sync-daemon
