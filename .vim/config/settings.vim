@@ -257,7 +257,7 @@ set mousehide                          " Hide the mouse while typing
 set winaltkeys=no                      " Don't use ALT to access the menu
 " Set font for gvim if running.
 if has('gui_running')
-    set guifont=Source\ Code\ Pro\ 10,Fira\ Code\ 10,Hasklug\ Nerd\ Font\ 10,Monoid\ 10
+    set guifont=Source\ Code\ Pro\ 11,Fira\ Code\ 11,Hasklug\ Nerd\ Font\ 11,Monoid\ 11
 endif
 set termguicolors
 if has('diff')
