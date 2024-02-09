@@ -5,7 +5,9 @@ else
     LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
-(( $+commands[sudo] )) && alias sudo='sudo '
+(( $+commands[sudo] )) \
+    && alias sudo='sudo ' \
+    && alias se=sudoedit
 (( $+commands[acp] )) \
     && alias cp='acp -gi' \
     || alias cp='cp -i'                    # advcp w/progress bar, confirm overwrite
