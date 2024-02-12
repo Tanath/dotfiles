@@ -83,6 +83,7 @@ if exists(':PlugInstall')
     "Plug 'mbbill/undotree'
     " Load on first use.
     Plug 'tpope/vim-vinegar'
+    Plug 'itspriddle/vim-shellcheck'
     "Plug 'preservim/nerdtree'
     Plug 'will133/vim-dirdiff'
     Plug 'vimwiki/vimwiki'
