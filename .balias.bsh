@@ -3,4 +3,4 @@ command -v fzf >/dev/null 2>&1 \
     && alias fcd='cd $(locate -r "/[^\.]*$" | fzf --algo=v1 +s)' \
     && alias fm='fzf -m --tac' \
     && alias o='xdg-open "$(fzf)"' \
-    && lf () { locate -i "$@" | fm +s }
+    && lf () { locate -i "$@" | fm +s; }
