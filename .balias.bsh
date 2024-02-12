@@ -14,10 +14,10 @@ command -v fzf >/dev/null 2>&1 \
     && alias h='compgen -c| fzf | xargs man' \
     && alias fcd='cd $(locate -r "/[^\.]*$" | fzf --algo=v1 +s)' \
     && alias fm='fzf -m --tac' \
-    && alias dmf='dmesg | fm +s' \
+    && alias dmf='dmesg | fzf -m --tac +s' \
     && alias o='xdg-open "$(fzf)"' \
-    && alias psf='ps -ef | fm' \
-    && lf () { locate -i "$@" | fm +s; }
+    && alias psf='ps -ef | fzf -m --tac' \
+    && lf () { locate -i "$@" | fzf -m --tac +s; }
 alias free='free -h'                                            # Show sizes in MB
 alias vim="stty stop '' -ixoff; vim"                            # Fix <c-s> terminal hang
 alias vimdiff="stty stop '' -ixoff; vimdiff"                    # Avoid <c-s> terminal hang. <c-q> resumes.
@@ -90,7 +90,7 @@ mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"; }
 genpw () { LC_ALL=C tr -dc '!-~' </dev/urandom | fold -w 20 | head -n 10; }
 wk () { kill $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill
 wk9 () { kill -9 $(ps -ef | grep '.exe' | grep -v 'Do.exe\|KeePass\|TeamViewer\|gvfs\|grep' | awk '{print $2}'); } # wine kill -9
-fwh () { file $(which $*); } # file which
+fwh () { file $(which "$@"); } # file which
 
 todo () {
     if [[ ! -f $HOME/.todo ]]; then
