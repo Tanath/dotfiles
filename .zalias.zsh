@@ -8,6 +8,8 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
 (( $+commands[sudo] )) \
     && alias sudo='sudo ' \
     && alias se=sudoedit
+(( $+commands[batcat] )) \
+    && alias b='batcat'
 (( $+commands[acp] )) \
     && alias cp='acp -gi' \
     || alias cp='cp -i'                    # advcp w/progress bar, confirm overwrite

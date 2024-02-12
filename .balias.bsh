@@ -43,6 +43,8 @@ command -v exa >/dev/null 2>&1 \
 command -v exa >/dev/null 2>&1 \
     && alias lx='exa -Fhs=type' \
     || alias lx='ll -BX'                                           # sort by ext
+command -v batcat >/dev/null 2>&1 \
+    && alias b='batcat'
 alias l.='ls $LSPARAMS -d .[^.]*'                               # List .dirs
 alias lsd=ls\ $LSPARAMS\ '*(-/DN)'                              # List dirs & symlinks to dirs
 alias lsg=ls\ -al\ $LSPARAMS\ '| grep -i --color=always'        # ls grep
