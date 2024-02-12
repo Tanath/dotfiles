@@ -111,6 +111,9 @@ drwx------ 2 username users 4.0K Apr 17 00:23 .ssh
 -rw------- 1 username users  738 Apr 17 00:18 authorized_keys
 ```
 
+Also add a line in sshd_config to only allow certain users you specify:  
+`AllowUsers foo bar`
+
 You can [set up Google Authenticator](https://wiki.archlinux.org/index.php/Google_Authenticator) for 2FA.
 
 # Client
