@@ -67,6 +67,7 @@ if exists(':PlugInstall')
     "Plug 'vim-airline/vim-airline-themes'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
+    Plug 'wookayin/fzf-ripgrep.vim'
     Plug 'godlygeek/tabular'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-repeat'
