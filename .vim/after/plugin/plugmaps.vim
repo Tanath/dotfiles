@@ -119,3 +119,6 @@ endif
 "map <unique> <leader>td <Plug>TaskList
 let g:pep8_map='<leader>8'
 
+" vim-jedi
+"let g:jedi#goto_stubs_command = "<leader>s"
+let g:jedi#goto_stubs_command = "<leader>js"
