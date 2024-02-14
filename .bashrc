@@ -25,6 +25,14 @@ else
 	    || export BROWSER=elinks
 fi
 
+# Add local bin dirs to PATH
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 # Exit if not interactive shell
 [[ $- != *i* ]] && return
 

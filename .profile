@@ -8,14 +8,7 @@ command -v qt5ct >/dev/null 2>&1 \
     && export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-[[ -d ~/.themes/oomox-materia-dark-mod1 ]] \
-    && export GTK_THEME=oomox-materia-dark-mod1 \
+[[ -d ~/.themes/oomox-materia-dark-mod3 ]] \
+    && export GTK_THEME=oomox-materia-dark-mod3 \
     || export GTK_THEME=Adwaita:dark   # For gtk3
 
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/bin" ]; then
-    PATH="$HOME/bin:$PATH"
-fi
-if [ -d "$HOME/.local/bin" ]; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
