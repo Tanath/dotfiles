@@ -9,6 +9,13 @@ My dotfiles for Linux, [browser reference](https://github.com/Tanath/dotfiles/tr
     git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons
     ```
 
+* I also highly recommend the zoxide plugin:
+
+    ```
+    git clone https://github.com/jchook/ranger-zoxide ~/.config/ranger/plugins/zoxide
+    ```
+
+
 ## vim
 My vim config uses [vim-plug](https://github.com/junegunn/vim-plug/) and loads the enabled plugins from [.vim/config/plugins.vim](.vim/config/plugins.vim). Any `.vim` files in `.vim/config/` are loaded. `<Leader>` key is default (`\`). Some useful toggles & mappings:
 
