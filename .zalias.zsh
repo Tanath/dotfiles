@@ -5,6 +5,7 @@ else
     LSPARAMS=(-CFh --group-directories-first --time-style=long-iso)
 fi
 echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM=''
+alias z=cd
 (( $+commands[sudo] )) \
     && alias sudo='sudo ' \
     && alias se=sudoedit
