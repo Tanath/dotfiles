@@ -86,6 +86,9 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
 compinit
 colors
+(( $+commands[zoxide] )) \
+    && eval "$(zoxide init --cmd cd zsh)" \
+    || echo "Zoxide missing. Install:\ncurl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash"
 # Completion for kitty
 (( $+commands[kitty] )) && kitty + complete setup zsh | source /dev/stdin
 

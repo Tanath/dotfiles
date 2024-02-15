@@ -16,7 +16,8 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zdharma/fast-syntax-highlighting"
 
 # Z plugin: jump to 'frecent' dirs
-zplug "agkozak/zsh-z"
+#zplug "agkozak/zsh-z"
+# Switched to zoxide
 
 # Prefix command with doas by pressing esc twice
 zplug "anatolykopyl/doas-zsh-plugin"
