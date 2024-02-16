@@ -2,7 +2,9 @@
     && export EDITOR=vim \
     && export VISUAL=vim \
     && export SYSTEMD_EDITOR=vim
-(( $+commands[less] )) && export PAGER=less
+(( $+commands[less] )) \
+    && export PAGER=less \
+    && export LESS=' -RFX'
 export COLUMNS  # Remember columns for subprocesses.
 # This may break some apps, like Dropbox device linking? Get url from ps.
 if (( $+DISPLAY )); then

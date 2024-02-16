@@ -40,7 +40,7 @@ alias v=vim
 alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'                                        # Up twice or to /
-# ls () { command ls $LSPARAMS "$@" | less -RFX }
+# ls () { command ls $LSPARAMS "$@" | less }
 if (( $+commands[exa] )); then
     alias ls='exa -Fhs=type --icons'
     alias ll='exa -Flhs=type --icons'                      # List long
@@ -50,13 +50,13 @@ if (( $+commands[exa] )); then
     alias lt='exa -Flhs=modified --icons'                  # List by time
     alias lx='exa -Fhs=type --icons'                       # List by type
 else
-    alias ls="ls ${LSPARAMS} "$@" | less -RFX"
-    alias ll="\ls -l ${LSPARAMS} "$@" | less -RFX"         # List long. TODO
-    alias la="\ls -a ${LSPARAMS} "$@" | less -RFX"         # List all
-    alias lla="\ls -la ${LSPARAMS} "$@" | less -RFX"       # List all long
-    alias lz="\ls -lrS "$@" | less -RFX"                   # List by size
-    alias lt="\ls -lrT "$@" | less -RFX"                   # List by time
-    alias lx="\ls -lBX "$@" | less -RFX"                   # sort by ext
+    alias ls="ls ${LSPARAMS} "$@" | less"
+    alias ll="\ls -l ${LSPARAMS} "$@" | less"         # List long. TODO
+    alias la="\ls -a ${LSPARAMS} "$@" | less"         # List all
+    alias lla="\ls -la ${LSPARAMS} "$@" | less"       # List all long
+    alias lz="\ls -lrS "$@" | less"                   # List by size
+    alias lt="\ls -lrT "$@" | less"                   # List by time
+    alias lx="\ls -lBX "$@" | less"                   # sort by ext
     alias l.="\ls ${LSPARAMS} -d .[^.]*"                   # List .dirs
     alias lsd="\ls ${LSPARAMS} *(-/DN)"                    # List dirs & symlinks to dirs
 fi
@@ -78,7 +78,7 @@ alias lp='ss -np4'                                         # lsof ports
 alias ssp='ss -ptunl|egrep -vi unix\|-'                    # ss ports
 alias big='du -sh * | sort -hr'
 alias bh='big | head'
-alias t='cat .todo | less -RFX'
+alias t='cat .todo | less'
 alias vt='vim .todo'
 alias gpl='git pull'
 alias gcm='git commit -am'

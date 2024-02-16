@@ -48,7 +48,7 @@ echo 'delete me' >> .todo
 I also have an alias in my zsh setup for checking the todo list:
 
 ```sh
-alias t='cat .todo | less -RFX'
+alias t='cat .todo | less'
 ```
 
 This will print the todo and exit `less` if it's less than a full screen, without clearing the screen.
