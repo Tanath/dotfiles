@@ -219,14 +219,6 @@ fp () {
     | cut -z -f 1 -d $'\t' | tr -d '\n' | xargs -r --null $open > /dev/null 2> /dev/null
 }
 
-# github clone by 'user/repo'
-ghc () {
-  [[ -z "$1" ]] && echo "need 'user/repo'" && return 1
-  git clone git://github.com/"$1".git
-  cd `echo "$1" | sed 's/^.*\///'`
-  echo cd `pwd`
-}
-
 # Key bindings
 #=============
 bindkey "\e[1~" beginning-of-line                # Home
