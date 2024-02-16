@@ -1,8 +1,14 @@
+## See man nanorc for details.
 set tabsize 4
+set tabstospaces
 set autoindent
-set smarthome
 set mouse
+set atblanks
+set linenumbers
+set locking
+
 # Jump to first non-whitespace character first, then first character.
+set smarthome
 
 ## Enable ~/.nano_history for saving and reading search/replace strings.
 set historylog
@@ -13,7 +19,6 @@ set multibuffer
 
 ## Enable soft line wrapping (AKA full-line display).
 # set softwrap
-# set nowrap
 
 ## Detect word boundaries more accurately by treating punctuation
 ## characters as parts of words.
