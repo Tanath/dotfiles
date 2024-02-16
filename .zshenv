@@ -1,4 +1,6 @@
 # Custom environment variables
+# For ssh:
+export DISPLAY=:0
 export SOCKS_VERSION=5
 #export SDL_AUDIODRIVER=pulse
 #[[ -d /usr/share/themes/Numix-DarkBlue/ ]] \
