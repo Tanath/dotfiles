@@ -26,7 +26,7 @@ set wordbounds
 # set keycolor green
 # set functioncolor yellow
 
-include "/usr/local/share/nano/*.nanorc"
+# include "/usr/local/share/nano/*.nanorc"
 
 # bind M-W nowrap main
 # bind M-A casesens search
