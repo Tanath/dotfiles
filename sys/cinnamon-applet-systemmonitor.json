@@ -178,7 +178,7 @@
         "type": "switch",
         "default": true,
         "description": "Smooth graphs",
-        "value": false
+        "value": true
     },
     "draw_border": {
         "type": "switch",
@@ -233,7 +233,7 @@
         "description": "Left/right padding",
         "units": "pixels",
         "dependency": "use_padding",
-        "value": 1
+        "value": 1.0
     },
     "padding_tb": {
         "type": "spinbutton",
