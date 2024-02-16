@@ -1,0 +1,37 @@
+set tabsize 4
+set autoindent
+set smarthome
+set mouse
+# Jump to first non-whitespace character first, then first character.
+
+## Enable ~/.nano_history for saving and reading search/replace strings.
+set historylog
+
+## Switch on multiple file buffers (inserting a file will put it into
+## a separate buffer).
+set multibuffer
+
+## Enable soft line wrapping (AKA full-line display).
+# set softwrap
+# set nowrap
+
+## Detect word boundaries more accurately by treating punctuation
+## characters as parts of words.
+set wordbounds
+
+## Paint the interface elements of nano.
+## This is an example; by default there are no colors.
+# set titlecolor brightwhite,blue
+# set statuscolor brightwhite,green
+# set keycolor green
+# set functioncolor yellow
+
+include "/usr/local/share/nano/*.nanorc"
+
+# bind M-W nowrap main
+# bind M-A casesens search
+# bind ^S research main
+
+## Set this if your backspace key sends Del most of the time.
+# bind Del backspace all
+
