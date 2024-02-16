@@ -2,13 +2,14 @@ This is mostly for my reference if I need it. Some of it may be useful to others
 
 # Fonts
 
-Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. For mono, the best fonts I've found which don't fail at this are Fira Code, Source Code Pro (mostly), or Hasklig. Fira Code is a bit better designed than Source Code Pro, but has ligatures which is unacceptable sometimes, and SCP is more widely and easily available. Check these characters in your font:
+Fonts should be readable with characters that are easy to distinguish from each other even with poor vision. Most fonts fail at this, even if they're mostly readable. Atkinson Hyperlegible does a great job and is my gold standard for comparison, hence my [userscript to change web pages](https://github.com/Tanath/dotfiles/blob/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js) to it. On desktop you can turn off the ability for pages to set their fonts, but for some sites like font sites, you don't want that, and mobile lacks that feature.  
+For mono, the best fonts I've found which don't fail at this are Fira Code, Source Code Pro (mostly), or Hasklug. Fira Code is a bit better designed than Source Code Pro, but has ligatures which is unacceptable sometimes, and SCP is more widely and easily available. Check these characters in your font:
 
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
-To install on Linux, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
-On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself.
+Noto did a good thing trying to eliminate tofu, but AH did a better thing making a readable font. To combine those things you can use [Atkinson Hyperlegible Pro](https://github.com/jacobxperez/atkinson-hyperlegible-pro). To install on Linux, you can put fonts like AHP in `~/.local/share/fonts`. For the others, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
+On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself (though I recommend the pro version above).
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
 * Arial:
