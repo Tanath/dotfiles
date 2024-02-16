@@ -54,8 +54,8 @@ fi
 (( $+commands[exa] )) \
     && alias new='exa -Flhrs=modified --icons' \
     && alias old='exa -Flhs=modified --icons' \
-    || alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
-    && alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head'
+    || { alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
+    && alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' }
 (( $+commands[exa] )) \
     && cdl () { cd "$*" && exa -Flhs=type --icons } \
     || cdl () { cd "$*" && ls -al $LSPARAMS }              # cd and list
@@ -80,12 +80,12 @@ alias v=vim
 alias ed='vim'
 alias t='cat .todo | less'
 alias vt='vim .todo'
-fnd () { find . -iname \*$*\* | less }                     # find
+fnd () { find . -iname \*$*\* | less }
 (( $+commands[ag] )) \
     && vq () { vim -q <(ag "$*") } \
     && lg () { sudo ag -C $* /var/log/ } \
-    || vq () { vim -q <(grep -i "$*") } \
-    && lg () { sudo grep $GPARAM -ir $* /var/log/* }
+    || { vq () { vim -q <(grep -i "$*") } \
+    && lg () { sudo grep $GPARAM -ir "$@" /var/log/* } }
 (( $+commands[rga] )) && \
 rgf () {
 	RG_PREFIX="rga --files-with-matches"
@@ -100,12 +100,23 @@ rgf () {
 	&& echo "opening $file" \
 	&& xdg-open "$file"
 }
+alias gcl='git clone'
+alias gss='git status -s'
+alias gnow='git log -1 --oneline'
+alias gbr='git branch'
+alias gsw='git switch'
 alias gpl='git pull'
 alias gcm='git commit -am'
 alias gps='git push'
+alias gdi='git diff'
+alias gco='git checkout'
+alias gst='git stash'
+alias grh='git reset --hard'
+alias gfiles='git ls-tree --name-only -r $(git name-rev --name-only HEAD)'
+alias ggraph='git log --graph --all --pretty=format:"%Cred%h%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset" --abbrev-commit --date=relative'
 
 # Disks & space.
-alias free='free -h'                                       # Show sizes in MB
+alias free='free -h'
 (( $+commands[dfc] )) \
     && alias df=dfc \
     || alias df='df -h'
