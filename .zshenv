@@ -1,10 +1,25 @@
+# Custom environment variables
+export SOCKS_VERSION=5
+#export SDL_AUDIODRIVER=pulse
+#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] \
+#   && export GTK_THEME=Numix-DarkBlue \
+#   || export GTK_THEME=Adwaita:dark # For gtk3
+[[ -d ~/.themes/oomox-materia-dark-mod3 ]] \
+    && export GTK_THEME=oomox-materia-dark-mod3 \
+    || export GTK_THEME=Adwaita:dark   # For gtk3
+export GTK_OVERLAY_SCROLLING=0         # Disable overlay scrollbars in gtk3. >_<
+command -v qt5ct >/dev/null 2>&1 \
+    && export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
 (( $+commands[vim] )) \
     && export EDITOR=vim \
     && export VISUAL=vim \
     && export SYSTEMD_EDITOR=vim
 (( $+commands[less] )) \
     && export PAGER=less \
-    && export LESS=' -RFX'
+    && export LESS='-RFXe'
 export COLUMNS  # Remember columns for subprocesses.
 # This may break some apps, like Dropbox device linking? Get url from ps.
 if (( $+DISPLAY )); then
@@ -24,7 +39,7 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Exit if not interactive shell
-[[ $- != *i* ]] && return
+[[ -o interactive ]] || return
 
 (( $+commands[vivid] )) \
     && export LS_COLORS="$(vivid generate molokai)"

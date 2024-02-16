@@ -1,18 +1,5 @@
-# Custom environment variables
-export SOCKS_VERSION=5
-export SDL_AUDIODRIVER=pulse
-#[[ -d /usr/share/themes/Numix-DarkBlue/ ]] && export GTK_THEME=Numix-DarkBlue || export GTK_THEME=Adwaita:dark # For gtk3
-[[ -d ~/.themes/oomox-materia-dark-mod3 ]] \
-    && export GTK_THEME=oomox-materia-dark-mod3 \
-    || export GTK_THEME=Adwaita:dark   # For gtk3
-export GTK_OVERLAY_SCROLLING=0         # Disable overlay scrollbars in gtk3. >_<
-command -v qt5ct >/dev/null 2>&1 \
-    && export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
-export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
-
 # Exit if not interactive shell
-[[ $- != *i* ]] && return
+[[ -o interactive ]] || return
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -84,7 +71,10 @@ bindkey -M vicmd "j" down-line-or-beginning-search
 
 zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit colors
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 colors
 (( $+commands[zoxide] )) \
     && eval "$(zoxide init --cmd cd zsh)" \
