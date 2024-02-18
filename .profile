@@ -12,3 +12,4 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
     && export GTK_THEME=oomox-materia-dark-mod3 \
     || export GTK_THEME=Adwaita:dark   # For gtk3
 
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
