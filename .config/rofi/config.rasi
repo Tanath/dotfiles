@@ -1,12 +1,11 @@
 /* Show entire current config:
     rofi -dump-config
     Install rofi-emoji for emoji modi.
-    Set shortcut command to `rofi -show combi` and bind it to win+space or ctrl+shift+space.
+    Set shortcut command to `rofi -show combi`.
 */
 configuration {
 	modi: "combi,keys,emoji";
 	location: 0;
-	lines: 20;
 	yoffset: -20;
 	show-icons: true;
 	icon-theme: "Papirus-Maia";
@@ -20,4 +19,4 @@ configuration {
 	sorting-method: "fzf";
 	scroll-method: 1;
 }
-@theme "/usr/share/rofi/themes/glue_pro_blue.rasi"
+@theme "glue_pro_blue.rasi"
