@@ -59,3 +59,4 @@ fi
     && export SKIM_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"'
 
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
