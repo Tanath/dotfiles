@@ -6,7 +6,7 @@
 
 configuration {
 	modi: "combi,keys,emoji";
-	combi-modes: "window,run,keys";
+	combi-modi: "window,run,keys";
 	location: 0;
 	yoffset: -20;
 	show-icons: true;
