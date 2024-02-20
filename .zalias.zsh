@@ -16,6 +16,13 @@ echo | grep --color=auto '' >/dev/null 2>&1 && GPARAM='--color=auto' || GPARAM='
     && alias o='xdg-open "$(fzf)"'
 alias dp='xclip -o | curl -s -F "content=<-" https://dpaste.com/api/' # selection to dpaste
 alias dpc='xclip -o -sel clip | curl -s -F "content=<-" https://dpaste.com/api/' # clipboard to dpaste
+function 0x() {
+    if [[ -z $1 ]]; then
+        echo "Missing file name."
+    else
+        curl -F "file=@$1" https://0x0.st
+    fi
+}
 
 # Navigation.
 if [[ -x "`whence -p dircolors`" ]]; then
