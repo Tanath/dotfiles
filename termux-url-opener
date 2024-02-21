@@ -1,0 +1,54 @@
+#!/bin/bash
+echo "Got: $@"
+echo "$@" >> ~/opener.log \
+    && echo "Saved to ~/opener.log"
+
+# Check for & install dependencies
+for PACKAGE in aria2 ffmpeg python mpv
+do
+    which $PACKAGE > /dev/null
+    if [ ! $? -eq 0 ]; then
+        echo "Installing $PACKAGE."
+        pkg install $PACKAGE
+    fi
+done
+for PYPKG in yt-dlp
+do
+    pip show $PYPKG 
+    if [ ! $? -eq 0 ]; then
+        echo "Installing $PYPKG."
+        pkg install -y $PYPKG
+    fi
+done
+
+# UI
+share=$@
+echo "Downloads go to download folder."
+echo "Choose:"
+echo "  l: Add to ~/share.log for later."
+echo "  d: Download with aria2c."
+echo "  v: Download video with yt-dlp."
+echo "  a: Download audio with yt-dlp."
+echo "  m: Play in mpv (audio)."
+echo "  q/*: Quit and do nothing."
+
+# Execution
+read CHOICE
+case $CHOICE in
+    l)
+        echo "$share" >> ~/share.log \
+            && echo "Added."
+        ;;
+    d)
+        aria2c -d ~/storage/downloads -c "$share"
+        ;;
+    v)
+        yt-dlp -4 -R 2 -c -o "~/storage/downloads/%(title)s.%(ext)s" "$share"
+        ;;
+    a)
+        yt-dlp -4 -R 2 -c -x --add-metadata --embed-thumbnail -o "~/storage/downloads/%(title)s.%(ext)s" "$share"
+        ;;
+    m)
+        mpv "$share"
+        ;;
+esac
