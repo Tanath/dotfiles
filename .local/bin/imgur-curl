@@ -1,0 +1,9 @@
+#!/bin/sh
+# Auth from xfce4-screenshooter, which calls this as custom action.
+# Command: ~/.local/bin/imgur-curl %f
+output=$(curl -X POST -H "Authorization: Bearer 66ab680b597e293" -F "image=@$1" https://api.imgur.com/3/upload)
+# Log output for delete hash.
+echo "$output" >> /tmp/imgur.log
+echo "$output" | jq -r '.data.link' | xclip -sel clip \
+    && notify-send -t 2500 "Screenshooter imgur" "URL copied to clipboard. Output logged to /tmp/imgur.log." \
+    || notify-send -t 2500 "Screenshooter imgur" "Clipboard imgur failed. Output logged to /tmp/imgur.log."
