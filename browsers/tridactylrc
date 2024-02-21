@@ -15,6 +15,7 @@ set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|<<
 "set followpagepatterns.prev ^(prev(ious)?|older|back(ward)?)\b|←|❮|‹|«|<<
 "set allowautofocus false
 set smoothscroll false
+set allowautofocus false
 
 " Searches
 set searchengine g
