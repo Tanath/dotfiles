@@ -19,7 +19,7 @@ XTerm.vt100.scrollbar.width:  8
 ! Allow sixel graphics. (Try: "convert -colors 16 foo.jpg sixel:-").
 xterm*decTerminalID	:	      vt340
 XTerm.vt100.font:             7x13
-XTerm.vt100.faceName:         Noto Mono:size=9
+XTerm.vt100.faceName:         Source Code Pro:size=11
 XTerm.vt100.bellIsUrgent:     true
 XTerm.vt100.metaSendsEscape:  true
 *VT100*translations:          #override Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
@@ -29,7 +29,7 @@ XTerm.vt100.metaSendsEscape:  true
 ! Theming
 !#define myfg      grey
 !#define mybg      black
-!#define myfont    Noto Mono
+!#define myfont    Source Code Pro
 XTerm.termName:               xterm-256color
 XTerm*colorMode:              on
 !XTerm.vt100.reverseVideo:     true
