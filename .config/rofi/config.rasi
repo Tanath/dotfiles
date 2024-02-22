@@ -1,11 +1,12 @@
 /* Show entire current config:
     rofi -dump-config
-    Install rofi-emoji for emoji modi.
-    Set shortcut command to `rofi -show combi,keys`.
+    Install rofi-emoji for emoji modi, and rofi-greenclip for clipboard manager.
+    Set up greenclip: https://github.com/erebe/greenclip
+    Set rofi shortcut command to `rofi -show combi`.
 */
 
 configuration {
-	modi: "combi,keys,emoji";
+	modi: "combi,clipboard:greenclip print,emoji,keys";
 	combi-modi: "window,run,keys";
   	font: "mono 12";
 	location: 0;
@@ -21,7 +22,7 @@ configuration {
 /*	run-shell-command: "{terminal} -e {cmd}"; */
 /*	window-command: "wmctrl -i -R {window}"; */
 /*	window-match-fields: "all"; */
-	icon-theme: "ePapirus-Dark";
+	icon-theme: "Papirus-Dark";
 /*	drun-match-fields: "name,generic,exec,categories,keywords"; */
 /*	drun-categories: ; */
 /*	drun-show-actions: false; */
