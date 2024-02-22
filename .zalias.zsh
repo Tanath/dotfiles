@@ -80,8 +80,8 @@ alias mc='mc -b'
 alias dmesg='dmesg -H --color=always'
 (( $+commands[fzf] )) \
     && alias dmf='dmesg | fzf -m --tac +s'
-alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
-alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
+#alias vim="stty stop '' -ixoff; vim"                       # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
+#alias vimdiff="stty stop '' -ixoff; vimdiff"               # Avoid <c-s> terminal hang. <c-q> resumes. Use \vim to pipe output to vim.
 alias vd='vimdiff'
 alias v=vim
 alias ed='vim'
