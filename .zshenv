@@ -45,7 +45,7 @@ fi
 
 (( $+commands[vivid] )) \
     && export LS_COLORS="$(vivid generate molokai)"
-(( $+commands[exa] )) && export EXA_COLORS="da=32"
+(( $+commands[eza] )) && export EZA_COLORS="da=32"
 (( $+commands[fzf] )) \
     && export FZF_DEFAULT_OPTS='--bind "alt-a:select-all,alt-d:deselect-all"' \
     && export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'" \

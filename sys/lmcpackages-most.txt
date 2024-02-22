@@ -4,7 +4,7 @@ atool
 dfc
 dnscrypt-proxy
 duf
-exa
+eza
 fonts-firacode
 fzf
 git

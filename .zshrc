@@ -39,10 +39,10 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' select-prompt %SScrolling: current selection at %p%s
 setopt magic_equal_subst                                   # Do file completion on <value> in foo=<value>
 zstyle ':completion:*' rehash true                         # Check for new binaries when doing completion
-(( $+commands[exa] )) \
-    && zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always --icons $realpath' \
-    && zstyle ':fzf-tab:complete:exa:*' fzf-preview 'exa -1 --color=always --icons $realpath' \
-    && zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -1 --color=always --icons $realpath'
+(( $+commands[eza] )) \
+    && zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always --icons $realpath' \
+    && zstyle ':fzf-tab:complete:eza:*' fzf-preview 'eza -1 --color=always --icons $realpath' \
+    && zstyle ':fzf-tab:complete:ls:*' fzf-preview 'eza -1 --color=always --icons $realpath'
 
 # Speed up completions
 zstyle ':completion:*' accept-exact '*(N)'

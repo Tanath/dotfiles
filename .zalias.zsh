@@ -39,14 +39,14 @@ alias u='cd ..'
 alias uu='cd ../..'                                        # Up twice or to /
 lsg () { ls -Fhal | grep -i $GPARAM "$*" }                 # ls grep
 mcd () { mkdir "$1" && cd "$1" }                           # make dir and cd
-if (( $+commands[exa] )); then
-    alias ls='exa -Fhs=type --icons'
-    alias ll='exa -Flhs=type --icons'                      # List long
-    alias la='exa -Fahs=type --icons'                      # List all
-    alias lla='exa -Falhs=type --icons'                    # List all long
-    alias lz='exa -Flhs=size --icons'                      # List by size
-    alias lt='exa -Flhs=modified --icons'                  # List by time
-    alias lx='exa -Fhs=type --icons'                       # List by type
+if (( $+commands[eza] )); then
+    alias ls='eza -Fhs=type --icons'
+    alias ll='eza -Flhs=type --icons'                      # List long
+    alias la='eza -Fahs=type --icons'                      # List all
+    alias lla='eza -Falhs=type --icons'                    # List all long
+    alias lz='eza -Flhs=size --icons'                      # List by size
+    alias lt='eza -Flhs=modified --icons'                  # List by time
+    alias lx='eza -Fhs=type --icons'                       # List by type
 else
     alias ls="ls ${LSPARAMS} "$@" | less"
     alias ll="\ls -l ${LSPARAMS} "$@" | less"              # List long. TODO
@@ -58,13 +58,13 @@ else
     alias l.="\ls ${LSPARAMS} -d .[^.]*"                   # List .dirs
     alias lsd="\ls ${LSPARAMS} *(-/DN)"                    # List dirs & symlinks to dirs
 fi
-(( $+commands[exa] )) \
-    && alias new='exa -Flhrs=modified --icons' \
-    && alias old='exa -Flhs=modified --icons' \
+(( $+commands[eza] )) \
+    && alias new='eza -Flhrs=modified --icons' \
+    && alias old='eza -Flhs=modified --icons' \
     || { alias new=ls\ -lt\ $LSPARAMS\ '| grep -v "^total" | head' \
     && alias old=ls\ -ltr\ $LSPARAMS\ '| grep -v "^total" | head' }
-(( $+commands[exa] )) \
-    && cdl () { cd "$*" && exa -Flhs=type --icons } \
+(( $+commands[eza] )) \
+    && cdl () { cd "$*" && eza -Flhs=type --icons } \
     || cdl () { cd "$*" && ls -al $LSPARAMS }              # cd and list
 alias mc='mc -b'
 
