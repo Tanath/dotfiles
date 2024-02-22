@@ -160,7 +160,7 @@ alias ipa='curl -s ifconfig.me'                            # Public ip
 (( $+commands[mpv] )) \
     && alarm () { sleep $1; mpv --loop=inf /usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga } \
     && mya () { mpv --ytdl-format=bestaudio ytdl://ytsearch30:"$*" }
-alias tts='xsel | text2wave | mpv --af=scaletempo --speed=1.7 -'
+alias tts='xsel | text2wave | mpv --speed=1.7 -'
 alias grab='ffmpeg -f x11grab -s wxga -i :0.0 -qscale 0 ~/Videos/screengrab-'\`date\ +%H-%M-%S\`'.mpg'
 #alias grab='ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -s `xdpyinfo | grep "dimensions:"|awk "{print $2}"` -i :0.0 -acodec pcm_s16le screengrab-'\`date\ +%H-%M-%S\`'.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 screengrab-'`date +%H-%M-%S`'.mp4'
 (( $+commands[yt-dlp] )) \
