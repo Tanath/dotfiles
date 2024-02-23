@@ -8,7 +8,7 @@ For mono, the best fonts I've found which don't fail at this are Fira Code, Sour
 * q9gB80OoailI1LCGQ{}
 * `q9gB80OoailI1LCGQ{}`
 
-Noto did a good thing trying to eliminate tofu, but AH did a better thing making a readable font. To combine those things you can use [Atkinson Hyperlegible Pro](https://github.com/jacobxperez/atkinson-hyperlegible-pro). To install on Linux, you can put fonts like AHP in `~/.local/share/fonts`. For the others, check for `fonts-firacode`, and `texlive-fonts-extra` for AH and SCP. 
+Noto did a good thing trying to eliminate tofu, but AH did a better thing making a readable font. To combine those things you can use [Atkinson Hyperlegible Pro](https://github.com/jacobxperez/atkinson-hyperlegible-pro). To install on Linux, you can put fonts in `~/.local/share/fonts`. For Windows you just open the font files. For the other fonts I recommend the [nerd font](https://github.com/ryanoasis/nerd-fonts/releases) versions of [Fira Code mono and Source Code Pro](https://www.nerdfonts.com/font-downloads). The regular versions are likely in your repos. 
 On Windows you can use `scoop install firacode` or `choco install firacode atkinson-hyperlegible`. There's no scoop package for AH yet so you'll have to [download it](https://brailleinstitute.org/freefont) yourself (though I recommend the pro version above).
 
 Here are examples of common fonts which suck at this, plus AH & FC for comparison:
