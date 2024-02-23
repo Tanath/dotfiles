@@ -68,17 +68,22 @@
         "dependency": "panel-show-label",
         "value": true
     },
-    "window-preview": {
-        "type": "switch",
-        "default": true,
-        "description": "Show window thumbnails on hover",
-        "value": true
+    "window-hover": {
+        "type": "radiogroup",
+        "default": "thumbnail",
+        "description": "Choose what to show when hovering over a window button",
+        "options": {
+            "Nothing": "nothing",
+            "Title": "title",
+            "Thumbnail": "thumbnail"
+        },
+        "value": "thumbnail"
     },
     "window-preview-show-label": {
         "type": "switch",
         "default": true,
         "description": "Show title above thumbnail",
-        "dependency": "window-preview",
+        "dependency": "window-hover=thumbnail",
         "value": true
     },
     "window-preview-scale": {
@@ -91,13 +96,13 @@
             "Large": 1.25,
             "Largest": 1.5
         },
-        "dependency": "window-preview",
-        "value": 1
+        "dependency": "window-hover=thumbnail",
+        "value": 1.5
     },
     "last-window-order": {
         "type": "generic",
         "default": "",
-        "value": "58720299::52428807::52431031"
+        "value": "81788942::94371883::77594631::77608359"
     },
-    "__md5__": "b35ffa9a47e7de8ef0c209cfa6a0e860"
+    "__md5__": "ae7e62426953eb3b7c5103050ae4d575"
 }
