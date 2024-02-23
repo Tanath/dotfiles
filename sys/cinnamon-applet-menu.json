@@ -116,7 +116,7 @@
             }
         ],
         "default_category": "Linux Mint",
-        "value": "linuxmint-logo-ring-symbolic"
+        "value": "cinnamon"
     },
     "menu-icon-size": {
         "type": "spinbutton",
@@ -135,7 +135,7 @@
         "description": "Text",
         "tooltip": "Enter custom text to show in the panel.",
         "dependency": "menu-custom",
-        "value": "Start"
+        "value": ""
     },
     "show-category-icons": {
         "type": "switch",
@@ -264,7 +264,7 @@
         "default": false,
         "description": "Use menu animations",
         "tooltip": "Allow the menu to animate on open and close",
-        "value": true
+        "value": false
     },
     "menu-editor-button": {
         "type": "button",
