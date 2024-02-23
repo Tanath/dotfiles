@@ -1,7 +1,7 @@
 " Gitgutter
-if g:gitgutter_enabled
+"if g:gitgutter_enabled
     let g:gitgutter_max_signs = 1300
-endif
+"endif
 
 " ALE
 let b:ale_linters = ['pyflakes', 'flake8', 'pylint']
