@@ -8,12 +8,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Options
+## Options
 setopt correct                                             # Auto correct mistakes
 setopt numericglobsort                                     # Sort filenames numerically when it makes sense
 setopt appendhistory                                       # Immediately append history instead of overwriting
 setopt histignorealldups                                   # If a new command is a duplicate, remove the older one
 setopt sharehistory                                        # Share history between sessions
+setopt hist_ignore_space                                   # Omit commands starting with a space from history
 setopt menucomplete
 setopt prompt_subst                                        # enable substitution for prompt
 setopt auto_resume # Commands w/o arguments will first try to resume suspended programs of the same name.
@@ -21,6 +22,13 @@ setopt extendedglob
 #setopt autocd                                              # CD automatically when path to dir is entered
 setopt no_flow_control                                     # Turns off C-S/C-Q flow control
 ttyctl -f                                                  # Avoid <c-s> frozen terminal. <c-q> should resume.
+setopt no_beep
+setopt no_multios
+WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
+
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
 
 # Completions
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
@@ -95,11 +103,6 @@ alias h=run-help
 #autoload -Uz run-help-{git,ip,openssl,p4,sudo,svk,svn} promptinit
 #promptinit
 
-HISTFILE=~/.zhistory
-HISTSIZE=12000
-SAVEHIST=12000
-WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the word
-
 # zsh-syntax-highlighting and autosuggestion
 [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [[ -f /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -123,54 +126,54 @@ WORDCHARS=${WORDCHARS//\/[&.;]} # Don't consider certain characters part of the 
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
 vf() {
-  local files
+    local files
 
-  files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+    files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
 
-  if [[ -n $files ]]
-  then
-     vim -- $files
-     print -l $files[1]
-  fi
+    if [[ -n $files ]]
+    then
+        vim -- $files
+        print -l $files[1]
+    fi
 }
 
 # fuzzy ag open with line number
 vg() {
-  local file
-  local line
+    local file
+    local line
 
-  read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+    read -r file line <<<"$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
 
-  if [[ -n $file ]]
-  then
-     vim $file +$line
-  fi
+    if [[ -n $file ]]
+    then
+        vim $file +$line
+    fi
 }
 
 # fuzzy ag open, incl. hidden, with line number
 vgh() {
-  local file
-  local line
+    local file
+    local line
 
-  read -r file line <<<"$(ag --hidden --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+    read -r file line <<<"$(ag --hidden --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
 
-  if [[ -n $file ]]
-  then
-     vim $file +$line
-  fi
+    if [[ -n $file ]]
+    then
+        vim $file +$line
+    fi
 }
 
 # fuzzy ag open, incl. hidden, no recurse, with line number
 vgr() {
-  local file
-  local line
+    local file
+    local line
 
-  read -r file line <<<"$(ag -n --hidden --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
+    read -r file line <<<"$(ag -n --hidden --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1, $2}')"
 
-  if [[ -n $file ]]
-  then
-     vim $file +$line
-  fi
+    if [[ -n $file ]]
+    then
+        vim $file +$line
+    fi
 }
 
 todo () {
