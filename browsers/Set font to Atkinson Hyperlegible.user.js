@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Set fonts to Atkinson Hyperlegible Pro & Fira Code Nerd Font
-// @version      1.0.2
+// @version      1.0.3
 // @description  Set sans font to Atkinson Hyperlegible Pro & mono to Fira Code Nerd Font.
 // @author       Tanath
 // @downloadURL  https://github.com/Tanath/dotfiles/raw/master/browsers/Set%20font%20to%20Atkinson%20Hyperlegible.user.js
@@ -28,6 +28,7 @@ document.onreadystatechange = function () {
                  url('https://github.com/jacobxperez/atkinson-hyperlegible-pro/raw/v1.5.1/fonts/web/AtkinsonHyperPro-BoldItalic.woff2') format('woff2');
             font-weight: 400 700;
             font-style: normal italic;
+            font-variant-numeric: slashed-zero:
         }
 
         @font-face {
@@ -75,7 +76,7 @@ document.onreadystatechange = function () {
 
         var style = `
         body, h1, h2, h3, h4, h5, h6, p, a, i, b, em, strong, section, article, aside, nav, header, main, q, li, blockquote, dd, dl, dt, figcaption, menu {
-            font-family: 'Atkinson Hyperlegible Pro', sans-serif !important;
+            font-family: 'Atkinson Hyperlegible Pro', sans-serif;
         }
         code, pre, kbd, var, samp {
             font-family: 'FiraCode Nerd Font Mono', monospace !important;
