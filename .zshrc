@@ -31,7 +31,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # Completions
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'  # Case insensitive tab completion
 zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 zstyle ':completion:*' auto-description 'specify: %d'      # Describe options not described by completion functions (with one argument)
 zstyle ':completion:*' format 'Completing %d'
