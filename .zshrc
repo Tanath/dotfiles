@@ -1,3 +1,10 @@
+# Nix stuff
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+if [ -d /nix/store/zla14a99rc5qqrhrnjra125gpgdffgr1-rofi-emoji-3.2.0/lib/rofi ]; then
+    export ROFI_PLUGIN_PATH=/nix/store/zla14a99rc5qqrhrnjra125gpgdffgr1-rofi-emoji-3.2.0/lib/rofi
+fi
+
 # Exit if not interactive shell
 [[ -o interactive ]] || return
 
