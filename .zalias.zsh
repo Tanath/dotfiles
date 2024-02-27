@@ -85,6 +85,8 @@ alias dmesg='dmesg -H --color=always'
 alias vd='vimdiff'
 alias v=vim
 alias ed='vim'
+(( $+commands[ranger] )) \
+    && alias rr='ranger'
 alias t='cat .todo | less'
 alias vt='vim .todo'
 fnd () { find . -iname \*$*\* | less }
