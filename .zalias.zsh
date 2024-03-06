@@ -122,7 +122,7 @@ alias gco='git checkout'
 alias gst='git stash'
 alias grh='git reset --hard'
 alias gfiles='git ls-tree --name-only -r $(git name-rev --name-only HEAD)'
-alias ggraph='git log --graph --all --pretty=format:"%Cred%h%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset" --abbrev-commit --date=relative'
+alias ggraph='git log -n 33 --graph --all --pretty=format:"%Cred%h%Creset - %Cgreen(%cr)%Creset %s%C(yellow)%d%Creset" --abbrev-commit --date=relative --color=always'
 alias xo='xdg-open'
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
