@@ -88,6 +88,7 @@ if exists(':PlugInstall')
     Plug 'itspriddle/vim-shellcheck'
     "Plug 'preservim/nerdtree'
     Plug 'will133/vim-dirdiff'
+    Plug 'habamax/vim-asciidoctor'
     Plug 'vimwiki/vimwiki'
     Plug 'plasticboy/vim-markdown'
     "Plug 'iamcco/markdown-preview.nvim', { 'do': ':call mkdp#util#install()', 'for': 'markdown', 'on': 'MarkdownPreview' }
