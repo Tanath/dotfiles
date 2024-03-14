@@ -98,13 +98,13 @@ evdev:input:b0003v045Ep00DB*
 
 Then run:
 
-    ```sh
-    sudo systemd-hwdb update
-    ```
+```sh
+sudo systemd-hwdb update
+```
 
-    ```sh
-    sudo udevadm trigger
-    ```
+```sh
+sudo udevadm trigger
+```
 
 For more info on remapping keys on Linux, and how to determine the config for your keyboard, see:
 
