@@ -25,24 +25,24 @@ alias v='vim'
 alias ed='vim'
 alias u='cd ..'
 alias uu='cd ../..'
-command -v exa >/dev/null 2>&1 \
-    && alias ll='exa -Flhs=type' \
-    || alias ll=ls\ -l\ $LSPARAMS
-command -v exa >/dev/null 2>&1 \
-    && alias la='exa -Fahs=type' \
-    || alias la=ls\ -a\ $LSPARAMS
-command -v exa >/dev/null 2>&1 \
-    && alias lla='exa -Falhs=type' \
-    || alias lla=ls\ -la\ $LSPARAMS
-command -v exa >/dev/null 2>&1 \
-    && alias lz='exa -Fhs=size' \
-    || alias lz='ll -rS'
-command -v exa >/dev/null 2>&1 \
-    && alias lt='exa -Fhs=modified' \
-    || alias lt='ll -rT'
-command -v exa >/dev/null 2>&1 \
-    && alias lx='exa -Fhs=type' \
-    || alias lx='ll -BX'                                           # sort by ext
+if hash eza 2>/dev/null; then
+    alias ls='eza'
+    alias l='eza -l --all --group-directories-first --git'
+    alias ll='eza -Flhs=type --git'
+    alias la='eza -Fahs=type --git'
+    alias lla='eza -Falhs=type'
+    alias lz='eza -Fhs=size'
+    alias lt='eza -Fhs=modified'
+    alias lx='eza -Fhs=type'
+else
+    alias l='ls -lah'
+    alias ll=ls\ -l\ $LSPARAMS
+    alias la=ls\ -a\ $LSPARAMS
+    alias lla=ls\ -la\ $LSPARAMS
+    alias lz='ll -rS'
+    alias lt='ll -rT'
+    alias lx='ll -BX'                                           # sort by ext
+fi
 command -v batcat >/dev/null 2>&1 \
     && alias b='batcat'
 alias l.='ls $LSPARAMS -d .[^.]*'                               # List .dirs
