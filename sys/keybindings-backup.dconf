@@ -1,0 +1,98 @@
+[/]
+custom-list=['custom7', 'custom4', 'custom2', '__dummy__', 'custom0', 'custom1', 'custom3', 'custom5', 'custom6', 'custom8', 'custom9']
+looking-glass-keybinding=@as []
+
+[custom-keybindings/custom0]
+binding=['F12']
+command='xfce4-terminal --fullscreen --drop-down'
+name='terminal toggle (xfce4-terminal)'
+
+[custom-keybindings/custom1]
+binding=['<Super>space']
+command='/home/tanath/.local/bin/rofi'
+name='rofi'
+
+[custom-keybindings/custom2]
+binding=['<Primary>F10']
+command="sh -c 'xclip -o -selection primary | gvim.sh'"
+name='selection to gvim'
+
+[custom-keybindings/custom3]
+binding=['<Super>e']
+command='/home/tanath/.local/bin/rofi-emoji'
+name='rofi emoji'
+
+[custom-keybindings/custom4]
+binding=['Print']
+command='flameshot gui'
+name='flameshot gui'
+
+[custom-keybindings/custom5]
+binding=['<Primary>Print']
+command='flameshot screen'
+name='flameshot screen'
+
+[custom-keybindings/custom6]
+binding=['<Shift>Print']
+command='flameshot launcher'
+name='flameshot launcher'
+
+[custom-keybindings/custom7]
+binding=['<Super>c']
+command="/usr/bin/rofi -modi \"clipboard:~/.local/bin/greenclip print\" -show clipboard -run-command '{cmd}'"
+name='greenclip'
+
+[custom-keybindings/custom8]
+binding=['<Super>Print']
+command='xfce4-screenshooter -ws ~/Pictures'
+name='screenshot window (screenshooter)'
+
+[custom-keybindings/custom9]
+binding=['<Super>o']
+command='/home/tanath/.local/bin/selection-open.sh'
+name='selection open'
+
+[media-keys]
+area-screenshot=@as []
+area-screenshot-clip=@as []
+home=['XF86Explorer', '<Super>Home']
+media=['<Super>slash']
+next=['<Super>bracketright']
+pause=['<Super>backslash']
+play=['<Super>equal']
+previous=['<Super>bracketleft']
+screenshot=@as []
+screenshot-clip=@as []
+stop=['<Super>minus']
+terminal=['<Primary><Alt>t']
+video-rotation-lock=@as []
+volume-down=['<Super>Page_Down']
+volume-mute=['<Super>m']
+volume-up=['<Super>Page_Up']
+window-screenshot=@as []
+window-screenshot-clip=@as []
+
+[wm]
+begin-move=@as []
+begin-resize=@as []
+close=['<Alt>F4', '<Super>q', '<Super>Delete']
+increase-opacity=@as []
+lower=['<Alt>Escape']
+maximize-horizontally=['<Super>KP_Subtract']
+maximize-vertically=['<Super>KP_Add']
+minimize=['<Super>KP_0', '<Super>End']
+move-to-center=['<Super>KP_5']
+move-to-corner-ne=['<Super>KP_9']
+move-to-corner-nw=['<Super>KP_7']
+move-to-corner-se=['<Super>KP_3']
+move-to-corner-sw=['<Super>KP_1']
+move-to-side-e=['<Super>KP_6']
+move-to-side-n=['<Super>KP_8']
+move-to-side-s=['<Super>KP_2']
+move-to-side-w=['<Super>KP_4']
+panel-run-dialog=['<Alt>F2', '<Super>k']
+switch-to-workspace-up=['<Control><Alt>Up']
+toggle-above=@as []
+toggle-fullscreen=['F11']
+toggle-maximized=['<Alt>F10', '<Super>KP_Multiply']
+unmaximize=@as []
