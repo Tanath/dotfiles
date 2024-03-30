@@ -82,9 +82,10 @@ nnoremap <leader>bb :b<space><c-d>
 " Go to next modified buffer.
 nnoremap <leader>bm :bm<cr>
 " New buffer.
-nnoremap <Bslash><Insert> :enew<CR>
+nnoremap <A-Insert> :enew<CR>
+nnoremap <leader>bn :enew<CR>
 " Del buffer.
-nnoremap <Bslash><Delete> :bdel<CR>
+nnoremap <A-Del> :bdel<CR>
 nnoremap <leader>bd :bdel<CR>
 nnoremap <leader>b- :bdel #<CR>
 " Close window/pane.
