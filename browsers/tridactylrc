@@ -53,6 +53,7 @@ set searchurls.yt https://www.youtube.com/results?search_query=%s
 " bind --mode=$mode $key $excmd
 """ Tabs
 bind x composite tab #; tabclose #
+bind <A-x> tabclose #
 " Redundancy for sites with x unbound:
 bind <Alt-c> composite tab #; tabclose #
 bind X undo
