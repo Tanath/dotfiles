@@ -224,6 +224,7 @@ autocmd DocStart www.codecademy.com mode ignore
 
 " Quickmarks
 quickmark a https://www.artstation.com/
+quickmark d https://duckduckgo.com/?q=DuckDuckGo&ia=chat
 quickmark g https://github.com/tanath/dotfiles
 quickmark h https://news.ycombinator.com/
 quickmark i https://www.inoreader.com/all_articles
