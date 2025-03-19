@@ -78,6 +78,7 @@ bind K scrollpage -0.10
 "bind J scrollline 5
 "bind K scrollline -5
 bind <space> composite set smoothscroll true; scrollpage 0.7; set smoothscroll false
+bind g5 scrollto 50
 bind % fillcmdline scrollto
 bind S back
 bind D forward
