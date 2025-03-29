@@ -47,6 +47,7 @@ set searchurls.wp https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go
 set searchurls.wa https://www.wolframalpha.com/input/?i=%s
 set searchurls.wb https://web.archive.org/web/*/%s
 set searchurls.wi https://en.wiktionary.org/wiki/Special:Search?search=%s&go=Go
+set searchurls.y https://you.com/search?q=%s&tbm=youchat
 set searchurls.yt https://www.youtube.com/results?search_query=%s
 
 " Binds. :help bind
