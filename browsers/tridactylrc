@@ -70,12 +70,12 @@ unbind <<
 bind gd tabdetach
 bind yT tabduplicate
 """ Navigation
-bind d scrollpage 0.4
-bind e scrollpage -0.4
-bind k scrollpage -0.25
-bind j scrollpage 0.25
-bind J scrollpage 0.10
-bind K scrollpage -0.10
+bind d scrollpage 0.36
+bind e scrollpage -0.36
+bind k scrollpage -0.24
+bind j scrollpage 0.24
+bind J scrollpage 0.12
+bind K scrollpage -0.12
 "bind J scrollline 5
 "bind K scrollline -5
 bind <space> composite set smoothscroll true; scrollpage 0.7; set smoothscroll false
